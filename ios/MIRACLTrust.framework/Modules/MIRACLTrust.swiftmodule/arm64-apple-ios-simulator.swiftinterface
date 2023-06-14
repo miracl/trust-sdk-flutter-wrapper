@@ -1,0 +1,486 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)
+// swift-module-flags: -target arm64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name MIRACLTrust
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import CommonCrypto
+import MIRACLTrust.Crypto
+import Foundation
+@_exported import MIRACLTrust
+import MIRACLTrust.SQLChiper
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import os.log
+import os
+@_inheritsConvenienceInitializers @objcMembers @objc public class AuthenticationSessionDetails : MIRACLTrust.SessionDetails {
+  @objc public var accessId: Swift.String
+  @objc override dynamic public init()
+  @objc deinit
+}
+public enum OTPGeneratorError : Swift.Error, Swift.Equatable {
+  case invalidOTPResponse
+  case authenticatorCreationError
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MIRACLTrust.OTPGeneratorError, b: MIRACLTrust.OTPGeneratorError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc public protocol UserStorage {
+  @objc func loadStorage() throws
+  @objc func add(user: MIRACLTrust.User) throws
+  @objc func delete(user: MIRACLTrust.User) throws
+  @objc func update(user: MIRACLTrust.User) throws
+  @objc func all() -> [MIRACLTrust.User]
+  @objc func getUser(by userId: Swift.String, projectId: Swift.String) -> MIRACLTrust.User?
+  @objc func getIdentity(by id: Foundation.NSUUID) -> MIRACLTrust.Identity?
+  @objc func add(identity: MIRACLTrust.Identity) throws
+  @objc func update(identity: MIRACLTrust.Identity) throws
+}
+public typealias ProcessPinHandler = (Swift.String?) -> Swift.Void
+public typealias PinRequestHandler = (@escaping MIRACLTrust.ProcessPinHandler) -> Swift.Void
+public typealias RegistrationCompletionHandler = (MIRACLTrust.User?, (any Swift.Error)?) -> Swift.Void
+public typealias AuthenticationCompletionHandler = (Swift.Bool, (any Swift.Error)?) -> Swift.Void
+public typealias SigningRegistrationCompletionHandler = (MIRACLTrust.User?, (any Swift.Error)?) -> Swift.Void
+public typealias SigningCompletionHandler = (MIRACLTrust.Signature?, (any Swift.Error)?) -> Swift.Void
+public typealias VerificationCompletionHandler = (Swift.Bool, (any Swift.Error)?) -> Swift.Void
+public typealias ActivationTokenCompletionHandler = (MIRACLTrust.ActivationTokenResponse?, (any Swift.Error)?) -> Swift.Void
+public typealias OTPCompletionHandler = (MIRACLTrust.OTP?, (any Swift.Error)?) -> Swift.Void
+public typealias QuickCodeCompletionHandler = (MIRACLTrust.QuickCode?, (any Swift.Error)?) -> Swift.Void
+public typealias AuthCodeCompletionHandler = (Swift.String?, (any Swift.Error)?) -> Swift.Void
+public typealias AuthenticationSessionDetailsCompletionHandler = (MIRACLTrust.AuthenticationSessionDetails?, (any Swift.Error)?) -> Swift.Void
+public typealias AuthenticationSessionAborterCompletionHandler = (Swift.Bool, (any Swift.Error)?) -> Swift.Void
+public typealias SigningSessionDetailsCompletionHandler = (MIRACLTrust.SigningSessionDetails?, (any Swift.Error)?) -> Swift.Void
+public typealias SessionUpdaterCompletionHandler = (MIRACLTrust.SigningSessionCompletionResult?, (any Swift.Error)?) -> Swift.Void
+public let MIRACL_API_URL: Foundation.URL
+@_inheritsConvenienceInitializers @objcMembers @objc public class ActivationTokenErrorResponse : ObjectiveC.NSObject {
+  @objc public var projectId: Swift.String
+  @objc public var error: Swift.String
+  @objc public var userId: Swift.String
+  @objc public var accessId: Swift.String?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objcMembers @objc public class ActivationTokenResponse : ObjectiveC.NSObject {
+  @objc public var activationToken: Swift.String
+  @objc public var projectId: Swift.String
+  @objc public var userId: Swift.String
+  @objc public var accessId: Swift.String?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class Configuration : ObjectiveC.NSObject {
+  @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc(ConfigurationBuilder) public class Builder : ObjectiveC.NSObject {
+    @objc public init(projectId: Swift.String, clientId: Swift.String, redirectURI: Swift.String)
+    @discardableResult
+    @objc(userStorageWith:) public func userStorage(userStorage: any MIRACLTrust.UserStorage) -> MIRACLTrust.Configuration.Builder
+    @discardableResult
+    @objc(loggerWith:) public func logger(logger: any MIRACLTrust.Logger) -> MIRACLTrust.Configuration.Builder
+    @discardableResult
+    @objc(loggingLevelWith:) public func loggingLevel(level: MIRACLTrust.LoggingLevel) -> MIRACLTrust.Configuration.Builder
+    @discardableResult
+    @objc(platformURLWith:) public func platformURL(url: Foundation.URL) -> MIRACLTrust.Configuration.Builder
+    @discardableResult
+    @objc(deviceNameWith:) public func deviceName(deviceName: Swift.String) -> MIRACLTrust.Configuration.Builder
+    @discardableResult
+    @objc(URLSessionConfigurationWith:) public func URLSessionConfiguration(urlSessionConfiguration: Foundation.URLSessionConfiguration) -> MIRACLTrust.Configuration.Builder
+    @objc public func build() throws -> MIRACLTrust.Configuration
+    @objc deinit
+  }
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objcMembers @objc public class Signature : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var mpinId: Swift.String
+  @objc public var U: Swift.String
+  @objc public var V: Swift.String
+  @objc public var publicKey: Swift.String
+  @objc public var dtas: Swift.String
+  @objc public var signatureHash: Swift.String
+  @objc @available(swift, obsoleted: 1.0)
+  public func dictionary() -> [Swift.String : Swift.String]
+  @objc override dynamic public init()
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+public enum SigningRegistrationError : Swift.Error, Swift.Equatable {
+  case emptyUserId
+  case emptyIdentity
+  case authenticatorCreationError
+  case emptyAuthenticationResponse
+  case invalidCryptoValue
+  case invalidSigningClientSecret1Response
+  case invalidSigningClientSecret2Response
+  case unsupportedEllipticCurve
+  case invalidPin
+  case invalidSigningClientToken
+  case invalidDeviceName
+  case overrideDeletionError
+  case overrideTooManyUsersError
+  case invalidUserStorage
+  case revokedUser
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MIRACLTrust.SigningRegistrationError, b: MIRACLTrust.SigningRegistrationError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc public enum SigningSessionStatus : Swift.Int, Swift.Codable {
+  case active
+  case signed
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objcMembers @objc public class User : ObjectiveC.NSObject {
+  @objc public var userId: Swift.String
+  @objc public var projectId: Swift.String
+  @objc public var authenticationIdentityId: Foundation.NSUUID
+  @objc public var signingIdentityId: Foundation.NSUUID?
+  @objc public var revoked: Swift.Bool
+  @objc public func getAuthenticationIdentity() -> MIRACLTrust.Identity?
+  @objc public func getSigningIdentity() -> MIRACLTrust.Identity?
+  @objc override dynamic public init()
+  @objc deinit
+}
+public enum ConfigurationError : Swift.Error, Swift.Equatable {
+  case configurationEmptyProjectId
+  case configurationEmptyClientId
+  case configurationEmptyRedirectURI
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MIRACLTrust.ConfigurationError, b: MIRACLTrust.ConfigurationError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension MIRACLTrust.ConfigurationError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public enum ActivationTokenError : Swift.Error, Swift.Equatable {
+  case invalidURL
+  case invalidActivationCode
+  case invalidUserId
+  case invalidVerificationConfirmationResponse
+  case apiError(activationTokenErrorResponse: MIRACLTrust.ActivationTokenErrorResponse?)
+  public static func == (a: MIRACLTrust.ActivationTokenError, b: MIRACLTrust.ActivationTokenError) -> Swift.Bool
+}
+extension MIRACLTrust.ActivationTokenError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension MIRACLTrust.ActivationTokenError : Foundation.CustomNSError {
+  public var errorUserInfo: [Swift.String : Any] {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objcMembers @objc public class OTP : MIRACLTrust.OneTimeCode {
+  @objc override dynamic public init()
+  @objc deinit
+}
+public enum AuthenticationSessionDetailsError : Swift.Error, Swift.Equatable {
+  case invalidQRCode
+  case invalidUniversalLinkURL
+  case invalidPushNotificationPayload
+  case invalidSessionDetailsResponse
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MIRACLTrust.AuthenticationSessionDetailsError, b: MIRACLTrust.AuthenticationSessionDetailsError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum AuthenticationSessionAborterError : Swift.Error, Swift.Equatable {
+  case invalidSessionDetails
+  case invalidSessionAborterResponse
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MIRACLTrust.AuthenticationSessionAborterError, b: MIRACLTrust.AuthenticationSessionAborterError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum SigningSessionDetailsError : Swift.Error, Swift.Equatable {
+  case invalidQRCode
+  case invalidUniversalLinkURL
+  case invalidResponse
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MIRACLTrust.SigningSessionDetailsError, b: MIRACLTrust.SigningSessionDetailsError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum AuthenticationError : Swift.Error, Swift.Equatable {
+  case emptyIdentity
+  case emptyUser
+  case emptyScope
+  case invalidAccessId
+  case invalidPin
+  case invalidCryptoValue
+  case invalidChallenge
+  case invalidAuthOTT
+  case invalidAuthenticateResponse
+  case wamPinError
+  case revokedUser
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MIRACLTrust.AuthenticationError, b: MIRACLTrust.AuthenticationError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension MIRACLTrust.AuthenticationError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objcMembers @objc public class QuickCode : MIRACLTrust.OneTimeCode {
+  @objc override dynamic public init()
+  @objc deinit
+}
+public enum SigningSessionCompletionError : Swift.Error, Swift.Equatable {
+  case invalidResponseObject
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MIRACLTrust.SigningSessionCompletionError, b: MIRACLTrust.SigningSessionCompletionError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objc open class MIRACLTrust : ObjectiveC.NSObject {
+  @objc public var users: [MIRACLTrust.User]
+  @objc public var projectId: Swift.String
+  @objc public class func getInstance() -> MIRACLTrust.MIRACLTrust
+  @objc public class func configure(with configuration: MIRACLTrust.Configuration) throws
+  @objc public func updateProjectSettings(projectId: Swift.String, clientId: Swift.String, redirectURI: Swift.String) throws
+  @objc public func sendVerificationEmail(userId: Swift.String, authenticationSessionDetails: MIRACLTrust.AuthenticationSessionDetails? = nil, completionHandler: @escaping MIRACLTrust.VerificationCompletionHandler)
+  @objc public func getActivationToken(verificationURL: Foundation.URL, completionHandler: @escaping MIRACLTrust.ActivationTokenCompletionHandler)
+  @objc public func register(for userId: Swift.String, activationToken: Swift.String, pushNotificationsToken: Swift.String? = nil, didRequestPinHandler: @escaping MIRACLTrust.PinRequestHandler, completionHandler: @escaping MIRACLTrust.RegistrationCompletionHandler)
+  @objc(authenticateWithUser:didRequestPinHandler:completionHandler:) public func authenticate(user: MIRACLTrust.User, didRequestPinHandler: @escaping MIRACLTrust.PinRequestHandler, completionHandler: @escaping MIRACLTrust.AuthCodeCompletionHandler)
+  @objc(authenticateWithUser:qrCode:didRequestPinHandler:completionHandler:) public func authenticateWithQRCode(user: MIRACLTrust.User, qrCode: Swift.String, didRequestPinHandler: @escaping MIRACLTrust.PinRequestHandler, completionHandler: @escaping MIRACLTrust.AuthenticationCompletionHandler)
+  @objc(authenticateWithPushNotificationPayload:didRequestPinHandler:completionHandler:) public func authenticateWithPushNotificationPayload(payload: [Swift.AnyHashable : Any], didRequestPinHandler: @escaping MIRACLTrust.PinRequestHandler, completionHandler: @escaping MIRACLTrust.AuthenticationCompletionHandler)
+  @objc(authenticateWithUser:universalLinkURL:didRequestPinHandler:completionHandler:) public func authenticateWithUniversalLinkURL(user: MIRACLTrust.User, universalLinkURL: Foundation.URL, didRequestPinHandler: @escaping MIRACLTrust.PinRequestHandler, completionHandler: @escaping MIRACLTrust.AuthenticationCompletionHandler)
+  @objc public func generateOTP(user: MIRACLTrust.User, didRequestPinHandler: @escaping MIRACLTrust.PinRequestHandler, completionHandler: @escaping MIRACLTrust.OTPCompletionHandler)
+  @objc public func generateQuickCode(user: MIRACLTrust.User, didRequestPinHandler: @escaping MIRACLTrust.PinRequestHandler, completionHandler: @escaping MIRACLTrust.QuickCodeCompletionHandler)
+  @objc public func getAuthenticationSessionDetailsFromQRCode(qrCode: Swift.String, completionHandler: @escaping MIRACLTrust.AuthenticationSessionDetailsCompletionHandler)
+  @objc public func getAuthenticationSessionDetailsFromUniversalLinkURL(universalLinkURL: Foundation.URL, completionHandler: @escaping MIRACLTrust.AuthenticationSessionDetailsCompletionHandler)
+  @objc public func getAuthenticationSessionDetailsFromPushNotificationPayload(pushNotificationPayload: [Swift.AnyHashable : Any], completionHandler: @escaping MIRACLTrust.AuthenticationSessionDetailsCompletionHandler)
+  @objc public func abortAuthenticationSession(authenticationSessionDetails: MIRACLTrust.AuthenticationSessionDetails, completionHandler: @escaping MIRACLTrust.AuthenticationSessionAborterCompletionHandler)
+  @objc public func getSigningSessionDetailsFromQRCode(qrCode: Swift.String, completionHandler: @escaping MIRACLTrust.SigningSessionDetailsCompletionHandler)
+  @objc public func getSigningSessionDetailsFromUniversalLinkURL(universalLinkURL: Foundation.URL, completionHandler: @escaping MIRACLTrust.SigningSessionDetailsCompletionHandler)
+  @objc public func completeSigningSession(signingSessionDetails: MIRACLTrust.SigningSessionDetails, signature: MIRACLTrust.Signature, timestamp: Foundation.Date, completionHandler: @escaping MIRACLTrust.SessionUpdaterCompletionHandler)
+  @objc public func signingRegister(user: MIRACLTrust.User, didRequestAuthenticationPinHandler: @escaping MIRACLTrust.PinRequestHandler, didRequestSigningPinHandler: @escaping MIRACLTrust.PinRequestHandler, completionHandler: @escaping MIRACLTrust.SigningRegistrationCompletionHandler)
+  @objc public func sign(message: Foundation.Data, timestamp: Foundation.Date, user: MIRACLTrust.User, didRequestSigningPinHandler: @escaping MIRACLTrust.PinRequestHandler, completionHandler: @escaping MIRACLTrust.SigningCompletionHandler)
+  @objc public func getUser(by userId: Swift.String, projectId: Swift.String? = nil) -> MIRACLTrust.User?
+  @objc public func delete(user: MIRACLTrust.User) throws
+  @objc deinit
+}
+public enum RegistrationError : Swift.Error, Swift.Equatable {
+  case invalidUserId
+  case invalidDeviceName
+  case invalidActivationToken
+  case invalidRegistrationResponse
+  case invalidSignatureResponse
+  case unsupportedEllipticCurve
+  case invalidClientSecretResponse
+  case invalidPin
+  case invalidClientSecret
+  case invalidClientToken
+  case overrideDeletionError
+  case invalidUserStorage
+  case invalidProjectId
+  case emptyIdentity
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MIRACLTrust.RegistrationError, b: MIRACLTrust.RegistrationError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension MIRACLTrust.RegistrationError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+@objc public protocol Logger {
+  @objc func debug(message: Swift.String, category: MIRACLTrust.LogCategory)
+  @objc func info(message: Swift.String, category: MIRACLTrust.LogCategory)
+  @objc func warning(message: Swift.String, category: MIRACLTrust.LogCategory)
+  @objc func error(message: Swift.String, category: MIRACLTrust.LogCategory)
+}
+@_inheritsConvenienceInitializers @objcMembers @objc public class Identity : ObjectiveC.NSObject {
+  @objc public var uuid: Foundation.NSUUID
+  @objc public var mpinId: Foundation.Data
+  @objc public var token: Foundation.Data
+  @objc public var dtas: Swift.String
+  @objc public var pinLength: Swift.Int
+  @objc public var publicKey: Foundation.Data?
+  @objc public var hashedMpinId: Swift.String {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum LogCategory : Swift.Int {
+  case configuration
+  case networking
+  case crypto
+  case registration
+  case authentication
+  case signing
+  case signingRegistration
+  case verification
+  case verificationConfirmation
+  case storage
+  case sessionManagement
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objcMembers @objc public class SigningSessionCompletionResult : ObjectiveC.NSObject, Swift.Codable {
+  @objc public var status: MIRACLTrust.SigningSessionStatus
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+@_inheritsConvenienceInitializers @objcMembers @objc public class OneTimeCode : ObjectiveC.NSObject {
+  @objc public var code: Swift.String
+  @objc public var nowTime: Foundation.Date
+  @objc public var expireTime: Foundation.Date
+  @objc public var ttlSeconds: Swift.Int
+  @objc override dynamic public init()
+  @objc deinit
+}
+public enum APIError : Swift.Error, Swift.Equatable {
+  case apiNoDataReceived
+  case apiBadStatusCode(statusCode: Swift.Int, message: Swift.String?)
+  case apiCannotCreateRequest
+  case apiMalformedJSON(message: Swift.String?)
+  case apiRequestCannotCreateURL
+  case apiInvalidSchemeInURL
+  case apiInvalidHostInURL
+  case apiFailedRequest
+  public static func == (a: MIRACLTrust.APIError, b: MIRACLTrust.APIError) -> Swift.Bool
+}
+@_inheritsConvenienceInitializers @objcMembers @objc public class SigningSessionDetails : MIRACLTrust.SessionDetails {
+  @objc public var sessionId: Swift.String
+  @objc public var signingHash: Swift.String
+  @objc public var signingDescription: Swift.String
+  @objc public var status: MIRACLTrust.SigningSessionStatus
+  @objc public var expireTime: Foundation.Date
+  @objc override dynamic public init()
+  @objc deinit
+}
+public enum VerificationError : Swift.Error, Swift.Equatable {
+  case invalidUserId
+  case invalidSessionDetails
+  case emptyVerificationResponse
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MIRACLTrust.VerificationError, b: MIRACLTrust.VerificationError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc public enum LoggingLevel : Swift.Int, Swift.Comparable {
+  case none = 0
+  case debug = 1
+  case info = 2
+  case warning = 3
+  case error = 4
+  public static func < (lhs: MIRACLTrust.LoggingLevel, rhs: MIRACLTrust.LoggingLevel) -> Swift.Bool
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum VerificationMethod : Swift.Int {
+  case fullCustom
+  case standardEmail
+  public static func verificationMethodFromString(_ string: Swift.String) -> MIRACLTrust.VerificationMethod
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum IdentityType : Swift.Int {
+  case email
+  case alphanumeric
+  public static func identityTypeFromString(_ string: Swift.String) -> MIRACLTrust.IdentityType
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objcMembers @objc public class SessionDetails : ObjectiveC.NSObject {
+  @objc public var userId: Swift.String
+  @objc public var projectName: Swift.String
+  @objc public var projectLogoURL: Swift.String
+  @objc public var projectId: Swift.String
+  @objc public var clientId: Swift.String
+  @objc public var redirectURI: Swift.String
+  @objc public var pinLength: Swift.Int
+  @objc public var verificationMethod: MIRACLTrust.VerificationMethod
+  @objc public var verificationURL: Swift.String
+  @objc public var verificationCustomText: Swift.String
+  @objc public var identityTypeLabel: Swift.String
+  @objc public var quickCodeEnabled: Swift.Bool
+  @objc public var limitQuickCodeRegistration: Swift.Bool
+  @objc public var identityType: MIRACLTrust.IdentityType
+  @objc override dynamic public init()
+  @objc deinit
+}
+public enum QuickCodeGeneratorError : Swift.Error, Swift.Equatable {
+  case invalidQuickCodeResponse
+  case authenticatorCreationError
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MIRACLTrust.QuickCodeGeneratorError, b: MIRACLTrust.QuickCodeGeneratorError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum SigningError : Swift.Error, Swift.Equatable {
+  case emptyMessageHash
+  case emptySigningIdentity
+  case invalidCryptoValues
+  case invalidPin
+  case emptyPublicKey
+  case invalidTimestamp
+  case invalidSigningIdentity
+  case revokedUser
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MIRACLTrust.SigningError, b: MIRACLTrust.SigningError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension MIRACLTrust.OTPGeneratorError : Swift.Hashable {}
+extension MIRACLTrust.SigningRegistrationError : Swift.Hashable {}
+extension MIRACLTrust.SigningSessionStatus : Swift.Equatable {}
+extension MIRACLTrust.SigningSessionStatus : Swift.Hashable {}
+extension MIRACLTrust.SigningSessionStatus : Swift.RawRepresentable {}
+extension MIRACLTrust.ConfigurationError : Swift.Hashable {}
+extension MIRACLTrust.AuthenticationSessionDetailsError : Swift.Hashable {}
+extension MIRACLTrust.AuthenticationSessionAborterError : Swift.Hashable {}
+extension MIRACLTrust.SigningSessionDetailsError : Swift.Hashable {}
+extension MIRACLTrust.AuthenticationError : Swift.Hashable {}
+extension MIRACLTrust.SigningSessionCompletionError : Swift.Hashable {}
+extension MIRACLTrust.RegistrationError : Swift.Hashable {}
+extension MIRACLTrust.LogCategory : Swift.Equatable {}
+extension MIRACLTrust.LogCategory : Swift.Hashable {}
+extension MIRACLTrust.LogCategory : Swift.RawRepresentable {}
+extension MIRACLTrust.VerificationError : Swift.Hashable {}
+extension MIRACLTrust.LoggingLevel : Swift.Hashable {}
+extension MIRACLTrust.LoggingLevel : Swift.RawRepresentable {}
+extension MIRACLTrust.VerificationMethod : Swift.Equatable {}
+extension MIRACLTrust.VerificationMethod : Swift.Hashable {}
+extension MIRACLTrust.VerificationMethod : Swift.RawRepresentable {}
+extension MIRACLTrust.IdentityType : Swift.Equatable {}
+extension MIRACLTrust.IdentityType : Swift.Hashable {}
+extension MIRACLTrust.IdentityType : Swift.RawRepresentable {}
+extension MIRACLTrust.QuickCodeGeneratorError : Swift.Hashable {}
+extension MIRACLTrust.SigningError : Swift.Hashable {}
