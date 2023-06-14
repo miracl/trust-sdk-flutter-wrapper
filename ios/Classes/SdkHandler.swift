@@ -110,7 +110,7 @@ public class SdkHandler: NSObject, MiraclSdk {
     }
     
     func register(userId: String, activationToken: String, pin: String, pushToken: String?, completion: @escaping (Result<MUser, Error>) -> Void) {
-        return MIRACLTrust.getInstance().register(for: userId, activationToken: activationToken) {  pinProcessor in
+        return MIRACLTrust.getInstance().register(for: userId, activationToken: activationToken, pushNotificationsToken: pushToken) {  pinProcessor in
             pinProcessor(pin)
         } completionHandler: { user, error in
             if let error = error {
