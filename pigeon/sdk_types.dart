@@ -35,24 +35,28 @@ class MAuthenticationSessionDetails {
 }
 
 class MUser {
-  final String authenticationIdentityId;
   final String projectId;
   final bool revoked;
-  final String signingIdentityId;
   final String userId;
+  final String hashedMpinId;
 
-  MUser(this.authenticationIdentityId, this.projectId, this.revoked,
-      this.signingIdentityId, this.userId);
+  MUser(
+    this.projectId,
+    this.revoked,
+    this.userId,
+    this.hashedMpinId,
+  );
 }
 
 class MQuickCode {
   final String code;
   final int expiryTime;
-  final int nowTime;
   final int ttlSeconds;
 
-  MQuickCode(this.code, this.expiryTime, this.nowTime, this.ttlSeconds);
+  MQuickCode(this.code, this.expiryTime, this.ttlSeconds);
 }
+
+
 
 class MSignature {
   final String u;
@@ -65,24 +69,11 @@ class MSignature {
   MSignature(this.u, this.v, this.dtas, this.mpinId, this.hash, this.publicKey);
 }
 
-class MIdentity {
-  final String dtas;
-  final String id;
-  final String hashedMpinId;
-  final Uint8List mpinId;
-  final int pinLength;
-  final Uint8List? publicKey;
-  final Uint8List token;
+class MSigningResult {
+  final MSignature signature;
+  final int timestamp;
 
-  MIdentity(
-    this.dtas,
-    this.id,
-    this.hashedMpinId,
-    this.mpinId,
-    this.pinLength,
-    this.publicKey,
-    this.token,
-  );
+  MSigningResult(this.signature, this.timestamp);
 }
 
 @HostApi()
@@ -96,6 +87,7 @@ abstract class MiraclSdk {
   @async
   MActivationTokenResponse getActivationToken(String uri);
 
+  @async
   List<MUser> getUsers();
 
   @async
@@ -124,16 +116,10 @@ abstract class MiraclSdk {
   MQuickCode generateQuickCode(String userId, String pin);
 
   @async
-  MUser signingRegister(String userId, String pin);
-
-  @async
-  MSignature sign(String userId, String pin, Uint8List message, int date);
+  MSigningResult sign(String userId, String pin, Uint8List message);
 
   @async
   bool authenticateWithQrCode(String userId, String pin, String qrCode);
-
-  @async
-  MIdentity getAuthenticationIdentity(String userId);
 
   @async
   void authenticateWithNotificationPayload(

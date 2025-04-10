@@ -1,4 +1,4 @@
-flutter pub run pigeon \
+dart run pigeon \
   --input pigeon/sdk_types.dart \
   --dart_out lib/pigeon.dart \
   --swift_out ios/Classes/Pigeon.swift \

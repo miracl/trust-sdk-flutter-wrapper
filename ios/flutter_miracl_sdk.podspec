@@ -22,9 +22,9 @@ A new Flutter plugin project.
   s.swift_version = '5.0'
   s.public_header_files = 'Classes/**/*.h'
 
-  s.preserve_paths = 'MIRACLTrust.framework'
+  s.preserve_paths = 'MIRACLTrust.xcframework'
   s.xcconfig = { 'OTHER_LDFLAGS' => '-framework MIRACLTrust' }
-  s.vendored_frameworks = 'MIRACLTrust.framework'
+  s.vendored_frameworks = 'MIRACLTrust.xcframework'
   s.framework = 'MIRACLTrust'
 
 end

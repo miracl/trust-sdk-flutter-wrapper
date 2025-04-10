@@ -2,22 +2,16 @@ import MIRACLTrust
 import Flutter
 
 public class SdkHandler: NSObject, MiraclSdk {
-    func getAuthenticationIdentity(userId: String, completion: @escaping (Result<MIdentity, Error>) -> Void) {
+    func getAuthenticationIdentity(userId: String, completion: @escaping (Result<MUser, Error>) -> Void) {
         let sdkUser = MIRACLTrust.getInstance().getUser(by: userId);
-        
         if let sdkUser {
-            let authId = sdkUser.getAuthenticationIdentity();
-            if let authId {
-                completion(Result.success(MIdentity(dtas: authId.dtas, id: authId.uuid.uuidString, hashedMpinId: authId.hashedMpinId, mpinId: FlutterStandardTypedData(bytes: authId.mpinId), pinLength: Int64(authId.pinLength), token: FlutterStandardTypedData(bytes: authId.token))))
-            }
+            completion(Result.success(userToMUser(user: sdkUser)));
         }
     }
     
     func initSdk(configuration: MConfiguration, completion: @escaping (Result<Void, Error>) -> Void) {
         do {
-            let conf = try Configuration.Builder( projectId: configuration.projectId,
-                                              clientId: configuration.clientId,
-                                              redirectURI: configuration.redirectUri).build()
+            let conf = try Configuration.Builder(projectId: configuration.projectId).build()
             completion(Result.success(try MIRACLTrust.configure(with: conf)))
         }catch {
             completion(Result.failure(error))
@@ -30,36 +24,40 @@ public class SdkHandler: NSObject, MiraclSdk {
         let sdkUser = MIRACLTrust.getInstance().getUser(by: userId)
         
         if let sdkUser {
-            MIRACLTrust.getInstance().signingRegister(user: sdkUser) { processPin in
-                processPin(pin)
-            } didRequestSigningPinHandler: { processPin in
-                processPin(pin)
-            } completionHandler: { user, error in
-                if let error = error {
-                    completion(Result.failure(error));
-                } else if let user = user {
-                    completion(Result.success(self.userToMUser(user: user)));
-                }
-            }
-
+            completion(Result.success(userToMUser(user: sdkUser)));
         }
     }
     
-    func sign(userId: String, pin: String, message: FlutterStandardTypedData, date: Int64, completion: @escaping (Result<MSignature, Error>) -> Void) {
+    func sign(userId: String, pin: String, message: FlutterStandardTypedData, completion: @escaping (Result<MSigningResult, Error>) -> Void) {
         let sdkUser = MIRACLTrust.getInstance().getUser(by: userId)
-        
-        if let sdkUser {
-            MIRACLTrust.getInstance().sign(message: message.data, timestamp: Date(timeIntervalSince1970: TimeInterval(date)), user: sdkUser) { processPin in
-                processPin(pin)
-            } completionHandler: { signature, error in
-                if let error = error {
-                    completion(Result.failure(error));
-                } else if let signature = signature {
-                    
-                    completion(Result.success(MSignature(u: signature.U, v: signature.V, dtas: signature.dtas, mpinId: signature.mpinId, hash: signature.signatureHash, publicKey: signature.publicKey)))
-                }
-            }
 
+        if let sdkUser {
+            MIRACLTrust.getInstance().sign(
+                message: message.data ,
+                user: sdkUser,
+                didRequestSigningPinHandler: { pinProcessor in
+                    pinProcessor(pin)
+                }, completionHandler: { signingResult, error in
+                    if let error = error {
+                        completion(Result.failure(error));
+                    } else if let signingResult {
+                        completion(Result.success(
+                            MSigningResult(
+                                signature: MSignature(
+                                    u: signingResult.signature.U, 
+                                    v: signingResult.signature.V, 
+                                    dtas: signingResult.signature.dtas, 
+                                    mpinId: signingResult.signature.mpinId, 
+                                    hash: signingResult.signature.signatureHash, 
+                                    publicKey: signingResult.signature.publicKey
+                                ),
+                                //TODO: Rado - This needs to be set correctly?
+                                timestamp: Int64((signingResult.timestamp.timeIntervalSince1970 * 1000.0).rounded())
+                            )
+                        ))
+                    }
+                }
+            )
         }
     }
     
@@ -77,7 +75,6 @@ public class SdkHandler: NSObject, MiraclSdk {
                 }
             }
         }
-
     }
     
 
@@ -87,7 +84,7 @@ public class SdkHandler: NSObject, MiraclSdk {
             if let error = error {
                 completion(Result.failure(error));
             } else {
-                completion(Result.success(result))
+                completion(Result.success(true))
             }
         }
     }
@@ -103,10 +100,12 @@ public class SdkHandler: NSObject, MiraclSdk {
         }
     }
     
-    func getUsers() throws -> [MUser] {
-       return MIRACLTrust.getInstance().users.map { user in
+    func getUsers(completion: @escaping (Result<[MUser], Error>) -> Void) {
+        let users = MIRACLTrust.getInstance().users.map { user in
             userToMUser(user: user)
         }
+
+        completion(Result.success(users))
     }
     
     func register(userId: String, activationToken: String, pin: String, pushToken: String?, completion: @escaping (Result<MUser, Error>) -> Void) {
@@ -161,7 +160,6 @@ public class SdkHandler: NSObject, MiraclSdk {
                 } else if let quickCode = quickCode {
                     let mquickCode = MQuickCode(code: quickCode.code,
                                                 expiryTime: Int64(quickCode.expireTime.timeIntervalSince1970),
-                                                nowTime: Int64(quickCode.nowTime.timeIntervalSince1970),
                                                 ttlSeconds: Int64(quickCode.ttlSeconds))
                     completion(Result.success(mquickCode))
                 }
@@ -202,8 +200,6 @@ public class SdkHandler: NSObject, MiraclSdk {
     
     
     func userToMUser(user:User) -> MUser {
-        return MUser(authenticationIdentityId:  user.authenticationIdentityId.uuidString, projectId: user.projectId, revoked: user.revoked, signingIdentityId: user.signingIdentityId?.uuidString ?? "", userId: user.userId)
+        return MUser( projectId: user.projectId, revoked: user.revoked, userId: user.userId, hashedMpinId: user.hashedMpinId);
     }
-
-    
 }
