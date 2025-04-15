@@ -131,27 +131,19 @@ func deepHashPigeon(value: Any?, hasher: inout Hasher) {
 /// Generated class from Pigeon that represents data sent in messages.
 struct MConfiguration: Hashable {
   var projectId: String
-  var clientId: String
-  var redirectUri: String
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
   static func fromList(_ pigeonVar_list: [Any?]) -> MConfiguration? {
     let projectId = pigeonVar_list[0] as! String
-    let clientId = pigeonVar_list[1] as! String
-    let redirectUri = pigeonVar_list[2] as! String
 
     return MConfiguration(
-      projectId: projectId,
-      clientId: clientId,
-      redirectUri: redirectUri
+      projectId: projectId
     )
   }
   func toList() -> [Any?] {
     return [
-      projectId,
-      clientId,
-      redirectUri,
+      projectId
     ]
   }
   static func == (lhs: MConfiguration, rhs: MConfiguration) -> Bool {
@@ -226,22 +218,159 @@ struct MActivationTokenResponse: Hashable {
 /// Generated class from Pigeon that represents data sent in messages.
 struct MAuthenticationSessionDetails: Hashable {
   var userId: String
+  var projectName: String
+  var projectLogoURL: String
+  var projectId: String
+  var pinLength: Int64
+  var verificationMethod: Int64
+  var verificationURL: String
+  var verificationCustomText: String
+  var identityTypeLabel: String
+  var quickCodeEnabled: Bool
+  var limitQuickCodeRegistration: Bool
+  var identityType: Int64
+  var accessId: String
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
   static func fromList(_ pigeonVar_list: [Any?]) -> MAuthenticationSessionDetails? {
     let userId = pigeonVar_list[0] as! String
+    let projectName = pigeonVar_list[1] as! String
+    let projectLogoURL = pigeonVar_list[2] as! String
+    let projectId = pigeonVar_list[3] as! String
+    let pinLength = pigeonVar_list[4] as! Int64
+    let verificationMethod = pigeonVar_list[5] as! Int64
+    let verificationURL = pigeonVar_list[6] as! String
+    let verificationCustomText = pigeonVar_list[7] as! String
+    let identityTypeLabel = pigeonVar_list[8] as! String
+    let quickCodeEnabled = pigeonVar_list[9] as! Bool
+    let limitQuickCodeRegistration = pigeonVar_list[10] as! Bool
+    let identityType = pigeonVar_list[11] as! Int64
+    let accessId = pigeonVar_list[12] as! String
 
     return MAuthenticationSessionDetails(
-      userId: userId
+      userId: userId,
+      projectName: projectName,
+      projectLogoURL: projectLogoURL,
+      projectId: projectId,
+      pinLength: pinLength,
+      verificationMethod: verificationMethod,
+      verificationURL: verificationURL,
+      verificationCustomText: verificationCustomText,
+      identityTypeLabel: identityTypeLabel,
+      quickCodeEnabled: quickCodeEnabled,
+      limitQuickCodeRegistration: limitQuickCodeRegistration,
+      identityType: identityType,
+      accessId: accessId
     )
   }
   func toList() -> [Any?] {
     return [
-      userId
+      userId,
+      projectName,
+      projectLogoURL,
+      projectId,
+      pinLength,
+      verificationMethod,
+      verificationURL,
+      verificationCustomText,
+      identityTypeLabel,
+      quickCodeEnabled,
+      limitQuickCodeRegistration,
+      identityType,
+      accessId,
     ]
   }
   static func == (lhs: MAuthenticationSessionDetails, rhs: MAuthenticationSessionDetails) -> Bool {
+    return deepEqualsPigeon(lhs.toList(), rhs.toList())  }
+  func hash(into hasher: inout Hasher) {
+    deepHashPigeon(value: toList(), hasher: &hasher)
+  }
+}
+
+/// Generated class from Pigeon that represents data sent in messages.
+struct MSigningSessionDetails: Hashable {
+  var userId: String
+  var projectName: String
+  var projectLogoURL: String
+  var projectId: String
+  var pinLength: Int64
+  var verificationMethod: Int64
+  var verificationURL: String
+  var verificationCustomText: String
+  var identityTypeLabel: String
+  var quickCodeEnabled: Bool
+  var limitQuickCodeRegistration: Bool
+  var identityType: Int64
+  var sessionId: String
+  var signingHash: String
+  var signingDescription: String
+  var status: Int64
+  var expireTime: Int64
+
+
+  // swift-format-ignore: AlwaysUseLowerCamelCase
+  static func fromList(_ pigeonVar_list: [Any?]) -> MSigningSessionDetails? {
+    let userId = pigeonVar_list[0] as! String
+    let projectName = pigeonVar_list[1] as! String
+    let projectLogoURL = pigeonVar_list[2] as! String
+    let projectId = pigeonVar_list[3] as! String
+    let pinLength = pigeonVar_list[4] as! Int64
+    let verificationMethod = pigeonVar_list[5] as! Int64
+    let verificationURL = pigeonVar_list[6] as! String
+    let verificationCustomText = pigeonVar_list[7] as! String
+    let identityTypeLabel = pigeonVar_list[8] as! String
+    let quickCodeEnabled = pigeonVar_list[9] as! Bool
+    let limitQuickCodeRegistration = pigeonVar_list[10] as! Bool
+    let identityType = pigeonVar_list[11] as! Int64
+    let sessionId = pigeonVar_list[12] as! String
+    let signingHash = pigeonVar_list[13] as! String
+    let signingDescription = pigeonVar_list[14] as! String
+    let status = pigeonVar_list[15] as! Int64
+    let expireTime = pigeonVar_list[16] as! Int64
+
+    return MSigningSessionDetails(
+      userId: userId,
+      projectName: projectName,
+      projectLogoURL: projectLogoURL,
+      projectId: projectId,
+      pinLength: pinLength,
+      verificationMethod: verificationMethod,
+      verificationURL: verificationURL,
+      verificationCustomText: verificationCustomText,
+      identityTypeLabel: identityTypeLabel,
+      quickCodeEnabled: quickCodeEnabled,
+      limitQuickCodeRegistration: limitQuickCodeRegistration,
+      identityType: identityType,
+      sessionId: sessionId,
+      signingHash: signingHash,
+      signingDescription: signingDescription,
+      status: status,
+      expireTime: expireTime
+    )
+  }
+  func toList() -> [Any?] {
+    return [
+      userId,
+      projectName,
+      projectLogoURL,
+      projectId,
+      pinLength,
+      verificationMethod,
+      verificationURL,
+      verificationCustomText,
+      identityTypeLabel,
+      quickCodeEnabled,
+      limitQuickCodeRegistration,
+      identityType,
+      sessionId,
+      signingHash,
+      signingDescription,
+      status,
+      expireTime,
+    ]
+  }
+  static func == (lhs: MSigningSessionDetails, rhs: MSigningSessionDetails) -> Bool {
     return deepEqualsPigeon(lhs.toList(), rhs.toList())  }
   func hash(into hasher: inout Hasher) {
     deepHashPigeon(value: toList(), hasher: &hasher)
@@ -404,12 +533,14 @@ private class PigeonPigeonCodecReader: FlutterStandardReader {
     case 132:
       return MAuthenticationSessionDetails.fromList(self.readValue() as! [Any?])
     case 133:
-      return MUser.fromList(self.readValue() as! [Any?])
+      return MSigningSessionDetails.fromList(self.readValue() as! [Any?])
     case 134:
-      return MQuickCode.fromList(self.readValue() as! [Any?])
+      return MUser.fromList(self.readValue() as! [Any?])
     case 135:
-      return MSignature.fromList(self.readValue() as! [Any?])
+      return MQuickCode.fromList(self.readValue() as! [Any?])
     case 136:
+      return MSignature.fromList(self.readValue() as! [Any?])
+    case 137:
       return MSigningResult.fromList(self.readValue() as! [Any?])
     default:
       return super.readValue(ofType: type)
@@ -431,17 +562,20 @@ private class PigeonPigeonCodecWriter: FlutterStandardWriter {
     } else if let value = value as? MAuthenticationSessionDetails {
       super.writeByte(132)
       super.writeValue(value.toList())
-    } else if let value = value as? MUser {
+    } else if let value = value as? MSigningSessionDetails {
       super.writeByte(133)
       super.writeValue(value.toList())
-    } else if let value = value as? MQuickCode {
+    } else if let value = value as? MUser {
       super.writeByte(134)
       super.writeValue(value.toList())
-    } else if let value = value as? MSignature {
+    } else if let value = value as? MQuickCode {
       super.writeByte(135)
       super.writeValue(value.toList())
-    } else if let value = value as? MSigningResult {
+    } else if let value = value as? MSignature {
       super.writeByte(136)
+      super.writeValue(value.toList())
+    } else if let value = value as? MSigningResult {
+      super.writeByte(137)
       super.writeValue(value.toList())
     } else {
       super.writeValue(value)
@@ -467,17 +601,24 @@ class PigeonPigeonCodec: FlutterStandardMessageCodec, @unchecked Sendable {
 /// Generated protocol from Pigeon that represents a handler of messages from Flutter.
 protocol MiraclSdk {
   func initSdk(configuration: MConfiguration, completion: @escaping (Result<Void, Error>) -> Void)
-  func sendVerificationEmail(userId: String, completion: @escaping (Result<Bool, Error>) -> Void)
-  func getActivationToken(uri: String, completion: @escaping (Result<MActivationTokenResponse, Error>) -> Void)
+  func setProjectId(projectId: String, completion: @escaping (Result<Void, Error>) -> Void)
+  func sendVerificationEmail(userId: String, authenticationSessionDetails: MAuthenticationSessionDetails?, completion: @escaping (Result<Bool, Error>) -> Void)
+  func getActivationTokenByURI(uri: String, completion: @escaping (Result<MActivationTokenResponse, Error>) -> Void)
+  func getActivationTokenByUserIdAndCode(userId: String, code: String, completion: @escaping (Result<MActivationTokenResponse, Error>) -> Void)
   func getUsers(completion: @escaping (Result<[MUser], Error>) -> Void)
   func register(userId: String, activationToken: String, pin: String, pushToken: String?, completion: @escaping (Result<MUser, Error>) -> Void)
   func authenticate(user: MUser, pin: String, completion: @escaping (Result<String, Error>) -> Void)
-  func getAuthenticationSessionDetailsFromQRCode(qrCode: String, completion: @escaping (Result<MAuthenticationSessionDetails, Error>) -> Void)
   func delete(userId: String, completion: @escaping (Result<Void, Error>) -> Void)
   func generateQuickCode(userId: String, pin: String, completion: @escaping (Result<MQuickCode, Error>) -> Void)
   func sign(userId: String, pin: String, message: FlutterStandardTypedData, completion: @escaping (Result<MSigningResult, Error>) -> Void)
   func authenticateWithQrCode(userId: String, pin: String, qrCode: String, completion: @escaping (Result<Bool, Error>) -> Void)
-  func authenticateWithNotificationPayload(payload: [String: String], pin: String, completion: @escaping (Result<Void, Error>) -> Void)
+  func authenticateWithLink(userId: String, pin: String, link: String, completion: @escaping (Result<Bool, Error>) -> Void)
+  func authenticateWithNotificationPayload(payload: [String: String], pin: String, completion: @escaping (Result<Bool, Error>) -> Void)
+  func getAuthenticationSessionDetailsFromQRCode(qrCode: String, completion: @escaping (Result<MAuthenticationSessionDetails, Error>) -> Void)
+  func getAuthenticationSessionDetailsFromLink(link: String, completion: @escaping (Result<MAuthenticationSessionDetails, Error>) -> Void)
+  func getAuthenticationSessionDetailsFromPushNofitifactionPayload(payload: [String: String], completion: @escaping (Result<MAuthenticationSessionDetails, Error>) -> Void)
+  func getSigningDetailsFromQRCode(qrCode: String, completion: @escaping (Result<MSigningSessionDetails, Error>) -> Void)
+  func getSigningSessionDetailsFromLink(link: String, completion: @escaping (Result<MSigningSessionDetails, Error>) -> Void)
 }
 
 /// Generated setup class from Pigeon to handle messages through the `binaryMessenger`.
@@ -503,12 +644,30 @@ class MiraclSdkSetup {
     } else {
       initSdkChannel.setMessageHandler(nil)
     }
+    let setProjectIdChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.setProjectId\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      setProjectIdChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let projectIdArg = args[0] as! String
+        api.setProjectId(projectId: projectIdArg) { result in
+          switch result {
+          case .success:
+            reply(wrapResult(nil))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      setProjectIdChannel.setMessageHandler(nil)
+    }
     let sendVerificationEmailChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.sendVerificationEmail\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
       sendVerificationEmailChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
         let userIdArg = args[0] as! String
-        api.sendVerificationEmail(userId: userIdArg) { result in
+        let authenticationSessionDetailsArg: MAuthenticationSessionDetails? = nilOrValue(args[1])
+        api.sendVerificationEmail(userId: userIdArg, authenticationSessionDetails: authenticationSessionDetailsArg) { result in
           switch result {
           case .success(let res):
             reply(wrapResult(res))
@@ -520,12 +679,12 @@ class MiraclSdkSetup {
     } else {
       sendVerificationEmailChannel.setMessageHandler(nil)
     }
-    let getActivationTokenChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getActivationToken\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    let getActivationTokenByURIChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getActivationTokenByURI\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
-      getActivationTokenChannel.setMessageHandler { message, reply in
+      getActivationTokenByURIChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
         let uriArg = args[0] as! String
-        api.getActivationToken(uri: uriArg) { result in
+        api.getActivationTokenByURI(uri: uriArg) { result in
           switch result {
           case .success(let res):
             reply(wrapResult(res))
@@ -535,7 +694,25 @@ class MiraclSdkSetup {
         }
       }
     } else {
-      getActivationTokenChannel.setMessageHandler(nil)
+      getActivationTokenByURIChannel.setMessageHandler(nil)
+    }
+    let getActivationTokenByUserIdAndCodeChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getActivationTokenByUserIdAndCode\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      getActivationTokenByUserIdAndCodeChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let userIdArg = args[0] as! String
+        let codeArg = args[1] as! String
+        api.getActivationTokenByUserIdAndCode(userId: userIdArg, code: codeArg) { result in
+          switch result {
+          case .success(let res):
+            reply(wrapResult(res))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      getActivationTokenByUserIdAndCodeChannel.setMessageHandler(nil)
     }
     let getUsersChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getUsers\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
@@ -589,23 +766,6 @@ class MiraclSdkSetup {
       }
     } else {
       authenticateChannel.setMessageHandler(nil)
-    }
-    let getAuthenticationSessionDetailsFromQRCodeChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getAuthenticationSessionDetailsFromQRCode\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
-    if let api = api {
-      getAuthenticationSessionDetailsFromQRCodeChannel.setMessageHandler { message, reply in
-        let args = message as! [Any?]
-        let qrCodeArg = args[0] as! String
-        api.getAuthenticationSessionDetailsFromQRCode(qrCode: qrCodeArg) { result in
-          switch result {
-          case .success(let res):
-            reply(wrapResult(res))
-          case .failure(let error):
-            reply(wrapError(error))
-          }
-        }
-      }
-    } else {
-      getAuthenticationSessionDetailsFromQRCodeChannel.setMessageHandler(nil)
     }
     let deleteChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.delete\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
@@ -680,6 +840,25 @@ class MiraclSdkSetup {
     } else {
       authenticateWithQrCodeChannel.setMessageHandler(nil)
     }
+    let authenticateWithLinkChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.authenticateWithLink\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      authenticateWithLinkChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let userIdArg = args[0] as! String
+        let pinArg = args[1] as! String
+        let linkArg = args[2] as! String
+        api.authenticateWithLink(userId: userIdArg, pin: pinArg, link: linkArg) { result in
+          switch result {
+          case .success(let res):
+            reply(wrapResult(res))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      authenticateWithLinkChannel.setMessageHandler(nil)
+    }
     let authenticateWithNotificationPayloadChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.authenticateWithNotificationPayload\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
       authenticateWithNotificationPayloadChannel.setMessageHandler { message, reply in
@@ -688,8 +867,8 @@ class MiraclSdkSetup {
         let pinArg = args[1] as! String
         api.authenticateWithNotificationPayload(payload: payloadArg, pin: pinArg) { result in
           switch result {
-          case .success:
-            reply(wrapResult(nil))
+          case .success(let res):
+            reply(wrapResult(res))
           case .failure(let error):
             reply(wrapError(error))
           }
@@ -697,6 +876,91 @@ class MiraclSdkSetup {
       }
     } else {
       authenticateWithNotificationPayloadChannel.setMessageHandler(nil)
+    }
+    let getAuthenticationSessionDetailsFromQRCodeChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getAuthenticationSessionDetailsFromQRCode\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      getAuthenticationSessionDetailsFromQRCodeChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let qrCodeArg = args[0] as! String
+        api.getAuthenticationSessionDetailsFromQRCode(qrCode: qrCodeArg) { result in
+          switch result {
+          case .success(let res):
+            reply(wrapResult(res))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      getAuthenticationSessionDetailsFromQRCodeChannel.setMessageHandler(nil)
+    }
+    let getAuthenticationSessionDetailsFromLinkChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getAuthenticationSessionDetailsFromLink\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      getAuthenticationSessionDetailsFromLinkChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let linkArg = args[0] as! String
+        api.getAuthenticationSessionDetailsFromLink(link: linkArg) { result in
+          switch result {
+          case .success(let res):
+            reply(wrapResult(res))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      getAuthenticationSessionDetailsFromLinkChannel.setMessageHandler(nil)
+    }
+    let getAuthenticationSessionDetailsFromPushNofitifactionPayloadChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getAuthenticationSessionDetailsFromPushNofitifactionPayload\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      getAuthenticationSessionDetailsFromPushNofitifactionPayloadChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let payloadArg = args[0] as! [String: String]
+        api.getAuthenticationSessionDetailsFromPushNofitifactionPayload(payload: payloadArg) { result in
+          switch result {
+          case .success(let res):
+            reply(wrapResult(res))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      getAuthenticationSessionDetailsFromPushNofitifactionPayloadChannel.setMessageHandler(nil)
+    }
+    let getSigningDetailsFromQRCodeChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getSigningDetailsFromQRCode\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      getSigningDetailsFromQRCodeChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let qrCodeArg = args[0] as! String
+        api.getSigningDetailsFromQRCode(qrCode: qrCodeArg) { result in
+          switch result {
+          case .success(let res):
+            reply(wrapResult(res))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      getSigningDetailsFromQRCodeChannel.setMessageHandler(nil)
+    }
+    let getSigningSessionDetailsFromLinkChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getSigningSessionDetailsFromLink\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      getSigningSessionDetailsFromLinkChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let linkArg = args[0] as! String
+        api.getSigningSessionDetailsFromLink(link: linkArg) { result in
+          switch result {
+          case .success(let res):
+            reply(wrapResult(res))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      getSigningSessionDetailsFromLinkChannel.setMessageHandler(nil)
     }
   }
 }

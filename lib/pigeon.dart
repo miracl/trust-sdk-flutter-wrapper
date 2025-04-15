@@ -32,21 +32,13 @@ bool _deepEquals(Object? a, Object? b) {
 class MConfiguration {
   MConfiguration({
     required this.projectId,
-    required this.clientId,
-    required this.redirectUri,
   });
 
   String projectId;
 
-  String clientId;
-
-  String redirectUri;
-
   List<Object?> _toList() {
     return <Object?>[
       projectId,
-      clientId,
-      redirectUri,
     ];
   }
 
@@ -57,8 +49,6 @@ class MConfiguration {
     result as List<Object?>;
     return MConfiguration(
       projectId: result[0]! as String,
-      clientId: result[1]! as String,
-      redirectUri: result[2]! as String,
     );
   }
 
@@ -180,13 +170,61 @@ class MActivationTokenResponse {
 class MAuthenticationSessionDetails {
   MAuthenticationSessionDetails({
     required this.userId,
+    required this.projectName,
+    required this.projectLogoURL,
+    required this.projectId,
+    required this.pinLength,
+    required this.verificationMethod,
+    required this.verificationURL,
+    required this.verificationCustomText,
+    required this.identityTypeLabel,
+    required this.quickCodeEnabled,
+    required this.limitQuickCodeRegistration,
+    required this.identityType,
+    required this.accessId,
   });
 
   String userId;
 
+  String projectName;
+
+  String projectLogoURL;
+
+  String projectId;
+
+  int pinLength;
+
+  int verificationMethod;
+
+  String verificationURL;
+
+  String verificationCustomText;
+
+  String identityTypeLabel;
+
+  bool quickCodeEnabled;
+
+  bool limitQuickCodeRegistration;
+
+  int identityType;
+
+  String accessId;
+
   List<Object?> _toList() {
     return <Object?>[
       userId,
+      projectName,
+      projectLogoURL,
+      projectId,
+      pinLength,
+      verificationMethod,
+      verificationURL,
+      verificationCustomText,
+      identityTypeLabel,
+      quickCodeEnabled,
+      limitQuickCodeRegistration,
+      identityType,
+      accessId,
     ];
   }
 
@@ -197,6 +235,18 @@ class MAuthenticationSessionDetails {
     result as List<Object?>;
     return MAuthenticationSessionDetails(
       userId: result[0]! as String,
+      projectName: result[1]! as String,
+      projectLogoURL: result[2]! as String,
+      projectId: result[3]! as String,
+      pinLength: result[4]! as int,
+      verificationMethod: result[5]! as int,
+      verificationURL: result[6]! as String,
+      verificationCustomText: result[7]! as String,
+      identityTypeLabel: result[8]! as String,
+      quickCodeEnabled: result[9]! as bool,
+      limitQuickCodeRegistration: result[10]! as bool,
+      identityType: result[11]! as int,
+      accessId: result[12]! as String,
     );
   }
 
@@ -204,6 +254,127 @@ class MAuthenticationSessionDetails {
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) {
     if (other is! MAuthenticationSessionDetails || other.runtimeType != runtimeType) {
+      return false;
+    }
+    if (identical(this, other)) {
+      return true;
+    }
+    return _deepEquals(encode(), other.encode());
+  }
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => Object.hashAll(_toList())
+;
+}
+
+class MSigningSessionDetails {
+  MSigningSessionDetails({
+    required this.userId,
+    required this.projectName,
+    required this.projectLogoURL,
+    required this.projectId,
+    required this.pinLength,
+    required this.verificationMethod,
+    required this.verificationURL,
+    required this.verificationCustomText,
+    required this.identityTypeLabel,
+    required this.quickCodeEnabled,
+    required this.limitQuickCodeRegistration,
+    required this.identityType,
+    required this.sessionId,
+    required this.signingHash,
+    required this.signingDescription,
+    required this.status,
+    required this.expireTime,
+  });
+
+  String userId;
+
+  String projectName;
+
+  String projectLogoURL;
+
+  String projectId;
+
+  int pinLength;
+
+  int verificationMethod;
+
+  String verificationURL;
+
+  String verificationCustomText;
+
+  String identityTypeLabel;
+
+  bool quickCodeEnabled;
+
+  bool limitQuickCodeRegistration;
+
+  int identityType;
+
+  String sessionId;
+
+  String signingHash;
+
+  String signingDescription;
+
+  int status;
+
+  int expireTime;
+
+  List<Object?> _toList() {
+    return <Object?>[
+      userId,
+      projectName,
+      projectLogoURL,
+      projectId,
+      pinLength,
+      verificationMethod,
+      verificationURL,
+      verificationCustomText,
+      identityTypeLabel,
+      quickCodeEnabled,
+      limitQuickCodeRegistration,
+      identityType,
+      sessionId,
+      signingHash,
+      signingDescription,
+      status,
+      expireTime,
+    ];
+  }
+
+  Object encode() {
+    return _toList();  }
+
+  static MSigningSessionDetails decode(Object result) {
+    result as List<Object?>;
+    return MSigningSessionDetails(
+      userId: result[0]! as String,
+      projectName: result[1]! as String,
+      projectLogoURL: result[2]! as String,
+      projectId: result[3]! as String,
+      pinLength: result[4]! as int,
+      verificationMethod: result[5]! as int,
+      verificationURL: result[6]! as String,
+      verificationCustomText: result[7]! as String,
+      identityTypeLabel: result[8]! as String,
+      quickCodeEnabled: result[9]! as bool,
+      limitQuickCodeRegistration: result[10]! as bool,
+      identityType: result[11]! as int,
+      sessionId: result[12]! as String,
+      signingHash: result[13]! as String,
+      signingDescription: result[14]! as String,
+      status: result[15]! as int,
+      expireTime: result[16]! as int,
+    );
+  }
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) {
+    if (other is! MSigningSessionDetails || other.runtimeType != runtimeType) {
       return false;
     }
     if (identical(this, other)) {
@@ -457,17 +628,20 @@ class _PigeonCodec extends StandardMessageCodec {
     }    else if (value is MAuthenticationSessionDetails) {
       buffer.putUint8(132);
       writeValue(buffer, value.encode());
-    }    else if (value is MUser) {
+    }    else if (value is MSigningSessionDetails) {
       buffer.putUint8(133);
       writeValue(buffer, value.encode());
-    }    else if (value is MQuickCode) {
+    }    else if (value is MUser) {
       buffer.putUint8(134);
       writeValue(buffer, value.encode());
-    }    else if (value is MSignature) {
+    }    else if (value is MQuickCode) {
       buffer.putUint8(135);
       writeValue(buffer, value.encode());
-    }    else if (value is MSigningResult) {
+    }    else if (value is MSignature) {
       buffer.putUint8(136);
+      writeValue(buffer, value.encode());
+    }    else if (value is MSigningResult) {
+      buffer.putUint8(137);
       writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
@@ -486,12 +660,14 @@ class _PigeonCodec extends StandardMessageCodec {
       case 132: 
         return MAuthenticationSessionDetails.decode(readValue(buffer)!);
       case 133: 
-        return MUser.decode(readValue(buffer)!);
+        return MSigningSessionDetails.decode(readValue(buffer)!);
       case 134: 
-        return MQuickCode.decode(readValue(buffer)!);
+        return MUser.decode(readValue(buffer)!);
       case 135: 
-        return MSignature.decode(readValue(buffer)!);
+        return MQuickCode.decode(readValue(buffer)!);
       case 136: 
+        return MSignature.decode(readValue(buffer)!);
+      case 137: 
         return MSigningResult.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
@@ -535,14 +711,37 @@ class MiraclSdk {
     }
   }
 
-  Future<bool> sendVerificationEmail(String userId) async {
+  Future<void> setProjectId(String projectId) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.setProjectId$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[projectId]);
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<bool> sendVerificationEmail(String userId, MAuthenticationSessionDetails? authenticationSessionDetails) async {
     final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.sendVerificationEmail$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[userId]);
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[userId, authenticationSessionDetails]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {
@@ -563,14 +762,42 @@ class MiraclSdk {
     }
   }
 
-  Future<MActivationTokenResponse> getActivationToken(String uri) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getActivationToken$pigeonVar_messageChannelSuffix';
+  Future<MActivationTokenResponse> getActivationTokenByURI(String uri) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getActivationTokenByURI$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
     final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[uri]);
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else if (pigeonVar_replyList[0] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (pigeonVar_replyList[0] as MActivationTokenResponse?)!;
+    }
+  }
+
+  Future<MActivationTokenResponse> getActivationTokenByUserIdAndCode(String userId, String code) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getActivationTokenByUserIdAndCode$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[userId, code]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {
@@ -672,34 +899,6 @@ class MiraclSdk {
       );
     } else {
       return (pigeonVar_replyList[0] as String?)!;
-    }
-  }
-
-  Future<MAuthenticationSessionDetails> getAuthenticationSessionDetailsFromQRCode(String qrCode) async {
-    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getAuthenticationSessionDetailsFromQRCode$pigeonVar_messageChannelSuffix';
-    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
-      pigeonVar_channelName,
-      pigeonChannelCodec,
-      binaryMessenger: pigeonVar_binaryMessenger,
-    );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[qrCode]);
-    final List<Object?>? pigeonVar_replyList =
-        await pigeonVar_sendFuture as List<Object?>?;
-    if (pigeonVar_replyList == null) {
-      throw _createConnectionError(pigeonVar_channelName);
-    } else if (pigeonVar_replyList.length > 1) {
-      throw PlatformException(
-        code: pigeonVar_replyList[0]! as String,
-        message: pigeonVar_replyList[1] as String?,
-        details: pigeonVar_replyList[2],
-      );
-    } else if (pigeonVar_replyList[0] == null) {
-      throw PlatformException(
-        code: 'null-error',
-        message: 'Host platform returned null value for non-null return value.',
-      );
-    } else {
-      return (pigeonVar_replyList[0] as MAuthenticationSessionDetails?)!;
     }
   }
 
@@ -810,7 +1009,35 @@ class MiraclSdk {
     }
   }
 
-  Future<void> authenticateWithNotificationPayload(Map<String, String> payload, String pin) async {
+  Future<bool> authenticateWithLink(String userId, String pin, String link) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.authenticateWithLink$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[userId, pin, link]);
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else if (pigeonVar_replyList[0] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (pigeonVar_replyList[0] as bool?)!;
+    }
+  }
+
+  Future<bool> authenticateWithNotificationPayload(Map<String, String> payload, String pin) async {
     final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.authenticateWithNotificationPayload$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
@@ -828,8 +1055,153 @@ class MiraclSdk {
         message: pigeonVar_replyList[1] as String?,
         details: pigeonVar_replyList[2],
       );
+    } else if (pigeonVar_replyList[0] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
     } else {
-      return;
+      return (pigeonVar_replyList[0] as bool?)!;
+    }
+  }
+
+  Future<MAuthenticationSessionDetails> getAuthenticationSessionDetailsFromQRCode(String qrCode) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getAuthenticationSessionDetailsFromQRCode$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[qrCode]);
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else if (pigeonVar_replyList[0] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (pigeonVar_replyList[0] as MAuthenticationSessionDetails?)!;
+    }
+  }
+
+  Future<MAuthenticationSessionDetails> getAuthenticationSessionDetailsFromLink(String link) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getAuthenticationSessionDetailsFromLink$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[link]);
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else if (pigeonVar_replyList[0] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (pigeonVar_replyList[0] as MAuthenticationSessionDetails?)!;
+    }
+  }
+
+  Future<MAuthenticationSessionDetails> getAuthenticationSessionDetailsFromPushNofitifactionPayload(Map<String, String> payload) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getAuthenticationSessionDetailsFromPushNofitifactionPayload$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[payload]);
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else if (pigeonVar_replyList[0] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (pigeonVar_replyList[0] as MAuthenticationSessionDetails?)!;
+    }
+  }
+
+  Future<MSigningSessionDetails> getSigningDetailsFromQRCode(String qrCode) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getSigningDetailsFromQRCode$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[qrCode]);
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else if (pigeonVar_replyList[0] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (pigeonVar_replyList[0] as MSigningSessionDetails?)!;
+    }
+  }
+
+  Future<MSigningSessionDetails> getSigningSessionDetailsFromLink(String link) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getSigningSessionDetailsFromLink$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[link]);
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else if (pigeonVar_replyList[0] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (pigeonVar_replyList[0] as MSigningSessionDetails?)!;
     }
   }
 }

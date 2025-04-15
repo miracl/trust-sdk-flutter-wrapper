@@ -2,10 +2,8 @@ import 'package:pigeon/pigeon.dart';
 
 class MConfiguration {
   final String projectId;
-  final String clientId;
-  final String redirectUri;
 
-  MConfiguration(this.projectId, this.clientId, this.redirectUri);
+  MConfiguration(this.projectId);
 }
 
 class MExceptions {
@@ -30,8 +28,74 @@ class MActivationTokenResponse {
 
 class MAuthenticationSessionDetails {
   final String userId;
+  final String projectName;
+  final String projectLogoURL;
+  final String projectId; 
+  final int pinLength;
+  final int verificationMethod;
+  final String verificationURL;
+  final String verificationCustomText;
+  final String identityTypeLabel;
+  final bool quickCodeEnabled;
+  final bool limitQuickCodeRegistration;
+  final int identityType;
+  final String accessId;
 
-  MAuthenticationSessionDetails(this.userId);
+  MAuthenticationSessionDetails(
+    this.userId, 
+    this.projectName,
+    this.projectLogoURL,
+    this.projectId,
+    this.pinLength,
+    this.verificationMethod,
+    this.verificationURL,
+    this.verificationCustomText,
+    this.identityTypeLabel,
+    this.quickCodeEnabled,
+    this.limitQuickCodeRegistration,
+    this.identityType,
+    this.accessId
+  );
+}
+
+class MSigningSessionDetails {
+  final String userId;
+  final String projectName;
+  final String projectLogoURL;
+  final String projectId; 
+  final int pinLength;
+  final int verificationMethod;
+  final String verificationURL;
+  final String verificationCustomText;
+  final String identityTypeLabel;
+  final bool quickCodeEnabled;
+  final bool limitQuickCodeRegistration;
+  final int identityType;
+  final String sessionId;
+  final String signingHash;
+  final String signingDescription;
+  final int status;
+  final int expireTime;
+
+  MSigningSessionDetails(
+    this.userId, 
+    this.projectName,
+    this.projectLogoURL,
+    this.projectId,
+    this.pinLength,
+    this.verificationMethod,
+    this.verificationURL,
+    this.verificationCustomText,
+    this.identityTypeLabel,
+    this.quickCodeEnabled,
+    this.limitQuickCodeRegistration,
+    this.identityType,
+    this.sessionId,
+    this.signingHash,
+    this.signingDescription,
+    this.status,
+    this.expireTime
+  );
 }
 
 class MUser {
@@ -55,8 +119,6 @@ class MQuickCode {
 
   MQuickCode(this.code, this.expiryTime, this.ttlSeconds);
 }
-
-
 
 class MSignature {
   final String u;
@@ -82,10 +144,16 @@ abstract class MiraclSdk {
   void initSdk(MConfiguration configuration);
 
   @async
-  bool sendVerificationEmail(String userId);
+  void setProjectId(String projectId);
 
   @async
-  MActivationTokenResponse getActivationToken(String uri);
+  bool sendVerificationEmail(String userId, MAuthenticationSessionDetails? authenticationSessionDetails);
+
+  @async
+  MActivationTokenResponse getActivationTokenByURI(String uri);
+
+  @async
+  MActivationTokenResponse getActivationTokenByUserIdAndCode(String userId, String code);
 
   @async
   List<MUser> getUsers();
@@ -105,11 +173,6 @@ abstract class MiraclSdk {
   );
 
   @async
-  MAuthenticationSessionDetails getAuthenticationSessionDetailsFromQRCode(
-    String qrCode,
-  );
-
-  @async
   void delete(String userId);
 
   @async
@@ -122,8 +185,36 @@ abstract class MiraclSdk {
   bool authenticateWithQrCode(String userId, String pin, String qrCode);
 
   @async
-  void authenticateWithNotificationPayload(
+  bool authenticateWithLink(String userId, String pin, String link);
+
+  @async
+  bool authenticateWithNotificationPayload(
     Map<String, String> payload,
     String pin,
+  );
+
+  @async
+  MAuthenticationSessionDetails getAuthenticationSessionDetailsFromQRCode(
+    String qrCode
+  );
+
+  @async
+  MAuthenticationSessionDetails getAuthenticationSessionDetailsFromLink(
+    String link
+  );
+
+  @async
+  MAuthenticationSessionDetails getAuthenticationSessionDetailsFromPushNofitifactionPayload(
+    Map<String, String> payload
+  );
+  
+  @async
+  MSigningSessionDetails getSigningDetailsFromQRCode(
+    String qrCode
+  );
+
+  @async
+  MSigningSessionDetails getSigningSessionDetailsFromLink(
+    String link
   );
 }

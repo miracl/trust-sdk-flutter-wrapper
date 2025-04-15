@@ -78,24 +78,18 @@ private fun deepEqualsPigeon(a: Any?, b: Any?): Boolean {
 
 /** Generated class from Pigeon that represents data sent in messages. */
 data class MConfiguration (
-  val projectId: String,
-  val clientId: String,
-  val redirectUri: String
+  val projectId: String
 )
  {
   companion object {
     fun fromList(pigeonVar_list: List<Any?>): MConfiguration {
       val projectId = pigeonVar_list[0] as String
-      val clientId = pigeonVar_list[1] as String
-      val redirectUri = pigeonVar_list[2] as String
-      return MConfiguration(projectId, clientId, redirectUri)
+      return MConfiguration(projectId)
     }
   }
   fun toList(): List<Any?> {
     return listOf(
       projectId,
-      clientId,
-      redirectUri,
     )
   }
   override fun equals(other: Any?): Boolean {
@@ -177,22 +171,134 @@ data class MActivationTokenResponse (
 
 /** Generated class from Pigeon that represents data sent in messages. */
 data class MAuthenticationSessionDetails (
-  val userId: String
+  val userId: String,
+  val projectName: String,
+  val projectLogoURL: String,
+  val projectId: String,
+  val pinLength: Long,
+  val verificationMethod: Long,
+  val verificationURL: String,
+  val verificationCustomText: String,
+  val identityTypeLabel: String,
+  val quickCodeEnabled: Boolean,
+  val limitQuickCodeRegistration: Boolean,
+  val identityType: Long,
+  val accessId: String
 )
  {
   companion object {
     fun fromList(pigeonVar_list: List<Any?>): MAuthenticationSessionDetails {
       val userId = pigeonVar_list[0] as String
-      return MAuthenticationSessionDetails(userId)
+      val projectName = pigeonVar_list[1] as String
+      val projectLogoURL = pigeonVar_list[2] as String
+      val projectId = pigeonVar_list[3] as String
+      val pinLength = pigeonVar_list[4] as Long
+      val verificationMethod = pigeonVar_list[5] as Long
+      val verificationURL = pigeonVar_list[6] as String
+      val verificationCustomText = pigeonVar_list[7] as String
+      val identityTypeLabel = pigeonVar_list[8] as String
+      val quickCodeEnabled = pigeonVar_list[9] as Boolean
+      val limitQuickCodeRegistration = pigeonVar_list[10] as Boolean
+      val identityType = pigeonVar_list[11] as Long
+      val accessId = pigeonVar_list[12] as String
+      return MAuthenticationSessionDetails(userId, projectName, projectLogoURL, projectId, pinLength, verificationMethod, verificationURL, verificationCustomText, identityTypeLabel, quickCodeEnabled, limitQuickCodeRegistration, identityType, accessId)
     }
   }
   fun toList(): List<Any?> {
     return listOf(
       userId,
+      projectName,
+      projectLogoURL,
+      projectId,
+      pinLength,
+      verificationMethod,
+      verificationURL,
+      verificationCustomText,
+      identityTypeLabel,
+      quickCodeEnabled,
+      limitQuickCodeRegistration,
+      identityType,
+      accessId,
     )
   }
   override fun equals(other: Any?): Boolean {
     if (other !is MAuthenticationSessionDetails) {
+      return false
+    }
+    if (this === other) {
+      return true
+    }
+    return deepEqualsPigeon(toList(), other.toList())  }
+
+  override fun hashCode(): Int = toList().hashCode()
+}
+
+/** Generated class from Pigeon that represents data sent in messages. */
+data class MSigningSessionDetails (
+  val userId: String,
+  val projectName: String,
+  val projectLogoURL: String,
+  val projectId: String,
+  val pinLength: Long,
+  val verificationMethod: Long,
+  val verificationURL: String,
+  val verificationCustomText: String,
+  val identityTypeLabel: String,
+  val quickCodeEnabled: Boolean,
+  val limitQuickCodeRegistration: Boolean,
+  val identityType: Long,
+  val sessionId: String,
+  val signingHash: String,
+  val signingDescription: String,
+  val status: Long,
+  val expireTime: Long
+)
+ {
+  companion object {
+    fun fromList(pigeonVar_list: List<Any?>): MSigningSessionDetails {
+      val userId = pigeonVar_list[0] as String
+      val projectName = pigeonVar_list[1] as String
+      val projectLogoURL = pigeonVar_list[2] as String
+      val projectId = pigeonVar_list[3] as String
+      val pinLength = pigeonVar_list[4] as Long
+      val verificationMethod = pigeonVar_list[5] as Long
+      val verificationURL = pigeonVar_list[6] as String
+      val verificationCustomText = pigeonVar_list[7] as String
+      val identityTypeLabel = pigeonVar_list[8] as String
+      val quickCodeEnabled = pigeonVar_list[9] as Boolean
+      val limitQuickCodeRegistration = pigeonVar_list[10] as Boolean
+      val identityType = pigeonVar_list[11] as Long
+      val sessionId = pigeonVar_list[12] as String
+      val signingHash = pigeonVar_list[13] as String
+      val signingDescription = pigeonVar_list[14] as String
+      val status = pigeonVar_list[15] as Long
+      val expireTime = pigeonVar_list[16] as Long
+      return MSigningSessionDetails(userId, projectName, projectLogoURL, projectId, pinLength, verificationMethod, verificationURL, verificationCustomText, identityTypeLabel, quickCodeEnabled, limitQuickCodeRegistration, identityType, sessionId, signingHash, signingDescription, status, expireTime)
+    }
+  }
+  fun toList(): List<Any?> {
+    return listOf(
+      userId,
+      projectName,
+      projectLogoURL,
+      projectId,
+      pinLength,
+      verificationMethod,
+      verificationURL,
+      verificationCustomText,
+      identityTypeLabel,
+      quickCodeEnabled,
+      limitQuickCodeRegistration,
+      identityType,
+      sessionId,
+      signingHash,
+      signingDescription,
+      status,
+      expireTime,
+    )
+  }
+  override fun equals(other: Any?): Boolean {
+    if (other !is MSigningSessionDetails) {
       return false
     }
     if (this === other) {
@@ -372,20 +478,25 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
       }
       133.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MUser.fromList(it)
+          MSigningSessionDetails.fromList(it)
         }
       }
       134.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MQuickCode.fromList(it)
+          MUser.fromList(it)
         }
       }
       135.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MSignature.fromList(it)
+          MQuickCode.fromList(it)
         }
       }
       136.toByte() -> {
+        return (readValue(buffer) as? List<Any?>)?.let {
+          MSignature.fromList(it)
+        }
+      }
+      137.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MSigningResult.fromList(it)
         }
@@ -411,20 +522,24 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
         stream.write(132)
         writeValue(stream, value.toList())
       }
-      is MUser -> {
+      is MSigningSessionDetails -> {
         stream.write(133)
         writeValue(stream, value.toList())
       }
-      is MQuickCode -> {
+      is MUser -> {
         stream.write(134)
         writeValue(stream, value.toList())
       }
-      is MSignature -> {
+      is MQuickCode -> {
         stream.write(135)
         writeValue(stream, value.toList())
       }
-      is MSigningResult -> {
+      is MSignature -> {
         stream.write(136)
+        writeValue(stream, value.toList())
+      }
+      is MSigningResult -> {
+        stream.write(137)
         writeValue(stream, value.toList())
       }
       else -> super.writeValue(stream, value)
@@ -436,17 +551,24 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
 /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
 interface MiraclSdk {
   fun initSdk(configuration: MConfiguration, callback: (Result<Unit>) -> Unit)
-  fun sendVerificationEmail(userId: String, callback: (Result<Boolean>) -> Unit)
-  fun getActivationToken(uri: String, callback: (Result<MActivationTokenResponse>) -> Unit)
+  fun setProjectId(projectId: String, callback: (Result<Unit>) -> Unit)
+  fun sendVerificationEmail(userId: String, authenticationSessionDetails: MAuthenticationSessionDetails?, callback: (Result<Boolean>) -> Unit)
+  fun getActivationTokenByURI(uri: String, callback: (Result<MActivationTokenResponse>) -> Unit)
+  fun getActivationTokenByUserIdAndCode(userId: String, code: String, callback: (Result<MActivationTokenResponse>) -> Unit)
   fun getUsers(callback: (Result<List<MUser>>) -> Unit)
   fun register(userId: String, activationToken: String, pin: String, pushToken: String?, callback: (Result<MUser>) -> Unit)
   fun authenticate(user: MUser, pin: String, callback: (Result<String>) -> Unit)
-  fun getAuthenticationSessionDetailsFromQRCode(qrCode: String, callback: (Result<MAuthenticationSessionDetails>) -> Unit)
   fun delete(userId: String, callback: (Result<Unit>) -> Unit)
   fun generateQuickCode(userId: String, pin: String, callback: (Result<MQuickCode>) -> Unit)
   fun sign(userId: String, pin: String, message: ByteArray, callback: (Result<MSigningResult>) -> Unit)
   fun authenticateWithQrCode(userId: String, pin: String, qrCode: String, callback: (Result<Boolean>) -> Unit)
-  fun authenticateWithNotificationPayload(payload: Map<String, String>, pin: String, callback: (Result<Unit>) -> Unit)
+  fun authenticateWithLink(userId: String, pin: String, link: String, callback: (Result<Boolean>) -> Unit)
+  fun authenticateWithNotificationPayload(payload: Map<String, String>, pin: String, callback: (Result<Boolean>) -> Unit)
+  fun getAuthenticationSessionDetailsFromQRCode(qrCode: String, callback: (Result<MAuthenticationSessionDetails>) -> Unit)
+  fun getAuthenticationSessionDetailsFromLink(link: String, callback: (Result<MAuthenticationSessionDetails>) -> Unit)
+  fun getAuthenticationSessionDetailsFromPushNofitifactionPayload(payload: Map<String, String>, callback: (Result<MAuthenticationSessionDetails>) -> Unit)
+  fun getSigningDetailsFromQRCode(qrCode: String, callback: (Result<MSigningSessionDetails>) -> Unit)
+  fun getSigningSessionDetailsFromLink(link: String, callback: (Result<MSigningSessionDetails>) -> Unit)
 
   companion object {
     /** The codec used by MiraclSdk. */
@@ -477,12 +599,32 @@ interface MiraclSdk {
         }
       }
       run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.setProjectId$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val projectIdArg = args[0] as String
+            api.setProjectId(projectIdArg) { result: Result<Unit> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(wrapError(error))
+              } else {
+                reply.reply(wrapResult(null))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
         val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.sendVerificationEmail$separatedMessageChannelSuffix", codec)
         if (api != null) {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
             val userIdArg = args[0] as String
-            api.sendVerificationEmail(userIdArg) { result: Result<Boolean> ->
+            val authenticationSessionDetailsArg = args[1] as MAuthenticationSessionDetails?
+            api.sendVerificationEmail(userIdArg, authenticationSessionDetailsArg) { result: Result<Boolean> ->
               val error = result.exceptionOrNull()
               if (error != null) {
                 reply.reply(wrapError(error))
@@ -497,12 +639,33 @@ interface MiraclSdk {
         }
       }
       run {
-        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getActivationToken$separatedMessageChannelSuffix", codec)
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getActivationTokenByURI$separatedMessageChannelSuffix", codec)
         if (api != null) {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
             val uriArg = args[0] as String
-            api.getActivationToken(uriArg) { result: Result<MActivationTokenResponse> ->
+            api.getActivationTokenByURI(uriArg) { result: Result<MActivationTokenResponse> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(wrapError(error))
+              } else {
+                val data = result.getOrNull()
+                reply.reply(wrapResult(data))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getActivationTokenByUserIdAndCode$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val userIdArg = args[0] as String
+            val codeArg = args[1] as String
+            api.getActivationTokenByUserIdAndCode(userIdArg, codeArg) { result: Result<MActivationTokenResponse> ->
               val error = result.exceptionOrNull()
               if (error != null) {
                 reply.reply(wrapError(error))
@@ -565,26 +728,6 @@ interface MiraclSdk {
             val userArg = args[0] as MUser
             val pinArg = args[1] as String
             api.authenticate(userArg, pinArg) { result: Result<String> ->
-              val error = result.exceptionOrNull()
-              if (error != null) {
-                reply.reply(wrapError(error))
-              } else {
-                val data = result.getOrNull()
-                reply.reply(wrapResult(data))
-              }
-            }
-          }
-        } else {
-          channel.setMessageHandler(null)
-        }
-      }
-      run {
-        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getAuthenticationSessionDetailsFromQRCode$separatedMessageChannelSuffix", codec)
-        if (api != null) {
-          channel.setMessageHandler { message, reply ->
-            val args = message as List<Any?>
-            val qrCodeArg = args[0] as String
-            api.getAuthenticationSessionDetailsFromQRCode(qrCodeArg) { result: Result<MAuthenticationSessionDetails> ->
               val error = result.exceptionOrNull()
               if (error != null) {
                 reply.reply(wrapError(error))
@@ -683,18 +826,141 @@ interface MiraclSdk {
         }
       }
       run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.authenticateWithLink$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val userIdArg = args[0] as String
+            val pinArg = args[1] as String
+            val linkArg = args[2] as String
+            api.authenticateWithLink(userIdArg, pinArg, linkArg) { result: Result<Boolean> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(wrapError(error))
+              } else {
+                val data = result.getOrNull()
+                reply.reply(wrapResult(data))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
         val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.authenticateWithNotificationPayload$separatedMessageChannelSuffix", codec)
         if (api != null) {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
             val payloadArg = args[0] as Map<String, String>
             val pinArg = args[1] as String
-            api.authenticateWithNotificationPayload(payloadArg, pinArg) { result: Result<Unit> ->
+            api.authenticateWithNotificationPayload(payloadArg, pinArg) { result: Result<Boolean> ->
               val error = result.exceptionOrNull()
               if (error != null) {
                 reply.reply(wrapError(error))
               } else {
-                reply.reply(wrapResult(null))
+                val data = result.getOrNull()
+                reply.reply(wrapResult(data))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getAuthenticationSessionDetailsFromQRCode$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val qrCodeArg = args[0] as String
+            api.getAuthenticationSessionDetailsFromQRCode(qrCodeArg) { result: Result<MAuthenticationSessionDetails> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(wrapError(error))
+              } else {
+                val data = result.getOrNull()
+                reply.reply(wrapResult(data))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getAuthenticationSessionDetailsFromLink$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val linkArg = args[0] as String
+            api.getAuthenticationSessionDetailsFromLink(linkArg) { result: Result<MAuthenticationSessionDetails> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(wrapError(error))
+              } else {
+                val data = result.getOrNull()
+                reply.reply(wrapResult(data))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getAuthenticationSessionDetailsFromPushNofitifactionPayload$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val payloadArg = args[0] as Map<String, String>
+            api.getAuthenticationSessionDetailsFromPushNofitifactionPayload(payloadArg) { result: Result<MAuthenticationSessionDetails> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(wrapError(error))
+              } else {
+                val data = result.getOrNull()
+                reply.reply(wrapResult(data))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getSigningDetailsFromQRCode$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val qrCodeArg = args[0] as String
+            api.getSigningDetailsFromQRCode(qrCodeArg) { result: Result<MSigningSessionDetails> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(wrapError(error))
+              } else {
+                val data = result.getOrNull()
+                reply.reply(wrapResult(data))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getSigningSessionDetailsFromLink$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val linkArg = args[0] as String
+            api.getSigningSessionDetailsFromLink(linkArg) { result: Result<MSigningSessionDetails> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(wrapError(error))
+              } else {
+                val data = result.getOrNull()
+                reply.reply(wrapResult(data))
               }
             }
           }
