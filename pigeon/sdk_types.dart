@@ -26,19 +26,34 @@ class MActivationTokenResponse {
   );
 }
 
+enum MVerificationMethod {
+   fullCustom, 
+   standardEmail
+}
+
+enum MIdentityType {
+  email, 
+  alphanumeric
+}
+
+enum MSigningSessionStatus {
+  active, 
+  signed
+}
+
 class MAuthenticationSessionDetails {
   final String userId;
   final String projectName;
   final String projectLogoURL;
   final String projectId; 
   final int pinLength;
-  final int verificationMethod;
+  final MVerificationMethod verificationMethod;
   final String verificationURL;
   final String verificationCustomText;
   final String identityTypeLabel;
   final bool quickCodeEnabled;
   final bool limitQuickCodeRegistration;
-  final int identityType;
+  final MIdentityType identityType;
   final String accessId;
 
   MAuthenticationSessionDetails(
@@ -64,17 +79,17 @@ class MSigningSessionDetails {
   final String projectLogoURL;
   final String projectId; 
   final int pinLength;
-  final int verificationMethod;
+  final MVerificationMethod verificationMethod;
   final String verificationURL;
   final String verificationCustomText;
   final String identityTypeLabel;
   final bool quickCodeEnabled;
   final bool limitQuickCodeRegistration;
-  final int identityType;
+  final MIdentityType identityType;
   final String sessionId;
   final String signingHash;
   final String signingDescription;
-  final int status;
+  final MSigningSessionStatus status;
   final int expireTime;
 
   MSigningSessionDetails(

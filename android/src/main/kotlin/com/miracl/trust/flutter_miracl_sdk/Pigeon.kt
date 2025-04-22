@@ -76,6 +76,39 @@ private fun deepEqualsPigeon(a: Any?, b: Any?): Boolean {
 }
     
 
+enum class MVerificationMethod(val raw: Int) {
+  FULL_CUSTOM(0),
+  STANDARD_EMAIL(1);
+
+  companion object {
+    fun ofRaw(raw: Int): MVerificationMethod? {
+      return values().firstOrNull { it.raw == raw }
+    }
+  }
+}
+
+enum class MIdentityType(val raw: Int) {
+  EMAIL(0),
+  ALPHANUMERIC(1);
+
+  companion object {
+    fun ofRaw(raw: Int): MIdentityType? {
+      return values().firstOrNull { it.raw == raw }
+    }
+  }
+}
+
+enum class MSigningSessionStatus(val raw: Int) {
+  ACTIVE(0),
+  SIGNED(1);
+
+  companion object {
+    fun ofRaw(raw: Int): MSigningSessionStatus? {
+      return values().firstOrNull { it.raw == raw }
+    }
+  }
+}
+
 /** Generated class from Pigeon that represents data sent in messages. */
 data class MConfiguration (
   val projectId: String
@@ -176,13 +209,13 @@ data class MAuthenticationSessionDetails (
   val projectLogoURL: String,
   val projectId: String,
   val pinLength: Long,
-  val verificationMethod: Long,
+  val verificationMethod: MVerificationMethod,
   val verificationURL: String,
   val verificationCustomText: String,
   val identityTypeLabel: String,
   val quickCodeEnabled: Boolean,
   val limitQuickCodeRegistration: Boolean,
-  val identityType: Long,
+  val identityType: MIdentityType,
   val accessId: String
 )
  {
@@ -193,13 +226,13 @@ data class MAuthenticationSessionDetails (
       val projectLogoURL = pigeonVar_list[2] as String
       val projectId = pigeonVar_list[3] as String
       val pinLength = pigeonVar_list[4] as Long
-      val verificationMethod = pigeonVar_list[5] as Long
+      val verificationMethod = pigeonVar_list[5] as MVerificationMethod
       val verificationURL = pigeonVar_list[6] as String
       val verificationCustomText = pigeonVar_list[7] as String
       val identityTypeLabel = pigeonVar_list[8] as String
       val quickCodeEnabled = pigeonVar_list[9] as Boolean
       val limitQuickCodeRegistration = pigeonVar_list[10] as Boolean
-      val identityType = pigeonVar_list[11] as Long
+      val identityType = pigeonVar_list[11] as MIdentityType
       val accessId = pigeonVar_list[12] as String
       return MAuthenticationSessionDetails(userId, projectName, projectLogoURL, projectId, pinLength, verificationMethod, verificationURL, verificationCustomText, identityTypeLabel, quickCodeEnabled, limitQuickCodeRegistration, identityType, accessId)
     }
@@ -240,17 +273,17 @@ data class MSigningSessionDetails (
   val projectLogoURL: String,
   val projectId: String,
   val pinLength: Long,
-  val verificationMethod: Long,
+  val verificationMethod: MVerificationMethod,
   val verificationURL: String,
   val verificationCustomText: String,
   val identityTypeLabel: String,
   val quickCodeEnabled: Boolean,
   val limitQuickCodeRegistration: Boolean,
-  val identityType: Long,
+  val identityType: MIdentityType,
   val sessionId: String,
   val signingHash: String,
   val signingDescription: String,
-  val status: Long,
+  val status: MSigningSessionStatus,
   val expireTime: Long
 )
  {
@@ -261,17 +294,17 @@ data class MSigningSessionDetails (
       val projectLogoURL = pigeonVar_list[2] as String
       val projectId = pigeonVar_list[3] as String
       val pinLength = pigeonVar_list[4] as Long
-      val verificationMethod = pigeonVar_list[5] as Long
+      val verificationMethod = pigeonVar_list[5] as MVerificationMethod
       val verificationURL = pigeonVar_list[6] as String
       val verificationCustomText = pigeonVar_list[7] as String
       val identityTypeLabel = pigeonVar_list[8] as String
       val quickCodeEnabled = pigeonVar_list[9] as Boolean
       val limitQuickCodeRegistration = pigeonVar_list[10] as Boolean
-      val identityType = pigeonVar_list[11] as Long
+      val identityType = pigeonVar_list[11] as MIdentityType
       val sessionId = pigeonVar_list[12] as String
       val signingHash = pigeonVar_list[13] as String
       val signingDescription = pigeonVar_list[14] as String
-      val status = pigeonVar_list[15] as Long
+      val status = pigeonVar_list[15] as MSigningSessionStatus
       val expireTime = pigeonVar_list[16] as Long
       return MSigningSessionDetails(userId, projectName, projectLogoURL, projectId, pinLength, verificationMethod, verificationURL, verificationCustomText, identityTypeLabel, quickCodeEnabled, limitQuickCodeRegistration, identityType, sessionId, signingHash, signingDescription, status, expireTime)
     }
@@ -457,46 +490,61 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
   override fun readValueOfType(type: Byte, buffer: ByteBuffer): Any? {
     return when (type) {
       129.toByte() -> {
-        return (readValue(buffer) as? List<Any?>)?.let {
-          MConfiguration.fromList(it)
+        return (readValue(buffer) as Long?)?.let {
+          MVerificationMethod.ofRaw(it.toInt())
         }
       }
       130.toByte() -> {
-        return (readValue(buffer) as? List<Any?>)?.let {
-          MExceptions.fromList(it)
+        return (readValue(buffer) as Long?)?.let {
+          MIdentityType.ofRaw(it.toInt())
         }
       }
       131.toByte() -> {
-        return (readValue(buffer) as? List<Any?>)?.let {
-          MActivationTokenResponse.fromList(it)
+        return (readValue(buffer) as Long?)?.let {
+          MSigningSessionStatus.ofRaw(it.toInt())
         }
       }
       132.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MAuthenticationSessionDetails.fromList(it)
+          MConfiguration.fromList(it)
         }
       }
       133.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MSigningSessionDetails.fromList(it)
+          MExceptions.fromList(it)
         }
       }
       134.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MUser.fromList(it)
+          MActivationTokenResponse.fromList(it)
         }
       }
       135.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MQuickCode.fromList(it)
+          MAuthenticationSessionDetails.fromList(it)
         }
       }
       136.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MSignature.fromList(it)
+          MSigningSessionDetails.fromList(it)
         }
       }
       137.toByte() -> {
+        return (readValue(buffer) as? List<Any?>)?.let {
+          MUser.fromList(it)
+        }
+      }
+      138.toByte() -> {
+        return (readValue(buffer) as? List<Any?>)?.let {
+          MQuickCode.fromList(it)
+        }
+      }
+      139.toByte() -> {
+        return (readValue(buffer) as? List<Any?>)?.let {
+          MSignature.fromList(it)
+        }
+      }
+      140.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MSigningResult.fromList(it)
         }
@@ -506,40 +554,52 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
   }
   override fun writeValue(stream: ByteArrayOutputStream, value: Any?)   {
     when (value) {
-      is MConfiguration -> {
+      is MVerificationMethod -> {
         stream.write(129)
-        writeValue(stream, value.toList())
+        writeValue(stream, value.raw)
       }
-      is MExceptions -> {
+      is MIdentityType -> {
         stream.write(130)
-        writeValue(stream, value.toList())
+        writeValue(stream, value.raw)
       }
-      is MActivationTokenResponse -> {
+      is MSigningSessionStatus -> {
         stream.write(131)
-        writeValue(stream, value.toList())
+        writeValue(stream, value.raw)
       }
-      is MAuthenticationSessionDetails -> {
+      is MConfiguration -> {
         stream.write(132)
         writeValue(stream, value.toList())
       }
-      is MSigningSessionDetails -> {
+      is MExceptions -> {
         stream.write(133)
         writeValue(stream, value.toList())
       }
-      is MUser -> {
+      is MActivationTokenResponse -> {
         stream.write(134)
         writeValue(stream, value.toList())
       }
-      is MQuickCode -> {
+      is MAuthenticationSessionDetails -> {
         stream.write(135)
         writeValue(stream, value.toList())
       }
-      is MSignature -> {
+      is MSigningSessionDetails -> {
         stream.write(136)
         writeValue(stream, value.toList())
       }
-      is MSigningResult -> {
+      is MUser -> {
         stream.write(137)
+        writeValue(stream, value.toList())
+      }
+      is MQuickCode -> {
+        stream.write(138)
+        writeValue(stream, value.toList())
+      }
+      is MSignature -> {
+        stream.write(139)
+        writeValue(stream, value.toList())
+      }
+      is MSigningResult -> {
+        stream.write(140)
         writeValue(stream, value.toList())
       }
       else -> super.writeValue(stream, value)

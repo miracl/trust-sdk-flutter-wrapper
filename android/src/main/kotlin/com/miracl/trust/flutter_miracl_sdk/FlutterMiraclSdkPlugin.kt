@@ -39,144 +39,151 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
 
     override fun initSdk(
         configuration: MConfiguration, 
-        callback: (Result<Unit>) -> Unit
+        callback: (kotlin.Result<Unit>) -> Unit
     ) {
         sdkHandler.initSdk(configuration, context, callback)
     }
 
     override fun setProjectId(
         projectId: String, 
-        callback: (Result<Unit>) -> Unit
+        callback: (kotlin.Result<Unit>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.setProjectId(projectId, callback)
     }
 
     override fun sendVerificationEmail(
         userId: String,
         authenticationSessionDetails: MAuthenticationSessionDetails?, 
-        callback: (Result<Boolean>) -> Unit
+        callback: (kotlin.Result<Boolean>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.sendVerificationMail(userId, callback)
     }
 
     override fun getActivationTokenByURI(
         uri: String, 
-        callback: (Result<MActivationTokenResponse>) -> Unit
+        callback: (kotlin.Result<MActivationTokenResponse>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.getActivationToken(uri, callback)
     }
+
     override fun getActivationTokenByUserIdAndCode(
         userId: String, 
         code: String, 
-        callback: (Result<MActivationTokenResponse>) -> Unit
+        callback: (kotlin.Result<MActivationTokenResponse>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.getActivationToken(userId, code, callback)
     }
 
     override fun getUsers(
-        callback: (Result<List<MUser>>) -> Unit
+        callback: (kotlin.Result<List<MUser>>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.getUsers(callback)
     }
 
     override fun register(
         userId: String,
         activationToken: String, 
-        pin: String, pushToken: String?, 
-        callback: (Result<MUser>) -> Unit
+        pin: String, 
+        pushToken: String?, 
+        callback: (kotlin.Result<MUser>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.register(userId, activationToken, pin, pushToken, callback)
     }
 
     override fun authenticate(
         user: MUser,
         pin: String, 
-        callback: (Result<String>) -> Unit
+        callback: (kotlin.Result<String>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        runBlocking {
+            sdkHandler.authenticate(user, pin, callback)
+        }
     }
 
     override fun delete(
         userId: String, 
-        callback: (Result<Unit>) -> Unit
+        callback: (kotlin.Result<Unit>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.delete(userId, callback)
     }
     
     override fun generateQuickCode(
         userId: String,
         pin: String, 
-        callback: (Result<MQuickCode>) -> Unit
+        callback: (kotlin.Result<MQuickCode>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        runBlocking {
+            sdkHandler.generateQuickCode(userId, pin, callback)
+        }
     }
 
     override fun sign(
         userId: String, 
         pin: String,
         message: ByteArray, 
-        callback: (Result<MSigningResult>) -> Unit
+        callback: (kotlin.Result<MSigningResult>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.sign(userId, pin, message, callback)
     }
+
     override fun authenticateWithQrCode(
         userId: String, 
         pin: String, 
         qrCode: String, 
-        callback: (Result<Boolean>) -> Unit
+        callback: (kotlin.Result<Boolean>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.authenticateWithQrCode(userId, qrCode, pin, callback)
     }
 
     override fun authenticateWithLink(
         userId: String, 
         pin: String, 
         link: String, 
-        callback: (Result<Boolean>) -> Unit
+        callback: (kotlin.Result<Boolean>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.authenticateWithAppLink(userId,link, pin, callback)
     }
 
     override fun authenticateWithNotificationPayload(
         payload: Map<String, String>, 
-        pin: String, callback: (Result<Boolean>) -> Unit
+        pin: String, callback: (kotlin.Result<Boolean>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.authenticateWithPayload(payload, pin, callback)
     }
 
     override fun getAuthenticationSessionDetailsFromQRCode(
         qrCode: String, 
-        callback: (Result<MAuthenticationSessionDetails>) -> Unit
+        callback: (kotlin.Result<MAuthenticationSessionDetails>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.getAuthenticationSessionDetailsFromQRCode(qrCode, callback)
     }
 
     override fun getAuthenticationSessionDetailsFromLink(
         link: String, 
-        callback: (Result<MAuthenticationSessionDetails>) -> Unit
+        callback: (kotlin.Result<MAuthenticationSessionDetails>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.getAuthenticationSessionDetailsFromLink(link, callback)
     }
 
     override fun getAuthenticationSessionDetailsFromPushNofitifactionPayload(
         payload: Map<String, String>, 
-        callback: (Result<MAuthenticationSessionDetails>) -> Unit
+        callback: (kotlin.Result<MAuthenticationSessionDetails>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.getAuthenticationSessionDetailsFromPayload(payload, callback)
     }
 
 
     override fun getSigningDetailsFromQRCode(
-        qrCode: String, callback: (Result<MSigningSessionDetails>) -> Unit
+        qrCode: String, callback: (kotlin.Result<MSigningSessionDetails>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.getSigningSessionDetailsFromQRCode(qrCode, callback)
     }
 
     override fun getSigningSessionDetailsFromLink(
         link: String, 
-        callback: (Result<MSigningSessionDetails>) -> Unit
+        callback: (kotlin.Result<MSigningSessionDetails>) -> Unit
     ) {
-        throw NotImplementedError("This function is not yet implemented")
+        sdkHandler.getSigningSessionDetailsFromLink(link, callback)
     }
   
 }

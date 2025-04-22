@@ -266,13 +266,13 @@ public class SdkHandler: NSObject, MiraclSdk {
                    projectLogoURL: authSession.projectLogoURL,
                    projectId: authSession.projectId,
                    pinLength: Int64(authSession.pinLength),
-                   verificationMethod: Int64(authSession.verificationMethod.rawValue),
+                   verificationMethod: MVerificationMethod(rawValue: authSession.verificationMethod.rawValue) ?? .standardEmail ,
                    verificationURL: authSession.verificationURL,
                    verificationCustomText: authSession.verificationCustomText,
                    identityTypeLabel: authSession.identityTypeLabel,
                    quickCodeEnabled: authSession.quickCodeEnabled,
                    limitQuickCodeRegistration: authSession.limitQuickCodeRegistration,
-                   identityType: Int64(authSession.identityType.rawValue),
+                   identityType: MIdentityType(rawValue:authSession.identityType.rawValue) ?? .email,
                    accessId: authSession.accessId
                )
                completion(Result.success(mauthSession))
@@ -296,13 +296,13 @@ public class SdkHandler: NSObject, MiraclSdk {
                   projectLogoURL: authSession.projectLogoURL,
                   projectId: authSession.projectId,
                   pinLength: Int64(authSession.pinLength),
-                  verificationMethod: Int64(authSession.verificationMethod.rawValue),
+                  verificationMethod: MVerificationMethod(rawValue: authSession.verificationMethod.rawValue) ?? .standardEmail ,
                   verificationURL: authSession.verificationURL,
                   verificationCustomText: authSession.verificationCustomText,
                   identityTypeLabel: authSession.identityTypeLabel,
                   quickCodeEnabled: authSession.quickCodeEnabled,
                   limitQuickCodeRegistration: authSession.limitQuickCodeRegistration,
-                  identityType: Int64(authSession.identityType.rawValue),
+                  identityType: MIdentityType(rawValue: authSession.identityType.rawValue) ?? .email,
                   accessId: authSession.accessId
               )
               completion(Result.success(mauthSession))
@@ -326,13 +326,13 @@ public class SdkHandler: NSObject, MiraclSdk {
                   projectLogoURL: authSession.projectLogoURL,
                   projectId: authSession.projectId,
                   pinLength: Int64(authSession.pinLength),
-                  verificationMethod: Int64(authSession.verificationMethod.rawValue),
+                   verificationMethod: MVerificationMethod(rawValue: authSession.verificationMethod.rawValue) ?? .standardEmail ,
                   verificationURL: authSession.verificationURL,
                   verificationCustomText: authSession.verificationCustomText,
                   identityTypeLabel: authSession.identityTypeLabel,
                   quickCodeEnabled: authSession.quickCodeEnabled,
                   limitQuickCodeRegistration: authSession.limitQuickCodeRegistration,
-                  identityType: Int64(authSession.identityType.rawValue),
+                  identityType: MIdentityType(rawValue: authSession.identityType.rawValue) ?? .email,
                   accessId: authSession.accessId
               )
               completion(Result.success(mauthSession))
@@ -393,17 +393,17 @@ public class SdkHandler: NSObject, MiraclSdk {
                   projectLogoURL: signingSessionDetails.projectLogoURL,
                   projectId: signingSessionDetails.projectId,
                   pinLength: Int64(signingSessionDetails.pinLength),
-                  verificationMethod: Int64(signingSessionDetails.verificationMethod.rawValue),
+                  verificationMethod: MVerificationMethod(rawValue: signingSessionDetails.verificationMethod.rawValue) ?? .standardEmail ,
                   verificationURL: signingSessionDetails.verificationURL,
                   verificationCustomText: signingSessionDetails.verificationCustomText,
                   identityTypeLabel: signingSessionDetails.identityTypeLabel,
                   quickCodeEnabled: signingSessionDetails.quickCodeEnabled,
                   limitQuickCodeRegistration: signingSessionDetails.limitQuickCodeRegistration,
-                  identityType: Int64(signingSessionDetails.identityType.rawValue),
+                  identityType: MIdentityType(rawValue: signingSessionDetails.identityType.rawValue) ?? .email,
                   sessionId: signingSessionDetails.sessionId,
                   signingHash: signingSessionDetails.signingHash,
                   signingDescription: signingSessionDetails.signingDescription,
-                  status: Int64(signingSessionDetails.status.rawValue),
+                  status: MSigningSessionStatus(rawValue:signingSessionDetails.status.rawValue) ?? .active ,
                   expireTime: Int64((signingSessionDetails.expireTime.timeIntervalSince1970 * 1000.0).rounded())
             )
             completion(Result.success(mSigningSessionDetails))
@@ -424,23 +424,23 @@ public class SdkHandler: NSObject, MiraclSdk {
         ) { signingSessionDetails, error in
           if let signingSessionDetails {
             let mSigningSessionDetails = MSigningSessionDetails(
-                  userId: signingSessionDetails.userId,
-                  projectName: signingSessionDetails.projectName,
-                  projectLogoURL: signingSessionDetails.projectLogoURL,
-                  projectId: signingSessionDetails.projectId,
-                  pinLength: Int64(signingSessionDetails.pinLength),
-                  verificationMethod: Int64(signingSessionDetails.verificationMethod.rawValue),
-                  verificationURL: signingSessionDetails.verificationURL,
-                  verificationCustomText: signingSessionDetails.verificationCustomText,
-                  identityTypeLabel: signingSessionDetails.identityTypeLabel,
-                  quickCodeEnabled: signingSessionDetails.quickCodeEnabled,
-                  limitQuickCodeRegistration: signingSessionDetails.limitQuickCodeRegistration,
-                  identityType: Int64(signingSessionDetails.identityType.rawValue),
-                  sessionId: signingSessionDetails.sessionId,
-                  signingHash: signingSessionDetails.signingHash,
-                  signingDescription: signingSessionDetails.signingDescription,
-                  status: Int64(signingSessionDetails.status.rawValue),
-                  expireTime: Int64((signingSessionDetails.expireTime.timeIntervalSince1970 * 1000.0).rounded())
+                userId: signingSessionDetails.userId,
+                projectName: signingSessionDetails.projectName,
+                projectLogoURL: signingSessionDetails.projectLogoURL,
+                projectId: signingSessionDetails.projectId,
+                pinLength: Int64(signingSessionDetails.pinLength),
+                verificationMethod: MVerificationMethod(rawValue: signingSessionDetails.verificationMethod.rawValue) ?? .standardEmail,
+                verificationURL: signingSessionDetails.verificationURL,
+                verificationCustomText: signingSessionDetails.verificationCustomText,
+                identityTypeLabel: signingSessionDetails.identityTypeLabel,
+                quickCodeEnabled: signingSessionDetails.quickCodeEnabled,
+                limitQuickCodeRegistration: signingSessionDetails.limitQuickCodeRegistration,
+                identityType: MIdentityType(rawValue: signingSessionDetails.identityType.rawValue) ?? .email,
+                sessionId: signingSessionDetails.sessionId,
+                signingHash: signingSessionDetails.signingHash,
+                signingDescription: signingSessionDetails.signingDescription,
+                status: MSigningSessionStatus(rawValue:signingSessionDetails.status.rawValue) ?? .active ,
+                expireTime: Int64((signingSessionDetails.expireTime.timeIntervalSince1970 * 1000.0).rounded())
             )
             completion(Result.success(mSigningSessionDetails))
           } else if let error {

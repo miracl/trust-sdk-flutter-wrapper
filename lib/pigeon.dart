@@ -29,6 +29,21 @@ bool _deepEquals(Object? a, Object? b) {
 }
 
 
+enum MVerificationMethod {
+  fullCustom,
+  standardEmail,
+}
+
+enum MIdentityType {
+  email,
+  alphanumeric,
+}
+
+enum MSigningSessionStatus {
+  active,
+  signed,
+}
+
 class MConfiguration {
   MConfiguration({
     required this.projectId,
@@ -194,7 +209,7 @@ class MAuthenticationSessionDetails {
 
   int pinLength;
 
-  int verificationMethod;
+  MVerificationMethod verificationMethod;
 
   String verificationURL;
 
@@ -206,7 +221,7 @@ class MAuthenticationSessionDetails {
 
   bool limitQuickCodeRegistration;
 
-  int identityType;
+  MIdentityType identityType;
 
   String accessId;
 
@@ -239,13 +254,13 @@ class MAuthenticationSessionDetails {
       projectLogoURL: result[2]! as String,
       projectId: result[3]! as String,
       pinLength: result[4]! as int,
-      verificationMethod: result[5]! as int,
+      verificationMethod: result[5]! as MVerificationMethod,
       verificationURL: result[6]! as String,
       verificationCustomText: result[7]! as String,
       identityTypeLabel: result[8]! as String,
       quickCodeEnabled: result[9]! as bool,
       limitQuickCodeRegistration: result[10]! as bool,
-      identityType: result[11]! as int,
+      identityType: result[11]! as MIdentityType,
       accessId: result[12]! as String,
     );
   }
@@ -299,7 +314,7 @@ class MSigningSessionDetails {
 
   int pinLength;
 
-  int verificationMethod;
+  MVerificationMethod verificationMethod;
 
   String verificationURL;
 
@@ -311,7 +326,7 @@ class MSigningSessionDetails {
 
   bool limitQuickCodeRegistration;
 
-  int identityType;
+  MIdentityType identityType;
 
   String sessionId;
 
@@ -319,7 +334,7 @@ class MSigningSessionDetails {
 
   String signingDescription;
 
-  int status;
+  MSigningSessionStatus status;
 
   int expireTime;
 
@@ -356,17 +371,17 @@ class MSigningSessionDetails {
       projectLogoURL: result[2]! as String,
       projectId: result[3]! as String,
       pinLength: result[4]! as int,
-      verificationMethod: result[5]! as int,
+      verificationMethod: result[5]! as MVerificationMethod,
       verificationURL: result[6]! as String,
       verificationCustomText: result[7]! as String,
       identityTypeLabel: result[8]! as String,
       quickCodeEnabled: result[9]! as bool,
       limitQuickCodeRegistration: result[10]! as bool,
-      identityType: result[11]! as int,
+      identityType: result[11]! as MIdentityType,
       sessionId: result[12]! as String,
       signingHash: result[13]! as String,
       signingDescription: result[14]! as String,
-      status: result[15]! as int,
+      status: result[15]! as MSigningSessionStatus,
       expireTime: result[16]! as int,
     );
   }
@@ -616,32 +631,41 @@ class _PigeonCodec extends StandardMessageCodec {
     if (value is int) {
       buffer.putUint8(4);
       buffer.putInt64(value);
-    }    else if (value is MConfiguration) {
+    }    else if (value is MVerificationMethod) {
       buffer.putUint8(129);
-      writeValue(buffer, value.encode());
-    }    else if (value is MExceptions) {
+      writeValue(buffer, value.index);
+    }    else if (value is MIdentityType) {
       buffer.putUint8(130);
-      writeValue(buffer, value.encode());
-    }    else if (value is MActivationTokenResponse) {
+      writeValue(buffer, value.index);
+    }    else if (value is MSigningSessionStatus) {
       buffer.putUint8(131);
-      writeValue(buffer, value.encode());
-    }    else if (value is MAuthenticationSessionDetails) {
+      writeValue(buffer, value.index);
+    }    else if (value is MConfiguration) {
       buffer.putUint8(132);
       writeValue(buffer, value.encode());
-    }    else if (value is MSigningSessionDetails) {
+    }    else if (value is MExceptions) {
       buffer.putUint8(133);
       writeValue(buffer, value.encode());
-    }    else if (value is MUser) {
+    }    else if (value is MActivationTokenResponse) {
       buffer.putUint8(134);
       writeValue(buffer, value.encode());
-    }    else if (value is MQuickCode) {
+    }    else if (value is MAuthenticationSessionDetails) {
       buffer.putUint8(135);
       writeValue(buffer, value.encode());
-    }    else if (value is MSignature) {
+    }    else if (value is MSigningSessionDetails) {
       buffer.putUint8(136);
       writeValue(buffer, value.encode());
-    }    else if (value is MSigningResult) {
+    }    else if (value is MUser) {
       buffer.putUint8(137);
+      writeValue(buffer, value.encode());
+    }    else if (value is MQuickCode) {
+      buffer.putUint8(138);
+      writeValue(buffer, value.encode());
+    }    else if (value is MSignature) {
+      buffer.putUint8(139);
+      writeValue(buffer, value.encode());
+    }    else if (value is MSigningResult) {
+      buffer.putUint8(140);
       writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
@@ -652,22 +676,31 @@ class _PigeonCodec extends StandardMessageCodec {
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
       case 129: 
-        return MConfiguration.decode(readValue(buffer)!);
+        final int? value = readValue(buffer) as int?;
+        return value == null ? null : MVerificationMethod.values[value];
       case 130: 
-        return MExceptions.decode(readValue(buffer)!);
+        final int? value = readValue(buffer) as int?;
+        return value == null ? null : MIdentityType.values[value];
       case 131: 
-        return MActivationTokenResponse.decode(readValue(buffer)!);
+        final int? value = readValue(buffer) as int?;
+        return value == null ? null : MSigningSessionStatus.values[value];
       case 132: 
-        return MAuthenticationSessionDetails.decode(readValue(buffer)!);
+        return MConfiguration.decode(readValue(buffer)!);
       case 133: 
-        return MSigningSessionDetails.decode(readValue(buffer)!);
+        return MExceptions.decode(readValue(buffer)!);
       case 134: 
-        return MUser.decode(readValue(buffer)!);
+        return MActivationTokenResponse.decode(readValue(buffer)!);
       case 135: 
-        return MQuickCode.decode(readValue(buffer)!);
+        return MAuthenticationSessionDetails.decode(readValue(buffer)!);
       case 136: 
-        return MSignature.decode(readValue(buffer)!);
+        return MSigningSessionDetails.decode(readValue(buffer)!);
       case 137: 
+        return MUser.decode(readValue(buffer)!);
+      case 138: 
+        return MQuickCode.decode(readValue(buffer)!);
+      case 139: 
+        return MSignature.decode(readValue(buffer)!);
+      case 140: 
         return MSigningResult.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);

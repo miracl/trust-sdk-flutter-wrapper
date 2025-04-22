@@ -128,6 +128,21 @@ func deepHashPigeon(value: Any?, hasher: inout Hasher) {
 
     
 
+enum MVerificationMethod: Int {
+  case fullCustom = 0
+  case standardEmail = 1
+}
+
+enum MIdentityType: Int {
+  case email = 0
+  case alphanumeric = 1
+}
+
+enum MSigningSessionStatus: Int {
+  case active = 0
+  case signed = 1
+}
+
 /// Generated class from Pigeon that represents data sent in messages.
 struct MConfiguration: Hashable {
   var projectId: String
@@ -222,13 +237,13 @@ struct MAuthenticationSessionDetails: Hashable {
   var projectLogoURL: String
   var projectId: String
   var pinLength: Int64
-  var verificationMethod: Int64
+  var verificationMethod: MVerificationMethod
   var verificationURL: String
   var verificationCustomText: String
   var identityTypeLabel: String
   var quickCodeEnabled: Bool
   var limitQuickCodeRegistration: Bool
-  var identityType: Int64
+  var identityType: MIdentityType
   var accessId: String
 
 
@@ -239,13 +254,13 @@ struct MAuthenticationSessionDetails: Hashable {
     let projectLogoURL = pigeonVar_list[2] as! String
     let projectId = pigeonVar_list[3] as! String
     let pinLength = pigeonVar_list[4] as! Int64
-    let verificationMethod = pigeonVar_list[5] as! Int64
+    let verificationMethod = pigeonVar_list[5] as! MVerificationMethod
     let verificationURL = pigeonVar_list[6] as! String
     let verificationCustomText = pigeonVar_list[7] as! String
     let identityTypeLabel = pigeonVar_list[8] as! String
     let quickCodeEnabled = pigeonVar_list[9] as! Bool
     let limitQuickCodeRegistration = pigeonVar_list[10] as! Bool
-    let identityType = pigeonVar_list[11] as! Int64
+    let identityType = pigeonVar_list[11] as! MIdentityType
     let accessId = pigeonVar_list[12] as! String
 
     return MAuthenticationSessionDetails(
@@ -295,17 +310,17 @@ struct MSigningSessionDetails: Hashable {
   var projectLogoURL: String
   var projectId: String
   var pinLength: Int64
-  var verificationMethod: Int64
+  var verificationMethod: MVerificationMethod
   var verificationURL: String
   var verificationCustomText: String
   var identityTypeLabel: String
   var quickCodeEnabled: Bool
   var limitQuickCodeRegistration: Bool
-  var identityType: Int64
+  var identityType: MIdentityType
   var sessionId: String
   var signingHash: String
   var signingDescription: String
-  var status: Int64
+  var status: MSigningSessionStatus
   var expireTime: Int64
 
 
@@ -316,17 +331,17 @@ struct MSigningSessionDetails: Hashable {
     let projectLogoURL = pigeonVar_list[2] as! String
     let projectId = pigeonVar_list[3] as! String
     let pinLength = pigeonVar_list[4] as! Int64
-    let verificationMethod = pigeonVar_list[5] as! Int64
+    let verificationMethod = pigeonVar_list[5] as! MVerificationMethod
     let verificationURL = pigeonVar_list[6] as! String
     let verificationCustomText = pigeonVar_list[7] as! String
     let identityTypeLabel = pigeonVar_list[8] as! String
     let quickCodeEnabled = pigeonVar_list[9] as! Bool
     let limitQuickCodeRegistration = pigeonVar_list[10] as! Bool
-    let identityType = pigeonVar_list[11] as! Int64
+    let identityType = pigeonVar_list[11] as! MIdentityType
     let sessionId = pigeonVar_list[12] as! String
     let signingHash = pigeonVar_list[13] as! String
     let signingDescription = pigeonVar_list[14] as! String
-    let status = pigeonVar_list[15] as! Int64
+    let status = pigeonVar_list[15] as! MSigningSessionStatus
     let expireTime = pigeonVar_list[16] as! Int64
 
     return MSigningSessionDetails(
@@ -525,22 +540,40 @@ private class PigeonPigeonCodecReader: FlutterStandardReader {
   override func readValue(ofType type: UInt8) -> Any? {
     switch type {
     case 129:
-      return MConfiguration.fromList(self.readValue() as! [Any?])
+      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
+      if let enumResultAsInt = enumResultAsInt {
+        return MVerificationMethod(rawValue: enumResultAsInt)
+      }
+      return nil
     case 130:
-      return MExceptions.fromList(self.readValue() as! [Any?])
+      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
+      if let enumResultAsInt = enumResultAsInt {
+        return MIdentityType(rawValue: enumResultAsInt)
+      }
+      return nil
     case 131:
-      return MActivationTokenResponse.fromList(self.readValue() as! [Any?])
+      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
+      if let enumResultAsInt = enumResultAsInt {
+        return MSigningSessionStatus(rawValue: enumResultAsInt)
+      }
+      return nil
     case 132:
-      return MAuthenticationSessionDetails.fromList(self.readValue() as! [Any?])
+      return MConfiguration.fromList(self.readValue() as! [Any?])
     case 133:
-      return MSigningSessionDetails.fromList(self.readValue() as! [Any?])
+      return MExceptions.fromList(self.readValue() as! [Any?])
     case 134:
-      return MUser.fromList(self.readValue() as! [Any?])
+      return MActivationTokenResponse.fromList(self.readValue() as! [Any?])
     case 135:
-      return MQuickCode.fromList(self.readValue() as! [Any?])
+      return MAuthenticationSessionDetails.fromList(self.readValue() as! [Any?])
     case 136:
-      return MSignature.fromList(self.readValue() as! [Any?])
+      return MSigningSessionDetails.fromList(self.readValue() as! [Any?])
     case 137:
+      return MUser.fromList(self.readValue() as! [Any?])
+    case 138:
+      return MQuickCode.fromList(self.readValue() as! [Any?])
+    case 139:
+      return MSignature.fromList(self.readValue() as! [Any?])
+    case 140:
       return MSigningResult.fromList(self.readValue() as! [Any?])
     default:
       return super.readValue(ofType: type)
@@ -550,32 +583,41 @@ private class PigeonPigeonCodecReader: FlutterStandardReader {
 
 private class PigeonPigeonCodecWriter: FlutterStandardWriter {
   override func writeValue(_ value: Any) {
-    if let value = value as? MConfiguration {
+    if let value = value as? MVerificationMethod {
       super.writeByte(129)
-      super.writeValue(value.toList())
-    } else if let value = value as? MExceptions {
+      super.writeValue(value.rawValue)
+    } else if let value = value as? MIdentityType {
       super.writeByte(130)
-      super.writeValue(value.toList())
-    } else if let value = value as? MActivationTokenResponse {
+      super.writeValue(value.rawValue)
+    } else if let value = value as? MSigningSessionStatus {
       super.writeByte(131)
-      super.writeValue(value.toList())
-    } else if let value = value as? MAuthenticationSessionDetails {
+      super.writeValue(value.rawValue)
+    } else if let value = value as? MConfiguration {
       super.writeByte(132)
       super.writeValue(value.toList())
-    } else if let value = value as? MSigningSessionDetails {
+    } else if let value = value as? MExceptions {
       super.writeByte(133)
       super.writeValue(value.toList())
-    } else if let value = value as? MUser {
+    } else if let value = value as? MActivationTokenResponse {
       super.writeByte(134)
       super.writeValue(value.toList())
-    } else if let value = value as? MQuickCode {
+    } else if let value = value as? MAuthenticationSessionDetails {
       super.writeByte(135)
       super.writeValue(value.toList())
-    } else if let value = value as? MSignature {
+    } else if let value = value as? MSigningSessionDetails {
       super.writeByte(136)
       super.writeValue(value.toList())
-    } else if let value = value as? MSigningResult {
+    } else if let value = value as? MUser {
       super.writeByte(137)
+      super.writeValue(value.toList())
+    } else if let value = value as? MQuickCode {
+      super.writeByte(138)
+      super.writeValue(value.toList())
+    } else if let value = value as? MSignature {
+      super.writeByte(139)
+      super.writeValue(value.toList())
+    } else if let value = value as? MSigningResult {
+      super.writeByte(140)
       super.writeValue(value.toList())
     } else {
       super.writeValue(value)
