@@ -185,5 +185,11 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
     ) {
         sdkHandler.getSigningSessionDetailsFromLink(link, callback)
     }
+
+    override fun getUser(userId: String, callback: (kotlin.Result<MUser?>) -> Unit) {
+        runBlocking {
+            sdkHandler.getUser(userId, callback) 
+        }
+    }
   
 }

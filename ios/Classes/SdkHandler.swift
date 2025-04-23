@@ -449,6 +449,19 @@ public class SdkHandler: NSObject, MiraclSdk {
         }
   }
 
+  func getUser(
+    userId: String, 
+    completion: @escaping (Result<MUser?, Error>) -> Void
+  ) {
+    if let user = MIRACLTrust.getInstance().getUser(by: userId) {
+      let mUser = userToMUser(user: user)
+      completion(Result.success(mUser))
+    } else {
+      completion(Result.success(nil))
+    }
+  }
+
+
   private func userToMUser(user:User) -> MUser {
       return MUser(projectId: user.projectId, revoked: user.revoked, userId: user.userId, hashedMpinId: user.hashedMpinId);
   }

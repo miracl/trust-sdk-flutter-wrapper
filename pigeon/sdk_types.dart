@@ -191,6 +191,9 @@ abstract class MiraclSdk {
   void delete(String userId);
 
   @async
+  MUser? getUser(String userId);
+
+  @async
   MQuickCode generateQuickCode(String userId, String pin);
 
   @async

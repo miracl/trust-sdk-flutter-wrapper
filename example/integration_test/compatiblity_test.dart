@@ -146,6 +146,9 @@ void main() {
       List<MUser> users = await sdk.getUsers();
       expect(users.length, 1);
 
+      final fetchedUser = await sdk.getUser(userId);
+      expect(fetchedUser!.userId, userId);
+
       await sdk.delete(userId);
       
       users = await sdk.getUsers();

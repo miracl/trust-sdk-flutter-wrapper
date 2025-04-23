@@ -619,6 +619,7 @@ interface MiraclSdk {
   fun register(userId: String, activationToken: String, pin: String, pushToken: String?, callback: (Result<MUser>) -> Unit)
   fun authenticate(user: MUser, pin: String, callback: (Result<String>) -> Unit)
   fun delete(userId: String, callback: (Result<Unit>) -> Unit)
+  fun getUser(userId: String, callback: (Result<MUser?>) -> Unit)
   fun generateQuickCode(userId: String, pin: String, callback: (Result<MQuickCode>) -> Unit)
   fun sign(userId: String, pin: String, message: ByteArray, callback: (Result<MSigningResult>) -> Unit)
   fun authenticateWithQrCode(userId: String, pin: String, qrCode: String, callback: (Result<Boolean>) -> Unit)
@@ -813,6 +814,26 @@ interface MiraclSdk {
                 reply.reply(wrapError(error))
               } else {
                 reply.reply(wrapResult(null))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getUser$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val userIdArg = args[0] as String
+            api.getUser(userIdArg) { result: Result<MUser?> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(wrapError(error))
+              } else {
+                val data = result.getOrNull()
+                reply.reply(wrapResult(data))
               }
             }
           }

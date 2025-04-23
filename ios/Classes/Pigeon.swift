@@ -651,6 +651,7 @@ protocol MiraclSdk {
   func register(userId: String, activationToken: String, pin: String, pushToken: String?, completion: @escaping (Result<MUser, Error>) -> Void)
   func authenticate(user: MUser, pin: String, completion: @escaping (Result<String, Error>) -> Void)
   func delete(userId: String, completion: @escaping (Result<Void, Error>) -> Void)
+  func getUser(userId: String, completion: @escaping (Result<MUser?, Error>) -> Void)
   func generateQuickCode(userId: String, pin: String, completion: @escaping (Result<MQuickCode, Error>) -> Void)
   func sign(userId: String, pin: String, message: FlutterStandardTypedData, completion: @escaping (Result<MSigningResult, Error>) -> Void)
   func authenticateWithQrCode(userId: String, pin: String, qrCode: String, completion: @escaping (Result<Bool, Error>) -> Void)
@@ -825,6 +826,23 @@ class MiraclSdkSetup {
       }
     } else {
       deleteChannel.setMessageHandler(nil)
+    }
+    let getUserChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getUser\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      getUserChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let userIdArg = args[0] as! String
+        api.getUser(userId: userIdArg) { result in
+          switch result {
+          case .success(let res):
+            reply(wrapResult(res))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      getUserChannel.setMessageHandler(nil)
     }
     let generateQuickCodeChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.generateQuickCode\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {

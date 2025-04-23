@@ -586,6 +586,20 @@ class SdkHandler {
         }
     }
 
+    suspend fun getUser(userId: String, callback: (Result<MUser?>) -> Unit) {
+        val user = MIRACLTrust.getInstance().getUser(userId)
+        user?.let {
+            val mUser = userToMUser(it)
+            callback(
+                Result.success(
+                   mUser
+                )
+            )
+        } ?: run {
+            callback(Result.success(null))
+        }
+    } 
+
     private fun userToMUser(user: User): MUser {
         return MUser(projectId = user.projectId, revoked = user.revoked, userId = user.userId, hashedMpinId = user.hashedMpinId);
     }
