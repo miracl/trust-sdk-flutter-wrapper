@@ -53,7 +53,6 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
 
     override fun sendVerificationEmail(
         userId: String,
-        authenticationSessionDetails: MAuthenticationSessionDetails?, 
         callback: (kotlin.Result<Boolean>) -> Unit
     ) {
         sdkHandler.sendVerificationMail(userId, callback)
@@ -101,47 +100,47 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
     }
 
     override fun delete(
-        userId: String, 
+        user: MUser, 
         callback: (kotlin.Result<Unit>) -> Unit
     ) {
-        sdkHandler.delete(userId, callback)
+        sdkHandler.delete(user.userId, callback)
     }
     
     override fun generateQuickCode(
-        userId: String,
+        user: MUser,
         pin: String, 
         callback: (kotlin.Result<MQuickCode>) -> Unit
     ) {
         runBlocking {
-            sdkHandler.generateQuickCode(userId, pin, callback)
+            sdkHandler.generateQuickCode(user.userId, pin, callback)
         }
     }
 
     override fun sign(
-        userId: String, 
+        user: MUser, 
         pin: String,
         message: ByteArray, 
         callback: (kotlin.Result<MSigningResult>) -> Unit
     ) {
-        sdkHandler.sign(userId, pin, message, callback)
+        sdkHandler.sign(user.userId, pin, message, callback)
     }
 
     override fun authenticateWithQrCode(
-        userId: String, 
+        user: MUser, 
         pin: String, 
         qrCode: String, 
         callback: (kotlin.Result<Boolean>) -> Unit
     ) {
-        sdkHandler.authenticateWithQrCode(userId, qrCode, pin, callback)
+        sdkHandler.authenticateWithQrCode(user.userId, qrCode, pin, callback)
     }
 
     override fun authenticateWithLink(
-        userId: String, 
+        user: MUser, 
         pin: String, 
         link: String, 
         callback: (kotlin.Result<Boolean>) -> Unit
     ) {
-        sdkHandler.authenticateWithAppLink(userId,link, pin, callback)
+        sdkHandler.authenticateWithAppLink(user.userId, link, pin, callback)
     }
 
     override fun authenticateWithNotificationPayload(

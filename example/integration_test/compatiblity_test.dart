@@ -104,7 +104,7 @@ void main() {
       final String userId = "";
       await sdk.initSdk(configuration);
       await sdk.setProjectId("");
-      await sdk.sendVerificationEmail(userId, null);
+      await sdk.sendVerificationEmail(userId);
 
       String projectId = "";
       await sdk.setProjectId(projectId);
@@ -116,7 +116,7 @@ void main() {
       final String token = await sdk.authenticate(user, pin);
       expect(await verifyJWT(token, projectId, user.userId), true);
 
-      final quickCode = await sdk.generateQuickCode(userId, pin);
+      final quickCode = await sdk.generateQuickCode(user, pin);
       activationTokenResponse = await sdk.getActivationTokenByUserIdAndCode(userId, quickCode.code);
       user = await sdk.register(userId, activationTokenResponse.activationToken, pin, null);
 
@@ -130,8 +130,8 @@ void main() {
       };
       authenticationSessionDetails = await sdk.getAuthenticationSessionDetailsFromPushNofitifactionPayload(payload);
 
-      expect(await sdk.authenticateWithQrCode(userId, pin, qrURL), true);
-      expect(await sdk.authenticateWithLink(userId, pin, qrURL), true);
+      expect(await sdk.authenticateWithQrCode(user, pin, qrURL), true);
+      expect(await sdk.authenticateWithLink(user, pin, qrURL), true);
       expect(await sdk.authenticateWithNotificationPayload(payload, pin), true);
 
       final signingQRCode = await startSigningSession(projectId, userId, "Hello World", "Hello Desc");
@@ -141,7 +141,7 @@ void main() {
       String myString = "Hello, world! 😊";
       List<int> codeUnits = utf8.encode(myString);
       Uint8List message = Uint8List.fromList(codeUnits);
-      await sdk.sign(userId, pin, message);
+      await sdk.sign(user, pin, message);
       
       List<MUser> users = await sdk.getUsers();
       expect(users.length, 1);
@@ -149,7 +149,7 @@ void main() {
       final fetchedUser = await sdk.getUser(userId);
       expect(fetchedUser!.userId, userId);
 
-      await sdk.delete(userId);
+      await sdk.delete(user);
       
       users = await sdk.getUsers();
       expect(users.length, 0);

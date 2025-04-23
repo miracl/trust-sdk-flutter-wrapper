@@ -644,18 +644,18 @@ class PigeonPigeonCodec: FlutterStandardMessageCodec, @unchecked Sendable {
 protocol MiraclSdk {
   func initSdk(configuration: MConfiguration, completion: @escaping (Result<Void, Error>) -> Void)
   func setProjectId(projectId: String, completion: @escaping (Result<Void, Error>) -> Void)
-  func sendVerificationEmail(userId: String, authenticationSessionDetails: MAuthenticationSessionDetails?, completion: @escaping (Result<Bool, Error>) -> Void)
+  func sendVerificationEmail(userId: String, completion: @escaping (Result<Bool, Error>) -> Void)
   func getActivationTokenByURI(uri: String, completion: @escaping (Result<MActivationTokenResponse, Error>) -> Void)
   func getActivationTokenByUserIdAndCode(userId: String, code: String, completion: @escaping (Result<MActivationTokenResponse, Error>) -> Void)
   func getUsers(completion: @escaping (Result<[MUser], Error>) -> Void)
   func register(userId: String, activationToken: String, pin: String, pushToken: String?, completion: @escaping (Result<MUser, Error>) -> Void)
   func authenticate(user: MUser, pin: String, completion: @escaping (Result<String, Error>) -> Void)
-  func delete(userId: String, completion: @escaping (Result<Void, Error>) -> Void)
+  func delete(user: MUser, completion: @escaping (Result<Void, Error>) -> Void)
   func getUser(userId: String, completion: @escaping (Result<MUser?, Error>) -> Void)
-  func generateQuickCode(userId: String, pin: String, completion: @escaping (Result<MQuickCode, Error>) -> Void)
-  func sign(userId: String, pin: String, message: FlutterStandardTypedData, completion: @escaping (Result<MSigningResult, Error>) -> Void)
-  func authenticateWithQrCode(userId: String, pin: String, qrCode: String, completion: @escaping (Result<Bool, Error>) -> Void)
-  func authenticateWithLink(userId: String, pin: String, link: String, completion: @escaping (Result<Bool, Error>) -> Void)
+  func generateQuickCode(user: MUser, pin: String, completion: @escaping (Result<MQuickCode, Error>) -> Void)
+  func sign(user: MUser, pin: String, message: FlutterStandardTypedData, completion: @escaping (Result<MSigningResult, Error>) -> Void)
+  func authenticateWithQrCode(user: MUser, pin: String, qrCode: String, completion: @escaping (Result<Bool, Error>) -> Void)
+  func authenticateWithLink(user: MUser, pin: String, link: String, completion: @escaping (Result<Bool, Error>) -> Void)
   func authenticateWithNotificationPayload(payload: [String: String], pin: String, completion: @escaping (Result<Bool, Error>) -> Void)
   func getAuthenticationSessionDetailsFromQRCode(qrCode: String, completion: @escaping (Result<MAuthenticationSessionDetails, Error>) -> Void)
   func getAuthenticationSessionDetailsFromLink(link: String, completion: @escaping (Result<MAuthenticationSessionDetails, Error>) -> Void)
@@ -709,8 +709,7 @@ class MiraclSdkSetup {
       sendVerificationEmailChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
         let userIdArg = args[0] as! String
-        let authenticationSessionDetailsArg: MAuthenticationSessionDetails? = nilOrValue(args[1])
-        api.sendVerificationEmail(userId: userIdArg, authenticationSessionDetails: authenticationSessionDetailsArg) { result in
+        api.sendVerificationEmail(userId: userIdArg) { result in
           switch result {
           case .success(let res):
             reply(wrapResult(res))
@@ -814,8 +813,8 @@ class MiraclSdkSetup {
     if let api = api {
       deleteChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
-        let userIdArg = args[0] as! String
-        api.delete(userId: userIdArg) { result in
+        let userArg = args[0] as! MUser
+        api.delete(user: userArg) { result in
           switch result {
           case .success:
             reply(wrapResult(nil))
@@ -848,9 +847,9 @@ class MiraclSdkSetup {
     if let api = api {
       generateQuickCodeChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
-        let userIdArg = args[0] as! String
+        let userArg = args[0] as! MUser
         let pinArg = args[1] as! String
-        api.generateQuickCode(userId: userIdArg, pin: pinArg) { result in
+        api.generateQuickCode(user: userArg, pin: pinArg) { result in
           switch result {
           case .success(let res):
             reply(wrapResult(res))
@@ -866,10 +865,10 @@ class MiraclSdkSetup {
     if let api = api {
       signChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
-        let userIdArg = args[0] as! String
+        let userArg = args[0] as! MUser
         let pinArg = args[1] as! String
         let messageArg = args[2] as! FlutterStandardTypedData
-        api.sign(userId: userIdArg, pin: pinArg, message: messageArg) { result in
+        api.sign(user: userArg, pin: pinArg, message: messageArg) { result in
           switch result {
           case .success(let res):
             reply(wrapResult(res))
@@ -885,10 +884,10 @@ class MiraclSdkSetup {
     if let api = api {
       authenticateWithQrCodeChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
-        let userIdArg = args[0] as! String
+        let userArg = args[0] as! MUser
         let pinArg = args[1] as! String
         let qrCodeArg = args[2] as! String
-        api.authenticateWithQrCode(userId: userIdArg, pin: pinArg, qrCode: qrCodeArg) { result in
+        api.authenticateWithQrCode(user: userArg, pin: pinArg, qrCode: qrCodeArg) { result in
           switch result {
           case .success(let res):
             reply(wrapResult(res))
@@ -904,10 +903,10 @@ class MiraclSdkSetup {
     if let api = api {
       authenticateWithLinkChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
-        let userIdArg = args[0] as! String
+        let userArg = args[0] as! MUser
         let pinArg = args[1] as! String
         let linkArg = args[2] as! String
-        api.authenticateWithLink(userId: userIdArg, pin: pinArg, link: linkArg) { result in
+        api.authenticateWithLink(user: userArg, pin: pinArg, link: linkArg) { result in
           switch result {
           case .success(let res):
             reply(wrapResult(res))

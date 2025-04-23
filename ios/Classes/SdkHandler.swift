@@ -32,8 +32,7 @@ public class SdkHandler: NSObject, MiraclSdk {
   }
 
   func sendVerificationEmail(
-    userId: String, 
-    authenticationSessionDetails: MAuthenticationSessionDetails?, 
+    userId: String,
     completion: @escaping (Result<Bool, Error>) -> Void
   ) {
     MIRACLTrust.getInstance().sendVerificationEmail(userId: userId) { (result, error) in
@@ -110,10 +109,10 @@ public class SdkHandler: NSObject, MiraclSdk {
   }
 
   func delete(
-    userId: String, 
+    user: MUser, 
     completion: @escaping (Result<Void, Error>) -> Void
   ) {
-    let sdkUser = MIRACLTrust.getInstance().getUser(by: userId)
+    let sdkUser = MIRACLTrust.getInstance().getUser(by: user.userId)
     if let sdkUser {
         do {
             try MIRACLTrust.getInstance().delete(user: sdkUser)
@@ -147,11 +146,11 @@ public class SdkHandler: NSObject, MiraclSdk {
   }
   
   func generateQuickCode(
-    userId: String, 
+    user: MUser, 
     pin: String, 
     completion: @escaping (Result<MQuickCode, Error>) -> Void
   ) {
-      let sdkUser = MIRACLTrust.getInstance().getUser(by: userId)
+      let sdkUser = MIRACLTrust.getInstance().getUser(by: user.userId)
       if let sdkUser {
           MIRACLTrust.getInstance().generateQuickCode(user: sdkUser) { processPinHandler in
               processPinHandler(pin)
@@ -190,12 +189,12 @@ public class SdkHandler: NSObject, MiraclSdk {
   }
 
   func authenticateWithQrCode(
-    userId: String, 
+    user: MUser, 
     pin: String,
     qrCode: String, 
     completion: @escaping (Result<Bool, Error>) -> Void
   ) {
-     let sdkUser = MIRACLTrust.getInstance().getUser(by: userId)
+     let sdkUser = MIRACLTrust.getInstance().getUser(by: user.userId)
         
      if let sdkUser {
          MIRACLTrust.getInstance().authenticateWithQRCode(user: sdkUser, qrCode: qrCode) {  pinProcessor in
@@ -211,12 +210,12 @@ public class SdkHandler: NSObject, MiraclSdk {
   }
 
   func authenticateWithLink(
-    userId: String, 
+    user: MUser, 
     pin: String, 
     link: String, 
     completion: @escaping (Result<Bool, Error>) -> Void
   ) {
-     let sdkUser = MIRACLTrust.getInstance().getUser(by: userId)
+     let sdkUser = MIRACLTrust.getInstance().getUser(by: user.userId)
         
      if let sdkUser {
          MIRACLTrust.getInstance().authenticateWithUniversalLinkURL(
@@ -341,12 +340,12 @@ public class SdkHandler: NSObject, MiraclSdk {
   }
 
   func sign(
-    userId: String,
+    user: MUser,
     pin: String, 
     message: FlutterStandardTypedData, 
     completion: @escaping (Result<MSigningResult, Error>
   ) -> Void) {
-        let sdkUser = MIRACLTrust.getInstance().getUser(by: userId)
+        let sdkUser = MIRACLTrust.getInstance().getUser(by: user.userId)
 
         if let sdkUser {
             MIRACLTrust.getInstance().sign(
@@ -368,7 +367,7 @@ public class SdkHandler: NSObject, MiraclSdk {
                                     hash: signingResult.signature.signatureHash, 
                                     publicKey: signingResult.signature.publicKey
                                 ),
-                                timestamp: Int64((signingResult.timestamp.timeIntervalSince1970 * 1000.0).rounded())
+                                timestamp: Int64((signingResult.timestamp.timeIntervalSince1970))
                             )
                         ))
                     }
@@ -460,7 +459,6 @@ public class SdkHandler: NSObject, MiraclSdk {
       completion(Result.success(nil))
     }
   }
-
 
   private func userToMUser(user:User) -> MUser {
       return MUser(projectId: user.projectId, revoked: user.revoked, userId: user.userId, hashedMpinId: user.hashedMpinId);

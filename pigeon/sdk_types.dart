@@ -162,7 +162,7 @@ abstract class MiraclSdk {
   void setProjectId(String projectId);
 
   @async
-  bool sendVerificationEmail(String userId, MAuthenticationSessionDetails? authenticationSessionDetails);
+  bool sendVerificationEmail(String userId);
 
   @async
   MActivationTokenResponse getActivationTokenByURI(String uri);
@@ -188,22 +188,22 @@ abstract class MiraclSdk {
   );
 
   @async
-  void delete(String userId);
+  void delete(MUser user);
 
   @async
   MUser? getUser(String userId);
 
   @async
-  MQuickCode generateQuickCode(String userId, String pin);
+  MQuickCode generateQuickCode(MUser user, String pin);
 
   @async
-  MSigningResult sign(String userId, String pin, Uint8List message);
+  MSigningResult sign(MUser user, String pin, Uint8List message);
 
   @async
-  bool authenticateWithQrCode(String userId, String pin, String qrCode);
+  bool authenticateWithQrCode(MUser user, String pin, String qrCode);
 
   @async
-  bool authenticateWithLink(String userId, String pin, String link);
+  bool authenticateWithLink(MUser user, String pin, String link);
 
   @async
   bool authenticateWithNotificationPayload(

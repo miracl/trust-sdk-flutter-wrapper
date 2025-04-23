@@ -612,18 +612,18 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
 interface MiraclSdk {
   fun initSdk(configuration: MConfiguration, callback: (Result<Unit>) -> Unit)
   fun setProjectId(projectId: String, callback: (Result<Unit>) -> Unit)
-  fun sendVerificationEmail(userId: String, authenticationSessionDetails: MAuthenticationSessionDetails?, callback: (Result<Boolean>) -> Unit)
+  fun sendVerificationEmail(userId: String, callback: (Result<Boolean>) -> Unit)
   fun getActivationTokenByURI(uri: String, callback: (Result<MActivationTokenResponse>) -> Unit)
   fun getActivationTokenByUserIdAndCode(userId: String, code: String, callback: (Result<MActivationTokenResponse>) -> Unit)
   fun getUsers(callback: (Result<List<MUser>>) -> Unit)
   fun register(userId: String, activationToken: String, pin: String, pushToken: String?, callback: (Result<MUser>) -> Unit)
   fun authenticate(user: MUser, pin: String, callback: (Result<String>) -> Unit)
-  fun delete(userId: String, callback: (Result<Unit>) -> Unit)
+  fun delete(user: MUser, callback: (Result<Unit>) -> Unit)
   fun getUser(userId: String, callback: (Result<MUser?>) -> Unit)
-  fun generateQuickCode(userId: String, pin: String, callback: (Result<MQuickCode>) -> Unit)
-  fun sign(userId: String, pin: String, message: ByteArray, callback: (Result<MSigningResult>) -> Unit)
-  fun authenticateWithQrCode(userId: String, pin: String, qrCode: String, callback: (Result<Boolean>) -> Unit)
-  fun authenticateWithLink(userId: String, pin: String, link: String, callback: (Result<Boolean>) -> Unit)
+  fun generateQuickCode(user: MUser, pin: String, callback: (Result<MQuickCode>) -> Unit)
+  fun sign(user: MUser, pin: String, message: ByteArray, callback: (Result<MSigningResult>) -> Unit)
+  fun authenticateWithQrCode(user: MUser, pin: String, qrCode: String, callback: (Result<Boolean>) -> Unit)
+  fun authenticateWithLink(user: MUser, pin: String, link: String, callback: (Result<Boolean>) -> Unit)
   fun authenticateWithNotificationPayload(payload: Map<String, String>, pin: String, callback: (Result<Boolean>) -> Unit)
   fun getAuthenticationSessionDetailsFromQRCode(qrCode: String, callback: (Result<MAuthenticationSessionDetails>) -> Unit)
   fun getAuthenticationSessionDetailsFromLink(link: String, callback: (Result<MAuthenticationSessionDetails>) -> Unit)
@@ -684,8 +684,7 @@ interface MiraclSdk {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
             val userIdArg = args[0] as String
-            val authenticationSessionDetailsArg = args[1] as MAuthenticationSessionDetails?
-            api.sendVerificationEmail(userIdArg, authenticationSessionDetailsArg) { result: Result<Boolean> ->
+            api.sendVerificationEmail(userIdArg) { result: Result<Boolean> ->
               val error = result.exceptionOrNull()
               if (error != null) {
                 reply.reply(wrapError(error))
@@ -807,8 +806,8 @@ interface MiraclSdk {
         if (api != null) {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
-            val userIdArg = args[0] as String
-            api.delete(userIdArg) { result: Result<Unit> ->
+            val userArg = args[0] as MUser
+            api.delete(userArg) { result: Result<Unit> ->
               val error = result.exceptionOrNull()
               if (error != null) {
                 reply.reply(wrapError(error))
@@ -846,9 +845,9 @@ interface MiraclSdk {
         if (api != null) {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
-            val userIdArg = args[0] as String
+            val userArg = args[0] as MUser
             val pinArg = args[1] as String
-            api.generateQuickCode(userIdArg, pinArg) { result: Result<MQuickCode> ->
+            api.generateQuickCode(userArg, pinArg) { result: Result<MQuickCode> ->
               val error = result.exceptionOrNull()
               if (error != null) {
                 reply.reply(wrapError(error))
@@ -867,10 +866,10 @@ interface MiraclSdk {
         if (api != null) {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
-            val userIdArg = args[0] as String
+            val userArg = args[0] as MUser
             val pinArg = args[1] as String
             val messageArg = args[2] as ByteArray
-            api.sign(userIdArg, pinArg, messageArg) { result: Result<MSigningResult> ->
+            api.sign(userArg, pinArg, messageArg) { result: Result<MSigningResult> ->
               val error = result.exceptionOrNull()
               if (error != null) {
                 reply.reply(wrapError(error))
@@ -889,10 +888,10 @@ interface MiraclSdk {
         if (api != null) {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
-            val userIdArg = args[0] as String
+            val userArg = args[0] as MUser
             val pinArg = args[1] as String
             val qrCodeArg = args[2] as String
-            api.authenticateWithQrCode(userIdArg, pinArg, qrCodeArg) { result: Result<Boolean> ->
+            api.authenticateWithQrCode(userArg, pinArg, qrCodeArg) { result: Result<Boolean> ->
               val error = result.exceptionOrNull()
               if (error != null) {
                 reply.reply(wrapError(error))
@@ -911,10 +910,10 @@ interface MiraclSdk {
         if (api != null) {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
-            val userIdArg = args[0] as String
+            val userArg = args[0] as MUser
             val pinArg = args[1] as String
             val linkArg = args[2] as String
-            api.authenticateWithLink(userIdArg, pinArg, linkArg) { result: Result<Boolean> ->
+            api.authenticateWithLink(userArg, pinArg, linkArg) { result: Result<Boolean> ->
               val error = result.exceptionOrNull()
               if (error != null) {
                 reply.reply(wrapError(error))
