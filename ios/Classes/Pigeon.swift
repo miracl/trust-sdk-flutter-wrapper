@@ -169,31 +169,6 @@ struct MConfiguration: Hashable {
 }
 
 /// Generated class from Pigeon that represents data sent in messages.
-struct MExceptions: Hashable {
-  var message: String
-
-
-  // swift-format-ignore: AlwaysUseLowerCamelCase
-  static func fromList(_ pigeonVar_list: [Any?]) -> MExceptions? {
-    let message = pigeonVar_list[0] as! String
-
-    return MExceptions(
-      message: message
-    )
-  }
-  func toList() -> [Any?] {
-    return [
-      message
-    ]
-  }
-  static func == (lhs: MExceptions, rhs: MExceptions) -> Bool {
-    return deepEqualsPigeon(lhs.toList(), rhs.toList())  }
-  func hash(into hasher: inout Hasher) {
-    deepHashPigeon(value: toList(), hasher: &hasher)
-  }
-}
-
-/// Generated class from Pigeon that represents data sent in messages.
 struct MActivationTokenResponse: Hashable {
   var projectId: String
   var accessId: String? = nil
@@ -536,6 +511,64 @@ struct MSigningResult: Hashable {
   }
 }
 
+/// Generated class from Pigeon that represents data sent in messages.
+struct MActivationTokenErrorResponse: Hashable {
+  var projectId: String
+  var accessId: String? = nil
+  var userId: String
+
+
+  // swift-format-ignore: AlwaysUseLowerCamelCase
+  static func fromList(_ pigeonVar_list: [Any?]) -> MActivationTokenErrorResponse? {
+    let projectId = pigeonVar_list[0] as! String
+    let accessId: String? = nilOrValue(pigeonVar_list[1])
+    let userId = pigeonVar_list[2] as! String
+
+    return MActivationTokenErrorResponse(
+      projectId: projectId,
+      accessId: accessId,
+      userId: userId
+    )
+  }
+  func toList() -> [Any?] {
+    return [
+      projectId,
+      accessId,
+      userId,
+    ]
+  }
+  static func == (lhs: MActivationTokenErrorResponse, rhs: MActivationTokenErrorResponse) -> Bool {
+    return deepEqualsPigeon(lhs.toList(), rhs.toList())  }
+  func hash(into hasher: inout Hasher) {
+    deepHashPigeon(value: toList(), hasher: &hasher)
+  }
+}
+
+/// Generated class from Pigeon that represents data sent in messages.
+struct MError: Hashable {
+  var message: String
+
+
+  // swift-format-ignore: AlwaysUseLowerCamelCase
+  static func fromList(_ pigeonVar_list: [Any?]) -> MError? {
+    let message = pigeonVar_list[0] as! String
+
+    return MError(
+      message: message
+    )
+  }
+  func toList() -> [Any?] {
+    return [
+      message
+    ]
+  }
+  static func == (lhs: MError, rhs: MError) -> Bool {
+    return deepEqualsPigeon(lhs.toList(), rhs.toList())  }
+  func hash(into hasher: inout Hasher) {
+    deepHashPigeon(value: toList(), hasher: &hasher)
+  }
+}
+
 private class PigeonPigeonCodecReader: FlutterStandardReader {
   override func readValue(ofType type: UInt8) -> Any? {
     switch type {
@@ -560,21 +593,23 @@ private class PigeonPigeonCodecReader: FlutterStandardReader {
     case 132:
       return MConfiguration.fromList(self.readValue() as! [Any?])
     case 133:
-      return MExceptions.fromList(self.readValue() as! [Any?])
-    case 134:
       return MActivationTokenResponse.fromList(self.readValue() as! [Any?])
-    case 135:
+    case 134:
       return MAuthenticationSessionDetails.fromList(self.readValue() as! [Any?])
-    case 136:
+    case 135:
       return MSigningSessionDetails.fromList(self.readValue() as! [Any?])
-    case 137:
+    case 136:
       return MUser.fromList(self.readValue() as! [Any?])
-    case 138:
+    case 137:
       return MQuickCode.fromList(self.readValue() as! [Any?])
-    case 139:
+    case 138:
       return MSignature.fromList(self.readValue() as! [Any?])
-    case 140:
+    case 139:
       return MSigningResult.fromList(self.readValue() as! [Any?])
+    case 140:
+      return MActivationTokenErrorResponse.fromList(self.readValue() as! [Any?])
+    case 141:
+      return MError.fromList(self.readValue() as! [Any?])
     default:
       return super.readValue(ofType: type)
     }
@@ -595,29 +630,32 @@ private class PigeonPigeonCodecWriter: FlutterStandardWriter {
     } else if let value = value as? MConfiguration {
       super.writeByte(132)
       super.writeValue(value.toList())
-    } else if let value = value as? MExceptions {
+    } else if let value = value as? MActivationTokenResponse {
       super.writeByte(133)
       super.writeValue(value.toList())
-    } else if let value = value as? MActivationTokenResponse {
+    } else if let value = value as? MAuthenticationSessionDetails {
       super.writeByte(134)
       super.writeValue(value.toList())
-    } else if let value = value as? MAuthenticationSessionDetails {
+    } else if let value = value as? MSigningSessionDetails {
       super.writeByte(135)
       super.writeValue(value.toList())
-    } else if let value = value as? MSigningSessionDetails {
+    } else if let value = value as? MUser {
       super.writeByte(136)
       super.writeValue(value.toList())
-    } else if let value = value as? MUser {
+    } else if let value = value as? MQuickCode {
       super.writeByte(137)
       super.writeValue(value.toList())
-    } else if let value = value as? MQuickCode {
+    } else if let value = value as? MSignature {
       super.writeByte(138)
       super.writeValue(value.toList())
-    } else if let value = value as? MSignature {
+    } else if let value = value as? MSigningResult {
       super.writeByte(139)
       super.writeValue(value.toList())
-    } else if let value = value as? MSigningResult {
+    } else if let value = value as? MActivationTokenErrorResponse {
       super.writeByte(140)
+      super.writeValue(value.toList())
+    } else if let value = value as? MError {
+      super.writeByte(141)
       super.writeValue(value.toList())
     } else {
       super.writeValue(value)

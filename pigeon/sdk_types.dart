@@ -6,12 +6,6 @@ class MConfiguration {
   MConfiguration(this.projectId);
 }
 
-class MExceptions {
-  final String message;
-
-  MExceptions(this.message);
-}
-
 class MActivationTokenResponse {
   final String projectId;
   final String? accessId;
@@ -151,6 +145,20 @@ class MSigningResult {
   final int timestamp;
 
   MSigningResult(this.signature, this.timestamp);
+}
+
+class MActivationTokenErrorResponse {
+  final String projectId;
+  final String? accessId;
+  final String userId;
+
+  MActivationTokenErrorResponse(this.projectId, this.accessId, this.userId);
+}
+
+class MError {
+  final String message;
+
+  MError(this.message);
 }
 
 @HostApi()

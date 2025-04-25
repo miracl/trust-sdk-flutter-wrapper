@@ -8,8 +8,16 @@ import com.miracl.trust.MIRACLTrust
 import com.miracl.trust.configuration.Configuration
 import com.miracl.trust.model.User
 import com.miracl.trust.util.log.Logger
+import com.miracl.trust.registration.ActivationTokenErrorResponse
+import com.miracl.trust.registration.ActivationTokenException
+import com.miracl.trust.registration.VerificationException
+import com.miracl.trust.signing.SigningException
+import com.miracl.trust.session.SigningSessionException
+import com.miracl.trust.authentication.AuthenticationException
+import com.miracl.trust.registration.QuickCodeException
+import com.miracl.trust.session.AuthenticationSessionException
+import com.miracl.trust.registration.RegistrationException
 import java.util.*
-
 
 class SdkHandler {
     fun initSdk(config: MConfiguration, context: Context, callback: (Result<Unit>) -> Unit) {
@@ -34,7 +42,21 @@ class SdkHandler {
                 callback(Result.success(true));
             } else {
                 if (it is MIRACLError) {
-                    callback(Result.failure(mapExceptionToFlutter(it.value)))
+                    val error = it.value
+                    val details = mutableMapOf<String, Any?>()
+                    if (error is VerificationException.RequestBackoff) {
+                        details["backoff"] = error.backoff
+                    }
+
+                    if (error is VerificationException.VerificationFail && error.cause != null) {
+                        details["error"] = MError(error.cause.toString())
+                    }
+
+                    callback(
+                        Result.failure(
+                            mapExceptionToFlutter(it.value, details)
+                        )
+                    )
                 }
             }
         }
@@ -58,10 +80,27 @@ class SdkHandler {
 
             } else {
                 if (it is MIRACLError) {
-                    println(it.value.stackTraceToString())
+                    val error = it.value
+                    val details = mutableMapOf<String, Any?>()
+                    if (error is ActivationTokenException.UnsuccessfulVerification) {
+                        val activationTokenErrorResponse = error.activationTokenErrorResponse
+                        if (activationTokenErrorResponse != null) {
+                            val mActivationTokenErrorResponse = MActivationTokenErrorResponse(
+                                activationTokenErrorResponse.projectId,
+                                activationTokenErrorResponse.accessId,
+                                activationTokenErrorResponse.userId
+                            )
+                            details["activationTokenErrorResponse"] = mActivationTokenErrorResponse
+                        }
+                    }
+
+                    if (error is ActivationTokenException.GetActivationTokenFail && error.cause != null) {
+                        details["error"] = MError(error.cause.toString())
+                    }
+
                     callback(
                         Result.failure(
-                            mapExceptionToFlutter(it.value)
+                            mapExceptionToFlutter(it.value, details)
                         )
                     )
                 }
@@ -89,10 +128,27 @@ class SdkHandler {
 
             } else {
                 if (it is MIRACLError) {
-                    println(it.value.stackTraceToString())
+                    val error = it.value
+                    val details = mutableMapOf<String, Any?>()
+                    if (error is ActivationTokenException.UnsuccessfulVerification) {
+                        val activationTokenErrorResponse = error.activationTokenErrorResponse
+                        if (activationTokenErrorResponse != null) {
+                            val mActivationTokenErrorResponse = MActivationTokenErrorResponse(
+                                activationTokenErrorResponse.projectId,
+                                activationTokenErrorResponse.accessId,
+                                activationTokenErrorResponse.userId
+                            )
+                            details["activationTokenErrorResponse"] = mActivationTokenErrorResponse
+                        }
+                    }
+
+                    if (error is ActivationTokenException.GetActivationTokenFail && error.cause != null) {
+                        details["error"] = MError(error.cause.toString())
+                    }
+
                     callback(
                         Result.failure(
-                            mapExceptionToFlutter(it.value)
+                            mapExceptionToFlutter(it.value, details)
                         )
                     )
                 }
@@ -114,10 +170,16 @@ class SdkHandler {
                 callback(Result.success(userToMUser(it.value)))
             } else {
                 if (it is MIRACLError) {
-                    println(it.value.stackTraceToString())
+                    val error = it.value
+                    val details = mutableMapOf<String, Any?>()
+
+                    if (error is RegistrationException.RegistrationFail && error.cause != null) {
+                        details["error"] = MError(error.cause.toString())
+                    }
+
                     callback(
                         Result.failure(
-                            mapExceptionToFlutter(it.value)
+                            mapExceptionToFlutter(it.value, details)
                         )
                     )
                 }
@@ -128,7 +190,6 @@ class SdkHandler {
     suspend fun authenticate(user: MUser, pin: String, callback: (Result<String>) -> Unit) {
         MIRACLTrust.getInstance().getUser(user.userId) { result -> 
             if (result is MIRACLError) {
-                println(result.value.stackTraceToString())
                 callback(
                     Result.failure(
                         mapExceptionToFlutter(result.value)
@@ -147,10 +208,16 @@ class SdkHandler {
                     callback(Result.success(it.value))
                 } else {
                     if (it is MIRACLError) {
-                        println(it.value.stackTraceToString())
+                        val error = it.value
+                        val details = mutableMapOf<String, Any?>()
+        
+                        if (error is AuthenticationException.AuthenticationFail && error.cause != null) {
+                            details["error"] = MError(error.cause.toString())
+                        }
+        
                         callback(
                             Result.failure(
-                                mapExceptionToFlutter(it.value)
+                                mapExceptionToFlutter(it.value, details)
                             )
                         )
                     }
@@ -166,7 +233,6 @@ class SdkHandler {
     ) {
         MIRACLTrust.getInstance().getUser(userId) { result -> 
             if (result is MIRACLError) {
-                println(result.value.stackTraceToString())
                 callback(
                     Result.failure(
                         mapExceptionToFlutter(result.value)
@@ -189,7 +255,18 @@ class SdkHandler {
                             )
                         )
                     } else if (it is MIRACLError) {
-                        callback(Result.failure(mapExceptionToFlutter(it.value)))
+                        val error = it.value
+                        val details = mutableMapOf<String, Any?>()
+        
+                        if (error is QuickCodeException.GenerationFail && error.cause != null) {
+                            details["error"] = MError(error.cause.toString())
+                        }
+        
+                        callback(
+                            Result.failure(
+                                mapExceptionToFlutter(it.value, details)
+                            )
+                        )
                     }
                 }
             }
@@ -202,7 +279,6 @@ class SdkHandler {
     ) {
         MIRACLTrust.getInstance().getAuthenticationSessionDetailsFromAppLink(Uri.parse(link)) {
             if (it is MIRACLSuccess) {
-                println(it.value.toString());
                 callback(
                     Result.success(
                         MAuthenticationSessionDetails(
@@ -224,12 +300,18 @@ class SdkHandler {
                 )
             } else {
                 if (it is MIRACLError) {
-                    println(it.value.stackTraceToString())
+                    val error = it.value
+                    val details = mutableMapOf<String, Any?>()
+    
+                    if (error is AuthenticationSessionException.GetAuthenticationSessionDetailsFail && error.cause != null) {
+                        details["error"] = MError(error.cause.toString())
+                    }
+    
                     callback(
                         Result.failure(
-                            mapExceptionToFlutter(it.value)
+                            mapExceptionToFlutter(it.value, details)
                         )
-                    );
+                    )
                 }
             }
         }
@@ -241,7 +323,6 @@ class SdkHandler {
     ) {
         MIRACLTrust.getInstance().getAuthenticationSessionDetailsFromNotificationPayload(payload) {
             if (it is MIRACLSuccess) {
-                println(it.value.toString());
                 callback(
                     Result.success(
                         MAuthenticationSessionDetails(
@@ -263,12 +344,18 @@ class SdkHandler {
                 )
             } else {
                 if (it is MIRACLError) {
-                    println(it.value.stackTraceToString())
+                    val error = it.value
+                    val details = mutableMapOf<String, Any?>()
+    
+                    if (error is AuthenticationSessionException.GetAuthenticationSessionDetailsFail && error.cause != null) {
+                        details["error"] = MError(error.cause.toString())
+                    }
+    
                     callback(
                         Result.failure(
-                            mapExceptionToFlutter(it.value)
+                            mapExceptionToFlutter(it.value, details)
                         )
-                    );
+                    )
                 }
             }
         }
@@ -280,7 +367,6 @@ class SdkHandler {
     ) {
         MIRACLTrust.getInstance().getAuthenticationSessionDetailsFromQRCode(qrCode) {
             if (it is MIRACLSuccess) {
-                println(it.value.toString());
                 callback(
                     Result.success(
                         MAuthenticationSessionDetails(
@@ -302,12 +388,18 @@ class SdkHandler {
                 )
             } else {
                 if (it is MIRACLError) {
-                    println(it.value.stackTraceToString())
+                    val error = it.value
+                    val details = mutableMapOf<String, Any?>()
+    
+                    if (error is AuthenticationSessionException.GetAuthenticationSessionDetailsFail && error.cause != null) {
+                        details["error"] = MError(error.cause.toString())
+                    }
+    
                     callback(
                         Result.failure(
-                            mapExceptionToFlutter(it.value)
+                            mapExceptionToFlutter(it.value, details)
                         )
-                    );
+                    )
                 }
             }
         }
@@ -321,7 +413,6 @@ class SdkHandler {
     ) {
         MIRACLTrust.getInstance().getUser(userId) { result -> 
             if (result is MIRACLError) {
-                println(result.value.stackTraceToString())
                 callback(
                     Result.failure(
                         mapExceptionToFlutter(result.value)
@@ -338,9 +429,16 @@ class SdkHandler {
                     if (it is MIRACLSuccess) {
                         callback(Result.success(true));
                     } else if (it is MIRACLError) {
+                        val error = it.value
+                        val details = mutableMapOf<String, Any?>()
+        
+                        if (error is AuthenticationException.AuthenticationFail && error.cause != null) {
+                            details["error"] = MError(error.cause.toString())
+                        }
+        
                         callback(
                             Result.failure(
-                                mapExceptionToFlutter(it.value)
+                                mapExceptionToFlutter(it.value, details)
                             )
                         )
                     }
@@ -357,7 +455,6 @@ class SdkHandler {
     ) {
         MIRACLTrust.getInstance().getUser(userId) { result -> 
             if (result is MIRACLError) {
-                println(result.value.stackTraceToString())
                 callback(
                     Result.failure(
                         mapExceptionToFlutter(result.value)
@@ -374,9 +471,16 @@ class SdkHandler {
                     if (it is MIRACLSuccess) {
                         callback(Result.success(true));
                     } else if (it is MIRACLError) {
+                        val error = it.value
+                        val details = mutableMapOf<String, Any?>()
+        
+                        if (error is AuthenticationException.AuthenticationFail && error.cause != null) {
+                            details["error"] = MError(error.cause.toString())
+                        }
+        
                         callback(
                             Result.failure(
-                                mapExceptionToFlutter(it.value)
+                                mapExceptionToFlutter(it.value, details)
                             )
                         )
                     }
@@ -396,9 +500,16 @@ class SdkHandler {
             if (it is MIRACLSuccess) {
                 callback(Result.success(true));
             } else if (it is MIRACLError) {
+                val error = it.value
+                val details = mutableMapOf<String, Any?>()
+
+                if (error is AuthenticationException.AuthenticationFail && error.cause != null) {
+                    details["error"] = MError(error.cause.toString())
+                }
+
                 callback(
                     Result.failure(
-                        mapExceptionToFlutter(it.value)
+                        mapExceptionToFlutter(it.value, details)
                     )
                 )
             }
@@ -411,7 +522,6 @@ class SdkHandler {
     ) {
         MIRACLTrust.getInstance().getSigningSessionDetailsFromQRCode(qrCode) {
             if (it is MIRACLSuccess) {
-                println(it.value.toString());
                 callback(
                     Result.success(
                         MSigningSessionDetails(
@@ -437,12 +547,18 @@ class SdkHandler {
                 )
             } else {
                 if (it is MIRACLError) {
-                    println(it.value.stackTraceToString())
+                    val error = it.value
+                    val details = mutableMapOf<String, Any?>()
+
+                    if (error is SigningSessionException.GetSigningSessionDetailsFail && error.cause != null) {
+                        details["error"] = MError(error.cause.toString())
+                    }
+
                     callback(
                         Result.failure(
-                            mapExceptionToFlutter(it.value)
+                            mapExceptionToFlutter(it.value, details)
                         )
-                    );
+                    )
                 }
             }
         }
@@ -454,7 +570,6 @@ class SdkHandler {
     ) {
         MIRACLTrust.getInstance().getSigningSessionDetailsFromAppLink(Uri.parse(link)) {
             if (it is MIRACLSuccess) {
-                println(it.value.toString());
                 callback(
                     Result.success(
                         MSigningSessionDetails(
@@ -480,10 +595,16 @@ class SdkHandler {
                 )
             } else {
                 if (it is MIRACLError) {
-                    println(it.value.stackTraceToString())
+                    val error = it.value
+                    val details = mutableMapOf<String, Any?>()
+
+                    if (error is SigningSessionException.GetSigningSessionDetailsFail && error.cause != null) {
+                        details["error"] = MError(error.cause.toString())
+                    }
+
                     callback(
                         Result.failure(
-                            mapExceptionToFlutter(it.value)
+                            mapExceptionToFlutter(it.value, details)
                         )
                     );
                 }
@@ -499,7 +620,6 @@ class SdkHandler {
     ) {
         MIRACLTrust.getInstance().getUser(userId) { result -> 
             if (result is MIRACLError) {
-                println(result.value.stackTraceToString())
                 callback(
                     Result.failure(
                         mapExceptionToFlutter(result.value)
@@ -527,7 +647,18 @@ class SdkHandler {
                             Result.success(signingResult)
                         )
                     } else if (it is MIRACLError) {
-                        callback(Result.failure(mapExceptionToFlutter(it.value)))
+                        val error = it.value
+                        val details = mutableMapOf<String, Any?>()
+    
+                        if (error is SigningException.SigningFail && error.cause != null) {
+                            details["error"] = MError(error.cause.toString())
+                        }
+
+                        callback(
+                            Result.failure(
+                                mapExceptionToFlutter(it.value, details)
+                            )
+                        );
                     }
                 }
             }
@@ -537,7 +668,6 @@ class SdkHandler {
     fun delete(userId: String, callback: (Result<Unit>) -> Unit) {
         MIRACLTrust.getInstance().getUser(userId) { result -> 
             if (result is MIRACLError) {
-                println(result.value.stackTraceToString())
                 callback(
                     Result.failure(
                         mapExceptionToFlutter(result.value)
@@ -550,7 +680,6 @@ class SdkHandler {
             user?.let {
                 MIRACLTrust.getInstance().delete(it) { result -> 
                     if (result is MIRACLError) {
-                        println(result.value.stackTraceToString())
                         callback(
                             Result.failure(
                                 mapExceptionToFlutter(result.value)
@@ -568,7 +697,6 @@ class SdkHandler {
     fun getUsers(callback: (Result<List<MUser>>) -> Unit) {
         MIRACLTrust.getInstance().getUsers() { result -> 
             if (result is MIRACLError) {
-                println(result.value.stackTraceToString())
                 callback(
                     Result.failure(
                         mapExceptionToFlutter(result.value)
@@ -604,11 +732,11 @@ class SdkHandler {
         return MUser(projectId = user.projectId, revoked = user.revoked, userId = user.userId, hashedMpinId = user.hashedMpinId);
     }
 
-    private fun mapExceptionToFlutter(error: Exception): FlutterError {
+    private fun mapExceptionToFlutter(error: Exception, details: Map<String, Any?>? = null): FlutterError {
         return FlutterError(
             code = error.toString(),
-            message = error.message,
-            details = error.stackTraceToString(),
+            message = error.stackTraceToString(),
+            details = details,
         )
     }
 }

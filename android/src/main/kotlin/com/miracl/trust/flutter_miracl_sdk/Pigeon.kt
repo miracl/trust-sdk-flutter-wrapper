@@ -138,34 +138,6 @@ data class MConfiguration (
 }
 
 /** Generated class from Pigeon that represents data sent in messages. */
-data class MExceptions (
-  val message: String
-)
- {
-  companion object {
-    fun fromList(pigeonVar_list: List<Any?>): MExceptions {
-      val message = pigeonVar_list[0] as String
-      return MExceptions(message)
-    }
-  }
-  fun toList(): List<Any?> {
-    return listOf(
-      message,
-    )
-  }
-  override fun equals(other: Any?): Boolean {
-    if (other !is MExceptions) {
-      return false
-    }
-    if (this === other) {
-      return true
-    }
-    return deepEqualsPigeon(toList(), other.toList())  }
-
-  override fun hashCode(): Int = toList().hashCode()
-}
-
-/** Generated class from Pigeon that represents data sent in messages. */
 data class MActivationTokenResponse (
   val projectId: String,
   val accessId: String? = null,
@@ -486,6 +458,68 @@ data class MSigningResult (
 
   override fun hashCode(): Int = toList().hashCode()
 }
+
+/** Generated class from Pigeon that represents data sent in messages. */
+data class MActivationTokenErrorResponse (
+  val projectId: String,
+  val accessId: String? = null,
+  val userId: String
+)
+ {
+  companion object {
+    fun fromList(pigeonVar_list: List<Any?>): MActivationTokenErrorResponse {
+      val projectId = pigeonVar_list[0] as String
+      val accessId = pigeonVar_list[1] as String?
+      val userId = pigeonVar_list[2] as String
+      return MActivationTokenErrorResponse(projectId, accessId, userId)
+    }
+  }
+  fun toList(): List<Any?> {
+    return listOf(
+      projectId,
+      accessId,
+      userId,
+    )
+  }
+  override fun equals(other: Any?): Boolean {
+    if (other !is MActivationTokenErrorResponse) {
+      return false
+    }
+    if (this === other) {
+      return true
+    }
+    return deepEqualsPigeon(toList(), other.toList())  }
+
+  override fun hashCode(): Int = toList().hashCode()
+}
+
+/** Generated class from Pigeon that represents data sent in messages. */
+data class MError (
+  val message: String
+)
+ {
+  companion object {
+    fun fromList(pigeonVar_list: List<Any?>): MError {
+      val message = pigeonVar_list[0] as String
+      return MError(message)
+    }
+  }
+  fun toList(): List<Any?> {
+    return listOf(
+      message,
+    )
+  }
+  override fun equals(other: Any?): Boolean {
+    if (other !is MError) {
+      return false
+    }
+    if (this === other) {
+      return true
+    }
+    return deepEqualsPigeon(toList(), other.toList())  }
+
+  override fun hashCode(): Int = toList().hashCode()
+}
 private open class PigeonPigeonCodec : StandardMessageCodec() {
   override fun readValueOfType(type: Byte, buffer: ByteBuffer): Any? {
     return when (type) {
@@ -511,42 +545,47 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
       }
       133.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MExceptions.fromList(it)
+          MActivationTokenResponse.fromList(it)
         }
       }
       134.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MActivationTokenResponse.fromList(it)
+          MAuthenticationSessionDetails.fromList(it)
         }
       }
       135.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MAuthenticationSessionDetails.fromList(it)
+          MSigningSessionDetails.fromList(it)
         }
       }
       136.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MSigningSessionDetails.fromList(it)
+          MUser.fromList(it)
         }
       }
       137.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MUser.fromList(it)
+          MQuickCode.fromList(it)
         }
       }
       138.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MQuickCode.fromList(it)
+          MSignature.fromList(it)
         }
       }
       139.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MSignature.fromList(it)
+          MSigningResult.fromList(it)
         }
       }
       140.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MSigningResult.fromList(it)
+          MActivationTokenErrorResponse.fromList(it)
+        }
+      }
+      141.toByte() -> {
+        return (readValue(buffer) as? List<Any?>)?.let {
+          MError.fromList(it)
         }
       }
       else -> super.readValueOfType(type, buffer)
@@ -570,36 +609,40 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
         stream.write(132)
         writeValue(stream, value.toList())
       }
-      is MExceptions -> {
+      is MActivationTokenResponse -> {
         stream.write(133)
         writeValue(stream, value.toList())
       }
-      is MActivationTokenResponse -> {
+      is MAuthenticationSessionDetails -> {
         stream.write(134)
         writeValue(stream, value.toList())
       }
-      is MAuthenticationSessionDetails -> {
+      is MSigningSessionDetails -> {
         stream.write(135)
         writeValue(stream, value.toList())
       }
-      is MSigningSessionDetails -> {
+      is MUser -> {
         stream.write(136)
         writeValue(stream, value.toList())
       }
-      is MUser -> {
+      is MQuickCode -> {
         stream.write(137)
         writeValue(stream, value.toList())
       }
-      is MQuickCode -> {
+      is MSignature -> {
         stream.write(138)
         writeValue(stream, value.toList())
       }
-      is MSignature -> {
+      is MSigningResult -> {
         stream.write(139)
         writeValue(stream, value.toList())
       }
-      is MSigningResult -> {
+      is MActivationTokenErrorResponse -> {
         stream.write(140)
+        writeValue(stream, value.toList())
+      }
+      is MError -> {
+        stream.write(141)
         writeValue(stream, value.toList())
       }
       else -> super.writeValue(stream, value)

@@ -85,47 +85,6 @@ class MConfiguration {
 ;
 }
 
-class MExceptions {
-  MExceptions({
-    required this.message,
-  });
-
-  String message;
-
-  List<Object?> _toList() {
-    return <Object?>[
-      message,
-    ];
-  }
-
-  Object encode() {
-    return _toList();  }
-
-  static MExceptions decode(Object result) {
-    result as List<Object?>;
-    return MExceptions(
-      message: result[0]! as String,
-    );
-  }
-
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  bool operator ==(Object other) {
-    if (other is! MExceptions || other.runtimeType != runtimeType) {
-      return false;
-    }
-    if (identical(this, other)) {
-      return true;
-    }
-    return _deepEquals(encode(), other.encode());
-  }
-
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => Object.hashAll(_toList())
-;
-}
-
 class MActivationTokenResponse {
   MActivationTokenResponse({
     required this.projectId,
@@ -623,6 +582,98 @@ class MSigningResult {
 ;
 }
 
+class MActivationTokenErrorResponse {
+  MActivationTokenErrorResponse({
+    required this.projectId,
+    this.accessId,
+    required this.userId,
+  });
+
+  String projectId;
+
+  String? accessId;
+
+  String userId;
+
+  List<Object?> _toList() {
+    return <Object?>[
+      projectId,
+      accessId,
+      userId,
+    ];
+  }
+
+  Object encode() {
+    return _toList();  }
+
+  static MActivationTokenErrorResponse decode(Object result) {
+    result as List<Object?>;
+    return MActivationTokenErrorResponse(
+      projectId: result[0]! as String,
+      accessId: result[1] as String?,
+      userId: result[2]! as String,
+    );
+  }
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) {
+    if (other is! MActivationTokenErrorResponse || other.runtimeType != runtimeType) {
+      return false;
+    }
+    if (identical(this, other)) {
+      return true;
+    }
+    return _deepEquals(encode(), other.encode());
+  }
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => Object.hashAll(_toList())
+;
+}
+
+class MError {
+  MError({
+    required this.message,
+  });
+
+  String message;
+
+  List<Object?> _toList() {
+    return <Object?>[
+      message,
+    ];
+  }
+
+  Object encode() {
+    return _toList();  }
+
+  static MError decode(Object result) {
+    result as List<Object?>;
+    return MError(
+      message: result[0]! as String,
+    );
+  }
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) {
+    if (other is! MError || other.runtimeType != runtimeType) {
+      return false;
+    }
+    if (identical(this, other)) {
+      return true;
+    }
+    return _deepEquals(encode(), other.encode());
+  }
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => Object.hashAll(_toList())
+;
+}
+
 
 class _PigeonCodec extends StandardMessageCodec {
   const _PigeonCodec();
@@ -643,29 +694,32 @@ class _PigeonCodec extends StandardMessageCodec {
     }    else if (value is MConfiguration) {
       buffer.putUint8(132);
       writeValue(buffer, value.encode());
-    }    else if (value is MExceptions) {
+    }    else if (value is MActivationTokenResponse) {
       buffer.putUint8(133);
       writeValue(buffer, value.encode());
-    }    else if (value is MActivationTokenResponse) {
+    }    else if (value is MAuthenticationSessionDetails) {
       buffer.putUint8(134);
       writeValue(buffer, value.encode());
-    }    else if (value is MAuthenticationSessionDetails) {
+    }    else if (value is MSigningSessionDetails) {
       buffer.putUint8(135);
       writeValue(buffer, value.encode());
-    }    else if (value is MSigningSessionDetails) {
+    }    else if (value is MUser) {
       buffer.putUint8(136);
       writeValue(buffer, value.encode());
-    }    else if (value is MUser) {
+    }    else if (value is MQuickCode) {
       buffer.putUint8(137);
       writeValue(buffer, value.encode());
-    }    else if (value is MQuickCode) {
+    }    else if (value is MSignature) {
       buffer.putUint8(138);
       writeValue(buffer, value.encode());
-    }    else if (value is MSignature) {
+    }    else if (value is MSigningResult) {
       buffer.putUint8(139);
       writeValue(buffer, value.encode());
-    }    else if (value is MSigningResult) {
+    }    else if (value is MActivationTokenErrorResponse) {
       buffer.putUint8(140);
+      writeValue(buffer, value.encode());
+    }    else if (value is MError) {
+      buffer.putUint8(141);
       writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
@@ -687,21 +741,23 @@ class _PigeonCodec extends StandardMessageCodec {
       case 132: 
         return MConfiguration.decode(readValue(buffer)!);
       case 133: 
-        return MExceptions.decode(readValue(buffer)!);
-      case 134: 
         return MActivationTokenResponse.decode(readValue(buffer)!);
-      case 135: 
+      case 134: 
         return MAuthenticationSessionDetails.decode(readValue(buffer)!);
-      case 136: 
+      case 135: 
         return MSigningSessionDetails.decode(readValue(buffer)!);
-      case 137: 
+      case 136: 
         return MUser.decode(readValue(buffer)!);
-      case 138: 
+      case 137: 
         return MQuickCode.decode(readValue(buffer)!);
-      case 139: 
+      case 138: 
         return MSignature.decode(readValue(buffer)!);
-      case 140: 
+      case 139: 
         return MSigningResult.decode(readValue(buffer)!);
+      case 140: 
+        return MActivationTokenErrorResponse.decode(readValue(buffer)!);
+      case 141: 
+        return MError.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
     }

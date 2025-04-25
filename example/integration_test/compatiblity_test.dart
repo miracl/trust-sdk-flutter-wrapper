@@ -5,13 +5,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'dart:typed_data';
+import 'package:flutter/services.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   Future<String> getVerificationURL(String projectId, String userId) async {
-      String clientId = "";
-      String clientSecret = "";
       List<int> bytes = utf8.encode('$clientId:$clientSecret');
       String base64String = base64Encode(bytes);
       var headers = {
@@ -105,19 +104,28 @@ void main() {
       await sdk.initSdk(configuration);
       await sdk.setProjectId("");
       await sdk.sendVerificationEmail(userId);
+      expect(() async => await sdk.sendVerificationEmail(""), throwsA(isA<PlatformException>()));
 
       String projectId = "";
       await sdk.setProjectId(projectId);
-      final verificationURL = await getVerificationURL(projectId, userId);
+      String verificationURL = await getVerificationURL(projectId, userId);
 
       MActivationTokenResponse activationTokenResponse = await sdk.getActivationTokenByURI(verificationURL);
-      final String pin = "";
+      expect(() async => await sdk.getActivationTokenByURI(verificationURL), throwsA(isA<PlatformException>()));
+
+      final String pin = "1234";
+      final String wrongPin = "2234";
       MUser user = await sdk.register(userId, activationTokenResponse.activationToken, pin, null);
+      expect(() async => await sdk.register("", activationTokenResponse.activationToken, pin, null), throwsA(isA<PlatformException>()));
       final String token = await sdk.authenticate(user, pin);
       expect(await verifyJWT(token, projectId, user.userId), true);
 
+      expect(() async => await sdk.authenticate(user, wrongPin), throwsA(isA<PlatformException>()));
+
       final quickCode = await sdk.generateQuickCode(user, pin);
+      expect(() async => await sdk.generateQuickCode(user, wrongPin), throwsA(isA<PlatformException>()));
       activationTokenResponse = await sdk.getActivationTokenByUserIdAndCode(userId, quickCode.code);
+      expect(() async => await sdk.getActivationTokenByUserIdAndCode(userId, quickCode.code), throwsA(isA<PlatformException>()));
       user = await sdk.register(userId, activationTokenResponse.activationToken, pin, null);
 
       final qrURL = await startAuthenticationSession(projectId, userId);
@@ -129,10 +137,21 @@ void main() {
         "projectID": projectId
       };
       authenticationSessionDetails = await sdk.getAuthenticationSessionDetailsFromPushNofitifactionPayload(payload);
+      
+      expect(() async => await sdk.getAuthenticationSessionDetailsFromQRCode(""), throwsA(isA<PlatformException>()));
+      expect(() async => await sdk.getAuthenticationSessionDetailsFromPushNofitifactionPayload({}), throwsA(isA<PlatformException>()));
 
       expect(await sdk.authenticateWithQrCode(user, pin, qrURL), true);
       expect(await sdk.authenticateWithLink(user, pin, qrURL), true);
       expect(await sdk.authenticateWithNotificationPayload(payload, pin), true);
+
+      expect(() async => await sdk.authenticateWithQrCode(user, wrongPin, qrURL), throwsA(isA<PlatformException>()));
+      expect(() async => await sdk.authenticateWithLink(user, wrongPin, qrURL), throwsA(isA<PlatformException>()));
+      expect(() async => await sdk.authenticateWithNotificationPayload(payload, wrongPin), throwsA(isA<PlatformException>()));
+
+      verificationURL = await getVerificationURL(projectId, userId);
+      activationTokenResponse = await sdk.getActivationTokenByURI(verificationURL);
+      user = await sdk.register(userId, activationTokenResponse.activationToken, pin, null);
 
       final signingQRCode = await startSigningSession(projectId, userId, "Hello World", "Hello Desc");
       MSigningSessionDetails signingSessionDetails = await sdk.getSigningDetailsFromQRCode(signingQRCode);

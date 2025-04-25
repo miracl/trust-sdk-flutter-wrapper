@@ -1,6 +1,12 @@
 import MIRACLTrust
 import Flutter
 
+extension Error {
+    var errorDebugDescription: String {
+        return String(describing: self).components(separatedBy: "(").first ?? String(describing: self)
+    }
+}
+
 public class SdkHandler: NSObject, MiraclSdk {
 
   func initSdk(
@@ -8,10 +14,13 @@ public class SdkHandler: NSObject, MiraclSdk {
     completion: @escaping (Result<Void, Error>) -> Void
   ) {
     do {
-        let conf = try Configuration.Builder(projectId: configuration.projectId).build()
+        let conf = try Configuration
+          .Builder(projectId: configuration.projectId)
+          .loggingLevel(level: .debug)
+          .build()
         completion(Result.success(try MIRACLTrust.configure(with: conf)))
     } catch {
-        completion(Result.failure(error))
+        completion(Result.failure(createPigeonError(error: error)))
     }
   }
 
@@ -37,7 +46,18 @@ public class SdkHandler: NSObject, MiraclSdk {
   ) {
     MIRACLTrust.getInstance().sendVerificationEmail(userId: userId) { (result, error) in
         if let error {
-            completion(Result.failure(error));
+            var details = [String: Any]()
+            if case let VerificationError.verificaitonFail(verificationError) 
+                            = error, let verificationError { 
+                details["error"] = MError(message: verificationError.errorDebugDescription);       
+            }
+
+            if case let VerificationError.requestBackoff(backoff) = error { 
+                details["backoff"] = backoff      
+            }
+
+            let pigeonError = self.createPigeonError(error: error, details: details)
+            completion(Result.failure(pigeonError));
         } else {
             completion(Result.success(true))
         }
@@ -54,7 +74,26 @@ public class SdkHandler: NSObject, MiraclSdk {
             verificationURL: URL(string: uri)!,
             completionHandler: { activationTokenResponse, error in
                 if let error {
-                    completion(Result.failure(error))
+                    var details = [String: Any]()
+                    if let activationTokenError = error as? ActivationTokenError {
+                        if case let ActivationTokenError.unsuccessfulVerification(activationTokenErrorResponse: response) 
+                            = error, let response {
+                            let mActivationTokenErrorResponse = MActivationTokenErrorResponse(
+                                projectId: response.projectId,
+                                accessId: response.accessId,
+                                userId: response.userId
+                            )
+
+                            details["activationTokenErrorResponse"] = mActivationTokenErrorResponse
+                        }
+                    }
+
+                    if case let ActivationTokenError.getActivationTokenFail(activationTokenError) = error, let activationTokenError { 
+                        details["error"] = MError(message: activationTokenError.errorDebugDescription);       
+                    }
+
+                    let pigeonError = self.createPigeonError(error: error, details: details)
+                    completion(Result.failure(pigeonError));
                     return
                 }
 
@@ -82,7 +121,26 @@ public class SdkHandler: NSObject, MiraclSdk {
             code: code,
             completionHandler: { activationTokenResponse, error in
                 if let error {
-                    completion(Result.failure(error))
+                    var details = [String: Any]()
+                    if let activationTokenError = error as? ActivationTokenError {
+                        if case let ActivationTokenError.unsuccessfulVerification(activationTokenErrorResponse: response) 
+                            = error, let response {
+                            let mActivationTokenErrorResponse = MActivationTokenErrorResponse(
+                                projectId: response.projectId,
+                                accessId: response.accessId,
+                                userId: response.userId
+                            )
+
+                            details["activationTokenErrorResponse"] = mActivationTokenErrorResponse
+                        }
+                    }
+
+                    if case let ActivationTokenError.getActivationTokenFail(activationTokenError) = error, let activationTokenError { 
+                        details["error"] = MError(message: activationTokenError.errorDebugDescription);       
+                    }
+
+                    let pigeonError = self.createPigeonError(error: error, details: details)
+                    completion(Result.failure(pigeonError));
                     return
                 }
 
@@ -118,7 +176,8 @@ public class SdkHandler: NSObject, MiraclSdk {
             try MIRACLTrust.getInstance().delete(user: sdkUser)
             completion(Result.success(()));
         } catch {
-            completion(Result.failure(error))
+          let pigeonError = self.createPigeonError(error: error)
+          completion(Result.failure(pigeonError))
         }
     }
   }
@@ -137,9 +196,16 @@ public class SdkHandler: NSObject, MiraclSdk {
       ) {  pinProcessor in
           pinProcessor(pin)
       } completionHandler: { user, error in
-          if let error = error {
-              completion(Result.failure(error));
-          } else if let user = user {
+          if let error {
+            var details = [String: Any]()
+
+            if case let RegistrationError.registrationFail(registrationError) = error, let registrationError { 
+              details["error"] = MError(message: registrationError.errorDebugDescription);       
+            }
+            
+            let pigeonError = self.createPigeonError(error: error, details: details)
+            completion(Result.failure(pigeonError));
+          } else if let user{
               completion(Result.success(self.userToMUser(user: user)))
           }
       }
@@ -155,8 +221,15 @@ public class SdkHandler: NSObject, MiraclSdk {
           MIRACLTrust.getInstance().generateQuickCode(user: sdkUser) { processPinHandler in
               processPinHandler(pin)
           } completionHandler: { quickCode, error in
-              if let error = error {
-                  completion(Result.failure(error));
+                if let error = error {
+                  var details = [String: Any]()
+
+                  if case let QuickCodeError.generationFail(quikcCodeError) = error, let quikcCodeError { 
+                    details["error"] = MError(message: quikcCodeError.errorDebugDescription);       
+                  }
+                  
+                  let pigeonError = self.createPigeonError(error: error, details: details)
+                  completion(Result.failure(pigeonError));
               } else if let quickCode = quickCode {
                   let mquickCode = MQuickCode(
                     code: quickCode.code,
@@ -180,7 +253,14 @@ public class SdkHandler: NSObject, MiraclSdk {
               pinProcessor(pin)
           } completionHandler: { result, error in
               if let error = error {
-                  completion(Result.failure(error));
+                  var details = [String: Any]()
+
+                  if case let AuthenticationError.authenticationFail(authenticationError) = error, let authenticationError { 
+                    details["error"] = MError(message: authenticationError.errorDebugDescription);       
+                  }
+                  
+                  let pigeonError = self.createPigeonError(error: error, details: details)
+                  completion(Result.failure(pigeonError));
               } else if let result = result {
                   completion(Result.success(result))
               }
@@ -195,13 +275,19 @@ public class SdkHandler: NSObject, MiraclSdk {
     completion: @escaping (Result<Bool, Error>) -> Void
   ) {
      let sdkUser = MIRACLTrust.getInstance().getUser(by: user.userId)
-        
      if let sdkUser {
          MIRACLTrust.getInstance().authenticateWithQRCode(user: sdkUser, qrCode: qrCode) {  pinProcessor in
              pinProcessor(pin)
          } completionHandler: { result, error in
              if let error = error {
-                 completion(Result.failure(error));
+                  var details = [String: Any]()
+
+                  if case let AuthenticationError.authenticationFail(authenticationError) = error, let authenticationError { 
+                    details["error"] = MError(message: authenticationError.errorDebugDescription);       
+                  }
+                  
+                  let pigeonError = self.createPigeonError(error: error, details: details)
+                  completion(Result.failure(pigeonError));
              } else {
                 completion(Result.success(result))
              }
@@ -225,7 +311,14 @@ public class SdkHandler: NSObject, MiraclSdk {
              pinProcessor(pin)
          } completionHandler: { result, error in
              if let error = error {
-                 completion(Result.failure(error));
+                  var details = [String: Any]()
+
+                  if case let AuthenticationError.authenticationFail(authenticationError) = error, let authenticationError { 
+                    details["error"] = MError(message: authenticationError.errorDebugDescription);       
+                  }
+                  
+                  let pigeonError = self.createPigeonError(error: error, details: details)
+                  completion(Result.failure(pigeonError));                 
              } else {
                 completion(Result.success(result))
              }
@@ -243,10 +336,15 @@ public class SdkHandler: NSObject, MiraclSdk {
      } completionHandler: { isSuccess, error in
         if(isSuccess) {
             completion(Result.success((true)));
-        } else {
-            if let error {
-                completion(Result.failure(error))
+        } else if let error{
+            var details = [String: Any]()
+
+            if case let AuthenticationError.authenticationFail(authenticationError) = error, let authenticationError { 
+              details["error"] = MError(message: authenticationError.errorDebugDescription);       
             }
+            
+            let pigeonError = self.createPigeonError(error: error, details: details)
+            completion(Result.failure(pigeonError));
         }
      }
   }
@@ -257,7 +355,14 @@ public class SdkHandler: NSObject, MiraclSdk {
   ) {
       MIRACLTrust.getInstance().getAuthenticationSessionDetailsFromQRCode(qrCode: qrCode) { authSession, error in
           if let error = error {
-              completion(Result.failure(error));
+            var details = [String: Any]()
+
+            if case let AuthenticationSessionError.getAuthenticationSessionDetailsFail(authenticationSessionError) = error, let authenticationSessionError { 
+              details["error"] = MError(message: authenticationSessionError.errorDebugDescription);       
+            }
+            
+            let pigeonError = self.createPigeonError(error: error, details: details)
+            completion(Result.failure(pigeonError));
           } else if let authSession {
                let mauthSession = MAuthenticationSessionDetails(
                    userId: authSession.userId,
@@ -287,7 +392,14 @@ public class SdkHandler: NSObject, MiraclSdk {
         universalLinkURL: URL(string: link)!
       ) { authSession, error in
         if let error = error {
-            completion(Result.failure(error));
+            var details = [String: Any]()
+
+            if case let AuthenticationSessionError.getAuthenticationSessionDetailsFail(authenticationSessionError) = error, let authenticationSessionError { 
+              details["error"] = MError(message: authenticationSessionError.errorDebugDescription);       
+            }
+            
+            let pigeonError = self.createPigeonError(error: error, details: details)
+            completion(Result.failure(pigeonError));
         } else if let authSession {
               let mauthSession = MAuthenticationSessionDetails(
                   userId: authSession.userId,
@@ -317,7 +429,14 @@ public class SdkHandler: NSObject, MiraclSdk {
         pushNotificationPayload: payload
       ) { authSession, error in
         if let error = error {
-            completion(Result.failure(error));
+            var details = [String: Any]()
+
+            if case let AuthenticationSessionError.getAuthenticationSessionDetailsFail(authenticationSessionError) = error, let authenticationSessionError { 
+              details["error"] = MError(message: authenticationSessionError.errorDebugDescription);       
+            }
+            
+            let pigeonError = self.createPigeonError(error: error, details: details)
+            completion(Result.failure(pigeonError));
         } else if let authSession {
               let mauthSession = MAuthenticationSessionDetails(
                   userId: authSession.userId,
@@ -355,7 +474,14 @@ public class SdkHandler: NSObject, MiraclSdk {
                     pinProcessor(pin)
                 }, completionHandler: { signingResult, error in
                     if let error = error {
-                        completion(Result.failure(error));
+                      var details = [String: Any]()
+
+                      if case let SigningError.signingFail(signingError) = error, let signingError { 
+                        details["error"] = MError(message: signingError.errorDebugDescription);       
+                      }
+                      
+                      let pigeonError = self.createPigeonError(error: error, details: details)
+                      completion(Result.failure(pigeonError));
                     } else if let signingResult {
                         completion(Result.success(
                             MSigningResult(
@@ -407,7 +533,14 @@ public class SdkHandler: NSObject, MiraclSdk {
             )
             completion(Result.success(mSigningSessionDetails))
           } else if let error {
-             completion(Result.failure(error));
+            var details = [String: Any]()
+
+            if case let SigningSessionError.getSigningSessionDetailsFail(signingSessionError) = error, let signingSessionError { 
+              details["error"] = MError(message: signingSessionError.errorDebugDescription);       
+            }
+            
+            let pigeonError = self.createPigeonError(error: error, details: details)
+            completion(Result.failure(pigeonError));
           }
         }
   }
@@ -443,7 +576,14 @@ public class SdkHandler: NSObject, MiraclSdk {
             )
             completion(Result.success(mSigningSessionDetails))
           } else if let error {
-             completion(Result.failure(error));
+            var details = [String: Any]()
+
+            if case let SigningSessionError.getSigningSessionDetailsFail(signingSessionError) = error, let signingSessionError { 
+              details["error"] = MError(message: signingSessionError.errorDebugDescription);       
+            }
+            
+            let pigeonError = self.createPigeonError(error: error, details: details)
+            completion(Result.failure(pigeonError));
           }
         }
   }
@@ -462,5 +602,13 @@ public class SdkHandler: NSObject, MiraclSdk {
 
   private func userToMUser(user:User) -> MUser {
       return MUser(projectId: user.projectId, revoked: user.revoked, userId: user.userId, hashedMpinId: user.hashedMpinId);
+  }
+
+  private func createPigeonError(error: any Error, details:[String: Any]? = nil) -> PigeonError {
+    PigeonError(
+      code: error.errorDebugDescription,
+      message: String(describing: type(of: error)),
+      details: details
+    )
   }
 }
