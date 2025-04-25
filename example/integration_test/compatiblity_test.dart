@@ -104,7 +104,7 @@ void main() {
       await sdk.initSdk(configuration);
       await sdk.setProjectId("");
       await sdk.sendVerificationEmail(userId);
-      expect(() async => await sdk.sendVerificationEmail(""), throwsA(isA<PlatformException>()));
+      await expectLater(sdk.sendVerificationEmail(""), throwsA(isA<PlatformException>()));
 
       String projectId = "";
       await sdk.setProjectId(projectId);
@@ -118,14 +118,13 @@ void main() {
       MUser user = await sdk.register(userId, activationTokenResponse.activationToken, pin, null);
       expect(() async => await sdk.register("", activationTokenResponse.activationToken, pin, null), throwsA(isA<PlatformException>()));
       final String token = await sdk.authenticate(user, pin);
-      expect(await verifyJWT(token, projectId, user.userId), true);
+      await expectLater(verifyJWT(token, projectId, user.userId), completion(isTrue));
 
-      expect(() async => await sdk.authenticate(user, wrongPin), throwsA(isA<PlatformException>()));
-
+      await expectLater(sdk.authenticate(user, wrongPin), throwsA(isA<PlatformException>()));
       final quickCode = await sdk.generateQuickCode(user, pin);
-      expect(() async => await sdk.generateQuickCode(user, wrongPin), throwsA(isA<PlatformException>()));
+      await expectLater(sdk.generateQuickCode(user, wrongPin), throwsA(isA<PlatformException>()));
       activationTokenResponse = await sdk.getActivationTokenByUserIdAndCode(userId, quickCode.code);
-      expect(() async => await sdk.getActivationTokenByUserIdAndCode(userId, quickCode.code), throwsA(isA<PlatformException>()));
+      await expectLater(sdk.getActivationTokenByUserIdAndCode(userId, quickCode.code), throwsA(isA<PlatformException>()));
       user = await sdk.register(userId, activationTokenResponse.activationToken, pin, null);
 
       final qrURL = await startAuthenticationSession(projectId, userId);
@@ -138,16 +137,16 @@ void main() {
       };
       authenticationSessionDetails = await sdk.getAuthenticationSessionDetailsFromPushNofitifactionPayload(payload);
       
-      expect(() async => await sdk.getAuthenticationSessionDetailsFromQRCode(""), throwsA(isA<PlatformException>()));
-      expect(() async => await sdk.getAuthenticationSessionDetailsFromPushNofitifactionPayload({}), throwsA(isA<PlatformException>()));
+      await expectLater(sdk.getAuthenticationSessionDetailsFromQRCode(""), throwsA(isA<PlatformException>()));
+      await expectLater(sdk.getAuthenticationSessionDetailsFromPushNofitifactionPayload({}), throwsA(isA<PlatformException>()));
 
-      expect(await sdk.authenticateWithQrCode(user, pin, qrURL), true);
-      expect(await sdk.authenticateWithLink(user, pin, qrURL), true);
-      expect(await sdk.authenticateWithNotificationPayload(payload, pin), true);
+      await expectLater(sdk.authenticateWithQrCode(user, pin, qrURL), completion(isTrue));
+      await expectLater(sdk.authenticateWithLink(user, pin, qrURL),  completion(isTrue));
+      await expectLater(sdk.authenticateWithNotificationPayload(payload, pin),  completion(isTrue));
 
-      expect(() async => await sdk.authenticateWithQrCode(user, wrongPin, qrURL), throwsA(isA<PlatformException>()));
-      expect(() async => await sdk.authenticateWithLink(user, wrongPin, qrURL), throwsA(isA<PlatformException>()));
-      expect(() async => await sdk.authenticateWithNotificationPayload(payload, wrongPin), throwsA(isA<PlatformException>()));
+      await expectLater(sdk.authenticateWithQrCode(user, wrongPin, qrURL), throwsA(isA<PlatformException>()));
+      await expectLater(sdk.authenticateWithLink(user, wrongPin, qrURL), throwsA(isA<PlatformException>()));
+      await expectLater(sdk.authenticateWithNotificationPayload(payload, wrongPin), throwsA(isA<PlatformException>()));
 
       verificationURL = await getVerificationURL(projectId, userId);
       activationTokenResponse = await sdk.getActivationTokenByURI(verificationURL);
