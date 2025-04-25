@@ -14,7 +14,6 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.runBlocking
 import kotlin.coroutines.suspendCoroutine
 
 /** FlutterMiraclSdkPlugin */
@@ -94,9 +93,7 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
         pin: String, 
         callback: (kotlin.Result<String>) -> Unit
     ) {
-        runBlocking {
-            sdkHandler.authenticate(user, pin, callback)
-        }
+        sdkHandler.authenticate(user, pin, callback)
     }
 
     override fun delete(
@@ -111,9 +108,7 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
         pin: String, 
         callback: (kotlin.Result<MQuickCode>) -> Unit
     ) {
-        runBlocking {
-            sdkHandler.generateQuickCode(user.userId, pin, callback)
-        }
+        sdkHandler.generateQuickCode(user.userId, pin, callback)
     }
 
     override fun sign(
@@ -186,9 +181,7 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
     }
 
     override fun getUser(userId: String, callback: (kotlin.Result<MUser?>) -> Unit) {
-        runBlocking {
-            sdkHandler.getUser(userId, callback) 
-        }
+        sdkHandler.getUser(userId, callback)
     }
   
 }

@@ -192,7 +192,7 @@ class SdkHandler {
         });
     }
 
-    suspend fun authenticate(user: MUser, pin: String, callback: (Result<String>) -> Unit) {
+    fun authenticate(user: MUser, pin: String, callback: (Result<String>) -> Unit) {
         MIRACLTrust.getInstance().getUser(user.userId) { result -> 
             if (result is MIRACLError) {
                 callback(
@@ -718,17 +718,24 @@ class SdkHandler {
         }
     }
 
-    suspend fun getUser(userId: String, callback: (Result<MUser?>) -> Unit) {
-        val user = MIRACLTrust.getInstance().getUser(userId)
-        user?.let {
-            val mUser = userToMUser(it)
-            callback(
-                Result.success(
-                   mUser
+    fun getUser(userId: String, callback: (Result<MUser?>) -> Unit) {
+        MIRACLTrust.getInstance().getUser(userId) { result -> 
+            if (result is MIRACLError) {
+                callback(
+                    Result.failure(
+                        mapExceptionToFlutter(result.value)
+                    )
                 )
-            )
-        } ?: run {
-            callback(Result.success(null))
+                return@getUser
+            }
+            
+            (result as MIRACLSuccess).value?.let { user ->
+                callback(
+                    Result.success(userToMUser(user))
+                )
+            } ?: run {
+                callback(Result.success(null))
+            }
         }
     } 
 
