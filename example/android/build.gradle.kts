@@ -2,8 +2,12 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        flatDir {
-            dir("libs")
+        maven {
+            url = uri("https://maven.pkg.github.com/miracl/trust-sdk-android")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_TOKEN")
+            }
         }
     }
 }

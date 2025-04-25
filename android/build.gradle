@@ -1,7 +1,6 @@
 plugins {
     id "com.android.library"
     id "kotlin-android"
-    id "kotlin-kapt"
 }
 
 group 'com.miracl.trust.flutter_miracl_sdk'
@@ -11,7 +10,13 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url("${project(':flutter_miracl_sdk').file('libs').path}") }
+        maven {
+            url = uri("https://maven.pkg.github.com/miracl/trust-sdk-android")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
 }
 
@@ -22,12 +27,12 @@ android {
     compileSdkVersion 34
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     sourceSets {
@@ -39,27 +44,6 @@ android {
     }
 
     dependencies {
-        implementation (name: 'miracl-sdk', ext: 'aar')
-        // runtimeOnly fileTree(dir: 'libs', include: ['*.aar'])
-        //implementation files("libs/miracl-sdk.aar")
-
-
-        // api fileTree(dir: 'libs', include: ['*.aar'])
-        // api files('libs/miracl-sdk.aar')
-        // implementation(name:'miracl_sdk', ext:'aar')
-
-        //sdk
-        // Room Database
-        implementation 'androidx.room:room-runtime:2.6.1'
-        implementation "androidx.room:room-ktx:2.6.1"
-        kapt 'androidx.room:room-compiler:2.6.1'
-        androidTestImplementation "androidx.room:room-testing:2.6.1"
-
-        // Database encrypting
-        implementation "net.zetetic:sqlcipher-android:4.6.1"
-
-        // JSON
-        testImplementation 'org.json:json:20220924'
-        implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3'
+        implementation "com.miracl.trust:trust-sdk-android:0.28.0"
     }
 }
