@@ -6,7 +6,7 @@ Add flutter_miracl_sdk to `pubspec.yaml`
 dependencies:
   flutter_miracl_sdk: 
     git:
-        url: https://example.com/project.git
+        url: https://github.com/miracl/trust-sdk-flutter-wrapper.git
 ```
 
 
@@ -16,16 +16,15 @@ flutter pub get
 ```
 
 ## **Android Setup**
-* Create libs folder inside your project/android folder
-* Copy `miracl-sdk.aar` to project/android/libs folder
-* Add `flatDir` to below code section in project/android/build.gradle
+* Add MIRACL Trust Android SDK `maven` repository to below code section
+in project/android/build.gradle
 ```
 allprojects {
     repositories {
         google()
         mavenCentral()
-        flatDir {
-            dir 'libs'
+        maven {
+            url = uri("https://maven.pkg.github.com/miracl/trust-sdk-android")
         }
     }
 }
@@ -36,16 +35,22 @@ allprojects {
 
 ## SDK Methods implemented
 * initSdk
+* setProjectId
 * sendVerificationEmail
-* getActivationToken
-* getUsers
+* getActivationTokenByURI
+* getActivationTokenByUserIdAndCode
 * register
-* authenticate
-* getAuthenticationSessionDetailsFromQRCode
-* delete
 * generateQuickCode
-* signingRegister
-* sign
+* authenticate
 * authenticateWithQrCode
-* getAuthenticationIdentity
+* authenticateWithLink
 * authenticateWithNotificationPayload
+* sign
+* getAuthenticationSessionDetailsFromQRCode
+* getAuthenticationSessionDetailsFromLink
+* getAuthenticationSessionDetailsFromPushNofitifactionPayload
+* getSigningDetailsFromQRCode
+* getSigningSessionDetailsFromLink
+* getUsers
+* getUser
+* delete
