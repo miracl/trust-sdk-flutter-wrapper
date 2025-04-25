@@ -34,6 +34,11 @@ enum MVerificationMethod {
   standardEmail,
 }
 
+enum MEmailVerificationMethod {
+  code,
+  link,
+}
+
 enum MIdentityType {
   email,
   alphanumeric,
@@ -674,6 +679,52 @@ class MError {
 ;
 }
 
+class MEmailVerificationResponse {
+  MEmailVerificationResponse({
+    required this.backoff,
+    required this.emailVerificationMethod,
+  });
+
+  int backoff;
+
+  MEmailVerificationMethod emailVerificationMethod;
+
+  List<Object?> _toList() {
+    return <Object?>[
+      backoff,
+      emailVerificationMethod,
+    ];
+  }
+
+  Object encode() {
+    return _toList();  }
+
+  static MEmailVerificationResponse decode(Object result) {
+    result as List<Object?>;
+    return MEmailVerificationResponse(
+      backoff: result[0]! as int,
+      emailVerificationMethod: result[1]! as MEmailVerificationMethod,
+    );
+  }
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) {
+    if (other is! MEmailVerificationResponse || other.runtimeType != runtimeType) {
+      return false;
+    }
+    if (identical(this, other)) {
+      return true;
+    }
+    return _deepEquals(encode(), other.encode());
+  }
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => Object.hashAll(_toList())
+;
+}
+
 
 class _PigeonCodec extends StandardMessageCodec {
   const _PigeonCodec();
@@ -685,41 +736,47 @@ class _PigeonCodec extends StandardMessageCodec {
     }    else if (value is MVerificationMethod) {
       buffer.putUint8(129);
       writeValue(buffer, value.index);
-    }    else if (value is MIdentityType) {
+    }    else if (value is MEmailVerificationMethod) {
       buffer.putUint8(130);
       writeValue(buffer, value.index);
-    }    else if (value is MSigningSessionStatus) {
+    }    else if (value is MIdentityType) {
       buffer.putUint8(131);
       writeValue(buffer, value.index);
-    }    else if (value is MConfiguration) {
+    }    else if (value is MSigningSessionStatus) {
       buffer.putUint8(132);
-      writeValue(buffer, value.encode());
-    }    else if (value is MActivationTokenResponse) {
+      writeValue(buffer, value.index);
+    }    else if (value is MConfiguration) {
       buffer.putUint8(133);
       writeValue(buffer, value.encode());
-    }    else if (value is MAuthenticationSessionDetails) {
+    }    else if (value is MActivationTokenResponse) {
       buffer.putUint8(134);
       writeValue(buffer, value.encode());
-    }    else if (value is MSigningSessionDetails) {
+    }    else if (value is MAuthenticationSessionDetails) {
       buffer.putUint8(135);
       writeValue(buffer, value.encode());
-    }    else if (value is MUser) {
+    }    else if (value is MSigningSessionDetails) {
       buffer.putUint8(136);
       writeValue(buffer, value.encode());
-    }    else if (value is MQuickCode) {
+    }    else if (value is MUser) {
       buffer.putUint8(137);
       writeValue(buffer, value.encode());
-    }    else if (value is MSignature) {
+    }    else if (value is MQuickCode) {
       buffer.putUint8(138);
       writeValue(buffer, value.encode());
-    }    else if (value is MSigningResult) {
+    }    else if (value is MSignature) {
       buffer.putUint8(139);
       writeValue(buffer, value.encode());
-    }    else if (value is MActivationTokenErrorResponse) {
+    }    else if (value is MSigningResult) {
       buffer.putUint8(140);
       writeValue(buffer, value.encode());
-    }    else if (value is MError) {
+    }    else if (value is MActivationTokenErrorResponse) {
       buffer.putUint8(141);
+      writeValue(buffer, value.encode());
+    }    else if (value is MError) {
+      buffer.putUint8(142);
+      writeValue(buffer, value.encode());
+    }    else if (value is MEmailVerificationResponse) {
+      buffer.putUint8(143);
       writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
@@ -734,30 +791,35 @@ class _PigeonCodec extends StandardMessageCodec {
         return value == null ? null : MVerificationMethod.values[value];
       case 130: 
         final int? value = readValue(buffer) as int?;
-        return value == null ? null : MIdentityType.values[value];
+        return value == null ? null : MEmailVerificationMethod.values[value];
       case 131: 
         final int? value = readValue(buffer) as int?;
-        return value == null ? null : MSigningSessionStatus.values[value];
+        return value == null ? null : MIdentityType.values[value];
       case 132: 
-        return MConfiguration.decode(readValue(buffer)!);
+        final int? value = readValue(buffer) as int?;
+        return value == null ? null : MSigningSessionStatus.values[value];
       case 133: 
-        return MActivationTokenResponse.decode(readValue(buffer)!);
+        return MConfiguration.decode(readValue(buffer)!);
       case 134: 
-        return MAuthenticationSessionDetails.decode(readValue(buffer)!);
+        return MActivationTokenResponse.decode(readValue(buffer)!);
       case 135: 
-        return MSigningSessionDetails.decode(readValue(buffer)!);
+        return MAuthenticationSessionDetails.decode(readValue(buffer)!);
       case 136: 
-        return MUser.decode(readValue(buffer)!);
+        return MSigningSessionDetails.decode(readValue(buffer)!);
       case 137: 
-        return MQuickCode.decode(readValue(buffer)!);
+        return MUser.decode(readValue(buffer)!);
       case 138: 
-        return MSignature.decode(readValue(buffer)!);
+        return MQuickCode.decode(readValue(buffer)!);
       case 139: 
-        return MSigningResult.decode(readValue(buffer)!);
+        return MSignature.decode(readValue(buffer)!);
       case 140: 
-        return MActivationTokenErrorResponse.decode(readValue(buffer)!);
+        return MSigningResult.decode(readValue(buffer)!);
       case 141: 
+        return MActivationTokenErrorResponse.decode(readValue(buffer)!);
+      case 142: 
         return MError.decode(readValue(buffer)!);
+      case 143: 
+        return MEmailVerificationResponse.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
     }
@@ -823,7 +885,7 @@ class MiraclSdk {
     }
   }
 
-  Future<bool> sendVerificationEmail(String userId) async {
+  Future<MEmailVerificationResponse> sendVerificationEmail(String userId) async {
     final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.sendVerificationEmail$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
@@ -847,7 +909,7 @@ class MiraclSdk {
         message: 'Host platform returned null value for non-null return value.',
       );
     } else {
-      return (pigeonVar_replyList[0] as bool?)!;
+      return (pigeonVar_replyList[0] as MEmailVerificationResponse?)!;
     }
   }
 

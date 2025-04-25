@@ -25,6 +25,11 @@ enum MVerificationMethod {
    standardEmail
 }
 
+enum MEmailVerificationMethod {
+  code,
+  link
+}
+
 enum MIdentityType {
   email, 
   alphanumeric
@@ -161,6 +166,13 @@ class MError {
   MError(this.message);
 }
 
+class MEmailVerificationResponse {
+  final int backoff;
+  final MEmailVerificationMethod emailVerificationMethod;
+
+  MEmailVerificationResponse(this.backoff, this.emailVerificationMethod);
+}
+
 @HostApi()
 abstract class MiraclSdk {
   @async
@@ -170,7 +182,7 @@ abstract class MiraclSdk {
   void setProjectId(String projectId);
 
   @async
-  bool sendVerificationEmail(String userId);
+  MEmailVerificationResponse sendVerificationEmail(String userId);
 
   @async
   MActivationTokenResponse getActivationTokenByURI(String uri);

@@ -53,7 +53,7 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
 
     override fun sendVerificationEmail(
         userId: String,
-        callback: (kotlin.Result<Boolean>) -> Unit
+        callback: (kotlin.Result<MEmailVerificationResponse>) -> Unit
     ) {
         sdkHandler.sendVerificationMail(userId, callback)
     }

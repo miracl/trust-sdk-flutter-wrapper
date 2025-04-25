@@ -41,10 +41,10 @@ public class SdkHandler: NSObject, MiraclSdk {
   }
 
   func sendVerificationEmail(
-    userId: String,
-    completion: @escaping (Result<Bool, Error>) -> Void
+      userId: String, 
+     completion: @escaping (Result<MEmailVerificationResponse, Error>) -> Void
   ) {
-    MIRACLTrust.getInstance().sendVerificationEmail(userId: userId) { (result, error) in
+    MIRACLTrust.getInstance().sendVerificationEmail(userId: userId) { response, error in
         if let error {
             var details = [String: Any]()
             if case let VerificationError.verificaitonFail(verificationError) 
@@ -58,8 +58,12 @@ public class SdkHandler: NSObject, MiraclSdk {
 
             let pigeonError = self.createPigeonError(error: error, details: details)
             completion(Result.failure(pigeonError));
-        } else {
-            completion(Result.success(true))
+        } else if let response {
+            let mEmailVerificationResponse = MEmailVerificationResponse(
+              backoff: Int64(response.backoff),
+              emailVerificationMethod: MEmailVerificationMethod(rawValue: response.method.rawValue) ?? .link
+            )
+            completion(Result.success(mEmailVerificationResponse))
         }
     }
   }

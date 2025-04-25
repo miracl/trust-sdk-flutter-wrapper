@@ -133,6 +133,11 @@ enum MVerificationMethod: Int {
   case standardEmail = 1
 }
 
+enum MEmailVerificationMethod: Int {
+  case code = 0
+  case link = 1
+}
+
 enum MIdentityType: Int {
   case email = 0
   case alphanumeric = 1
@@ -569,6 +574,35 @@ struct MError: Hashable {
   }
 }
 
+/// Generated class from Pigeon that represents data sent in messages.
+struct MEmailVerificationResponse: Hashable {
+  var backoff: Int64
+  var emailVerificationMethod: MEmailVerificationMethod
+
+
+  // swift-format-ignore: AlwaysUseLowerCamelCase
+  static func fromList(_ pigeonVar_list: [Any?]) -> MEmailVerificationResponse? {
+    let backoff = pigeonVar_list[0] as! Int64
+    let emailVerificationMethod = pigeonVar_list[1] as! MEmailVerificationMethod
+
+    return MEmailVerificationResponse(
+      backoff: backoff,
+      emailVerificationMethod: emailVerificationMethod
+    )
+  }
+  func toList() -> [Any?] {
+    return [
+      backoff,
+      emailVerificationMethod,
+    ]
+  }
+  static func == (lhs: MEmailVerificationResponse, rhs: MEmailVerificationResponse) -> Bool {
+    return deepEqualsPigeon(lhs.toList(), rhs.toList())  }
+  func hash(into hasher: inout Hasher) {
+    deepHashPigeon(value: toList(), hasher: &hasher)
+  }
+}
+
 private class PigeonPigeonCodecReader: FlutterStandardReader {
   override func readValue(ofType type: UInt8) -> Any? {
     switch type {
@@ -581,35 +615,43 @@ private class PigeonPigeonCodecReader: FlutterStandardReader {
     case 130:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return MIdentityType(rawValue: enumResultAsInt)
+        return MEmailVerificationMethod(rawValue: enumResultAsInt)
       }
       return nil
     case 131:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return MSigningSessionStatus(rawValue: enumResultAsInt)
+        return MIdentityType(rawValue: enumResultAsInt)
       }
       return nil
     case 132:
-      return MConfiguration.fromList(self.readValue() as! [Any?])
+      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
+      if let enumResultAsInt = enumResultAsInt {
+        return MSigningSessionStatus(rawValue: enumResultAsInt)
+      }
+      return nil
     case 133:
-      return MActivationTokenResponse.fromList(self.readValue() as! [Any?])
+      return MConfiguration.fromList(self.readValue() as! [Any?])
     case 134:
-      return MAuthenticationSessionDetails.fromList(self.readValue() as! [Any?])
+      return MActivationTokenResponse.fromList(self.readValue() as! [Any?])
     case 135:
-      return MSigningSessionDetails.fromList(self.readValue() as! [Any?])
+      return MAuthenticationSessionDetails.fromList(self.readValue() as! [Any?])
     case 136:
-      return MUser.fromList(self.readValue() as! [Any?])
+      return MSigningSessionDetails.fromList(self.readValue() as! [Any?])
     case 137:
-      return MQuickCode.fromList(self.readValue() as! [Any?])
+      return MUser.fromList(self.readValue() as! [Any?])
     case 138:
-      return MSignature.fromList(self.readValue() as! [Any?])
+      return MQuickCode.fromList(self.readValue() as! [Any?])
     case 139:
-      return MSigningResult.fromList(self.readValue() as! [Any?])
+      return MSignature.fromList(self.readValue() as! [Any?])
     case 140:
-      return MActivationTokenErrorResponse.fromList(self.readValue() as! [Any?])
+      return MSigningResult.fromList(self.readValue() as! [Any?])
     case 141:
+      return MActivationTokenErrorResponse.fromList(self.readValue() as! [Any?])
+    case 142:
       return MError.fromList(self.readValue() as! [Any?])
+    case 143:
+      return MEmailVerificationResponse.fromList(self.readValue() as! [Any?])
     default:
       return super.readValue(ofType: type)
     }
@@ -621,41 +663,47 @@ private class PigeonPigeonCodecWriter: FlutterStandardWriter {
     if let value = value as? MVerificationMethod {
       super.writeByte(129)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MIdentityType {
+    } else if let value = value as? MEmailVerificationMethod {
       super.writeByte(130)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MSigningSessionStatus {
+    } else if let value = value as? MIdentityType {
       super.writeByte(131)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MConfiguration {
+    } else if let value = value as? MSigningSessionStatus {
       super.writeByte(132)
-      super.writeValue(value.toList())
-    } else if let value = value as? MActivationTokenResponse {
+      super.writeValue(value.rawValue)
+    } else if let value = value as? MConfiguration {
       super.writeByte(133)
       super.writeValue(value.toList())
-    } else if let value = value as? MAuthenticationSessionDetails {
+    } else if let value = value as? MActivationTokenResponse {
       super.writeByte(134)
       super.writeValue(value.toList())
-    } else if let value = value as? MSigningSessionDetails {
+    } else if let value = value as? MAuthenticationSessionDetails {
       super.writeByte(135)
       super.writeValue(value.toList())
-    } else if let value = value as? MUser {
+    } else if let value = value as? MSigningSessionDetails {
       super.writeByte(136)
       super.writeValue(value.toList())
-    } else if let value = value as? MQuickCode {
+    } else if let value = value as? MUser {
       super.writeByte(137)
       super.writeValue(value.toList())
-    } else if let value = value as? MSignature {
+    } else if let value = value as? MQuickCode {
       super.writeByte(138)
       super.writeValue(value.toList())
-    } else if let value = value as? MSigningResult {
+    } else if let value = value as? MSignature {
       super.writeByte(139)
       super.writeValue(value.toList())
-    } else if let value = value as? MActivationTokenErrorResponse {
+    } else if let value = value as? MSigningResult {
       super.writeByte(140)
       super.writeValue(value.toList())
-    } else if let value = value as? MError {
+    } else if let value = value as? MActivationTokenErrorResponse {
       super.writeByte(141)
+      super.writeValue(value.toList())
+    } else if let value = value as? MError {
+      super.writeByte(142)
+      super.writeValue(value.toList())
+    } else if let value = value as? MEmailVerificationResponse {
+      super.writeByte(143)
       super.writeValue(value.toList())
     } else {
       super.writeValue(value)
@@ -682,7 +730,7 @@ class PigeonPigeonCodec: FlutterStandardMessageCodec, @unchecked Sendable {
 protocol MiraclSdk {
   func initSdk(configuration: MConfiguration, completion: @escaping (Result<Void, Error>) -> Void)
   func setProjectId(projectId: String, completion: @escaping (Result<Void, Error>) -> Void)
-  func sendVerificationEmail(userId: String, completion: @escaping (Result<Bool, Error>) -> Void)
+  func sendVerificationEmail(userId: String, completion: @escaping (Result<MEmailVerificationResponse, Error>) -> Void)
   func getActivationTokenByURI(uri: String, completion: @escaping (Result<MActivationTokenResponse, Error>) -> Void)
   func getActivationTokenByUserIdAndCode(userId: String, code: String, completion: @escaping (Result<MActivationTokenResponse, Error>) -> Void)
   func getUsers(completion: @escaping (Result<[MUser], Error>) -> Void)

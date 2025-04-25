@@ -35,11 +35,16 @@ class SdkHandler {
     }
 
     fun sendVerificationMail(
-        userId: String, callback: (Result<Boolean>) -> Unit
+        userId: String, callback: (Result<MEmailVerificationResponse>) -> Unit
     ) {
         MIRACLTrust.getInstance().sendVerificationEmail(userId) {
             if (it is MIRACLSuccess) {
-                callback(Result.success(true));
+                val response = it.value
+                val mEmailVerificationResponse = MEmailVerificationResponse(
+                    response.backoff,
+                    MEmailVerificationMethod.ofRaw(response.method.ordinal) ?: MEmailVerificationMethod.LINK,
+                )
+                callback(Result.success(mEmailVerificationResponse))
             } else {
                 if (it is MIRACLError) {
                     val error = it.value
