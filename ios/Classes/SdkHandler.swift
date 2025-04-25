@@ -14,10 +14,7 @@ public class SdkHandler: NSObject, MiraclSdk {
     completion: @escaping (Result<Void, Error>) -> Void
   ) {
     do {
-        let conf = try Configuration
-          .Builder(projectId: configuration.projectId)
-          .loggingLevel(level: .debug)
-          .build()
+        let conf = try Configuration.Builder(projectId: configuration.projectId).build()
         completion(Result.success(try MIRACLTrust.configure(with: conf)))
     } catch {
         completion(Result.failure(createPigeonError(error: error)))
@@ -49,7 +46,7 @@ public class SdkHandler: NSObject, MiraclSdk {
             var details = [String: Any]()
             if case let VerificationError.verificaitonFail(verificationError) 
                             = error, let verificationError { 
-                details["error"] = MError(message: verificationError.errorDebugDescription);       
+                details["error"] = verificationError.errorDebugDescription       
             }
 
             if case let VerificationError.requestBackoff(backoff) = error { 
@@ -93,7 +90,7 @@ public class SdkHandler: NSObject, MiraclSdk {
                     }
 
                     if case let ActivationTokenError.getActivationTokenFail(activationTokenError) = error, let activationTokenError { 
-                        details["error"] = MError(message: activationTokenError.errorDebugDescription);       
+                        details["error"] = activationTokenError.errorDebugDescription       
                     }
 
                     let pigeonError = self.createPigeonError(error: error, details: details)
@@ -140,7 +137,7 @@ public class SdkHandler: NSObject, MiraclSdk {
                     }
 
                     if case let ActivationTokenError.getActivationTokenFail(activationTokenError) = error, let activationTokenError { 
-                        details["error"] = MError(message: activationTokenError.errorDebugDescription);       
+                        details["error"] = activationTokenError.errorDebugDescription       
                     }
 
                     let pigeonError = self.createPigeonError(error: error, details: details)
@@ -204,7 +201,7 @@ public class SdkHandler: NSObject, MiraclSdk {
             var details = [String: Any]()
 
             if case let RegistrationError.registrationFail(registrationError) = error, let registrationError { 
-              details["error"] = MError(message: registrationError.errorDebugDescription);       
+              details["error"] = registrationError.errorDebugDescription       
             }
             
             let pigeonError = self.createPigeonError(error: error, details: details)
@@ -229,7 +226,7 @@ public class SdkHandler: NSObject, MiraclSdk {
                   var details = [String: Any]()
 
                   if case let QuickCodeError.generationFail(quikcCodeError) = error, let quikcCodeError { 
-                    details["error"] = MError(message: quikcCodeError.errorDebugDescription);       
+                    details["error"] = quikcCodeError.errorDebugDescription       
                   }
                   
                   let pigeonError = self.createPigeonError(error: error, details: details)
@@ -260,7 +257,7 @@ public class SdkHandler: NSObject, MiraclSdk {
                   var details = [String: Any]()
 
                   if case let AuthenticationError.authenticationFail(authenticationError) = error, let authenticationError { 
-                    details["error"] = MError(message: authenticationError.errorDebugDescription);       
+                    details["error"] = authenticationError.errorDebugDescription       
                   }
                   
                   let pigeonError = self.createPigeonError(error: error, details: details)
@@ -287,7 +284,7 @@ public class SdkHandler: NSObject, MiraclSdk {
                   var details = [String: Any]()
 
                   if case let AuthenticationError.authenticationFail(authenticationError) = error, let authenticationError { 
-                    details["error"] = MError(message: authenticationError.errorDebugDescription);       
+                    details["error"] = authenticationError.errorDebugDescription       
                   }
                   
                   let pigeonError = self.createPigeonError(error: error, details: details)
@@ -318,7 +315,7 @@ public class SdkHandler: NSObject, MiraclSdk {
                   var details = [String: Any]()
 
                   if case let AuthenticationError.authenticationFail(authenticationError) = error, let authenticationError { 
-                    details["error"] = MError(message: authenticationError.errorDebugDescription);       
+                    details["error"] = authenticationError.errorDebugDescription       
                   }
                   
                   let pigeonError = self.createPigeonError(error: error, details: details)
@@ -344,7 +341,7 @@ public class SdkHandler: NSObject, MiraclSdk {
             var details = [String: Any]()
 
             if case let AuthenticationError.authenticationFail(authenticationError) = error, let authenticationError { 
-              details["error"] = MError(message: authenticationError.errorDebugDescription);       
+              details["error"] = authenticationError.errorDebugDescription       
             }
             
             let pigeonError = self.createPigeonError(error: error, details: details)
@@ -362,7 +359,7 @@ public class SdkHandler: NSObject, MiraclSdk {
             var details = [String: Any]()
 
             if case let AuthenticationSessionError.getAuthenticationSessionDetailsFail(authenticationSessionError) = error, let authenticationSessionError { 
-              details["error"] = MError(message: authenticationSessionError.errorDebugDescription);       
+              details["error"] = authenticationSessionError.errorDebugDescription       
             }
             
             let pigeonError = self.createPigeonError(error: error, details: details)
@@ -399,7 +396,7 @@ public class SdkHandler: NSObject, MiraclSdk {
             var details = [String: Any]()
 
             if case let AuthenticationSessionError.getAuthenticationSessionDetailsFail(authenticationSessionError) = error, let authenticationSessionError { 
-              details["error"] = MError(message: authenticationSessionError.errorDebugDescription);       
+              details["error"] = authenticationSessionError.errorDebugDescription       
             }
             
             let pigeonError = self.createPigeonError(error: error, details: details)
@@ -436,7 +433,7 @@ public class SdkHandler: NSObject, MiraclSdk {
             var details = [String: Any]()
 
             if case let AuthenticationSessionError.getAuthenticationSessionDetailsFail(authenticationSessionError) = error, let authenticationSessionError { 
-              details["error"] = MError(message: authenticationSessionError.errorDebugDescription);       
+              details["error"] = authenticationSessionError.errorDebugDescription       
             }
             
             let pigeonError = self.createPigeonError(error: error, details: details)
@@ -481,7 +478,7 @@ public class SdkHandler: NSObject, MiraclSdk {
                       var details = [String: Any]()
 
                       if case let SigningError.signingFail(signingError) = error, let signingError { 
-                        details["error"] = MError(message: signingError.errorDebugDescription);       
+                        details["error"] = signingError.errorDebugDescription       
                       }
                       
                       let pigeonError = self.createPigeonError(error: error, details: details)
@@ -540,7 +537,7 @@ public class SdkHandler: NSObject, MiraclSdk {
             var details = [String: Any]()
 
             if case let SigningSessionError.getSigningSessionDetailsFail(signingSessionError) = error, let signingSessionError { 
-              details["error"] = MError(message: signingSessionError.errorDebugDescription);       
+              details["error"] = signingSessionError.errorDebugDescription       
             }
             
             let pigeonError = self.createPigeonError(error: error, details: details)
@@ -583,7 +580,7 @@ public class SdkHandler: NSObject, MiraclSdk {
             var details = [String: Any]()
 
             if case let SigningSessionError.getSigningSessionDetailsFail(signingSessionError) = error, let signingSessionError { 
-              details["error"] = MError(message: signingSessionError.errorDebugDescription);       
+              details["error"] = signingSessionError.errorDebugDescription       
             }
             
             let pigeonError = self.createPigeonError(error: error, details: details)

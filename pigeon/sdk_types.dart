@@ -160,12 +160,6 @@ class MActivationTokenErrorResponse {
   MActivationTokenErrorResponse(this.projectId, this.accessId, this.userId);
 }
 
-class MError {
-  final String message;
-
-  MError(this.message);
-}
-
 class MEmailVerificationResponse {
   final int backoff;
   final MEmailVerificationMethod emailVerificationMethod;

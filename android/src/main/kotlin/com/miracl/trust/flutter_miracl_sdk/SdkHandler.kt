@@ -54,7 +54,7 @@ class SdkHandler {
                     }
 
                     if (error is VerificationException.VerificationFail && error.cause != null) {
-                        details["error"] = MError(error.cause.toString())
+                        details["error"] = error.cause.toString()
                     }
 
                     callback(
@@ -100,7 +100,7 @@ class SdkHandler {
                     }
 
                     if (error is ActivationTokenException.GetActivationTokenFail && error.cause != null) {
-                        details["error"] = MError(error.cause.toString())
+                        details["error"] = error.cause.toString()
                     }
 
                     callback(
@@ -148,7 +148,7 @@ class SdkHandler {
                     }
 
                     if (error is ActivationTokenException.GetActivationTokenFail && error.cause != null) {
-                        details["error"] = MError(error.cause.toString())
+                        details["error"] = error.cause.toString()
                     }
 
                     callback(
@@ -179,7 +179,7 @@ class SdkHandler {
                     val details = mutableMapOf<String, Any?>()
 
                     if (error is RegistrationException.RegistrationFail && error.cause != null) {
-                        details["error"] = MError(error.cause.toString())
+                        details["error"] = error.cause.toString()
                     }
 
                     callback(
@@ -209,7 +209,6 @@ class SdkHandler {
                 it.consume(pin)
             }, {
                 if (it is MIRACLSuccess) {
-                    print("this is auth code: ${it.value}")
                     callback(Result.success(it.value))
                 } else {
                     if (it is MIRACLError) {
@@ -217,7 +216,7 @@ class SdkHandler {
                         val details = mutableMapOf<String, Any?>()
         
                         if (error is AuthenticationException.AuthenticationFail && error.cause != null) {
-                            details["error"] = MError(error.cause.toString())
+                            details["error"] = error.cause.toString()
                         }
         
                         callback(
@@ -264,7 +263,7 @@ class SdkHandler {
                         val details = mutableMapOf<String, Any?>()
         
                         if (error is QuickCodeException.GenerationFail && error.cause != null) {
-                            details["error"] = MError(error.cause.toString())
+                            details["error"] = error.cause.toString()
                         }
         
                         callback(
@@ -309,7 +308,7 @@ class SdkHandler {
                     val details = mutableMapOf<String, Any?>()
     
                     if (error is AuthenticationSessionException.GetAuthenticationSessionDetailsFail && error.cause != null) {
-                        details["error"] = MError(error.cause.toString())
+                        details["error"] = error.cause.toString()
                     }
     
                     callback(
@@ -353,7 +352,7 @@ class SdkHandler {
                     val details = mutableMapOf<String, Any?>()
     
                     if (error is AuthenticationSessionException.GetAuthenticationSessionDetailsFail && error.cause != null) {
-                        details["error"] = MError(error.cause.toString())
+                        details["error"] = error.cause.toString()
                     }
     
                     callback(
@@ -397,7 +396,7 @@ class SdkHandler {
                     val details = mutableMapOf<String, Any?>()
     
                     if (error is AuthenticationSessionException.GetAuthenticationSessionDetailsFail && error.cause != null) {
-                        details["error"] = MError(error.cause.toString())
+                        details["error"] = error.cause.toString()
                     }
     
                     callback(
@@ -438,7 +437,7 @@ class SdkHandler {
                         val details = mutableMapOf<String, Any?>()
         
                         if (error is AuthenticationException.AuthenticationFail && error.cause != null) {
-                            details["error"] = MError(error.cause.toString())
+                            details["error"] = error.cause.toString()
                         }
         
                         callback(
@@ -480,7 +479,7 @@ class SdkHandler {
                         val details = mutableMapOf<String, Any?>()
         
                         if (error is AuthenticationException.AuthenticationFail && error.cause != null) {
-                            details["error"] = MError(error.cause.toString())
+                            details["error"] = error.cause.toString()
                         }
         
                         callback(
@@ -509,7 +508,7 @@ class SdkHandler {
                 val details = mutableMapOf<String, Any?>()
 
                 if (error is AuthenticationException.AuthenticationFail && error.cause != null) {
-                    details["error"] = MError(error.cause.toString())
+                    details["error"] = error.cause.toString()
                 }
 
                 callback(
@@ -556,7 +555,7 @@ class SdkHandler {
                     val details = mutableMapOf<String, Any?>()
 
                     if (error is SigningSessionException.GetSigningSessionDetailsFail && error.cause != null) {
-                        details["error"] = MError(error.cause.toString())
+                        details["error"] = error.cause.toString()
                     }
 
                     callback(
@@ -604,7 +603,7 @@ class SdkHandler {
                     val details = mutableMapOf<String, Any?>()
 
                     if (error is SigningSessionException.GetSigningSessionDetailsFail && error.cause != null) {
-                        details["error"] = MError(error.cause.toString())
+                        details["error"] = error.cause.toString()
                     }
 
                     callback(
@@ -656,7 +655,7 @@ class SdkHandler {
                         val details = mutableMapOf<String, Any?>()
     
                         if (error is SigningException.SigningFail && error.cause != null) {
-                            details["error"] = MError(error.cause.toString())
+                            details["error"] = error.cause.toString()
                         }
 
                         callback(
