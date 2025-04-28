@@ -32,7 +32,7 @@ dependencies:
 ## **Android Setup**
 
 Add the MIRACL Trust Android SDK Мaven repository to the code
-section in `project/android/build.gradle` shown below:
+section in `project/android/build.gradle` as shown below:
 
 ```gradle
 allprojects {
@@ -136,10 +136,6 @@ different ways, depending on the type of verification.
       ```dart
       final activationTokenResponse = await sdk.getActivationTokenByURI(verificationURL);
       ```
-
-      Call this method after the deep link is handled in the application.
-      You can find a guide for handling deep links
-      [here](https://docs.flutter.dev/ui/navigation/deep-linking).
 
    - [Email Code](https://miracl.com/resources/docs/guides/built-in-user-verification/email-code/):
 
