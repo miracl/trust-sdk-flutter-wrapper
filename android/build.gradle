@@ -1,0 +1,49 @@
+plugins {
+    id "com.android.library"
+    id "kotlin-android"
+}
+
+group 'com.miracl.trust.flutter_miracl_sdk'
+version '1.0-SNAPSHOT'
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url = uri("https://maven.pkg.github.com/miracl/trust-sdk-android")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
+
+android {
+    ndkVersion "27.0.12077973"
+    namespace "com.miracl.trust.flutter_miracl_sdk"
+
+    compileSdkVersion 34
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        minSdkVersion 21
+    }
+
+    dependencies {
+        implementation "com.miracl.trust:trust-sdk-android:1.0.0"
+    }
+}

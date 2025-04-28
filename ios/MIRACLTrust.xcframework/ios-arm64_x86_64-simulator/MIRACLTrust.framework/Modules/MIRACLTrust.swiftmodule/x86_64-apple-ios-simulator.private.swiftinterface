@@ -1,0 +1,559 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target x86_64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name MIRACLTrust
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import CommonCrypto
+import MIRACLTrust.Crypto
+import Foundation
+@_exported import MIRACLTrust
+import MIRACLTrust.SQLChiper
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+import os.log
+import os
+public enum CryptoError : Swift.Error, Swift.Equatable {
+  case getClientTokenError(info: Swift.String)
+  case clientPass1Error(info: Swift.String)
+  case clientPass2Error(info: Swift.String)
+  case generateSigningKeypairError(info: Swift.String)
+  case getSigningClientToken(info: Swift.String)
+  case signError(info: Swift.String)
+  public static func == (a: CryptoError, b: CryptoError) -> Swift.Bool
+}
+extension CryptoError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension CryptoError : Foundation.CustomNSError {
+  public var errorCode: Swift.Int {
+    get
+  }
+  public var errorUserInfo: [Swift.String : Any] {
+    get
+  }
+}
+@objc public enum EmailVerificationMethod : Swift.Int, Swift.Sendable {
+  case link
+  case code
+  public static func emailVerificationMethodFromString(_ string: Swift.String) -> EmailVerificationMethod
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objcMembers @objc final public class AuthenticationSessionDetails : ObjectiveC.NSObject, SessionDetails, Swift.Sendable {
+  @objc final public let userId: Swift.String
+  @objc final public let projectName: Swift.String
+  @objc final public let projectLogoURL: Swift.String
+  @objc final public let projectId: Swift.String
+  @objc final public let pinLength: Swift.Int
+  @objc final public let verificationMethod: VerificationMethod
+  @objc final public let verificationURL: Swift.String
+  @objc final public let verificationCustomText: Swift.String
+  @objc final public let identityTypeLabel: Swift.String
+  @objc final public let quickCodeEnabled: Swift.Bool
+  @objc final public let limitQuickCodeRegistration: Swift.Bool
+  @objc final public let identityType: IdentityType
+  @objc final public let accessId: Swift.String
+  @objc deinit
+}
+public protocol UserStorage : Swift.Sendable {
+  func loadStorage() throws
+  func add(user: User) throws
+  func delete(user: User) throws
+  func update(user: User) throws
+  func all() -> [User]
+  func getUser(by userId: Swift.String, projectId: Swift.String) -> User?
+}
+public enum QuickCodeError : Swift.Error {
+  case revoked
+  case unsuccessfulAuthentication
+  case pinCancelled
+  case invalidPin
+  case limitedQuickCodeGeneration
+  case generationFail((any Swift.Error)?)
+}
+extension QuickCodeError : Swift.Equatable {
+  public static func == (lhs: QuickCodeError, rhs: QuickCodeError) -> Swift.Bool
+}
+extension QuickCodeError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension QuickCodeError : Foundation.CustomNSError {
+  public var errorCode: Swift.Int {
+    get
+  }
+  public var errorUserInfo: [Swift.String : Any] {
+    get
+  }
+}
+public typealias ProcessPinHandler = (Swift.String?) -> Swift.Void
+public typealias PinRequestHandler = @_Concurrency.MainActor @Sendable (@escaping ProcessPinHandler) -> Swift.Void
+public typealias RegistrationCompletionHandler = @_Concurrency.MainActor @Sendable (User?, (any Swift.Error)?) -> Swift.Void
+public typealias AuthenticationCompletionHandler = @_Concurrency.MainActor @Sendable (Swift.Bool, (any Swift.Error)?) -> Swift.Void
+public typealias SigningCompletionHandler = @_Concurrency.MainActor @Sendable (SigningResult?, (any Swift.Error)?) -> Swift.Void
+public typealias VerificationCompletionHandler = @_Concurrency.MainActor @Sendable (VerificationResponse?, (any Swift.Error)?) -> Swift.Void
+public typealias ActivationTokenCompletionHandler = @_Concurrency.MainActor @Sendable (ActivationTokenResponse?, (any Swift.Error)?) -> Swift.Void
+public typealias QuickCodeCompletionHandler = @_Concurrency.MainActor @Sendable (QuickCode?, (any Swift.Error)?) -> Swift.Void
+public typealias JWTCompletionHandler = @_Concurrency.MainActor @Sendable (Swift.String?, (any Swift.Error)?) -> Swift.Void
+public typealias AuthenticationSessionDetailsCompletionHandler = @_Concurrency.MainActor @Sendable (AuthenticationSessionDetails?, (any Swift.Error)?) -> Swift.Void
+public typealias AuthenticationSessionAborterCompletionHandler = @_Concurrency.MainActor @Sendable (Swift.Bool, (any Swift.Error)?) -> Swift.Void
+public typealias SigningSessionDetailsCompletionHandler = @_Concurrency.MainActor @Sendable (SigningSessionDetails?, (any Swift.Error)?) -> Swift.Void
+public typealias SigningSessionAborterCompletionHandler = @_Concurrency.MainActor @Sendable (Swift.Bool, (any Swift.Error)?) -> Swift.Void
+public let MIRACL_API_URL: Foundation.URL
+@_hasMissingDesignatedInitializers @objcMembers @objc final public class ActivationTokenErrorResponse : ObjectiveC.NSObject, Swift.Sendable {
+  @objc final public let projectId: Swift.String
+  @objc final public let userId: Swift.String
+  @objc final public let accessId: Swift.String?
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objcMembers @objc final public class ClientErrorData : ObjectiveC.NSObject, Swift.Sendable {
+  @objc final public let code: Swift.String
+  @objc final public let info: Swift.String
+  @objc final public let context: [Swift.String : Swift.String]?
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objcMembers @objc final public class ActivationTokenResponse : ObjectiveC.NSObject, Swift.Sendable {
+  @objc final public let activationToken: Swift.String
+  @objc final public let projectId: Swift.String
+  @objc final public let userId: Swift.String
+  @objc final public let accessId: Swift.String?
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class Configuration : ObjectiveC.NSObject {
+  @objc(ConfigurationBuilder) public class Builder : ObjectiveC.NSObject {
+    @objc public init(projectId: Swift.String, deviceName: Swift.String? = nil)
+    @discardableResult
+    public func userStorage(userStorage: any UserStorage) -> Configuration.Builder
+    @discardableResult
+    @objc(deviceNameWith:) public func deviceName(deviceName: Swift.String) -> Configuration.Builder
+    @discardableResult
+    @objc(loggerWith:) public func logger(logger: any Logger) -> Configuration.Builder
+    @discardableResult
+    @objc(loggingLevelWith:) public func loggingLevel(level: LoggingLevel) -> Configuration.Builder
+    @discardableResult
+    @objc(platformURLWith:) public func platformURL(url: Foundation.URL) -> Configuration.Builder
+    @discardableResult
+    @objc(applicationInfoWith:) public func applicationInfo(applicationInfo: Swift.String) -> Configuration.Builder
+    @discardableResult
+    @objc(URLSessionConfigurationWith:) public func URLSessionConfiguration(urlSessionConfiguration: Foundation.URLSessionConfiguration) -> Configuration.Builder
+    @objc public func build() throws -> Configuration
+    @objc deinit
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objcMembers @objc final public class Signature : ObjectiveC.NSObject, Swift.Codable, Swift.Sendable {
+  @objc final public let mpinId: Swift.String
+  @objc final public let U: Swift.String
+  @objc final public let V: Swift.String
+  @objc final public let publicKey: Swift.String
+  @objc final public let dtas: Swift.String
+  @objc final public let signatureHash: Swift.String
+  @objc @available(swift, obsoleted: 1.0)
+  final public func dictionary() -> [Swift.String : Swift.String]
+  @objc deinit
+  final public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@objc public enum SigningSessionStatus : Swift.Int, Swift.Codable, Swift.Sendable {
+  case active
+  case signed
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objcMembers @objc final public class User : ObjectiveC.NSObject, Swift.Sendable {
+  @objc final public let userId: Swift.String
+  @objc final public let projectId: Swift.String
+  @objc final public let revoked: Swift.Bool
+  @objc final public let pinLength: Swift.Int
+  @objc final public var hashedMpinId: Swift.String {
+    @objc get
+  }
+  @objc deinit
+}
+public enum ConfigurationError : Swift.Error, Swift.Equatable {
+  case configurationEmptyProjectId
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: ConfigurationError, b: ConfigurationError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension ConfigurationError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public enum APIRequestError : Swift.Error, Swift.Equatable {
+  case fail(Swift.String)
+  public static func == (a: APIRequestError, b: APIRequestError) -> Swift.Bool
+}
+public enum ActivationTokenError : Swift.Error {
+  case emptyUserId
+  case emptyVerificationCode
+  case unsuccessfulVerification(activationTokenErrorResponse: ActivationTokenErrorResponse?)
+  case getActivationTokenFail((any Swift.Error)?)
+}
+extension ActivationTokenError : Swift.Equatable {
+  public static func == (lhs: ActivationTokenError, rhs: ActivationTokenError) -> Swift.Bool
+}
+extension ActivationTokenError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension ActivationTokenError : Foundation.CustomNSError {
+  public var errorCode: Swift.Int {
+    get
+  }
+  public var errorUserInfo: [Swift.String : Any] {
+    get
+  }
+}
+extension UIKit.UIDevice {
+  @_Concurrency.MainActor @preconcurrency public var modelName: Swift.String {
+    get
+  }
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers final public class SigningResult : ObjectiveC.NSObject, Swift.Sendable {
+  @objc final public let signature: Signature
+  @objc final public let timestamp: Foundation.Date
+  @objc deinit
+}
+public enum AuthenticationError : Swift.Error {
+  case invalidUserData
+  case invalidQRCode
+  case invalidPushNotificationPayload
+  case userNotFound
+  case invalidUniversalLink
+  case authenticationFail((any Swift.Error)?)
+  case revoked
+  case invalidAuthenticationSession
+  case unsuccessfulAuthentication
+  case pinCancelled
+  case invalidPin
+}
+extension AuthenticationError : Swift.Equatable {
+  public static func == (lhs: AuthenticationError, rhs: AuthenticationError) -> Swift.Bool
+}
+extension AuthenticationError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension AuthenticationError : Foundation.CustomNSError {
+  public var errorCode: Swift.Int {
+    get
+  }
+  public var errorUserInfo: [Swift.String : Any] {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objcMembers @objc final public class QuickCode : ObjectiveC.NSObject, Swift.Sendable {
+  @objc final public let code: Swift.String
+  @objc final public let expireTime: Foundation.Date
+  @objc final public let ttlSeconds: Swift.Int
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers final public class VerificationResponse : ObjectiveC.NSObject, Swift.Sendable {
+  @objc final public let backoff: Swift.Int64
+  @objc final public let method: EmailVerificationMethod
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers @objc open class MIRACLTrust : ObjectiveC.NSObject {
+  @objc public var users: [User] {
+    @objc get
+  }
+  @objc public var projectId: Swift.String
+  @objc public class func getInstance() -> MIRACLTrust
+  @objc public class func configure(with configuration: Configuration) throws
+  @objc public func setProjectId(projectId: Swift.String) throws
+  @objc public func sendVerificationEmail(userId: Swift.String, authenticationSessionDetails: AuthenticationSessionDetails? = nil, completionHandler: @escaping VerificationCompletionHandler)
+  @objc public func getActivationToken(verificationURL: Foundation.URL, completionHandler: @escaping ActivationTokenCompletionHandler)
+  @objc public func getActivationToken(userId: Swift.String, code: Swift.String, completionHandler: @escaping ActivationTokenCompletionHandler)
+  @objc public func generateQuickCode(user: User, didRequestPinHandler: @escaping PinRequestHandler, completionHandler: @escaping QuickCodeCompletionHandler)
+  @objc public func register(for userId: Swift.String, activationToken: Swift.String, pushNotificationsToken: Swift.String? = nil, didRequestPinHandler: @escaping PinRequestHandler, completionHandler: @escaping RegistrationCompletionHandler)
+  @objc(authenticateWithUser:didRequestPinHandler:completionHandler:) public func authenticate(user: User, didRequestPinHandler: @escaping PinRequestHandler, completionHandler: @escaping JWTCompletionHandler)
+  @objc(authenticateWithUser:qrCode:didRequestPinHandler:completionHandler:) public func authenticateWithQRCode(user: User, qrCode: Swift.String, didRequestPinHandler: @escaping PinRequestHandler, completionHandler: @escaping AuthenticationCompletionHandler)
+  @objc(authenticateWithPushNotificationPayload:didRequestPinHandler:completionHandler:) public func authenticateWithPushNotificationPayload(payload: [Swift.AnyHashable : Any], didRequestPinHandler: @escaping PinRequestHandler, completionHandler: @escaping AuthenticationCompletionHandler)
+  @objc(authenticateWithUser:universalLinkURL:didRequestPinHandler:completionHandler:) public func authenticateWithUniversalLinkURL(user: User, universalLinkURL: Foundation.URL, didRequestPinHandler: @escaping PinRequestHandler, completionHandler: @escaping AuthenticationCompletionHandler)
+  @objc(getAuthenticationSessionDetailsFromQRCode:completionHandler:) public func getAuthenticationSessionDetailsFromQRCode(qrCode: Swift.String, completionHandler: @escaping AuthenticationSessionDetailsCompletionHandler)
+  @objc(getAuthenticationSessionDetailsFromUniversalLinkURL:completionHandler:) public func getAuthenticationSessionDetailsFromUniversalLinkURL(universalLinkURL: Foundation.URL, completionHandler: @escaping AuthenticationSessionDetailsCompletionHandler)
+  @objc(getAuthenticationSessionDetailsFromPushNotificationPayload:completionHandler:) public func getAuthenticationSessionDetailsFromPushNotificationPayload(pushNotificationPayload: [Swift.AnyHashable : Any], completionHandler: @escaping AuthenticationSessionDetailsCompletionHandler)
+  @objc(abortAuthenticationSession:completionHandler:) public func abortAuthenticationSession(authenticationSessionDetails: AuthenticationSessionDetails, completionHandler: @escaping AuthenticationSessionAborterCompletionHandler)
+  @objc(getSigningSessionDetailsFromQRcode:completionHandler:) public func getSigningSessionDetailsFromQRCode(qrCode: Swift.String, completionHandler: @escaping SigningSessionDetailsCompletionHandler)
+  @objc(getSigningSessionDetailsFromUniversalLinkURL:completionHandler:) public func getSigningSessionDetailsFromUniversalLinkURL(universalLinkURL: Foundation.URL, completionHandler: @escaping SigningSessionDetailsCompletionHandler)
+  @objc(abortSigningSession:completionHandler:) public func abortSigningSession(signingSessionDetails: SigningSessionDetails, completionHandler: @escaping SigningSessionAborterCompletionHandler)
+  @objc public func sign(message: Foundation.Data, user: User, didRequestSigningPinHandler: @escaping PinRequestHandler, completionHandler: @escaping SigningCompletionHandler)
+  @objc public func _sign(message: Foundation.Data, user: User, signingSessionDetails: SigningSessionDetails, didRequestSigningPinHandler: @escaping PinRequestHandler, completionHandler: @escaping SigningCompletionHandler)
+  @objc public func getUser(by userId: Swift.String) -> User?
+  @objc public func delete(user: User) throws
+  @objc deinit
+}
+public enum RegistrationError : Swift.Error {
+  case emptyUserId
+  case emptyActivationToken
+  case invalidActivationToken
+  case registrationFail((any Swift.Error)?)
+  case unsupportedEllipticCurve
+  case pinCancelled
+  case invalidPin
+  case projectMismatch
+}
+extension RegistrationError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension RegistrationError : Swift.Equatable {
+  public static func == (lhs: RegistrationError, rhs: RegistrationError) -> Swift.Bool
+}
+extension RegistrationError : Foundation.CustomNSError {
+  public var errorCode: Swift.Int {
+    get
+  }
+  public var errorUserInfo: [Swift.String : Any] {
+    get
+  }
+}
+@objc public protocol Logger : Swift.Sendable {
+  @objc func debug(message: Swift.String, category: LogCategory)
+  @objc func info(message: Swift.String, category: LogCategory)
+  @objc func warning(message: Swift.String, category: LogCategory)
+  @objc func error(message: Swift.String, category: LogCategory)
+}
+public enum AuthenticationSessionError : Swift.Error {
+  case invalidUniversalLinkURL
+  case invalidQRCode
+  case invalidPushNotificationPayload
+  case invalidAuthenticationSessionDetails
+  case getAuthenticationSessionDetailsFail((any Swift.Error)?)
+  case abortSessionFail((any Swift.Error)?)
+}
+extension AuthenticationSessionError : Swift.Equatable {
+  public static func == (lhs: AuthenticationSessionError, rhs: AuthenticationSessionError) -> Swift.Bool
+}
+extension AuthenticationSessionError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension AuthenticationSessionError : Foundation.CustomNSError {
+  public var errorCode: Swift.Int {
+    get
+  }
+  public var errorUserInfo: [Swift.String : Any] {
+    get
+  }
+}
+@objc public enum LogCategory : Swift.Int {
+  case configuration
+  case networking
+  case crypto
+  case registration
+  case authentication
+  case signing
+  case signingRegistration
+  case verification
+  case verificationConfirmation
+  case storage
+  case sessionManagement
+  case jwtGeneration
+  case quickCode
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum SigningSessionError : Swift.Error {
+  case invalidUniversalLinkURL
+  case invalidQRCode
+  case invalidSigningSessionDetails
+  case getSigningSessionDetailsFail((any Swift.Error)?)
+  case invalidSigningSession
+  case abortSigningSessionFail((any Swift.Error)?)
+}
+extension SigningSessionError : Swift.Equatable {
+  public static func == (lhs: SigningSessionError, rhs: SigningSessionError) -> Swift.Bool
+}
+extension SigningSessionError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension SigningSessionError : Foundation.CustomNSError {
+  public var errorCode: Swift.Int {
+    get
+  }
+  public var errorUserInfo: [Swift.String : Any] {
+    get
+  }
+}
+public enum APIError : Swift.Error {
+  case apiServerError(statusCode: Swift.Int, message: Swift.String?, requestURL: Foundation.URL?)
+  case apiClientError(clientErrorData: ClientErrorData?, requestId: Swift.String, message: Swift.String?, requestURL: Foundation.URL?)
+  case apiMalformedJSON((any Swift.Error)?, Foundation.URL?)
+  case executionError(Swift.String, Foundation.URL?)
+}
+extension APIError : Swift.Equatable {
+  public static func == (lhs: APIError, rhs: APIError) -> Swift.Bool
+}
+extension APIError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension APIError : Foundation.CustomNSError {
+  public var errorCode: Swift.Int {
+    get
+  }
+  public var errorUserInfo: [Swift.String : Any] {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objcMembers @objc final public class SigningSessionDetails : ObjectiveC.NSObject, SessionDetails, Swift.Sendable {
+  @objc final public let userId: Swift.String
+  @objc final public let projectName: Swift.String
+  @objc final public let projectLogoURL: Swift.String
+  @objc final public let projectId: Swift.String
+  @objc final public let pinLength: Swift.Int
+  @objc final public let verificationMethod: VerificationMethod
+  @objc final public let verificationURL: Swift.String
+  @objc final public let verificationCustomText: Swift.String
+  @objc final public let identityTypeLabel: Swift.String
+  @objc final public let quickCodeEnabled: Swift.Bool
+  @objc final public let limitQuickCodeRegistration: Swift.Bool
+  @objc final public let identityType: IdentityType
+  @objc final public let sessionId: Swift.String
+  @objc final public let signingHash: Swift.String
+  @objc final public let signingDescription: Swift.String
+  @objc final public let status: SigningSessionStatus
+  @objc final public let expireTime: Foundation.Date
+  @objc deinit
+}
+public enum VerificationError : Swift.Error {
+  case emptyUserId
+  case invalidSessionDetails
+  case verificaitonFail((any Swift.Error)?)
+  case requestBackoff(backoff: Swift.Int64)
+}
+extension VerificationError : Swift.Equatable {
+  public static func == (lhs: VerificationError, rhs: VerificationError) -> Swift.Bool
+}
+extension VerificationError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension VerificationError : Foundation.CustomNSError {
+  public var errorCode: Swift.Int {
+    get
+  }
+  public var errorUserInfo: [Swift.String : Any] {
+    get
+  }
+}
+@objc public enum LoggingLevel : Swift.Int, Swift.Comparable, Swift.Sendable {
+  case none = 0
+  case debug = 1
+  case info = 2
+  case warning = 3
+  case error = 4
+  public static func < (lhs: LoggingLevel, rhs: LoggingLevel) -> Swift.Bool
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public protocol SessionDetails : Swift.Sendable {
+  @objc var userId: Swift.String { get }
+  @objc var projectName: Swift.String { get }
+  @objc var projectLogoURL: Swift.String { get }
+  @objc var projectId: Swift.String { get }
+  @objc var pinLength: Swift.Int { get }
+  @objc var verificationMethod: VerificationMethod { get }
+  @objc var verificationURL: Swift.String { get }
+  @objc var verificationCustomText: Swift.String { get }
+  @objc var identityTypeLabel: Swift.String { get }
+  @objc var quickCodeEnabled: Swift.Bool { get }
+  @objc var limitQuickCodeRegistration: Swift.Bool { get }
+  @objc var identityType: IdentityType { get }
+}
+@objc public enum VerificationMethod : Swift.Int, Swift.Sendable {
+  case fullCustom
+  case standardEmail
+  public static func verificationMethodFromString(_ string: Swift.String) -> VerificationMethod
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum IdentityType : Swift.Int, Swift.Sendable {
+  case email
+  case alphanumeric
+  public static func identityTypeFromString(_ string: Swift.String) -> IdentityType
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum SigningError : Swift.Error {
+  case emptyMessageHash
+  case emptyPublicKey
+  case invalidUserData
+  case pinCancelled
+  case invalidPin
+  case signingFail((any Swift.Error)?)
+  case revoked
+  case unsuccessfulAuthentication
+  case invalidSigningSession
+  case invalidSigningSessionDetails
+}
+extension SigningError : Swift.Equatable {
+  public static func == (lhs: SigningError, rhs: SigningError) -> Swift.Bool
+}
+extension SigningError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+extension SigningError : Foundation.CustomNSError {
+  public var errorCode: Swift.Int {
+    get
+  }
+  public var errorUserInfo: [Swift.String : Any] {
+    get
+  }
+}
+extension EmailVerificationMethod : Swift.Equatable {}
+extension EmailVerificationMethod : Swift.Hashable {}
+extension EmailVerificationMethod : Swift.RawRepresentable {}
+extension SigningSessionStatus : Swift.Equatable {}
+extension SigningSessionStatus : Swift.Hashable {}
+extension SigningSessionStatus : Swift.RawRepresentable {}
+extension ConfigurationError : Swift.Hashable {}
+extension LogCategory : Swift.Equatable {}
+extension LogCategory : Swift.Hashable {}
+extension LogCategory : Swift.RawRepresentable {}
+extension LoggingLevel : Swift.Hashable {}
+extension LoggingLevel : Swift.RawRepresentable {}
+extension VerificationMethod : Swift.Equatable {}
+extension VerificationMethod : Swift.Hashable {}
+extension VerificationMethod : Swift.RawRepresentable {}
+extension IdentityType : Swift.Equatable {}
+extension IdentityType : Swift.Hashable {}
+extension IdentityType : Swift.RawRepresentable {}
