@@ -271,8 +271,8 @@ public class SdkHandler: NSObject, MiraclSdk {
 
   func authenticateWithQrCode(
     user: MUser, 
-    pin: String,
     qrCode: String, 
+    pin: String,
     completion: @escaping (Result<Bool, Error>) -> Void
   ) {
      let sdkUser = MIRACLTrust.getInstance().getUser(by: user.userId)
@@ -298,8 +298,8 @@ public class SdkHandler: NSObject, MiraclSdk {
 
   func authenticateWithLink(
     user: MUser, 
-    pin: String, 
-    link: String, 
+    link: String,
+    pin: String,  
     completion: @escaping (Result<Bool, Error>) -> Void
   ) {
      let sdkUser = MIRACLTrust.getInstance().getUser(by: user.userId)
@@ -460,9 +460,9 @@ public class SdkHandler: NSObject, MiraclSdk {
   }
 
   func sign(
-    user: MUser,
-    pin: String, 
+    user: MUser, 
     message: FlutterStandardTypedData, 
+    pin: String,
     completion: @escaping (Result<MSigningResult, Error>
   ) -> Void) {
         let sdkUser = MIRACLTrust.getInstance().getUser(by: user.userId)

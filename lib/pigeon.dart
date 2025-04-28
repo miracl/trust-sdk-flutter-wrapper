@@ -1081,14 +1081,14 @@ class MiraclSdk {
     }
   }
 
-  Future<MSigningResult> sign(MUser user, String pin, Uint8List message) async {
+  Future<MSigningResult> sign(MUser user, Uint8List message, String pin) async {
     final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.sign$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[user, pin, message]);
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[user, message, pin]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {
@@ -1109,14 +1109,14 @@ class MiraclSdk {
     }
   }
 
-  Future<bool> authenticateWithQrCode(MUser user, String pin, String qrCode) async {
+  Future<bool> authenticateWithQrCode(MUser user, String qrCode, String pin) async {
     final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.authenticateWithQrCode$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[user, pin, qrCode]);
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[user, qrCode, pin]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {
@@ -1137,14 +1137,14 @@ class MiraclSdk {
     }
   }
 
-  Future<bool> authenticateWithLink(MUser user, String pin, String link) async {
+  Future<bool> authenticateWithLink(MUser user, String link, String pin) async {
     final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.authenticateWithLink$pigeonVar_messageChannelSuffix';
     final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[user, pin, link]);
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[user, link, pin]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {

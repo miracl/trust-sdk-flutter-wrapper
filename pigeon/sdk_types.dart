@@ -211,13 +211,13 @@ abstract class MiraclSdk {
   MQuickCode generateQuickCode(MUser user, String pin);
 
   @async
-  MSigningResult sign(MUser user, String pin, Uint8List message);
+  MSigningResult sign(MUser user, Uint8List message, String pin);
 
   @async
-  bool authenticateWithQrCode(MUser user, String pin, String qrCode);
+  bool authenticateWithQrCode(MUser user, String qrCode, String pin);
 
   @async
-  bool authenticateWithLink(MUser user, String pin, String link);
+  bool authenticateWithLink(MUser user, String link, String pin);
 
   @async
   bool authenticateWithNotificationPayload(

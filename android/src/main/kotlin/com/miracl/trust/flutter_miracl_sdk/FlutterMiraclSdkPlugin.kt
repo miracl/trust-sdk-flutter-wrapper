@@ -113,8 +113,8 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
 
     override fun sign(
         user: MUser, 
-        pin: String,
         message: ByteArray, 
+        pin: String,
         callback: (kotlin.Result<MSigningResult>) -> Unit
     ) {
         sdkHandler.sign(user.userId, pin, message, callback)
@@ -122,17 +122,17 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
 
     override fun authenticateWithQrCode(
         user: MUser, 
-        pin: String, 
-        qrCode: String, 
+        qrCode: String,
+        pin: String,
         callback: (kotlin.Result<Boolean>) -> Unit
     ) {
         sdkHandler.authenticateWithQrCode(user.userId, qrCode, pin, callback)
     }
 
     override fun authenticateWithLink(
-        user: MUser, 
+        user: MUser,  
+        link: String,
         pin: String, 
-        link: String, 
         callback: (kotlin.Result<Boolean>) -> Unit
     ) {
         sdkHandler.authenticateWithAppLink(user.userId, link, pin, callback)

@@ -709,9 +709,9 @@ protocol MiraclSdk {
   func delete(user: MUser, completion: @escaping (Result<Void, Error>) -> Void)
   func getUser(userId: String, completion: @escaping (Result<MUser?, Error>) -> Void)
   func generateQuickCode(user: MUser, pin: String, completion: @escaping (Result<MQuickCode, Error>) -> Void)
-  func sign(user: MUser, pin: String, message: FlutterStandardTypedData, completion: @escaping (Result<MSigningResult, Error>) -> Void)
-  func authenticateWithQrCode(user: MUser, pin: String, qrCode: String, completion: @escaping (Result<Bool, Error>) -> Void)
-  func authenticateWithLink(user: MUser, pin: String, link: String, completion: @escaping (Result<Bool, Error>) -> Void)
+  func sign(user: MUser, message: FlutterStandardTypedData, pin: String, completion: @escaping (Result<MSigningResult, Error>) -> Void)
+  func authenticateWithQrCode(user: MUser, qrCode: String, pin: String, completion: @escaping (Result<Bool, Error>) -> Void)
+  func authenticateWithLink(user: MUser, link: String, pin: String, completion: @escaping (Result<Bool, Error>) -> Void)
   func authenticateWithNotificationPayload(payload: [String: String], pin: String, completion: @escaping (Result<Bool, Error>) -> Void)
   func getAuthenticationSessionDetailsFromQRCode(qrCode: String, completion: @escaping (Result<MAuthenticationSessionDetails, Error>) -> Void)
   func getAuthenticationSessionDetailsFromLink(link: String, completion: @escaping (Result<MAuthenticationSessionDetails, Error>) -> Void)
@@ -922,9 +922,9 @@ class MiraclSdkSetup {
       signChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
         let userArg = args[0] as! MUser
-        let pinArg = args[1] as! String
-        let messageArg = args[2] as! FlutterStandardTypedData
-        api.sign(user: userArg, pin: pinArg, message: messageArg) { result in
+        let messageArg = args[1] as! FlutterStandardTypedData
+        let pinArg = args[2] as! String
+        api.sign(user: userArg, message: messageArg, pin: pinArg) { result in
           switch result {
           case .success(let res):
             reply(wrapResult(res))
@@ -941,9 +941,9 @@ class MiraclSdkSetup {
       authenticateWithQrCodeChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
         let userArg = args[0] as! MUser
-        let pinArg = args[1] as! String
-        let qrCodeArg = args[2] as! String
-        api.authenticateWithQrCode(user: userArg, pin: pinArg, qrCode: qrCodeArg) { result in
+        let qrCodeArg = args[1] as! String
+        let pinArg = args[2] as! String
+        api.authenticateWithQrCode(user: userArg, qrCode: qrCodeArg, pin: pinArg) { result in
           switch result {
           case .success(let res):
             reply(wrapResult(res))
@@ -960,9 +960,9 @@ class MiraclSdkSetup {
       authenticateWithLinkChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
         let userArg = args[0] as! MUser
-        let pinArg = args[1] as! String
-        let linkArg = args[2] as! String
-        api.authenticateWithLink(user: userArg, pin: pinArg, link: linkArg) { result in
+        let linkArg = args[1] as! String
+        let pinArg = args[2] as! String
+        api.authenticateWithLink(user: userArg, link: linkArg, pin: pinArg) { result in
           switch result {
           case .success(let res):
             reply(wrapResult(res))
