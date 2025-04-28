@@ -10,7 +10,7 @@ The MIRACL Trust Flutter Plugin provides the following functionalities:
 
 This plugin implements method-channel communication with
 MIRACL’s iOS and Android SDKs. It leverages the
-[Pigeon](https://pub.dev/packages/pigeon) framework to 
+[Pigeon](https://pub.dev/packages/pigeon) framework to
 generate type-safe method-channel communication.
 
 ## System Requirements
@@ -67,7 +67,7 @@ final configuration = MConfiguration(
 await sdk.initSdk(configuration);
 ```
 
-Call the initSdk method as early as possible in the application
+Call the `initSdk` method as early as possible in the application
 lifecycle, and avoid using the other methods before that; otherwise,
 an assertion will be triggered.
 
@@ -91,7 +91,7 @@ offers two options for that:
   method:
 
   ```dart
-  final mVerificationResponse = await sdk.sendVerificationEmail(userId);
+  final emailVerificationResponse = await sdk.sendVerificationEmail(userId);
   ```
 
   Then, a verification email is sent, and a
@@ -138,7 +138,7 @@ different ways, depending on the type of verification.
       ```
 
       Call this method after the deep link is handled in the application.
-      Guide for handling deep links could be found
+      You can find a guide for handling deep links
       [here](https://docs.flutter.dev/ui/navigation/deep-linking).
 
    - [Email Code](https://miracl.com/resources/docs/guides/built-in-user-verification/email-code/):
@@ -154,7 +154,7 @@ different ways, depending on the type of verification.
       ```
 
 2. Pass the User ID (email or any string you use for identification), activation
-   token (received from verification) and the user entered PIN code to the `register`
+   token (received from verification) and the user-entered PIN code to the `register`
    method:
 
    ```dart
@@ -196,7 +196,7 @@ which in this case is the application Project ID.
 
 There are three options for authenticating a user on another application:
 
-- Authenticate with deep links
+- Authenticate with deep link:
 
   Use the `authenticateWithLink` method:
 
@@ -205,7 +205,7 @@ There are three options for authenticating a user on another application:
   final isAuthenticated = sdk.authenticateWithLink(user, link, pin)
   ```
 
-  For handling of the app links check this [guide](https://docs.flutter.dev/ui/navigation/deep-linking).
+  For information about handling deep links, see this [guide](https://docs.flutter.dev/ui/navigation/deep-linking).
 
 - Authenticate with a QR code
 
@@ -239,11 +239,11 @@ To sign a document, use the `sign` method as follows:
 final signingResult = await sdk.sign(user, message, pin);
 ```
 
-The signature needs to be verified. This is done when the signature is sent to
-the application server, which then makes a call to the
+The signature must be verified by sending it to the application server, which then
+makes a call to the
 [POST /dvs/verify](https://miracl.com/resources/docs/guides/dvs/dvs-web-plugin/#api-reference)
 endpoint. If the MIRACL Trust platform returns a status code 200, the certificate
-centry in the response body indicates that the signing is successful.
+entry in the response body indicates that the signing is successful.
 
 ### QuickCode
 
