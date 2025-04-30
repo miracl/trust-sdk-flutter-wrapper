@@ -1,3 +1,3 @@
-## 0.0.1
+## 0.0.2
 
-* TODO: Describe initial release.
+* Update MIRACL Trust Android SDK to 1.0.1
