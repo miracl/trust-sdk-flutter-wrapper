@@ -44,6 +44,6 @@ android {
     }
 
     dependencies {
-        implementation "com.miracl.trust:trust-sdk-android:1.0.0"
+        implementation "com.miracl.trust:trust-sdk-android:1.0.1"
     }
 }
