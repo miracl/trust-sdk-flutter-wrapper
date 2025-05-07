@@ -17,21 +17,39 @@ import com.miracl.trust.authentication.AuthenticationException
 import com.miracl.trust.registration.QuickCodeException
 import com.miracl.trust.session.AuthenticationSessionException
 import com.miracl.trust.registration.RegistrationException
+import com.miracl.trust.configuration.ConfigurationException
+
 import java.util.*
 
 class SdkHandler {
     fun initSdk(config: MConfiguration, context: Context, callback: (Result<Unit>) -> Unit) {
-        val configuration = Configuration.Builder(
-            config.projectId
-        ).build()
-
-        MIRACLTrust.configure(context, configuration)
-        callback(Result.success(Unit))
+        try {
+            val configuration = Configuration.Builder(
+                config.projectId
+            ).build()
+    
+            MIRACLTrust.configure(context, configuration)
+            callback(Result.success(Unit))
+        } catch (exception: ConfigurationException) {
+            callback(
+                Result.failure(
+                    mapExceptionToFlutter(exception, null)
+                )
+            )
+        }      
     }
 
     fun setProjectId(projectId: String, callback: (Result<Unit>) -> Unit) {
-        MIRACLTrust.getInstance().setProjectId(projectId)
-        callback(Result.success(Unit))
+        try {
+            MIRACLTrust.getInstance().setProjectId(projectId)
+            callback(Result.success(Unit))
+        } catch (exception: ConfigurationException) {
+            callback(
+                Result.failure(
+                    mapExceptionToFlutter(exception, null)
+                )
+            )
+        }        
     }
 
     fun sendVerificationMail(
@@ -745,7 +763,7 @@ class SdkHandler {
 
     private fun mapExceptionToFlutter(error: Exception, details: Map<String, Any?>? = null): FlutterError {
         return FlutterError(
-            code = error.toString(),
+            code = error::class.simpleName ?: "" ,
             message = error.stackTraceToString(),
             details = details,
         )
