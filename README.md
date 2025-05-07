@@ -36,8 +36,18 @@ dependencies:
 Add this import to your `dart` file:
 
 ```dart
-import 'package:flutter_miracl_sdk/pigeon.dart';
+import 'package:flutter_miracl_sdk/flutter_miracl_sdk.dart';
 ```
+
+### Exception handling
+
+Most plugin methods can throw instances of `MIRACLException` subclasses.
+Each subclass contains a `code` enum that indicates the origin of
+the exception (e.g., unsuccessful authentication).
+
+Although exception handling is not mandatory in Dart, it is
+highly recommended that MIRACL Trust methods be wrapped
+in `try/catch` statements.
 
 ### SDK Configuration
 
@@ -47,7 +57,12 @@ Configure the plugin as shown below:
 final configuration = MConfiguration(
     projectId: "YOUR_PROJECT_ID"
 );
-await sdk.initSdk(configuration);
+MIRACLTrust sdk = MIRACLTrust();
+try { 
+  await sdk.initSdk(configuration);
+} catch on ConfigurationException (e) {
+  // Handle the exception here.
+}
 ```
 
 Call the `initSdk` method as early as possible in the application
@@ -74,7 +89,11 @@ offers two options for that:
   method:
 
   ```dart
-  final emailVerificationResponse = await sdk.sendVerificationEmail(userId);
+  try {
+    final emailVerificationResponse = await sdk.sendVerificationEmail(userId);
+  } on EmailVerificationException catch(e) {
+    // Handle the exception here.
+  }
   ```
 
   Then, a verification email is sent, and a
@@ -117,7 +136,11 @@ different ways, depending on the type of verification.
       verification by passing it to the `getActivationTokenByURI` method:
 
       ```dart
-      final activationTokenResponse = await sdk.getActivationTokenByURI(verificationURL);
+      try {
+        final activationTokenResponse = await sdk.getActivationTokenByURI(verificationURL);
+      } on ActivationTokenException catch(e) {
+        // Handle the exception here.
+      }
       ```
 
    - [Email Code](https://miracl.com/resources/docs/guides/built-in-user-verification/email-code/):
@@ -128,8 +151,12 @@ different ways, depending on the type of verification.
       method:
 
       ```dart
-      final activationTokenResponse = 
+      try {
+        final activationTokenResponse = 
            await sdk.getActivationTokenByUserIdAndCode(userId, code);
+      } on ActivationTokenException catch(e) {
+        // Handle the exception here.
+      }
       ```
 
 2. Pass the User ID (email or any string you use for identification), activation
@@ -137,12 +164,15 @@ different ways, depending on the type of verification.
    method:
 
    ```dart
-   final user = await sdk.register(
-      userId, 
-      activationTokenResponse.activationToken, 
-      pin, 
-      null
-   );
+    try {
+      final user = await sdk.register(
+          userId, 
+          activationTokenResponse.activationToken, 
+          pin
+      );
+    } on RegistrationException catch(e) {
+      // Handle the exception here.
+    }
    ```
 
    If you call the `register` method with the same User ID more
@@ -162,7 +192,12 @@ The `authenticate` method generates a [JWT](https://jwt.io) authentication
 token for а registered user.
 
 ```dart
-final token = await sdk.authenticate(user, pin);
+try {
+  final token = await sdk.authenticate(user, pin);
+  // Send token to your server for verification.
+} on AuthenticationException catch(e) {
+  // Handle the exception here.
+}
 ```
 
 After the JWT authentication token is generated, it must be sent to the
@@ -180,8 +215,11 @@ There are three options for authenticating a user on another application:
   Use the `authenticateWithLink` method:
 
   ```dart
-
-  final isAuthenticated = sdk.authenticateWithLink(user, link, pin)
+  try {
+    final isAuthenticated = sdk.authenticateWithLink(user, link, pin)
+  } on AuthenticationException catch(e) {
+    // Handle the exception here.
+  }
   ```
 
   For information about handling deep links, see this [guide](https://docs.flutter.dev/ui/navigation/deep-linking).
@@ -191,7 +229,11 @@ There are three options for authenticating a user on another application:
   Use the `authenticateWithQrCode` method:
 
   ```dart
-  final isAuthenticated = await sdk.authenticateWithQrCode(user, qrURL, pin)
+  try {
+    final isAuthenticated = await sdk.authenticateWithQrCode(user, qrURL, pin)
+  } on AuthenticationException catch(e) {
+    // Handle the exception here.
+  }
   ```
 
 - Authenticate with push notifications payload:
@@ -199,7 +241,11 @@ There are three options for authenticating a user on another application:
   Use the `authenticateWithNotificationPayload`:
 
   ```dart
-  final isAuthenticated = sdk.authenticateWithNotificationPayload(payload, pin)
+  try {
+    final isAuthenticated = sdk.authenticateWithNotificationPayload(payload, pin)
+  } on AuthenticationException catch(e) {
+    // Handle the exception here.
+  }
   ```
 
 For more information about authenticating users on custom applications, see
@@ -215,7 +261,11 @@ In the context of this plugin, we refer to it as 'Signing'.
 To sign a document, use the `sign` method as follows:
 
 ```dart
-final signingResult = await sdk.sign(user, message, pin);
+try {
+  final signingResult = await sdk.sign(user, message, pin);
+} on SigningException catch(e) {
+  // Handle the exception here.
+}
 ```
 
 The signature must be verified by sending it to the application server, which then
@@ -233,7 +283,11 @@ To generate a QuickCode, call the `generateQuickCode` method with
 an already registered `MUser` object:
 
 ```dart
-final quickCode = await sdk.generateQuickCode(mUser, pin); 
+try {
+  final quickCode = await sdk.generateQuickCode(mUser, pin); 
+} on QuickCodeException catch(e) {
+  // Handle the exception here.
+}
 ```
 
 ## FAQ
