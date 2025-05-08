@@ -1,3 +1,3 @@
-## 0.0.2
+## 0.0.3
 
-* Update MIRACL Trust Android SDK to 1.0.1
+* Get MIRACL Trust Android SDK from Maven Central
