@@ -29,29 +29,6 @@ dependencies:
       url: https://github.com/miracl/trust-sdk-flutter-wrapper
 ```
 
-## **Android Setup**
-
-1. [Authenticate to GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry#authenticating-to-github-packages)
-
-1. Add the MIRACL Trust Android SDK Мaven repository to the code
-section in `project/android/build.gradle` as shown below:
-
-```gradle
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url = uri("https://maven.pkg.github.com/miracl/trust-sdk-android")
-            credentials {
-                username = System.getenv("GITHUB_USERNAME")
-                password = System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
-}
-```
-
 ## Usage
 
 ### Import
