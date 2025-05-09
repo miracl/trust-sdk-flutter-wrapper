@@ -1,3 +1,3 @@
-## 0.0.3
+## 0.1.0
 
-* Get MIRACL Trust Android SDK from Maven Central
+* Add concrete exceptions for every operation.

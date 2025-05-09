@@ -1,6 +1,6 @@
 name: flutter_miracl_sdk
-description: A new Flutter plugin project.
-version: 0.0.3
+description: MIRACL Trust Flutter plugin
+version: 0.1.0
 homepage:
 
 environment:
