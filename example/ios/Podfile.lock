@@ -1,6 +1,6 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_miracl_sdk (0.0.3):
+  - flutter_miracl_sdk (0.1.0):
     - Flutter
   - integration_test (0.0.1):
     - Flutter
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_miracl_sdk: 8e2ffea2318cfd0df8c306e6514eb98e95610255
+  flutter_miracl_sdk: 87f49b31da93354ca39b57d08ada177d9802b1e5
   integration_test: 4a889634ef21a45d28d50d622cf412dc6d9f586e
 
 PODFILE CHECKSUM: 4305caec6b40dde0ae97be1573c53de1882a07e5
