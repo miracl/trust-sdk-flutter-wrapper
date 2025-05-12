@@ -8,12 +8,12 @@ import 'test_helpers.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  final platformURL = "https://api.mpin.io";
-  final clientId = "";
-  final clientSecret = "";
-  final userId = "";
-  final dvProjectId = "";
-  final cuvProjectId = "";
+  const platformURL = String.fromEnvironment("TEST_BASE_URL");
+  const clientId = String.fromEnvironment("TEST_CUV_CLIENT_ID");
+  const clientSecret = String.fromEnvironment("TEST_CUV_CLIENT_SECRET");
+  const userId = String.fromEnvironment("TEST_USER_ID");
+  const dvProjectId = String.fromEnvironment("TEST_DV_PROJECT_ID");
+  const cuvProjectId = String.fromEnvironment("TEST_CUV_PROJECT_ID");
 
   testWidgets('test compatiblity', (WidgetTester tester) async {
       final pin = createRandomPin();
