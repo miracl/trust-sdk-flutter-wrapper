@@ -204,6 +204,8 @@ void main() {
       List<int> codeUnits = utf8.encode(myString);
       Uint8List message = Uint8List.fromList(codeUnits);
       final signingResult = await sdk.sign(user, message, pin);
+      final signatureVerificationResult = await verifySignature(signingResult, clientId, clientSecret, platformURL);
+      expect(signatureVerificationResult, equals(true));
 
       await expectLater(
         sdk.sign(user, message, wrongPin), 

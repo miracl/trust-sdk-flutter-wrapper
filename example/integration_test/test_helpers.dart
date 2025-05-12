@@ -1,13 +1,14 @@
 import 'dart:convert';
+import 'package:flutter_miracl_sdk/flutter_miracl_sdk.dart';
 import 'package:http/http.dart' as http;
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'dart:math';
 
 Future<String> getVerificationURL(
-  String projectId, 
-  String userId, 
-  String clientId, 
-  String clientSecret, 
+  String projectId,
+  String userId,
+  String clientId,
+  String clientSecret,
   String platformURL
 ) async {
     List<int> bytes = utf8.encode('$clientId:$clientSecret');
@@ -84,7 +85,7 @@ Future<String> startAuthenticationSession(
     return responseString["qrURL"];
 }
 
-String createRandomPin(){
+String createRandomPin() {
   final random = Random();
   List<int> randomDigits = List.generate(4, (_) => random.nextInt(10));
   String smh = randomDigits.map((word) => word.toString()).join();
@@ -92,10 +93,10 @@ String createRandomPin(){
 }
 
 Future<String> startSigningSession(
-  String projectId, 
+  String projectId,
   String userId,
   String hash,
-  String description, 
+  String description,
   String platformURL
 ) async {
     var request = http.Request('POST', Uri.parse('$platformURL/dvs/session'));
@@ -112,4 +113,39 @@ Future<String> startSigningSession(
     final responseString = jsonDecode(await response.stream.bytesToString());
 
     return responseString["qrURL"];
+}
+
+Future<bool> verifySignature(
+  MSigningResult signingResult,
+  String clientId,
+  String clientSecret,
+  String platformURL
+) async {
+    List<int> bytes = utf8.encode('$clientId:$clientSecret');
+    String base64String = base64Encode(bytes);
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Basic $base64String'
+    };
+
+    var request = http.Request('POST', Uri.parse('$platformURL/dvs/verify'));
+    final Map<String, dynamic> body = {
+      'signature': {
+         'u': signingResult.signature.u,
+         'v': signingResult.signature.v,
+         'dtas': signingResult.signature.dtas,
+         'mpinId': signingResult.signature.mpinId,
+         'hash': signingResult.signature.hash,
+         'publicKey': signingResult.signature.publicKey
+      },
+      'timestamp' : signingResult.timestamp,
+      'type': "verification"
+    };
+    final String jsonBody = jsonEncode(body);
+    request.body = jsonBody;
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    return response.statusCode == 200;
 }
