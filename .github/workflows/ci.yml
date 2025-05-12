@@ -1,0 +1,92 @@
+name: CI
+on:
+  push:
+    branches:
+      - '*'
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter --version
+
+      - name: Analyze
+        run: flutter analyze
+      
+      - name: Lint README.md
+        run: |
+            npm install -g markdownlint-cli
+            markdownlint README.md
+
+  tests-android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+    
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter --version
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Run integration tests
+        uses: reactivecircus/android-emulator-runner@v2
+        env: 
+          TEST_BASE_URL: ${{ vars.TEST_BASE_URL }}
+          TEST_CUV_CLIENT_SECRET: ${{ secrets.TEST_CUV_CLIENT_SECRET }}
+          TEST_CUV_CLIENT_ID: ${{ vars.TEST_CUV_CLIENT_ID }}
+          TEST_CUV_PROJECT_ID: ${{ vars.TEST_CUV_PROJECT_ID }}
+          TEST_DV_PROJECT_ID: ${{ vars.TEST_DV_PROJECT_ID }}
+          TEST_USER_ID: ${{ vars.TEST_USER_ID }}
+        with:
+          working-directory: ./example
+          api-level: 35
+          arch: "x86_64"
+          script: |
+            ./run-tests.sh emulator-5554
+
+  tests-ios:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter --version
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Run integration tests
+        working-directory: ./example
+        env: 
+          TEST_BASE_URL: ${{ vars.TEST_BASE_URL }}
+          TEST_CUV_CLIENT_SECRET: ${{ secrets.TEST_CUV_CLIENT_SECRET }}
+          TEST_CUV_CLIENT_ID: ${{ vars.TEST_CUV_CLIENT_ID }}
+          TEST_CUV_PROJECT_ID: ${{ vars.TEST_CUV_PROJECT_ID }}
+          TEST_DV_PROJECT_ID: ${{ vars.TEST_DV_PROJECT_ID }}
+          TEST_USER_ID: ${{ vars.TEST_USER_ID }}
+        run: |
+          xcrun simctl erase "iPhone 16"
+          xcrun simctl bootstatus "iPhone 16" -b
+          SIMULATOR_NAME="$(xcrun simctl list devices | grep "(Booted)" | grep -E -o -i "([0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12})")"
+          ./run-tests.sh $SIMULATOR_NAME
