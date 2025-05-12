@@ -116,7 +116,7 @@ Future<String> startSigningSession(
 }
 
 Future<bool> verifySignature(
-  MSigningResult signingResult,
+  SigningResult signingResult,
   String clientId,
   String clientSecret,
   String platformURL
