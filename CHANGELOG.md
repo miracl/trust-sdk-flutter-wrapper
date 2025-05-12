@@ -5,3 +5,7 @@
 ## 0.1.1
 
 * Fix: Convert Android signing timestamp from milliseconds to seconds.
+
+## 0.2.0
+
+* New response objects for SDK operations.

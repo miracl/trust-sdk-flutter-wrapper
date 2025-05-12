@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'flutter_miracl_sdk'
-  s.version          = '0.1.1'
+  s.version          = '0.2.0'
   s.summary          = 'MIRCAL Trust Flutter plugin'
   s.description      = <<-DESC
 MIRCAL Trust Flutter plugin.
