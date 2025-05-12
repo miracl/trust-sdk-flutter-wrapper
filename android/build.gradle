@@ -14,7 +14,6 @@ allprojects {
 }
 
 android {
-    ndkVersion "27.0.12077973"
     namespace "com.miracl.trust.flutter_miracl_sdk"
 
     compileSdkVersion 34
