@@ -1,5 +1,4 @@
-import 'package:collection/collection.dart';
-import 'pigeon.dart';
+part of 'miracl_trust.dart';
 
 class MIRACLException implements Exception {}
 
@@ -20,7 +19,7 @@ class EmailVerificationException extends MIRACLException {
   final int? backoff;
   final String? underlyingError;
 
-  EmailVerificationException(this.code ,this.message, this.backoff, this.underlyingError);
+  EmailVerificationException._create(this.code ,this.message, this.backoff, this.underlyingError);
 }
 
 enum ActivationTokenExceptionCode {
@@ -37,10 +36,10 @@ enum ActivationTokenExceptionCode {
 class ActivationTokenException extends MIRACLException {
   final ActivationTokenExceptionCode code;
   final String? message;
-  final MActivationTokenErrorResponse? activationTokenErrorResponse;
+  final ActivationTokenErrorResponse? activationTokenErrorResponse;
   final String? underlyingError;
 
-  ActivationTokenException(this.code, this.message, this.activationTokenErrorResponse, this.underlyingError);
+  ActivationTokenException._create(this.code, this.message, this.activationTokenErrorResponse, this.underlyingError);
 }
 
 enum RegistrationExceptionCode {
@@ -63,7 +62,7 @@ class RegistrationException extends MIRACLException {
   final String? message;
   final String? underlyingError;
 
-  RegistrationException(this.code, this.message, this.underlyingError);
+  RegistrationException._create(this.code, this.message, this.underlyingError);
 }
 
 enum AuthenticationExceptionCode {
@@ -91,7 +90,7 @@ class AuthenticationException extends MIRACLException {
   final String? message;
   final String? underlyingError;
 
-  AuthenticationException(this.code, this.message, this.underlyingError);
+  AuthenticationException._create(this.code, this.message, this.underlyingError);
 }
 
 enum QuickCodeExceptionCode {
@@ -112,7 +111,7 @@ class QuickCodeException extends MIRACLException {
   final String? message;
   final String? underlyingError;
 
-  QuickCodeException(this.code, this.message, this.underlyingError);
+  QuickCodeException._create(this.code, this.message, this.underlyingError);
 }
 
 enum AuthenticationSessionDetailsExceptionCode {
@@ -143,7 +142,7 @@ class AuthenticationSessionDetailsException extends MIRACLException {
   final String? message;
   final String? underlyingError;
 
-  AuthenticationSessionDetailsException(this.code, this.message, this.underlyingError);
+  AuthenticationSessionDetailsException._create(this.code, this.message, this.underlyingError);
 }
 
 enum SigningSessionDetailsExceptionCode {
@@ -167,7 +166,7 @@ class SigningSessionDetailsException extends MIRACLException {
   final String? message;
   final String? underlyingError;
 
-  SigningSessionDetailsException(this.code, this.message, this.underlyingError);
+  SigningSessionDetailsException._create(this.code, this.message, this.underlyingError);
 }
 
 enum SigningExceptionCode {
@@ -193,7 +192,7 @@ class SigningException extends MIRACLException {
   final String? message;
   final String? underlyingError;
 
-  SigningException(this.code, this.message, this.underlyingError);
+  SigningException._create(this.code, this.message, this.underlyingError);
 }
 
 enum ConfigurationExceptionCode {
@@ -212,5 +211,5 @@ class ConfigurationException extends MIRACLException {
   final ConfigurationExceptionCode code;
   final String? message;
 
-  ConfigurationException(this.code, this.message);
+  ConfigurationException._create(this.code, this.message);
 }

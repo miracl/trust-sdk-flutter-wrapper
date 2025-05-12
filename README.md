@@ -54,7 +54,7 @@ in `try/catch` statements.
 Configure the plugin as shown below:
 
 ```dart
-final configuration = MConfiguration(
+final configuration = Configuration(
     projectId: "YOUR_PROJECT_ID"
 );
 MIRACLTrust sdk = MIRACLTrust();
@@ -97,7 +97,7 @@ offers two options for that:
   ```
 
   Then, a verification email is sent, and a
-  `MEmailVerificationResponse`
+  `EmailVerificationResponse`
   with backoff and email verification method is returned.
 
   If the verification method you have chosen for your project is:
@@ -109,13 +109,13 @@ offers two options for that:
     - If the end user is registering for the first time or resetting their PIN,
       an email with a verification code will be sent, and the email
       verification method in the response will be
-      `MEmailVerificationMethod.code`.
+      `EmailVerificationMethod.code`.
       Then, ask the user to enter the code in the application.
 
     - If the end user has already registered another device with the same
       User ID, a Verification URL will be sent, and the verification method in
       the response will be
-      `MEmailVerificationMethod.link`.
+      `EmailVerificationMethod.link`.
       In this case, proceed as described for the **Email Link** verification
       method below.
 
@@ -280,11 +280,11 @@ entry in the response body indicates that the signing is successful.
 is a way to register another device without going through the verification process.
 
 To generate a QuickCode, call the `generateQuickCode` method with
-an already registered `MUser` object:
+an already registered `User` object:
 
 ```dart
 try {
-  final quickCode = await sdk.generateQuickCode(mUser, pin); 
+  final quickCode = await sdk.generateQuickCode(user, pin); 
 } on QuickCodeException catch(e) {
   // Handle the exception here.
 }
