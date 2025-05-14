@@ -664,7 +664,7 @@ class SdkHandler {
                             it.value.signature.hash, 
                             it.value.signature.publicKey
                         )
-                        val signingResult = MSigningResult(signature, it.value.timestamp.time)
+                        val signingResult = MSigningResult(signature, it.value.timestamp.secondsSince1970)
                         callback(
                             Result.success(signingResult)
                         )
