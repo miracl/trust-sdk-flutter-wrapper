@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_miracl_sdk/src/pigeon.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter_miracl_sdk/src/constants.dart';
 
 part 'models.dart';
 part 'exceptions.dart';
@@ -11,7 +12,10 @@ class MIRACLTrust {
 
   Future<void> initSDK(Configuration configuration) async {
     try {
-      final mConfiguration = MConfiguration(projectId: configuration.projectId);
+      final mConfiguration = MConfiguration(
+        projectId: configuration.projectId, 
+        applicationInfo: sdkApplicationInfo
+      );
       return await _sdk.initSdk(mConfiguration);
     } on PlatformException catch(e) {
       final configurationExceptionCode = ConfigurationExceptionCode.codeFromString(e.code);

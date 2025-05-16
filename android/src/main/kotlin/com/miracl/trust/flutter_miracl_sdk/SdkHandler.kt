@@ -24,9 +24,10 @@ import java.util.*
 class SdkHandler {
     fun initSdk(config: MConfiguration, context: Context, callback: (Result<Unit>) -> Unit) {
         try {
-            val configuration = Configuration.Builder(
-                config.projectId
-            ).build()
+            val configuration = Configuration
+                .Builder(config.projectId)
+                .applicationInfo(config.applicationInfo)
+                .build()
     
             MIRACLTrust.configure(context, configuration)
             callback(Result.success(Unit))

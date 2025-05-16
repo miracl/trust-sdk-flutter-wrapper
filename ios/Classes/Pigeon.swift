@@ -151,19 +151,23 @@ enum MSigningSessionStatus: Int {
 /// Generated class from Pigeon that represents data sent in messages.
 struct MConfiguration: Hashable {
   var projectId: String
+  var applicationInfo: String
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
   static func fromList(_ pigeonVar_list: [Any?]) -> MConfiguration? {
     let projectId = pigeonVar_list[0] as! String
+    let applicationInfo = pigeonVar_list[1] as! String
 
     return MConfiguration(
-      projectId: projectId
+      projectId: projectId,
+      applicationInfo: applicationInfo
     )
   }
   func toList() -> [Any?] {
     return [
-      projectId
+      projectId,
+      applicationInfo,
     ]
   }
   static func == (lhs: MConfiguration, rhs: MConfiguration) -> Bool {

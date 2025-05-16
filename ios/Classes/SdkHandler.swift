@@ -14,7 +14,10 @@ public class SdkHandler: NSObject, MiraclSdk {
     completion: @escaping (Result<Void, Error>) -> Void
   ) {
     do {
-        let conf = try Configuration.Builder(projectId: configuration.projectId).build()
+        let conf = try Configuration
+          .Builder(projectId: configuration.projectId)
+          .applicationInfo(applicationInfo: configuration.applicationInfo)
+          .build()
         completion(Result.success(try MIRACLTrust.configure(with: conf)))
     } catch {
         completion(Result.failure(createPigeonError(error: error)))

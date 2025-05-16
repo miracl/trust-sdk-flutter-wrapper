@@ -124,18 +124,21 @@ enum class MSigningSessionStatus(val raw: Int) {
 
 /** Generated class from Pigeon that represents data sent in messages. */
 data class MConfiguration (
-  val projectId: String
+  val projectId: String,
+  val applicationInfo: String
 )
  {
   companion object {
     fun fromList(pigeonVar_list: List<Any?>): MConfiguration {
       val projectId = pigeonVar_list[0] as String
-      return MConfiguration(projectId)
+      val applicationInfo = pigeonVar_list[1] as String
+      return MConfiguration(projectId, applicationInfo)
     }
   }
   fun toList(): List<Any?> {
     return listOf(
       projectId,
+      applicationInfo,
     )
   }
   override fun equals(other: Any?): Boolean {
