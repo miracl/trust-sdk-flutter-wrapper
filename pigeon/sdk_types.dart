@@ -2,8 +2,9 @@ import 'package:pigeon/pigeon.dart';
 
 class MConfiguration {
   final String projectId;
+  final String applicationInfo;
 
-  MConfiguration(this.projectId);
+  MConfiguration(this.projectId, this.applicationInfo);
 }
 
 class MActivationTokenResponse {

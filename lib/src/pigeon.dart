@@ -52,13 +52,17 @@ enum MSigningSessionStatus {
 class MConfiguration {
   MConfiguration({
     required this.projectId,
+    required this.applicationInfo,
   });
 
   String projectId;
 
+  String applicationInfo;
+
   List<Object?> _toList() {
     return <Object?>[
       projectId,
+      applicationInfo,
     ];
   }
 
@@ -69,6 +73,7 @@ class MConfiguration {
     result as List<Object?>;
     return MConfiguration(
       projectId: result[0]! as String,
+      applicationInfo: result[1]! as String,
     );
   }
 
