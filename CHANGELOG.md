@@ -9,3 +9,7 @@
 ## 0.2.0
 
 * New response objects for SDK operations.
+
+## 0.2.0+1
+
+* Configure the Flutter SDK version as applicationInfo.
