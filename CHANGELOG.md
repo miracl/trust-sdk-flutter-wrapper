@@ -13,3 +13,7 @@
 ## 0.2.0+1
 
 * Configure the Flutter SDK version as applicationInfo.
+
+## 0.2.0+2
+
+* Remove `collection` package dependency since it is not needed.
