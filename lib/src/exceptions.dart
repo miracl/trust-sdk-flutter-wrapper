@@ -9,7 +9,7 @@ enum EmailVerificationExceptionCode {
   verificaitonFail;
 
   static EmailVerificationExceptionCode? codeFromString(String value) {
-    return EmailVerificationExceptionCode.values.firstWhereOrNull((e) => e.name.toLowerCase() == value.toLowerCase());
+    return EmailVerificationExceptionCode.values._firstWhereOrNull((e) => e.name.toLowerCase() == value.toLowerCase());
   }
 }
 
@@ -29,7 +29,7 @@ enum ActivationTokenExceptionCode {
   getActivationTokenFail;
 
   static ActivationTokenExceptionCode? codeFromString(String value) {
-    return ActivationTokenExceptionCode.values.firstWhereOrNull((e) => e.name.toLowerCase() == value.toLowerCase());
+    return ActivationTokenExceptionCode.values._firstWhereOrNull((e) => e.name.toLowerCase() == value.toLowerCase());
   }
 }
 
@@ -53,7 +53,7 @@ enum RegistrationExceptionCode {
   projectMismatch;
 
   static RegistrationExceptionCode? codeFromString(String value) {
-    return RegistrationExceptionCode.values.firstWhereOrNull((e) => e.name.toLowerCase() == value.toLowerCase());
+    return RegistrationExceptionCode.values._firstWhereOrNull((e) => e.name.toLowerCase() == value.toLowerCase());
   }
 }
 
@@ -102,7 +102,7 @@ enum QuickCodeExceptionCode {
   generationFail;
 
   static QuickCodeExceptionCode? codeFromString(String value) {
-    return QuickCodeExceptionCode.values.firstWhereOrNull((e) => e.name.toLowerCase() == value.toLowerCase());
+    return QuickCodeExceptionCode.values._firstWhereOrNull((e) => e.name.toLowerCase() == value.toLowerCase());
   }
 }
 
@@ -133,7 +133,7 @@ enum AuthenticationSessionDetailsExceptionCode {
 
     return AuthenticationSessionDetailsExceptionCode
       .values
-      .firstWhereOrNull((e) => e.name.toLowerCase() == value.toLowerCase());
+      ._firstWhereOrNull((e) => e.name.toLowerCase() == value.toLowerCase());
   }
 }
 
@@ -157,7 +157,7 @@ enum SigningSessionDetailsExceptionCode {
     if (value == "InvalidAppLink" || value == "invalidUniversalLinkURL")  {
       return SigningSessionDetailsExceptionCode.invalidLink;
     }
-    return SigningSessionDetailsExceptionCode.values.firstWhereOrNull((e) => e.name.toLowerCase() == value.toLowerCase());
+    return SigningSessionDetailsExceptionCode.values._firstWhereOrNull((e) => e.name.toLowerCase() == value.toLowerCase());
   }
 }
 
@@ -182,7 +182,7 @@ enum SigningExceptionCode {
   invalidSigningSessionDetails;
 
   static SigningExceptionCode? codeFromString(String value) {
-    return SigningExceptionCode.values.firstWhereOrNull((e) => e.name.toLowerCase() == value.toLowerCase());
+    return SigningExceptionCode.values._firstWhereOrNull((e) => e.name.toLowerCase() == value.toLowerCase());
   }
 
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_miracl_sdk/src/pigeon.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter_miracl_sdk/src/constants.dart';
 
 part 'models.dart';

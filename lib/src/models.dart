@@ -13,7 +13,7 @@ enum EmailVerificationMethod {
   static EmailVerificationMethod getEmailVerificationMethod(
     String name
   ) {
-    return EmailVerificationMethod.values.firstWhereOrNull(
+    return EmailVerificationMethod.values._firstWhereOrNull(
       (e) => e.name == name
     ) ?? EmailVerificationMethod.link;
   }
@@ -76,7 +76,7 @@ enum VerificationMethod {
   static VerificationMethod getVerificationMethod(
     MVerificationMethod mVerificationMethod
   ) {
-    return VerificationMethod.values.firstWhereOrNull(
+    return VerificationMethod.values._firstWhereOrNull(
       (e) => e.name == mVerificationMethod.name
     ) ?? VerificationMethod.standardEmail;
   }
@@ -90,7 +90,7 @@ enum IdentityType {
   static IdentityType getIdentityType(
     String name
   ) {
-    return IdentityType.values.firstWhereOrNull(
+    return IdentityType.values._firstWhereOrNull(
       (e) => e.name == name
     ) ?? IdentityType.alphanumeric;
   }
@@ -175,7 +175,7 @@ enum SigningSessionStatus {
   static SigningSessionStatus getSigningSessionStatus(
     String name
   ) {
-    return SigningSessionStatus.values.firstWhereOrNull(
+    return SigningSessionStatus.values._firstWhereOrNull(
       (e) => e.name == name
     ) ?? SigningSessionStatus.active;
   }
