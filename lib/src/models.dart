@@ -59,12 +59,14 @@ class User {
   String userId;
   String projectId;
   bool revoked;
+  int pinLength;
   String hashedMpinId;
 
   User._create({
     required this.userId,
     required this.projectId,
     required this.revoked,
+    required this.pinLength,
     required this.hashedMpinId,
   });
 }

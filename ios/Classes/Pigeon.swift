@@ -465,6 +465,7 @@ struct MUser: Hashable {
   var projectId: String
   var revoked: Bool
   var userId: String
+  var pinLength: Int64
   var hashedMpinId: String
 
 
@@ -473,12 +474,14 @@ struct MUser: Hashable {
     let projectId = pigeonVar_list[0] as! String
     let revoked = pigeonVar_list[1] as! Bool
     let userId = pigeonVar_list[2] as! String
-    let hashedMpinId = pigeonVar_list[3] as! String
+    let pinLength = pigeonVar_list[3] as! Int64
+    let hashedMpinId = pigeonVar_list[4] as! String
 
     return MUser(
       projectId: projectId,
       revoked: revoked,
       userId: userId,
+      pinLength: pinLength,
       hashedMpinId: hashedMpinId
     )
   }
@@ -487,6 +490,7 @@ struct MUser: Hashable {
       projectId,
       revoked,
       userId,
+      pinLength,
       hashedMpinId,
     ]
   }

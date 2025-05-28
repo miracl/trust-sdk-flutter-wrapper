@@ -67,9 +67,10 @@ extension on MActivationTokenErrorResponse {
 extension on MUser {
   User _toUser(){
     return User._create(
-        userId: userId, 
+        userId: userId,
         projectId: projectId,
-        revoked: revoked, 
+        revoked: revoked,
+        pinLength: pinLength,
         hashedMpinId: hashedMpinId
     );
   }
@@ -78,9 +79,10 @@ extension on MUser {
 extension on User {
   MUser _toMUser(){
     return MUser(
-      projectId: projectId, 
-      revoked: revoked, 
-      userId: userId, 
+      projectId: projectId,
+      revoked: revoked,
+      userId: userId,
+      pinLength: pinLength,
       hashedMpinId: hashedMpinId
     );
   }

@@ -462,6 +462,7 @@ class MUser {
     required this.projectId,
     required this.revoked,
     required this.userId,
+    required this.pinLength,
     required this.hashedMpinId,
   });
 
@@ -471,6 +472,8 @@ class MUser {
 
   String userId;
 
+  int pinLength;
+
   String hashedMpinId;
 
   List<Object?> _toList() {
@@ -478,6 +481,7 @@ class MUser {
       projectId,
       revoked,
       userId,
+      pinLength,
       hashedMpinId,
     ];
   }
@@ -491,7 +495,8 @@ class MUser {
       projectId: result[0]! as String,
       revoked: result[1]! as bool,
       userId: result[2]! as String,
-      hashedMpinId: result[3]! as String,
+      pinLength: result[3]! as int,
+      hashedMpinId: result[4]! as String,
     );
   }
 

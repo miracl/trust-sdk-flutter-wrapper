@@ -782,9 +782,13 @@ class SdkHandler {
         }
     } 
 
-    private fun userToMUser(user: User): MUser {
-        return MUser(projectId = user.projectId, revoked = user.revoked, userId = user.userId, hashedMpinId = user.hashedMpinId);
-    }
+    private fun userToMUser(user: User) = MUser(
+        projectId = user.projectId,
+        revoked = user.revoked,
+        userId = user.userId,
+        pinLength = user.pinLength.toLong(),
+        hashedMpinId = user.hashedMpinId
+    )
 
     private fun mapExceptionToFlutter(error: Exception, details: Map<String, Any?>? = null): FlutterError {
         return FlutterError(
