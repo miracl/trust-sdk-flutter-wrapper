@@ -56,11 +56,11 @@ class ActivationTokenErrorResponse {
 }
 
 class User {
-  String userId;
-  String projectId;
-  bool revoked;
-  int pinLength;
-  String hashedMpinId;
+  final String userId;
+  final String projectId;
+  final bool revoked;
+  final int pinLength;
+  final String hashedMpinId;
 
   User._create({
     required this.userId,
