@@ -117,12 +117,14 @@ class MUser {
   final String projectId;
   final bool revoked;
   final String userId;
+  final int pinLength;
   final String hashedMpinId;
 
   MUser(
     this.projectId,
     this.revoked,
     this.userId,
+    this.pinLength,
     this.hashedMpinId,
   );
 }

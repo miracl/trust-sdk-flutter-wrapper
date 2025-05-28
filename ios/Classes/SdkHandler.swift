@@ -670,7 +670,13 @@ public class SdkHandler: NSObject, MiraclSdk {
   }
 
   private func userToMUser(user:User) -> MUser {
-      return MUser(projectId: user.projectId, revoked: user.revoked, userId: user.userId, hashedMpinId: user.hashedMpinId);
+      return MUser(
+        projectId: user.projectId,
+        revoked: user.revoked,
+        userId: user.userId,
+        pinLength: Int64(user.pinLength),
+        hashedMpinId: user.hashedMpinId
+      )
   }
 
   private func createPigeonError(error: any Error, details:[String: Any]? = nil) -> PigeonError {

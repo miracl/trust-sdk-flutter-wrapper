@@ -473,6 +473,7 @@ data class MUser (
   val projectId: String,
   val revoked: Boolean,
   val userId: String,
+  val pinLength: Long,
   val hashedMpinId: String
 )
  {
@@ -481,8 +482,9 @@ data class MUser (
       val projectId = pigeonVar_list[0] as String
       val revoked = pigeonVar_list[1] as Boolean
       val userId = pigeonVar_list[2] as String
-      val hashedMpinId = pigeonVar_list[3] as String
-      return MUser(projectId, revoked, userId, hashedMpinId)
+      val pinLength = pigeonVar_list[3] as Long
+      val hashedMpinId = pigeonVar_list[4] as String
+      return MUser(projectId, revoked, userId, pinLength, hashedMpinId)
     }
   }
   fun toList(): List<Any?> {
@@ -490,6 +492,7 @@ data class MUser (
       projectId,
       revoked,
       userId,
+      pinLength,
       hashedMpinId,
     )
   }
