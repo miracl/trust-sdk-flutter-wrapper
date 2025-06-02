@@ -1,12 +1,6 @@
 import MIRACLTrust
 import Flutter
 
-extension Error {
-    var errorDebugDescription: String {
-        return String(describing: self).components(separatedBy: "(").first ?? String(describing: self)
-    }
-}
-
 public class SdkHandler: NSObject, MiraclSdk {
 
   func initSdk(
@@ -20,7 +14,11 @@ public class SdkHandler: NSObject, MiraclSdk {
           .build()
         completion(Result.success(try MIRACLTrust.configure(with: conf)))
     } catch {
-        completion(Result.failure(createPigeonError(error: error)))
+        var details = [String: Any]()
+        if let configurationError = error as? ConfigurationError {
+          details["exceptionCode"] = configurationError.flutterExceptionCodeRepresentation
+        }
+        completion(Result.failure(createPigeonError(error: error, details: details)))
     }
   }
 
@@ -36,7 +34,11 @@ public class SdkHandler: NSObject, MiraclSdk {
           )
         )
     } catch {
-        completion(Result.failure(error))
+        var details = [String: Any]()
+        if let configurationError = error as? ConfigurationError {
+          details["exceptionCode"] = configurationError.flutterExceptionCodeRepresentation
+        }
+        completion(Result.failure(createPigeonError(error: error, details: details)))
     }
   }
 
@@ -47,7 +49,12 @@ public class SdkHandler: NSObject, MiraclSdk {
     MIRACLTrust.getInstance().sendVerificationEmail(userId: userId) { response, error in
         if let error {
             var details = [String: Any]()
-            if case let VerificationError.verificaitonFail(verificationError) 
+
+            if let verificationError = error as? VerificationError {
+                details["exceptionCode"] = verificationError.flutterExceptionCodeRepresentation
+            }
+
+            if case let VerificationError.verificaitonFail(verificationError)
                             = error, let verificationError { 
                 details["error"] = verificationError.errorDebugDescription       
             }
@@ -79,6 +86,11 @@ public class SdkHandler: NSObject, MiraclSdk {
             completionHandler: { activationTokenResponse, error in
                 if let error {
                     var details = [String: Any]()
+
+                    if let activationTokenError = error as? ActivationTokenError {
+                        details["exceptionCode"] = activationTokenError.flutterExceptionCodeRepresentation
+                    }
+                    
                     if let activationTokenError = error as? ActivationTokenError {
                         if case let ActivationTokenError.unsuccessfulVerification(activationTokenErrorResponse: response) 
                             = error, let response {
@@ -126,6 +138,11 @@ public class SdkHandler: NSObject, MiraclSdk {
             completionHandler: { activationTokenResponse, error in
                 if let error {
                     var details = [String: Any]()
+
+                    if let activationTokenError = error as? ActivationTokenError {
+                        details["exceptionCode"] = activationTokenError.flutterExceptionCodeRepresentation
+                    }
+                    
                     if let activationTokenError = error as? ActivationTokenError {
                         if case let ActivationTokenError.unsuccessfulVerification(activationTokenErrorResponse: response) 
                             = error, let response {
@@ -202,6 +219,10 @@ public class SdkHandler: NSObject, MiraclSdk {
       } completionHandler: { user, error in
           if let error {
             var details = [String: Any]()
+              
+            if let registrationError = error as? RegistrationError {
+              details["exceptionCode"] = registrationError.flutterExceptionCodeRepresentation
+            }
 
             if case let RegistrationError.registrationFail(registrationError) = error, let registrationError { 
               details["error"] = registrationError.errorDebugDescription       
@@ -225,8 +246,12 @@ public class SdkHandler: NSObject, MiraclSdk {
           MIRACLTrust.getInstance().generateQuickCode(user: sdkUser) { processPinHandler in
               processPinHandler(pin)
           } completionHandler: { quickCode, error in
-                if let error = error {
+              if let error = error {
                   var details = [String: Any]()
+                    
+                  if let quickCodeError = error as? QuickCodeError {
+                      details["exceptionCode"] = quickCodeError.flutterExceptionCodeRepresentation
+                  }
 
                   if case let QuickCodeError.generationFail(quikcCodeError) = error, let quikcCodeError { 
                     details["error"] = quikcCodeError.errorDebugDescription       
@@ -259,6 +284,10 @@ public class SdkHandler: NSObject, MiraclSdk {
               if let error = error {
                   var details = [String: Any]()
 
+                  if let authError = error as? AuthenticationError {
+                    details["exceptionCode"] = authError.flutterExceptionCodeRepresentation
+                  }
+
                   if case let AuthenticationError.authenticationFail(authenticationError) = error, let authenticationError { 
                     details["error"] = authenticationError.errorDebugDescription       
                   }
@@ -285,6 +314,10 @@ public class SdkHandler: NSObject, MiraclSdk {
          } completionHandler: { result, error in
              if let error = error {
                   var details = [String: Any]()
+
+                  if let authError = error as? AuthenticationError {
+                    details["exceptionCode"] = authError.flutterExceptionCodeRepresentation
+                  }
 
                   if case let AuthenticationError.authenticationFail(authenticationError) = error, let authenticationError { 
                     details["error"] = authenticationError.errorDebugDescription       
@@ -317,6 +350,10 @@ public class SdkHandler: NSObject, MiraclSdk {
              if let error = error {
                   var details = [String: Any]()
 
+                  if let authError = error as? AuthenticationError {
+                    details["exceptionCode"] = authError.flutterExceptionCodeRepresentation
+                  }
+
                   if case let AuthenticationError.authenticationFail(authenticationError) = error, let authenticationError { 
                     details["error"] = authenticationError.errorDebugDescription       
                   }
@@ -343,6 +380,10 @@ public class SdkHandler: NSObject, MiraclSdk {
         } else if let error{
             var details = [String: Any]()
 
+            if let authError = error as? AuthenticationError {
+              details["exceptionCode"] = authError.flutterExceptionCodeRepresentation
+            }
+
             if case let AuthenticationError.authenticationFail(authenticationError) = error, let authenticationError { 
               details["error"] = authenticationError.errorDebugDescription       
             }
@@ -361,6 +402,10 @@ public class SdkHandler: NSObject, MiraclSdk {
           if let error = error {
             var details = [String: Any]()
 
+            if let authenticationSessionError = error as? AuthenticationSessionError {
+              details["exceptionCode"] = authenticationSessionError.flutterExceptionCodeRepresentation
+            }
+              
             if case let AuthenticationSessionError.getAuthenticationSessionDetailsFail(authenticationSessionError) = error, let authenticationSessionError { 
               details["error"] = authenticationSessionError.errorDebugDescription       
             }
@@ -398,6 +443,10 @@ public class SdkHandler: NSObject, MiraclSdk {
         if let error = error {
             var details = [String: Any]()
 
+            if let authenticationSessionError = error as? AuthenticationSessionError {
+              details["exceptionCode"] = authenticationSessionError.flutterExceptionCodeRepresentation
+            }
+
             if case let AuthenticationSessionError.getAuthenticationSessionDetailsFail(authenticationSessionError) = error, let authenticationSessionError { 
               details["error"] = authenticationSessionError.errorDebugDescription       
             }
@@ -434,6 +483,10 @@ public class SdkHandler: NSObject, MiraclSdk {
       ) { authSession, error in
         if let error = error {
             var details = [String: Any]()
+
+            if let authenticationSessionError = error as? AuthenticationSessionError {
+              details["exceptionCode"] = authenticationSessionError.flutterExceptionCodeRepresentation
+            }
 
             if case let AuthenticationSessionError.getAuthenticationSessionDetailsFail(authenticationSessionError) = error, let authenticationSessionError { 
               details["error"] = authenticationSessionError.errorDebugDescription       
@@ -479,6 +532,10 @@ public class SdkHandler: NSObject, MiraclSdk {
                 }, completionHandler: { signingResult, error in
                     if let error = error {
                       var details = [String: Any]()
+                        
+                      if let signingError = error as? SigningError {
+                        details["exceptionCode"] = signingError.flutterExceptionCodeRepresentation
+                      }
 
                       if case let SigningError.signingFail(signingError) = error, let signingError { 
                         details["error"] = signingError.errorDebugDescription       
@@ -538,6 +595,10 @@ public class SdkHandler: NSObject, MiraclSdk {
             completion(Result.success(mSigningSessionDetails))
           } else if let error {
             var details = [String: Any]()
+              
+            if let signingSessionError = error as? SigningSessionError {
+              details["exceptionCode"] = signingSessionError.flutterExceptionCodeRepresentation
+            }
 
             if case let SigningSessionError.getSigningSessionDetailsFail(signingSessionError) = error, let signingSessionError { 
               details["error"] = signingSessionError.errorDebugDescription       
@@ -581,6 +642,10 @@ public class SdkHandler: NSObject, MiraclSdk {
             completion(Result.success(mSigningSessionDetails))
           } else if let error {
             var details = [String: Any]()
+              
+            if let signingSessionError = error as? SigningSessionError {
+              details["exceptionCode"] = signingSessionError.flutterExceptionCodeRepresentation
+            }
 
             if case let SigningSessionError.getSigningSessionDetailsFail(signingSessionError) = error, let signingSessionError { 
               details["error"] = signingSessionError.errorDebugDescription       

@@ -23,6 +23,10 @@ void main() {
       
       final configuration = Configuration(projectId: dvProjectId);
       await sdk.initSDK(configuration);
+      await expectLater(
+        sdk.initSDK(Configuration(projectId: "")),
+        throwsA(isA<ConfigurationException>().having( (e) => e.code, "", equals(ConfigurationExceptionCode.emptyProjectId)))
+      );
 
       // Send verification email.
       await sdk.sendVerificationEmail(userId);
