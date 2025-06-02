@@ -168,6 +168,90 @@ class MEmailVerificationResponse {
   MEmailVerificationResponse(this.backoff, this.emailVerificationMethod);
 }
 
+enum ConfigurationExceptionCode {
+  emptyProjectId;
+}
+
+enum EmailVerificationExceptionCode {
+  emptyUserId,
+  invalidSessionDetails,
+  requestBackoff,
+  verificaitonFail;
+}
+
+enum ActivationTokenExceptionCode {
+  emptyUserId,
+  emptyVerificationCode,
+  unsuccessfulVerification,
+  getActivationTokenFail;
+}
+
+enum RegistrationExceptionCode {
+  emptyUserId,
+  emptyActivationToken,
+  invalidActivationToken,
+  registrationFail,
+  unsupportedEllipticCurve,
+  pinCancelled,
+  invalidPin,
+  projectMismatch;
+}
+
+enum AuthenticationExceptionCode {
+  invalidUserData,
+  invalidQRCode,
+  invalidPushNotificationPayload,
+  userNotFound,
+  invalidUniversalLink,
+  authenticationFail,
+  revoked,
+  invalidAuthenticationSession,
+  unsuccessfulAuthentication,
+  pinCancelled,
+  invalidPin;
+}
+
+enum QuickCodeExceptionCode {
+  revoked,
+  unsuccessfulAuthentication,
+  pinCancelled,
+  invalidPin,
+  limitedQuickCodeGeneration,
+  generationFail;
+}
+
+enum AuthenticationSessionDetailsExceptionCode {
+  invalidLink,
+  invalidQRCode,
+  invalidNotificationPayload,
+  invalidAuthenticationSessionDetails,
+  getAuthenticationSessionDetailsFail,
+  abortSessionFail;
+}
+
+enum SigningSessionDetailsExceptionCode {
+  invalidLink,
+  invalidQRCode,
+  invalidSigningSessionDetails,
+  getSigningSessionDetailsFail,
+  invalidSigningSession,
+  completeSigningSessionFail,
+  abortSigningSessionFail;
+}
+
+enum SigningExceptionCode {
+  emptyMessageHash,
+  emptyPublicKey,
+  invalidUserData,
+  pinCancelled,
+  invalidPin,
+  signingFail,
+  revoked,
+  unsuccessfulAuthentication,
+  invalidSigningSession,
+  invalidSigningSessionDetails;
+}
+
 @HostApi()
 abstract class MiraclSdk {
   @async

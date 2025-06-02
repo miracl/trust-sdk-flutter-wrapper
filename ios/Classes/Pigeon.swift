@@ -148,6 +148,90 @@ enum MSigningSessionStatus: Int {
   case signed = 1
 }
 
+enum ConfigurationExceptionCode: Int {
+  case emptyProjectId = 0
+}
+
+enum EmailVerificationExceptionCode: Int {
+  case emptyUserId = 0
+  case invalidSessionDetails = 1
+  case requestBackoff = 2
+  case verificaitonFail = 3
+}
+
+enum ActivationTokenExceptionCode: Int {
+  case emptyUserId = 0
+  case emptyVerificationCode = 1
+  case unsuccessfulVerification = 2
+  case getActivationTokenFail = 3
+}
+
+enum RegistrationExceptionCode: Int {
+  case emptyUserId = 0
+  case emptyActivationToken = 1
+  case invalidActivationToken = 2
+  case registrationFail = 3
+  case unsupportedEllipticCurve = 4
+  case pinCancelled = 5
+  case invalidPin = 6
+  case projectMismatch = 7
+}
+
+enum AuthenticationExceptionCode: Int {
+  case invalidUserData = 0
+  case invalidQRCode = 1
+  case invalidPushNotificationPayload = 2
+  case userNotFound = 3
+  case invalidUniversalLink = 4
+  case authenticationFail = 5
+  case revoked = 6
+  case invalidAuthenticationSession = 7
+  case unsuccessfulAuthentication = 8
+  case pinCancelled = 9
+  case invalidPin = 10
+}
+
+enum QuickCodeExceptionCode: Int {
+  case revoked = 0
+  case unsuccessfulAuthentication = 1
+  case pinCancelled = 2
+  case invalidPin = 3
+  case limitedQuickCodeGeneration = 4
+  case generationFail = 5
+}
+
+enum AuthenticationSessionDetailsExceptionCode: Int {
+  case invalidLink = 0
+  case invalidQRCode = 1
+  case invalidNotificationPayload = 2
+  case invalidAuthenticationSessionDetails = 3
+  case getAuthenticationSessionDetailsFail = 4
+  case abortSessionFail = 5
+}
+
+enum SigningSessionDetailsExceptionCode: Int {
+  case invalidLink = 0
+  case invalidQRCode = 1
+  case invalidSigningSessionDetails = 2
+  case getSigningSessionDetailsFail = 3
+  case invalidSigningSession = 4
+  case completeSigningSessionFail = 5
+  case abortSigningSessionFail = 6
+}
+
+enum SigningExceptionCode: Int {
+  case emptyMessageHash = 0
+  case emptyPublicKey = 1
+  case invalidUserData = 2
+  case pinCancelled = 3
+  case invalidPin = 4
+  case signingFail = 5
+  case revoked = 6
+  case unsuccessfulAuthentication = 7
+  case invalidSigningSession = 8
+  case invalidSigningSessionDetails = 9
+}
+
 /// Generated class from Pigeon that represents data sent in messages.
 struct MConfiguration: Hashable {
   var projectId: String
@@ -610,24 +694,78 @@ private class PigeonPigeonCodecReader: FlutterStandardReader {
       }
       return nil
     case 133:
-      return MConfiguration.fromList(self.readValue() as! [Any?])
+      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
+      if let enumResultAsInt = enumResultAsInt {
+        return ConfigurationExceptionCode(rawValue: enumResultAsInt)
+      }
+      return nil
     case 134:
-      return MActivationTokenResponse.fromList(self.readValue() as! [Any?])
+      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
+      if let enumResultAsInt = enumResultAsInt {
+        return EmailVerificationExceptionCode(rawValue: enumResultAsInt)
+      }
+      return nil
     case 135:
-      return MAuthenticationSessionDetails.fromList(self.readValue() as! [Any?])
+      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
+      if let enumResultAsInt = enumResultAsInt {
+        return ActivationTokenExceptionCode(rawValue: enumResultAsInt)
+      }
+      return nil
     case 136:
-      return MSigningSessionDetails.fromList(self.readValue() as! [Any?])
+      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
+      if let enumResultAsInt = enumResultAsInt {
+        return RegistrationExceptionCode(rawValue: enumResultAsInt)
+      }
+      return nil
     case 137:
-      return MUser.fromList(self.readValue() as! [Any?])
+      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
+      if let enumResultAsInt = enumResultAsInt {
+        return AuthenticationExceptionCode(rawValue: enumResultAsInt)
+      }
+      return nil
     case 138:
-      return MQuickCode.fromList(self.readValue() as! [Any?])
+      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
+      if let enumResultAsInt = enumResultAsInt {
+        return QuickCodeExceptionCode(rawValue: enumResultAsInt)
+      }
+      return nil
     case 139:
-      return MSignature.fromList(self.readValue() as! [Any?])
+      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
+      if let enumResultAsInt = enumResultAsInt {
+        return AuthenticationSessionDetailsExceptionCode(rawValue: enumResultAsInt)
+      }
+      return nil
     case 140:
-      return MSigningResult.fromList(self.readValue() as! [Any?])
+      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
+      if let enumResultAsInt = enumResultAsInt {
+        return SigningSessionDetailsExceptionCode(rawValue: enumResultAsInt)
+      }
+      return nil
     case 141:
-      return MActivationTokenErrorResponse.fromList(self.readValue() as! [Any?])
+      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
+      if let enumResultAsInt = enumResultAsInt {
+        return SigningExceptionCode(rawValue: enumResultAsInt)
+      }
+      return nil
     case 142:
+      return MConfiguration.fromList(self.readValue() as! [Any?])
+    case 143:
+      return MActivationTokenResponse.fromList(self.readValue() as! [Any?])
+    case 144:
+      return MAuthenticationSessionDetails.fromList(self.readValue() as! [Any?])
+    case 145:
+      return MSigningSessionDetails.fromList(self.readValue() as! [Any?])
+    case 146:
+      return MUser.fromList(self.readValue() as! [Any?])
+    case 147:
+      return MQuickCode.fromList(self.readValue() as! [Any?])
+    case 148:
+      return MSignature.fromList(self.readValue() as! [Any?])
+    case 149:
+      return MSigningResult.fromList(self.readValue() as! [Any?])
+    case 150:
+      return MActivationTokenErrorResponse.fromList(self.readValue() as! [Any?])
+    case 151:
       return MEmailVerificationResponse.fromList(self.readValue() as! [Any?])
     default:
       return super.readValue(ofType: type)
@@ -649,35 +787,62 @@ private class PigeonPigeonCodecWriter: FlutterStandardWriter {
     } else if let value = value as? MSigningSessionStatus {
       super.writeByte(132)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MConfiguration {
+    } else if let value = value as? ConfigurationExceptionCode {
       super.writeByte(133)
+      super.writeValue(value.rawValue)
+    } else if let value = value as? EmailVerificationExceptionCode {
+      super.writeByte(134)
+      super.writeValue(value.rawValue)
+    } else if let value = value as? ActivationTokenExceptionCode {
+      super.writeByte(135)
+      super.writeValue(value.rawValue)
+    } else if let value = value as? RegistrationExceptionCode {
+      super.writeByte(136)
+      super.writeValue(value.rawValue)
+    } else if let value = value as? AuthenticationExceptionCode {
+      super.writeByte(137)
+      super.writeValue(value.rawValue)
+    } else if let value = value as? QuickCodeExceptionCode {
+      super.writeByte(138)
+      super.writeValue(value.rawValue)
+    } else if let value = value as? AuthenticationSessionDetailsExceptionCode {
+      super.writeByte(139)
+      super.writeValue(value.rawValue)
+    } else if let value = value as? SigningSessionDetailsExceptionCode {
+      super.writeByte(140)
+      super.writeValue(value.rawValue)
+    } else if let value = value as? SigningExceptionCode {
+      super.writeByte(141)
+      super.writeValue(value.rawValue)
+    } else if let value = value as? MConfiguration {
+      super.writeByte(142)
       super.writeValue(value.toList())
     } else if let value = value as? MActivationTokenResponse {
-      super.writeByte(134)
+      super.writeByte(143)
       super.writeValue(value.toList())
     } else if let value = value as? MAuthenticationSessionDetails {
-      super.writeByte(135)
+      super.writeByte(144)
       super.writeValue(value.toList())
     } else if let value = value as? MSigningSessionDetails {
-      super.writeByte(136)
+      super.writeByte(145)
       super.writeValue(value.toList())
     } else if let value = value as? MUser {
-      super.writeByte(137)
+      super.writeByte(146)
       super.writeValue(value.toList())
     } else if let value = value as? MQuickCode {
-      super.writeByte(138)
+      super.writeByte(147)
       super.writeValue(value.toList())
     } else if let value = value as? MSignature {
-      super.writeByte(139)
+      super.writeByte(148)
       super.writeValue(value.toList())
     } else if let value = value as? MSigningResult {
-      super.writeByte(140)
+      super.writeByte(149)
       super.writeValue(value.toList())
     } else if let value = value as? MActivationTokenErrorResponse {
-      super.writeByte(141)
+      super.writeByte(150)
       super.writeValue(value.toList())
     } else if let value = value as? MEmailVerificationResponse {
-      super.writeByte(142)
+      super.writeByte(151)
       super.writeValue(value.toList())
     } else {
       super.writeValue(value)

@@ -49,6 +49,90 @@ enum MSigningSessionStatus {
   signed,
 }
 
+enum ConfigurationExceptionCode {
+  emptyProjectId,
+}
+
+enum EmailVerificationExceptionCode {
+  emptyUserId,
+  invalidSessionDetails,
+  requestBackoff,
+  verificaitonFail,
+}
+
+enum ActivationTokenExceptionCode {
+  emptyUserId,
+  emptyVerificationCode,
+  unsuccessfulVerification,
+  getActivationTokenFail,
+}
+
+enum RegistrationExceptionCode {
+  emptyUserId,
+  emptyActivationToken,
+  invalidActivationToken,
+  registrationFail,
+  unsupportedEllipticCurve,
+  pinCancelled,
+  invalidPin,
+  projectMismatch,
+}
+
+enum AuthenticationExceptionCode {
+  invalidUserData,
+  invalidQRCode,
+  invalidPushNotificationPayload,
+  userNotFound,
+  invalidUniversalLink,
+  authenticationFail,
+  revoked,
+  invalidAuthenticationSession,
+  unsuccessfulAuthentication,
+  pinCancelled,
+  invalidPin,
+}
+
+enum QuickCodeExceptionCode {
+  revoked,
+  unsuccessfulAuthentication,
+  pinCancelled,
+  invalidPin,
+  limitedQuickCodeGeneration,
+  generationFail,
+}
+
+enum AuthenticationSessionDetailsExceptionCode {
+  invalidLink,
+  invalidQRCode,
+  invalidNotificationPayload,
+  invalidAuthenticationSessionDetails,
+  getAuthenticationSessionDetailsFail,
+  abortSessionFail,
+}
+
+enum SigningSessionDetailsExceptionCode {
+  invalidLink,
+  invalidQRCode,
+  invalidSigningSessionDetails,
+  getSigningSessionDetailsFail,
+  invalidSigningSession,
+  completeSigningSessionFail,
+  abortSigningSessionFail,
+}
+
+enum SigningExceptionCode {
+  emptyMessageHash,
+  emptyPublicKey,
+  invalidUserData,
+  pinCancelled,
+  invalidPin,
+  signingFail,
+  revoked,
+  unsuccessfulAuthentication,
+  invalidSigningSession,
+  invalidSigningSessionDetails,
+}
+
 class MConfiguration {
   MConfiguration({
     required this.projectId,
@@ -709,35 +793,62 @@ class _PigeonCodec extends StandardMessageCodec {
     }    else if (value is MSigningSessionStatus) {
       buffer.putUint8(132);
       writeValue(buffer, value.index);
-    }    else if (value is MConfiguration) {
+    }    else if (value is ConfigurationExceptionCode) {
       buffer.putUint8(133);
+      writeValue(buffer, value.index);
+    }    else if (value is EmailVerificationExceptionCode) {
+      buffer.putUint8(134);
+      writeValue(buffer, value.index);
+    }    else if (value is ActivationTokenExceptionCode) {
+      buffer.putUint8(135);
+      writeValue(buffer, value.index);
+    }    else if (value is RegistrationExceptionCode) {
+      buffer.putUint8(136);
+      writeValue(buffer, value.index);
+    }    else if (value is AuthenticationExceptionCode) {
+      buffer.putUint8(137);
+      writeValue(buffer, value.index);
+    }    else if (value is QuickCodeExceptionCode) {
+      buffer.putUint8(138);
+      writeValue(buffer, value.index);
+    }    else if (value is AuthenticationSessionDetailsExceptionCode) {
+      buffer.putUint8(139);
+      writeValue(buffer, value.index);
+    }    else if (value is SigningSessionDetailsExceptionCode) {
+      buffer.putUint8(140);
+      writeValue(buffer, value.index);
+    }    else if (value is SigningExceptionCode) {
+      buffer.putUint8(141);
+      writeValue(buffer, value.index);
+    }    else if (value is MConfiguration) {
+      buffer.putUint8(142);
       writeValue(buffer, value.encode());
     }    else if (value is MActivationTokenResponse) {
-      buffer.putUint8(134);
+      buffer.putUint8(143);
       writeValue(buffer, value.encode());
     }    else if (value is MAuthenticationSessionDetails) {
-      buffer.putUint8(135);
+      buffer.putUint8(144);
       writeValue(buffer, value.encode());
     }    else if (value is MSigningSessionDetails) {
-      buffer.putUint8(136);
+      buffer.putUint8(145);
       writeValue(buffer, value.encode());
     }    else if (value is MUser) {
-      buffer.putUint8(137);
+      buffer.putUint8(146);
       writeValue(buffer, value.encode());
     }    else if (value is MQuickCode) {
-      buffer.putUint8(138);
+      buffer.putUint8(147);
       writeValue(buffer, value.encode());
     }    else if (value is MSignature) {
-      buffer.putUint8(139);
+      buffer.putUint8(148);
       writeValue(buffer, value.encode());
     }    else if (value is MSigningResult) {
-      buffer.putUint8(140);
+      buffer.putUint8(149);
       writeValue(buffer, value.encode());
     }    else if (value is MActivationTokenErrorResponse) {
-      buffer.putUint8(141);
+      buffer.putUint8(150);
       writeValue(buffer, value.encode());
     }    else if (value is MEmailVerificationResponse) {
-      buffer.putUint8(142);
+      buffer.putUint8(151);
       writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
@@ -760,24 +871,51 @@ class _PigeonCodec extends StandardMessageCodec {
         final int? value = readValue(buffer) as int?;
         return value == null ? null : MSigningSessionStatus.values[value];
       case 133: 
-        return MConfiguration.decode(readValue(buffer)!);
+        final int? value = readValue(buffer) as int?;
+        return value == null ? null : ConfigurationExceptionCode.values[value];
       case 134: 
-        return MActivationTokenResponse.decode(readValue(buffer)!);
+        final int? value = readValue(buffer) as int?;
+        return value == null ? null : EmailVerificationExceptionCode.values[value];
       case 135: 
-        return MAuthenticationSessionDetails.decode(readValue(buffer)!);
+        final int? value = readValue(buffer) as int?;
+        return value == null ? null : ActivationTokenExceptionCode.values[value];
       case 136: 
-        return MSigningSessionDetails.decode(readValue(buffer)!);
+        final int? value = readValue(buffer) as int?;
+        return value == null ? null : RegistrationExceptionCode.values[value];
       case 137: 
-        return MUser.decode(readValue(buffer)!);
+        final int? value = readValue(buffer) as int?;
+        return value == null ? null : AuthenticationExceptionCode.values[value];
       case 138: 
-        return MQuickCode.decode(readValue(buffer)!);
+        final int? value = readValue(buffer) as int?;
+        return value == null ? null : QuickCodeExceptionCode.values[value];
       case 139: 
-        return MSignature.decode(readValue(buffer)!);
+        final int? value = readValue(buffer) as int?;
+        return value == null ? null : AuthenticationSessionDetailsExceptionCode.values[value];
       case 140: 
-        return MSigningResult.decode(readValue(buffer)!);
+        final int? value = readValue(buffer) as int?;
+        return value == null ? null : SigningSessionDetailsExceptionCode.values[value];
       case 141: 
-        return MActivationTokenErrorResponse.decode(readValue(buffer)!);
+        final int? value = readValue(buffer) as int?;
+        return value == null ? null : SigningExceptionCode.values[value];
       case 142: 
+        return MConfiguration.decode(readValue(buffer)!);
+      case 143: 
+        return MActivationTokenResponse.decode(readValue(buffer)!);
+      case 144: 
+        return MAuthenticationSessionDetails.decode(readValue(buffer)!);
+      case 145: 
+        return MSigningSessionDetails.decode(readValue(buffer)!);
+      case 146: 
+        return MUser.decode(readValue(buffer)!);
+      case 147: 
+        return MQuickCode.decode(readValue(buffer)!);
+      case 148: 
+        return MSignature.decode(readValue(buffer)!);
+      case 149: 
+        return MSigningResult.decode(readValue(buffer)!);
+      case 150: 
+        return MActivationTokenErrorResponse.decode(readValue(buffer)!);
+      case 151: 
         return MEmailVerificationResponse.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);

@@ -122,6 +122,144 @@ enum class MSigningSessionStatus(val raw: Int) {
   }
 }
 
+enum class ConfigurationExceptionCode(val raw: Int) {
+  EMPTY_PROJECT_ID(0);
+
+  companion object {
+    fun ofRaw(raw: Int): ConfigurationExceptionCode? {
+      return values().firstOrNull { it.raw == raw }
+    }
+  }
+}
+
+enum class EmailVerificationExceptionCode(val raw: Int) {
+  EMPTY_USER_ID(0),
+  INVALID_SESSION_DETAILS(1),
+  REQUEST_BACKOFF(2),
+  VERIFICAITON_FAIL(3);
+
+  companion object {
+    fun ofRaw(raw: Int): EmailVerificationExceptionCode? {
+      return values().firstOrNull { it.raw == raw }
+    }
+  }
+}
+
+enum class ActivationTokenExceptionCode(val raw: Int) {
+  EMPTY_USER_ID(0),
+  EMPTY_VERIFICATION_CODE(1),
+  UNSUCCESSFUL_VERIFICATION(2),
+  GET_ACTIVATION_TOKEN_FAIL(3);
+
+  companion object {
+    fun ofRaw(raw: Int): ActivationTokenExceptionCode? {
+      return values().firstOrNull { it.raw == raw }
+    }
+  }
+}
+
+enum class RegistrationExceptionCode(val raw: Int) {
+  EMPTY_USER_ID(0),
+  EMPTY_ACTIVATION_TOKEN(1),
+  INVALID_ACTIVATION_TOKEN(2),
+  REGISTRATION_FAIL(3),
+  UNSUPPORTED_ELLIPTIC_CURVE(4),
+  PIN_CANCELLED(5),
+  INVALID_PIN(6),
+  PROJECT_MISMATCH(7);
+
+  companion object {
+    fun ofRaw(raw: Int): RegistrationExceptionCode? {
+      return values().firstOrNull { it.raw == raw }
+    }
+  }
+}
+
+enum class AuthenticationExceptionCode(val raw: Int) {
+  INVALID_USER_DATA(0),
+  INVALID_QRCODE(1),
+  INVALID_PUSH_NOTIFICATION_PAYLOAD(2),
+  USER_NOT_FOUND(3),
+  INVALID_UNIVERSAL_LINK(4),
+  AUTHENTICATION_FAIL(5),
+  REVOKED(6),
+  INVALID_AUTHENTICATION_SESSION(7),
+  UNSUCCESSFUL_AUTHENTICATION(8),
+  PIN_CANCELLED(9),
+  INVALID_PIN(10);
+
+  companion object {
+    fun ofRaw(raw: Int): AuthenticationExceptionCode? {
+      return values().firstOrNull { it.raw == raw }
+    }
+  }
+}
+
+enum class QuickCodeExceptionCode(val raw: Int) {
+  REVOKED(0),
+  UNSUCCESSFUL_AUTHENTICATION(1),
+  PIN_CANCELLED(2),
+  INVALID_PIN(3),
+  LIMITED_QUICK_CODE_GENERATION(4),
+  GENERATION_FAIL(5);
+
+  companion object {
+    fun ofRaw(raw: Int): QuickCodeExceptionCode? {
+      return values().firstOrNull { it.raw == raw }
+    }
+  }
+}
+
+enum class AuthenticationSessionDetailsExceptionCode(val raw: Int) {
+  INVALID_LINK(0),
+  INVALID_QRCODE(1),
+  INVALID_NOTIFICATION_PAYLOAD(2),
+  INVALID_AUTHENTICATION_SESSION_DETAILS(3),
+  GET_AUTHENTICATION_SESSION_DETAILS_FAIL(4),
+  ABORT_SESSION_FAIL(5);
+
+  companion object {
+    fun ofRaw(raw: Int): AuthenticationSessionDetailsExceptionCode? {
+      return values().firstOrNull { it.raw == raw }
+    }
+  }
+}
+
+enum class SigningSessionDetailsExceptionCode(val raw: Int) {
+  INVALID_LINK(0),
+  INVALID_QRCODE(1),
+  INVALID_SIGNING_SESSION_DETAILS(2),
+  GET_SIGNING_SESSION_DETAILS_FAIL(3),
+  INVALID_SIGNING_SESSION(4),
+  COMPLETE_SIGNING_SESSION_FAIL(5),
+  ABORT_SIGNING_SESSION_FAIL(6);
+
+  companion object {
+    fun ofRaw(raw: Int): SigningSessionDetailsExceptionCode? {
+      return values().firstOrNull { it.raw == raw }
+    }
+  }
+}
+
+enum class SigningExceptionCode(val raw: Int) {
+  EMPTY_MESSAGE_HASH(0),
+  EMPTY_PUBLIC_KEY(1),
+  INVALID_USER_DATA(2),
+  PIN_CANCELLED(3),
+  INVALID_PIN(4),
+  SIGNING_FAIL(5),
+  REVOKED(6),
+  UNSUCCESSFUL_AUTHENTICATION(7),
+  INVALID_SIGNING_SESSION(8),
+  INVALID_SIGNING_SESSION_DETAILS(9);
+
+  companion object {
+    fun ofRaw(raw: Int): SigningExceptionCode? {
+      return values().firstOrNull { it.raw == raw }
+    }
+  }
+}
+
 /** Generated class from Pigeon that represents data sent in messages. */
 data class MConfiguration (
   val projectId: String,
@@ -563,51 +701,96 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
         }
       }
       133.toByte() -> {
+        return (readValue(buffer) as Long?)?.let {
+          ConfigurationExceptionCode.ofRaw(it.toInt())
+        }
+      }
+      134.toByte() -> {
+        return (readValue(buffer) as Long?)?.let {
+          EmailVerificationExceptionCode.ofRaw(it.toInt())
+        }
+      }
+      135.toByte() -> {
+        return (readValue(buffer) as Long?)?.let {
+          ActivationTokenExceptionCode.ofRaw(it.toInt())
+        }
+      }
+      136.toByte() -> {
+        return (readValue(buffer) as Long?)?.let {
+          RegistrationExceptionCode.ofRaw(it.toInt())
+        }
+      }
+      137.toByte() -> {
+        return (readValue(buffer) as Long?)?.let {
+          AuthenticationExceptionCode.ofRaw(it.toInt())
+        }
+      }
+      138.toByte() -> {
+        return (readValue(buffer) as Long?)?.let {
+          QuickCodeExceptionCode.ofRaw(it.toInt())
+        }
+      }
+      139.toByte() -> {
+        return (readValue(buffer) as Long?)?.let {
+          AuthenticationSessionDetailsExceptionCode.ofRaw(it.toInt())
+        }
+      }
+      140.toByte() -> {
+        return (readValue(buffer) as Long?)?.let {
+          SigningSessionDetailsExceptionCode.ofRaw(it.toInt())
+        }
+      }
+      141.toByte() -> {
+        return (readValue(buffer) as Long?)?.let {
+          SigningExceptionCode.ofRaw(it.toInt())
+        }
+      }
+      142.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MConfiguration.fromList(it)
         }
       }
-      134.toByte() -> {
+      143.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MActivationTokenResponse.fromList(it)
         }
       }
-      135.toByte() -> {
+      144.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MAuthenticationSessionDetails.fromList(it)
         }
       }
-      136.toByte() -> {
+      145.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MSigningSessionDetails.fromList(it)
         }
       }
-      137.toByte() -> {
+      146.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MUser.fromList(it)
         }
       }
-      138.toByte() -> {
+      147.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MQuickCode.fromList(it)
         }
       }
-      139.toByte() -> {
+      148.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MSignature.fromList(it)
         }
       }
-      140.toByte() -> {
+      149.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MSigningResult.fromList(it)
         }
       }
-      141.toByte() -> {
+      150.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MActivationTokenErrorResponse.fromList(it)
         }
       }
-      142.toByte() -> {
+      151.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MEmailVerificationResponse.fromList(it)
         }
@@ -633,44 +816,80 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
         stream.write(132)
         writeValue(stream, value.raw)
       }
-      is MConfiguration -> {
+      is ConfigurationExceptionCode -> {
         stream.write(133)
+        writeValue(stream, value.raw)
+      }
+      is EmailVerificationExceptionCode -> {
+        stream.write(134)
+        writeValue(stream, value.raw)
+      }
+      is ActivationTokenExceptionCode -> {
+        stream.write(135)
+        writeValue(stream, value.raw)
+      }
+      is RegistrationExceptionCode -> {
+        stream.write(136)
+        writeValue(stream, value.raw)
+      }
+      is AuthenticationExceptionCode -> {
+        stream.write(137)
+        writeValue(stream, value.raw)
+      }
+      is QuickCodeExceptionCode -> {
+        stream.write(138)
+        writeValue(stream, value.raw)
+      }
+      is AuthenticationSessionDetailsExceptionCode -> {
+        stream.write(139)
+        writeValue(stream, value.raw)
+      }
+      is SigningSessionDetailsExceptionCode -> {
+        stream.write(140)
+        writeValue(stream, value.raw)
+      }
+      is SigningExceptionCode -> {
+        stream.write(141)
+        writeValue(stream, value.raw)
+      }
+      is MConfiguration -> {
+        stream.write(142)
         writeValue(stream, value.toList())
       }
       is MActivationTokenResponse -> {
-        stream.write(134)
+        stream.write(143)
         writeValue(stream, value.toList())
       }
       is MAuthenticationSessionDetails -> {
-        stream.write(135)
+        stream.write(144)
         writeValue(stream, value.toList())
       }
       is MSigningSessionDetails -> {
-        stream.write(136)
+        stream.write(145)
         writeValue(stream, value.toList())
       }
       is MUser -> {
-        stream.write(137)
+        stream.write(146)
         writeValue(stream, value.toList())
       }
       is MQuickCode -> {
-        stream.write(138)
+        stream.write(147)
         writeValue(stream, value.toList())
       }
       is MSignature -> {
-        stream.write(139)
+        stream.write(148)
         writeValue(stream, value.toList())
       }
       is MSigningResult -> {
-        stream.write(140)
+        stream.write(149)
         writeValue(stream, value.toList())
       }
       is MActivationTokenErrorResponse -> {
-        stream.write(141)
+        stream.write(150)
         writeValue(stream, value.toList())
       }
       is MEmailVerificationResponse -> {
-        stream.write(142)
+        stream.write(151)
         writeValue(stream, value.toList())
       }
       else -> super.writeValue(stream, value)

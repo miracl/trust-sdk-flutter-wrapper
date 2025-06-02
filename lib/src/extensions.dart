@@ -1,5 +1,15 @@
 part of 'miracl_trust.dart';
 
+extension on PlatformException {
+  Object? _getExceptionCode() {
+    if (details is Map<Object?, Object?>) {
+        return details["exceptionCode"];
+    }
+
+    return null;
+  }
+}
+
 extension on MAuthenticationSessionDetails {
   AuthenticationSessionDetails _toAuthenticationSessionDetails() {
     return AuthenticationSessionDetails._create(

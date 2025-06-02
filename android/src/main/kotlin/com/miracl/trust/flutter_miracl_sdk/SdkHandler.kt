@@ -32,9 +32,12 @@ class SdkHandler {
             MIRACLTrust.configure(context, configuration)
             callback(Result.success(Unit))
         } catch (exception: ConfigurationException) {
+            val details = mutableMapOf<String, Any?>()
+            details["exceptionCode"] = exception.flutterExceptionCodeRepresentation
+
             callback(
                 Result.failure(
-                    mapExceptionToFlutter(exception, null)
+                    mapExceptionToFlutter(exception, details)
                 )
             )
         }      
@@ -45,9 +48,12 @@ class SdkHandler {
             MIRACLTrust.getInstance().setProjectId(projectId)
             callback(Result.success(Unit))
         } catch (exception: ConfigurationException) {
+            val details = mutableMapOf<String, Any?>()
+            details["exceptionCode"] = exception.flutterExceptionCodeRepresentation
+
             callback(
                 Result.failure(
-                    mapExceptionToFlutter(exception, null)
+                    mapExceptionToFlutter(exception, details)
                 )
             )
         }        
@@ -68,6 +74,8 @@ class SdkHandler {
                 if (it is MIRACLError) {
                     val error = it.value
                     val details = mutableMapOf<String, Any?>()
+                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
+
                     if (error is VerificationException.RequestBackoff) {
                         details["backoff"] = error.backoff
                     }
@@ -106,6 +114,8 @@ class SdkHandler {
                 if (it is MIRACLError) {
                     val error = it.value
                     val details = mutableMapOf<String, Any?>()
+
+                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
                     if (error is ActivationTokenException.UnsuccessfulVerification) {
                         val activationTokenErrorResponse = error.activationTokenErrorResponse
                         if (activationTokenErrorResponse != null) {
@@ -154,6 +164,8 @@ class SdkHandler {
                 if (it is MIRACLError) {
                     val error = it.value
                     val details = mutableMapOf<String, Any?>()
+                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
+
                     if (error is ActivationTokenException.UnsuccessfulVerification) {
                         val activationTokenErrorResponse = error.activationTokenErrorResponse
                         if (activationTokenErrorResponse != null) {
@@ -196,6 +208,7 @@ class SdkHandler {
                 if (it is MIRACLError) {
                     val error = it.value
                     val details = mutableMapOf<String, Any?>()
+                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
 
                     if (error is RegistrationException.RegistrationFail && error.cause != null) {
                         details["error"] = error.cause.toString()
@@ -233,11 +246,12 @@ class SdkHandler {
                     if (it is MIRACLError) {
                         val error = it.value
                         val details = mutableMapOf<String, Any?>()
-        
+
+                        details["exceptionCode"] = error.flutterExceptionCodeRepresentation
                         if (error is AuthenticationException.AuthenticationFail && error.cause != null) {
                             details["error"] = error.cause.toString()
                         }
-        
+
                         callback(
                             Result.failure(
                                 mapExceptionToFlutter(it.value, details)
@@ -280,11 +294,12 @@ class SdkHandler {
                     } else if (it is MIRACLError) {
                         val error = it.value
                         val details = mutableMapOf<String, Any?>()
-        
+
+                        details["exceptionCode"] = error.flutterExceptionCodeRepresentation
                         if (error is QuickCodeException.GenerationFail && error.cause != null) {
                             details["error"] = error.cause.toString()
                         }
-        
+
                         callback(
                             Result.failure(
                                 mapExceptionToFlutter(it.value, details)
@@ -325,7 +340,8 @@ class SdkHandler {
                 if (it is MIRACLError) {
                     val error = it.value
                     val details = mutableMapOf<String, Any?>()
-    
+
+                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
                     if (error is AuthenticationSessionException.GetAuthenticationSessionDetailsFail && error.cause != null) {
                         details["error"] = error.cause.toString()
                     }
@@ -369,11 +385,12 @@ class SdkHandler {
                 if (it is MIRACLError) {
                     val error = it.value
                     val details = mutableMapOf<String, Any?>()
-    
+
+                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
                     if (error is AuthenticationSessionException.GetAuthenticationSessionDetailsFail && error.cause != null) {
                         details["error"] = error.cause.toString()
                     }
-    
+
                     callback(
                         Result.failure(
                             mapExceptionToFlutter(it.value, details)
@@ -413,11 +430,12 @@ class SdkHandler {
                 if (it is MIRACLError) {
                     val error = it.value
                     val details = mutableMapOf<String, Any?>()
-    
+
+                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
                     if (error is AuthenticationSessionException.GetAuthenticationSessionDetailsFail && error.cause != null) {
                         details["error"] = error.cause.toString()
                     }
-    
+
                     callback(
                         Result.failure(
                             mapExceptionToFlutter(it.value, details)
@@ -454,11 +472,12 @@ class SdkHandler {
                     } else if (it is MIRACLError) {
                         val error = it.value
                         val details = mutableMapOf<String, Any?>()
-        
+
+                        details["exceptionCode"] = error.flutterExceptionCodeRepresentation
                         if (error is AuthenticationException.AuthenticationFail && error.cause != null) {
                             details["error"] = error.cause.toString()
                         }
-        
+
                         callback(
                             Result.failure(
                                 mapExceptionToFlutter(it.value, details)
@@ -496,11 +515,12 @@ class SdkHandler {
                     } else if (it is MIRACLError) {
                         val error = it.value
                         val details = mutableMapOf<String, Any?>()
-        
+
+                        details["exceptionCode"] = error.flutterExceptionCodeRepresentation
                         if (error is AuthenticationException.AuthenticationFail && error.cause != null) {
                             details["error"] = error.cause.toString()
                         }
-        
+
                         callback(
                             Result.failure(
                                 mapExceptionToFlutter(it.value, details)
@@ -526,6 +546,7 @@ class SdkHandler {
                 val error = it.value
                 val details = mutableMapOf<String, Any?>()
 
+                details["exceptionCode"] = error.flutterExceptionCodeRepresentation
                 if (error is AuthenticationException.AuthenticationFail && error.cause != null) {
                     details["error"] = error.cause.toString()
                 }
@@ -573,6 +594,7 @@ class SdkHandler {
                     val error = it.value
                     val details = mutableMapOf<String, Any?>()
 
+                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
                     if (error is SigningSessionException.GetSigningSessionDetailsFail && error.cause != null) {
                         details["error"] = error.cause.toString()
                     }
@@ -621,6 +643,7 @@ class SdkHandler {
                     val error = it.value
                     val details = mutableMapOf<String, Any?>()
 
+                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
                     if (error is SigningSessionException.GetSigningSessionDetailsFail && error.cause != null) {
                         details["error"] = error.cause.toString()
                     }
@@ -672,7 +695,8 @@ class SdkHandler {
                     } else if (it is MIRACLError) {
                         val error = it.value
                         val details = mutableMapOf<String, Any?>()
-    
+
+                        details["exceptionCode"] = error.flutterExceptionCodeRepresentation
                         if (error is SigningException.SigningFail && error.cause != null) {
                             details["error"] = error.cause.toString()
                         }
