@@ -2,16 +2,27 @@ import MIRACLTrust
 import Flutter
 
 public class SdkHandler: NSObject, MiraclSdk {
+  var mLogger: MLogger
+
+  init(mLogger: MLogger){
+    self.mLogger = mLogger
+  }
 
   func initSdk(
     configuration: MConfiguration, 
     completion: @escaping (Result<Void, Error>) -> Void
   ) {
     do {
+        let flutterLogger = FlutterLogger(
+          mLogger: mLogger
+        )
+
         let conf = try Configuration
           .Builder(projectId: configuration.projectId)
           .applicationInfo(applicationInfo: configuration.applicationInfo)
+          .logger(logger: flutterLogger)
           .build()
+        
         completion(Result.success(try MIRACLTrust.configure(with: conf)))
     } catch {
         var details = [String: Any]()
@@ -93,7 +104,7 @@ public class SdkHandler: NSObject, MiraclSdk {
                     
                     if let activationTokenError = error as? ActivationTokenError {
                         if case let ActivationTokenError.unsuccessfulVerification(activationTokenErrorResponse: response) 
-                            = error, let response {
+                            = activationTokenError, let response {
                             let mActivationTokenErrorResponse = MActivationTokenErrorResponse(
                                 projectId: response.projectId,
                                 accessId: response.accessId,
@@ -145,7 +156,7 @@ public class SdkHandler: NSObject, MiraclSdk {
                     
                     if let activationTokenError = error as? ActivationTokenError {
                         if case let ActivationTokenError.unsuccessfulVerification(activationTokenErrorResponse: response) 
-                            = error, let response {
+                            = activationTokenError, let response {
                             let mActivationTokenErrorResponse = MActivationTokenErrorResponse(
                                 projectId: response.projectId,
                                 accessId: response.accessId,

@@ -17111,1190 +17111,1190 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Crypto\/Crypto.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Crypto\/Crypto.swift",
       "kind": "IntegerLiteral",
       "offset": 309,
       "length": 2,
       "value": "32"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Crypto\/Crypto.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Crypto\/Crypto.swift",
       "kind": "IntegerLiteral",
       "offset": 348,
       "length": 2,
       "value": "65"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Crypto\/Crypto.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Crypto\/Crypto.swift",
       "kind": "IntegerLiteral",
       "offset": 380,
       "length": 2,
       "value": "32"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Crypto\/Crypto.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Crypto\/Crypto.swift",
       "kind": "IntegerLiteral",
       "offset": 414,
       "length": 3,
       "value": "256"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Crypto\/Crypto.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Crypto\/Crypto.swift",
       "kind": "IntegerLiteral",
       "offset": 450,
       "length": 3,
       "value": "128"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/EmailVerificationMethod.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/EmailVerificationMethod.swift",
       "kind": "IntegerLiteral",
       "offset": 249,
       "length": 4,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/Verificator.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/Verificator.swift",
       "kind": "StringLiteral",
       "offset": 39,
       "length": 15,
       "value": "\"BACKOFF_ERROR\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/Verificator.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/Verificator.swift",
       "kind": "StringLiteral",
       "offset": 77,
       "length": 17,
       "value": "\"REQUEST_BACKOFF\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/VerificationConfirmationHandler.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/VerificationConfirmationHandler.swift",
       "kind": "StringLiteral",
       "offset": 51,
       "length": 27,
       "value": "\"INVALID_VERIFICATION_CODE\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/VerificationConfirmationHandler.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/VerificationConfirmationHandler.swift",
       "kind": "StringLiteral",
       "offset": 111,
       "length": 27,
       "value": "\"UNSUCCESSFUL_VERIFICATION\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Constants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Constants.swift",
       "kind": "StringLiteral",
       "offset": 1372,
       "length": 21,
       "value": "\"https:\/\/api.mpin.io\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteMigration\/SQLiteMigration1to2.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteMigration\/SQLiteMigration1to2.swift",
       "kind": "IntegerLiteral",
       "offset": 219,
       "length": 1,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Networking\/API.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Networking\/API.swift",
       "kind": "IntegerLiteral",
       "offset": 71,
       "length": 6,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteEncryptionHelper.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteEncryptionHelper.swift",
       "kind": "StringLiteral",
       "offset": 89,
       "length": 28,
       "value": "\"com.miracl.keys.userstable\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteUserStorage.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteUserStorage.swift",
       "kind": "StringLiteral",
       "offset": 322,
       "length": 8,
       "value": "\"miracl\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteUserStorage.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteUserStorage.swift",
       "kind": "IntegerLiteral",
       "offset": 503,
       "length": 1,
       "value": "3"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteUserStorage.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteUserStorage.swift",
       "kind": "IntegerLiteral",
       "offset": 546,
       "length": 2,
       "value": "-1"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/VerificationConfirmationRequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/VerificationConfirmationRequestBody.swift",
       "kind": "StringLiteral",
       "offset": 78,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/VerificationConfirmationRequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/VerificationConfirmationRequestBody.swift",
       "kind": "StringLiteral",
       "offset": 104,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/ClientSecretResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/ClientSecretResponse.swift",
       "kind": "StringLiteral",
       "offset": 367,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/Signature.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/Signature.swift",
       "kind": "StringLiteral",
       "offset": 355,
       "length": 3,
       "value": "\"u\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/Signature.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/Signature.swift",
       "kind": "StringLiteral",
       "offset": 376,
       "length": 3,
       "value": "\"v\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/Signature.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/Signature.swift",
       "kind": "StringLiteral",
       "offset": 450,
       "length": 6,
       "value": "\"hash\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing Session Management\/SigningSessionStatus.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing Session Management\/SigningSessionStatus.swift",
       "kind": "IntegerLiteral",
       "offset": 230,
       "length": 6,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing Session Management\/SigningSessionCompleterResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing Session Management\/SigningSessionCompleterResponse.swift",
       "kind": "StringLiteral",
       "offset": 67,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/User.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/User.swift",
       "kind": "IntegerLiteral",
       "offset": 1445,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteHelper.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteHelper.swift",
       "kind": "StringLiteral",
       "offset": 231,
       "length": 25,
       "value": "\"com.miracl.sqlite.queue\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
       "kind": "StringLiteral",
       "offset": 40,
       "length": 16,
       "value": "\"MPINID_EXPIRED\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
       "kind": "StringLiteral",
       "offset": 78,
       "length": 16,
       "value": "\"EXPIRED_MPINID\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
       "kind": "StringLiteral",
       "offset": 117,
       "length": 16,
       "value": "\"REVOKED_MPINID\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
       "kind": "StringLiteral",
       "offset": 155,
       "length": 16,
       "value": "\"MPINID_REVOKED\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
       "kind": "StringLiteral",
       "offset": 192,
       "length": 14,
       "value": "\"INVALID_AUTH\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
       "kind": "StringLiteral",
       "offset": 241,
       "length": 29,
       "value": "\"UNSUCCESSFUL_AUTHENTICATION\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
       "kind": "StringLiteral",
       "offset": 299,
       "length": 22,
       "value": "\"INVALID_AUTH_SESSION\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
       "kind": "StringLiteral",
       "offset": 359,
       "length": 32,
       "value": "\"INVALID_AUTHENTICATION_SESSION\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
       "kind": "Array",
-      "offset": 1217,
+      "offset": 1187,
       "length": 8,
       "value": "[\"oidc\"]"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
       "kind": "StringLiteral",
       "offset": 76,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
       "kind": "StringLiteral",
       "offset": 99,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
       "kind": "StringLiteral",
       "offset": 124,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
       "kind": "StringLiteral",
       "offset": 152,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
       "kind": "IntegerLiteral",
       "offset": 175,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
       "kind": "StringLiteral",
       "offset": 206,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
       "kind": "StringLiteral",
       "offset": 235,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
       "kind": "StringLiteral",
       "offset": 271,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
       "kind": "StringLiteral",
       "offset": 302,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
       "kind": "StringLiteral",
       "offset": 328,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
       "kind": "BooleanLiteral",
       "offset": 358,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
       "kind": "BooleanLiteral",
       "offset": 401,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
       "kind": "StringLiteral",
       "offset": 757,
       "length": 24,
       "value": "\"enableRegistrationCode\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
       "kind": "StringLiteral",
       "offset": 824,
       "length": 22,
       "value": "\"limitRegCodeVerified\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 49,
       "length": 15,
       "value": "\"Flow started.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 91,
       "length": 16,
       "value": "\"Flow finished.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 143,
       "length": 27,
       "value": "\"Flow finished with error.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 205,
       "length": 21,
       "value": "\"SDK not configured.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 265,
       "length": 28,
       "value": "\"SDK configuration started.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 323,
       "length": 15,
       "value": "\"Client pass1.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 368,
       "length": 15,
       "value": "\"Server pass1.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 413,
       "length": 15,
       "value": "\"Client pass2.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 466,
       "length": 23,
       "value": "\"authenticate request.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 523,
       "length": 23,
       "value": "\"registerUser request.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 585,
       "length": 25,
       "value": "\"Overriding registration\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 645,
       "length": 20,
       "value": "\"signature request.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 694,
       "length": 36,
       "value": "\"Get client secret share 2 request.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 763,
       "length": 19,
       "value": "\"Get client token.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 824,
       "length": 30,
       "value": "\"Get signing client secret 1.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 896,
       "length": 30,
       "value": "\"Get signing client secret 2.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 966,
       "length": 27,
       "value": "\"Get signing client token.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 1033,
       "length": 27,
       "value": "\"Authenticate for signing.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 1095,
       "length": 18,
       "value": "\"Signing message.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 1151,
       "length": 23,
       "value": "\"Verification started.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 1223,
       "length": 41,
       "value": "\"Getting userId from universal link URL.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 1322,
       "length": 51,
       "value": "\"Getting Activation Token from universal link URL.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 1423,
       "length": 36,
       "value": "\"Verification confirmation request.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 1501,
       "length": 37,
       "value": "\"Opening sqlite database connection.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 1578,
       "length": 28,
       "value": "\"Creating `identity` table.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 1643,
       "length": 25,
       "value": "\"Creating `users` table.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 1712,
       "length": 32,
       "value": "\"Creating `signingUsers` table.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 1787,
       "length": 24,
       "value": "\"Deleting signing user.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 1861,
       "length": 31,
       "value": "\"Deleting authentication user.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 1937,
       "length": 28,
       "value": "\"Getting all signing users.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 2017,
       "length": 35,
       "value": "\"Getting all authentication users.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 2094,
       "length": 34,
       "value": "\"Check for existing signing user.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 2177,
       "length": 41,
       "value": "\"Check for existing authentication user.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 2258,
       "length": 19,
       "value": "\"Add signing user.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 2329,
       "length": 30,
       "value": "\"Add authentication identity.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 2408,
       "length": 40,
       "value": "\"Will override authentication identity.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 2486,
       "length": 29,
       "value": "\"Will override signing user.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 2544,
       "length": 28,
       "value": "\"Renewing the user started.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 2602,
       "length": 29,
       "value": "\"Renewing the user finished.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 2662,
       "length": 35,
       "value": "\"Renewing user finished with error\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 2735,
       "length": 47,
       "value": "\"Redo the authentication for the updated user.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 2823,
       "length": 27,
       "value": "\"Aborting session request.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 2895,
       "length": 35,
       "value": "\"Fetching session details request.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 2967,
       "length": 22,
       "value": "\"Updating codeStatus.\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 3025,
       "length": 33,
       "value": "\"Error in authenticate request: \""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
       "kind": "StringLiteral",
       "offset": 3105,
       "length": 31,
       "value": "\"Start quick code verification\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/QuickCode\/QuickCodeGenerator.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/QuickCode\/QuickCodeGenerator.swift",
       "kind": "StringLiteral",
       "offset": 54,
       "length": 30,
       "value": "\"LIMITED_QUICKCODE_GENERATION\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteMigration\/SQLiteMigration2to3.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteMigration\/SQLiteMigration2to3.swift",
       "kind": "IntegerLiteral",
       "offset": 226,
       "length": 2,
       "value": "-1"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteMigration\/SQLiteMigration2to3.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteMigration\/SQLiteMigration2to3.swift",
       "kind": "IntegerLiteral",
       "offset": 297,
       "length": 1,
       "value": "3"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Networking\/APIRequest.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Networking\/APIRequest.swift",
       "kind": "StringLiteral",
       "offset": 60,
       "length": 5,
       "value": "\"GET\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Networking\/APIRequest.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Networking\/APIRequest.swift",
       "kind": "StringLiteral",
       "offset": 82,
       "length": 6,
       "value": "\"POST\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Networking\/APIRequest.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Networking\/APIRequest.swift",
       "kind": "StringLiteral",
       "offset": 104,
       "length": 5,
       "value": "\"PUT\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Networking\/APIRequest.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Networking\/APIRequest.swift",
       "kind": "StringLiteral",
       "offset": 128,
       "length": 8,
       "value": "\"DELETE\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/CodeStatusRequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/CodeStatusRequestBody.swift",
       "kind": "StringLiteral",
       "offset": 54,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/CodeStatusRequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/CodeStatusRequestBody.swift",
       "kind": "StringLiteral",
       "offset": 74,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1RequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1RequestBody.swift",
       "kind": "StringLiteral",
       "offset": 77,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1RequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1RequestBody.swift",
       "kind": "StringLiteral",
       "offset": 101,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1RequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1RequestBody.swift",
       "kind": "StringLiteral",
       "offset": 131,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/VerificationConfirmationResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/VerificationConfirmationResponse.swift",
       "kind": "StringLiteral",
       "offset": 331,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/VerificationConfirmationResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Verification\/VerificationConfirmationResponse.swift",
       "kind": "StringLiteral",
       "offset": 387,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1Response.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1Response.swift",
       "kind": "StringLiteral",
       "offset": 338,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1Response.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1Response.swift",
       "kind": "StringLiteral",
       "offset": 408,
       "length": 3,
       "value": "\"y\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteMigration\/SQLiteMigration0to1.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteMigration\/SQLiteMigration0to1.swift",
       "kind": "IntegerLiteral",
       "offset": 332,
       "length": 2,
       "value": "-1"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteMigration\/SQLiteMigration0to1.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteMigration\/SQLiteMigration0to1.swift",
       "kind": "IntegerLiteral",
       "offset": 395,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/MIRACLTrust.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/MIRACLTrust.swift",
       "kind": "BooleanLiteral",
       "offset": 563,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/MIRACLTrust.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/MIRACLTrust.swift",
       "kind": "StringLiteral",
-      "offset": 727,
+      "offset": 715,
       "length": 29,
       "value": "\"com.miracl.trust.init.queue\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
       "kind": "IntegerLiteral",
       "offset": 228,
       "length": 10,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
       "kind": "IntegerLiteral",
       "offset": 289,
       "length": 6,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
       "kind": "IntegerLiteral",
       "offset": 352,
       "length": 12,
       "value": "3"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
       "kind": "IntegerLiteral",
       "offset": 423,
       "length": 14,
       "value": "4"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
       "kind": "IntegerLiteral",
       "offset": 489,
       "length": 7,
       "value": "5"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
       "kind": "IntegerLiteral",
       "offset": 561,
       "length": 19,
       "value": "6"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
       "kind": "IntegerLiteral",
       "offset": 637,
       "length": 12,
       "value": "7"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
       "kind": "IntegerLiteral",
       "offset": 706,
       "length": 24,
       "value": "8"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
       "kind": "IntegerLiteral",
       "offset": 782,
       "length": 7,
       "value": "9"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
       "kind": "IntegerLiteral",
       "offset": 852,
       "length": 17,
       "value": "10"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
       "kind": "IntegerLiteral",
       "offset": 928,
       "length": 13,
       "value": "11"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LogCategory.swift",
       "kind": "IntegerLiteral",
       "offset": 995,
       "length": 9,
       "value": "12"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/RegistrationRequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/RegistrationRequestBody.swift",
       "kind": "StringLiteral",
       "offset": 66,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/RegistrationRequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/RegistrationRequestBody.swift",
       "kind": "StringLiteral",
       "offset": 98,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/RegistrationRequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/RegistrationRequestBody.swift",
       "kind": "StringLiteral",
       "offset": 132,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1RequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1RequestBody.swift",
       "kind": "StringLiteral",
       "offset": 57,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1RequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1RequestBody.swift",
       "kind": "StringLiteral",
       "offset": 85,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1RequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1RequestBody.swift",
       "kind": "StringLiteral",
       "offset": 113,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1RequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1RequestBody.swift",
       "kind": "Array",
       "offset": 142,
       "length": 2,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1RequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1RequestBody.swift",
       "kind": "StringLiteral",
       "offset": 236,
       "length": 9,
       "value": "\"mpin_id\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1RequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1RequestBody.swift",
       "kind": "StringLiteral",
       "offset": 286,
       "length": 3,
       "value": "\"U\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing Session Management\/SigningSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing Session Management\/SigningSessionDetailsResponse.swift",
       "kind": "StringLiteral",
       "offset": 621,
       "length": 6,
       "value": "\"hash\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing Session Management\/SigningSessionDetailsResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing Session Management\/SigningSessionDetailsResponse.swift",
       "kind": "StringLiteral",
       "offset": 662,
       "length": 13,
       "value": "\"description\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing Session Management\/SigningSessionDetailsFetcher.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing Session Management\/SigningSessionDetailsFetcher.swift",
       "kind": "StringLiteral",
       "offset": 52,
       "length": 28,
       "value": "\"INVALID_REQUEST_PARAMETERS\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Extensions\/OSLog+Helper.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Extensions\/OSLog+Helper.swift",
       "kind": "StringLiteral",
       "offset": 39,
       "length": 26,
       "value": "\"com.miracl.trust.sdk-iOS\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingLevel.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingLevel.swift",
       "kind": "IntegerLiteral",
       "offset": 227,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingLevel.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingLevel.swift",
       "kind": "IntegerLiteral",
       "offset": 304,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingLevel.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingLevel.swift",
       "kind": "IntegerLiteral",
       "offset": 379,
       "length": 1,
       "value": "2"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingLevel.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingLevel.swift",
       "kind": "IntegerLiteral",
       "offset": 460,
       "length": 1,
       "value": "3"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingLevel.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingLevel.swift",
       "kind": "IntegerLiteral",
       "offset": 537,
       "length": 1,
       "value": "4"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass2Response.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass2Response.swift",
       "kind": "StringLiteral",
       "offset": 267,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass2RequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass2RequestBody.swift",
       "kind": "StringLiteral",
       "offset": 51,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass2RequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass2RequestBody.swift",
       "kind": "StringLiteral",
       "offset": 71,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass2RequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass2RequestBody.swift",
       "kind": "StringLiteral",
       "offset": 164,
       "length": 9,
       "value": "\"mpin_id\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass2RequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass2RequestBody.swift",
       "kind": "StringLiteral",
       "offset": 196,
       "length": 3,
       "value": "\"V\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass2RequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass2RequestBody.swift",
       "kind": "StringLiteral",
       "offset": 224,
       "length": 5,
       "value": "\"WID\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Session Management\/SessionDetails.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Session Management\/SessionDetails.swift",
       "kind": "IntegerLiteral",
       "offset": 1643,
       "length": 13,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Session Management\/SessionDetails.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Session Management\/SessionDetails.swift",
       "kind": "IntegerLiteral",
       "offset": 2477,
       "length": 12,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/AuthenticateRequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/AuthenticateRequestBody.swift",
       "kind": "StringLiteral",
       "offset": 67,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/AuthenticateRequestBody.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/AuthenticateRequestBody.swift",
       "kind": "StringLiteral",
       "offset": 84,
       "length": 5,
       "value": "\"dvs\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/Registrator.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/Registrator.swift",
       "kind": "StringLiteral",
       "offset": 50,
       "length": 26,
       "value": "\"INVALID_ACTIVATION_TOKEN\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/Registrator.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/Registrator.swift",
       "kind": "IntegerLiteral",
-      "offset": 533,
+      "offset": 521,
       "length": 1,
       "value": "4"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/Registrator.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/Registrator.swift",
       "kind": "IntegerLiteral",
-      "offset": 539,
+      "offset": 527,
       "length": 1,
       "value": "6"
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/SignatureResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/SignatureResponse.swift",
       "kind": "StringLiteral",
       "offset": 295,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/SignatureResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/SignatureResponse.swift",
       "kind": "StringLiteral",
       "offset": 473,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/SignatureResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/SignatureResponse.swift",
       "kind": "StringLiteral",
       "offset": 548,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/SignatureResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/SignatureResponse.swift",
       "kind": "StringLiteral",
       "offset": 649,
       "length": 8,
       "value": "\"cs2url\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
       "kind": "StringLiteral",
       "offset": 406,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
       "kind": "StringLiteral",
       "offset": 592,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
       "kind": "StringLiteral",
       "offset": 667,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
       "kind": "StringLiteral",
       "offset": 725,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
       "kind": "StringLiteral",
       "offset": 810,
       "length": 22,
       "value": "\"dvsClientSecretShare\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
       "kind": "StringLiteral",
       "offset": 855,
       "length": 8,
       "value": "\"cs2url\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/AuthenticateResponse.swift",
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/AuthenticateResponse.swift",
       "kind": "StringLiteral",
       "offset": 206,
       "length": 13,
