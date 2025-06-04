@@ -17,3 +17,7 @@
 ## 0.2.0+2
 
 * Remove `collection` package dependency since it is not needed.
+
+## 0.2.0+3
+
+* **Improved Error Handling:** Resolved issues with error name parsing when code is obfuscated or minified by implementing a type-safe exception translation layer between native code and Flutter.
