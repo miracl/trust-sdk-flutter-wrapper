@@ -2,8 +2,29 @@ part of 'miracl_trust.dart';
 
 class Configuration {
     final String projectId;
+    final LoggingLevel loggingLevel;
+    final Logger? logger;
 
-    Configuration({required this.projectId});
+    Configuration({
+      required this.projectId, 
+      this.loggingLevel = LoggingLevel.none,
+      this.logger
+    });
+}
+
+enum LoggingLevel {
+  none,
+  error,
+  warning,
+  info,
+  debug;
+}
+
+abstract class Logger extends MLogger{
+  @override void debug(String category, String message);
+  @override void info(String category, String message);
+  @override void warning(String category, String message);
+  @override void error(String category, String message);
 }
 
 enum EmailVerificationMethod {
