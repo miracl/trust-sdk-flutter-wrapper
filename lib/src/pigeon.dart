@@ -14,6 +14,16 @@ PlatformException _createConnectionError(String channelName) {
     message: 'Unable to establish connection on channel: "$channelName".',
   );
 }
+
+List<Object?> wrapResponse({Object? result, PlatformException? error, bool empty = false}) {
+  if (empty) {
+    return <Object?>[];
+  }
+  if (error == null) {
+    return <Object?>[result];
+  }
+  return <Object?>[error.code, error.message, error.details];
+}
 bool _deepEquals(Object? a, Object? b) {
   if (a is List && b is List) {
     return a.length == b.length &&
@@ -83,7 +93,7 @@ enum AuthenticationExceptionCode {
   invalidQRCode,
   invalidPushNotificationPayload,
   userNotFound,
-  invalidUniversalLink,
+  invalidLink,
   authenticationFail,
   revoked,
   invalidAuthenticationSession,
@@ -1478,6 +1488,134 @@ class MiraclSdk {
       );
     } else {
       return (pigeonVar_replyList[0] as MSigningSessionDetails?)!;
+    }
+  }
+}
+
+abstract class MLogger {
+  static const MessageCodec<Object?> pigeonChannelCodec = _PigeonCodec();
+
+  void debug(String category, String message);
+
+  void info(String category, String message);
+
+  void warning(String category, String message);
+
+  void error(String category, String message);
+
+  static void setUp(MLogger? api, {BinaryMessenger? binaryMessenger, String messageChannelSuffix = '',}) {
+    messageChannelSuffix = messageChannelSuffix.isNotEmpty ? '.$messageChannelSuffix' : '';
+    {
+      final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.flutter_miracl_sdk.MLogger.debug$messageChannelSuffix', pigeonChannelCodec,
+          binaryMessenger: binaryMessenger);
+      if (api == null) {
+        pigeonVar_channel.setMessageHandler(null);
+      } else {
+        pigeonVar_channel.setMessageHandler((Object? message) async {
+          assert(message != null,
+          'Argument for dev.flutter.pigeon.flutter_miracl_sdk.MLogger.debug was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final String? arg_category = (args[0] as String?);
+          assert(arg_category != null,
+              'Argument for dev.flutter.pigeon.flutter_miracl_sdk.MLogger.debug was null, expected non-null String.');
+          final String? arg_message = (args[1] as String?);
+          assert(arg_message != null,
+              'Argument for dev.flutter.pigeon.flutter_miracl_sdk.MLogger.debug was null, expected non-null String.');
+          try {
+            api.debug(arg_category!, arg_message!);
+            return wrapResponse(empty: true);
+          } on PlatformException catch (e) {
+            return wrapResponse(error: e);
+          }          catch (e) {
+            return wrapResponse(error: PlatformException(code: 'error', message: e.toString()));
+          }
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.flutter_miracl_sdk.MLogger.info$messageChannelSuffix', pigeonChannelCodec,
+          binaryMessenger: binaryMessenger);
+      if (api == null) {
+        pigeonVar_channel.setMessageHandler(null);
+      } else {
+        pigeonVar_channel.setMessageHandler((Object? message) async {
+          assert(message != null,
+          'Argument for dev.flutter.pigeon.flutter_miracl_sdk.MLogger.info was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final String? arg_category = (args[0] as String?);
+          assert(arg_category != null,
+              'Argument for dev.flutter.pigeon.flutter_miracl_sdk.MLogger.info was null, expected non-null String.');
+          final String? arg_message = (args[1] as String?);
+          assert(arg_message != null,
+              'Argument for dev.flutter.pigeon.flutter_miracl_sdk.MLogger.info was null, expected non-null String.');
+          try {
+            api.info(arg_category!, arg_message!);
+            return wrapResponse(empty: true);
+          } on PlatformException catch (e) {
+            return wrapResponse(error: e);
+          }          catch (e) {
+            return wrapResponse(error: PlatformException(code: 'error', message: e.toString()));
+          }
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.flutter_miracl_sdk.MLogger.warning$messageChannelSuffix', pigeonChannelCodec,
+          binaryMessenger: binaryMessenger);
+      if (api == null) {
+        pigeonVar_channel.setMessageHandler(null);
+      } else {
+        pigeonVar_channel.setMessageHandler((Object? message) async {
+          assert(message != null,
+          'Argument for dev.flutter.pigeon.flutter_miracl_sdk.MLogger.warning was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final String? arg_category = (args[0] as String?);
+          assert(arg_category != null,
+              'Argument for dev.flutter.pigeon.flutter_miracl_sdk.MLogger.warning was null, expected non-null String.');
+          final String? arg_message = (args[1] as String?);
+          assert(arg_message != null,
+              'Argument for dev.flutter.pigeon.flutter_miracl_sdk.MLogger.warning was null, expected non-null String.');
+          try {
+            api.warning(arg_category!, arg_message!);
+            return wrapResponse(empty: true);
+          } on PlatformException catch (e) {
+            return wrapResponse(error: e);
+          }          catch (e) {
+            return wrapResponse(error: PlatformException(code: 'error', message: e.toString()));
+          }
+        });
+      }
+    }
+    {
+      final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+          'dev.flutter.pigeon.flutter_miracl_sdk.MLogger.error$messageChannelSuffix', pigeonChannelCodec,
+          binaryMessenger: binaryMessenger);
+      if (api == null) {
+        pigeonVar_channel.setMessageHandler(null);
+      } else {
+        pigeonVar_channel.setMessageHandler((Object? message) async {
+          assert(message != null,
+          'Argument for dev.flutter.pigeon.flutter_miracl_sdk.MLogger.error was null.');
+          final List<Object?> args = (message as List<Object?>?)!;
+          final String? arg_category = (args[0] as String?);
+          assert(arg_category != null,
+              'Argument for dev.flutter.pigeon.flutter_miracl_sdk.MLogger.error was null, expected non-null String.');
+          final String? arg_message = (args[1] as String?);
+          assert(arg_message != null,
+              'Argument for dev.flutter.pigeon.flutter_miracl_sdk.MLogger.error was null, expected non-null String.');
+          try {
+            api.error(arg_category!, arg_message!);
+            return wrapResponse(empty: true);
+          } on PlatformException catch (e) {
+            return wrapResponse(error: e);
+          }          catch (e) {
+            return wrapResponse(error: PlatformException(code: 'error', message: e.toString()));
+          }
+        });
+      }
     }
   }
 }

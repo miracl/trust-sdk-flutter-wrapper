@@ -21,7 +21,10 @@ void main() {
 
       MIRACLTrust sdk = MIRACLTrust();
       
-      final configuration = Configuration(projectId: dvProjectId);
+      final configuration = Configuration(
+        projectId: dvProjectId
+      );
+      
       await sdk.initSDK(configuration);
       await expectLater(
         sdk.initSDK(Configuration(projectId: "")),

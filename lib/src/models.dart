@@ -2,8 +2,14 @@ part of 'miracl_trust.dart';
 
 class Configuration {
     final String projectId;
+    final LoggingLevel loggingLevel;
+    final Logger? logger;
 
-    Configuration({required this.projectId});
+    Configuration({
+      required this.projectId, 
+      this.loggingLevel = LoggingLevel.none,
+      this.logger
+    });
 }
 
 enum EmailVerificationMethod {

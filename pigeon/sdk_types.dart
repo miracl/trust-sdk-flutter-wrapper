@@ -4,7 +4,10 @@ class MConfiguration {
   final String projectId;
   final String applicationInfo;
 
-  MConfiguration(this.projectId, this.applicationInfo);
+  MConfiguration(
+    this.projectId, 
+    this.applicationInfo
+  );
 }
 
 class MActivationTokenResponse {
@@ -336,4 +339,12 @@ abstract class MiraclSdk {
   MSigningSessionDetails getSigningSessionDetailsFromLink(
     String link
   );
+}
+
+@FlutterApi()
+abstract class MLogger {
+  void debug(String category, String message);
+  void info(String category, String message);
+  void warning(String category, String message);
+  void error(String category, String message);
 }
