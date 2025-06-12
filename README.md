@@ -216,7 +216,7 @@ There are three options for authenticating a user on another application:
 
   ```dart
   try {
-    final isAuthenticated = sdk.authenticateWithLink(user, link, pin)
+    sdk.authenticateWithLink(user, link, pin)
   } on AuthenticationException catch(e) {
     // Handle the exception here.
   }
@@ -230,7 +230,7 @@ There are three options for authenticating a user on another application:
 
   ```dart
   try {
-    final isAuthenticated = await sdk.authenticateWithQrCode(user, qrURL, pin)
+    await sdk.authenticateWithQrCode(user, qrCode, pin)
   } on AuthenticationException catch(e) {
     // Handle the exception here.
   }
@@ -242,7 +242,7 @@ There are three options for authenticating a user on another application:
 
   ```dart
   try {
-    final isAuthenticated = sdk.authenticateWithNotificationPayload(payload, pin)
+    sdk.authenticateWithNotificationPayload(payload, pin)
   } on AuthenticationException catch(e) {
     // Handle the exception here.
   }
