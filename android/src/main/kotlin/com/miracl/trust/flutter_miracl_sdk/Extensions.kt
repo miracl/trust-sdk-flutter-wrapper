@@ -46,7 +46,7 @@ internal val RegistrationException.flutterExceptionCodeRepresentation: Registrat
 internal val AuthenticationException.flutterExceptionCodeRepresentation: AuthenticationExceptionCode
     get() = when (this) {
         is AuthenticationException.AuthenticationFail -> AuthenticationExceptionCode.AUTHENTICATION_FAIL
-        AuthenticationException.InvalidAppLink -> AuthenticationExceptionCode.INVALID_UNIVERSAL_LINK
+        AuthenticationException.InvalidAppLink -> AuthenticationExceptionCode.INVALID_LINK
         AuthenticationException.InvalidAuthenticationSession -> AuthenticationExceptionCode.INVALID_AUTHENTICATION_SESSION
         AuthenticationException.InvalidPin -> AuthenticationExceptionCode.INVALID_PIN
         AuthenticationException.InvalidPushNotificationPayload -> AuthenticationExceptionCode.INVALID_PUSH_NOTIFICATION_PAYLOAD

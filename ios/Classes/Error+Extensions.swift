@@ -80,7 +80,7 @@ extension AuthenticationError {
         case .userNotFound:
             return AuthenticationExceptionCode.userNotFound
         case .invalidUniversalLink:
-            return AuthenticationExceptionCode.invalidUniversalLink
+            return AuthenticationExceptionCode.invalidLink
         case .authenticationFail:
             return AuthenticationExceptionCode.authenticationFail
         case .revoked:
