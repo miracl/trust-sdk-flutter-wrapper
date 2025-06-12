@@ -204,7 +204,7 @@ enum AuthenticationExceptionCode {
   invalidQRCode,
   invalidPushNotificationPayload,
   userNotFound,
-  invalidUniversalLink,
+  invalidLink,
   authenticationFail,
   revoked,
   invalidAuthenticationSession,

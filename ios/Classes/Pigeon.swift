@@ -182,7 +182,7 @@ enum AuthenticationExceptionCode: Int {
   case invalidQRCode = 1
   case invalidPushNotificationPayload = 2
   case userNotFound = 3
-  case invalidUniversalLink = 4
+  case invalidLink = 4
   case authenticationFail = 5
   case revoked = 6
   case invalidAuthenticationSession = 7
