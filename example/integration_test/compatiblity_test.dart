@@ -168,9 +168,9 @@ void main() {
         "qrURL" : qrURL.toString(),
         "projectID": cuvProjectId
       };
-      await expectLater(sdk.authenticateWithQRCode(user, qrURL.toString(), pin), completion(isTrue));
-      await expectLater(sdk.authenticateWithLink(user, qrURL, pin),  completion(isTrue));
-      await expectLater(sdk.authenticateWithNotificationPayload(payload, pin),  completion(isTrue));
+      await expectLater(sdk.authenticateWithQRCode(user, qrURL.toString(), pin), completes);
+      await expectLater(sdk.authenticateWithLink(user, qrURL, pin), completes);
+      await expectLater(sdk.authenticateWithNotificationPayload(payload, pin), completes);
 
       await expectLater(
         sdk.authenticateWithQRCode(user, qrURL.toString(), wrongPin), 

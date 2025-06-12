@@ -187,11 +187,11 @@ class MIRACLTrust {
     } 
   }
 
-  Future<bool> authenticateWithLink(User user,Uri link, String pin) async {
+  Future<void> authenticateWithLink(User user, Uri link, String pin) async {
     try {
       final mUser = user._toMUser();
 
-      return await _sdk.authenticateWithLink(mUser, link.toString(), pin);
+      await _sdk.authenticateWithLink(mUser, link.toString(), pin);
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
       if (exceptionCode is AuthenticationExceptionCode) {
@@ -206,11 +206,11 @@ class MIRACLTrust {
     }
   }
 
-  Future<bool> authenticateWithQRCode(User user, String qrCode, String pin) async {
+  Future<void> authenticateWithQRCode(User user, String qrCode, String pin) async {
     try {
       final mUser = user._toMUser();
       
-      return await _sdk.authenticateWithQrCode(mUser, qrCode, pin);
+      await _sdk.authenticateWithQrCode(mUser, qrCode, pin);
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
       if (exceptionCode is AuthenticationExceptionCode) {
@@ -225,9 +225,9 @@ class MIRACLTrust {
     }
   }
 
-  Future<bool> authenticateWithNotificationPayload(Map<String, String> payload, String pin) async {
+  Future<void> authenticateWithNotificationPayload(Map<String, String> payload, String pin) async {
     try {
-      return await _sdk.authenticateWithNotificationPayload(payload, pin);
+      await _sdk.authenticateWithNotificationPayload(payload, pin);
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
       if (exceptionCode is AuthenticationExceptionCode) {
