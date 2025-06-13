@@ -21,3 +21,7 @@
 ## 0.2.0+3
 
 * **Improved Error Handling:** Resolved issues with error name parsing when code is obfuscated or minified by implementing a type-safe exception translation layer between native code and Flutter.
+
+## 0.2.1
+
+* Add Logging functionality.

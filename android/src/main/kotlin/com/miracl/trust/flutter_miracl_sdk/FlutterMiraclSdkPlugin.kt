@@ -25,12 +25,13 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
     private lateinit var channel: MethodChannel
     private lateinit var context: Context
     private var sdkHandler = SdkHandler();
+    private lateinit var mLogger: MLogger
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         MiraclSdk.setUp(flutterPluginBinding.binaryMessenger, this)
+        mLogger = MLogger(flutterPluginBinding.binaryMessenger)
         context = flutterPluginBinding.applicationContext
     }
-
 
     override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
         channel.setMethodCallHandler(null)
@@ -40,7 +41,7 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
         configuration: MConfiguration, 
         callback: (kotlin.Result<Unit>) -> Unit
     ) {
-        sdkHandler.initSdk(configuration, context, callback)
+        sdkHandler.initSdk(configuration, mLogger, context, callback)
     }
 
     override fun setProjectId(

@@ -18,15 +18,23 @@ import com.miracl.trust.registration.QuickCodeException
 import com.miracl.trust.session.AuthenticationSessionException
 import com.miracl.trust.registration.RegistrationException
 import com.miracl.trust.configuration.ConfigurationException
+import com.miracl.trust.flutter_miracl_sdk.FlutterLogger
+import com.miracl.trust.flutter_miracl_sdk.MLogger
 
 import java.util.*
 
 class SdkHandler {
-    fun initSdk(config: MConfiguration, context: Context, callback: (Result<Unit>) -> Unit) {
-        try {
+    fun initSdk(
+        config: MConfiguration,
+        mLogger: MLogger, 
+        context: Context, 
+        callback: (Result<Unit>) -> Unit
+    ) {
+        try {      
             val configuration = Configuration
                 .Builder(config.projectId)
                 .applicationInfo(config.applicationInfo)
+                .logger(FlutterLogger(mLogger))
                 .build()
     
             MIRACLTrust.configure(context, configuration)

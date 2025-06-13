@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_miracl_sdk/src/constants.dart';
 import 'package:flutter_miracl_sdk/src/pigeon.dart';
+import 'package:flutter_miracl_sdk/src/logging.dart';
 
 export 'package:flutter_miracl_sdk/src/pigeon.dart'
     show
@@ -23,11 +24,21 @@ class MIRACLTrust {
 
   Future<void> initSDK(Configuration configuration) async {
     try {
+      Logger logger;
+      
+      if (configuration.logger != null) {
+        logger = configuration.logger!;
+      } else {
+        logger = DefaultLogger(configuration.loggingLevel);
+      }
+
       final mConfiguration = MConfiguration(
         projectId: configuration.projectId, 
         applicationInfo: sdkApplicationInfo
       );
-      return await _sdk.initSdk(mConfiguration);
+      
+      await _sdk.initSdk(mConfiguration);
+      MLogger.setUp(logger);
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
       if(exceptionCode is ConfigurationExceptionCode) {
