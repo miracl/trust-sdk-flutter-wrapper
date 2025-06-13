@@ -1,0 +1,15 @@
+{
+  "originHash" : "22dfb8769c6784eebaa8312e5936619f2651be166b1c1300c8466ddc4a143385",
+  "pins" : [
+    {
+      "identity" : "trust-sdk-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/miracl/trust-sdk-ios",
+      "state" : {
+        "revision" : "9e890257fb110b02ee533a8a45e120df4af57ccc",
+        "version" : "1.1.0"
+      }
+    }
+  ],
+  "version" : 3
+}

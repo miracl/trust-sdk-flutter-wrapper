@@ -1,4 +1,5 @@
 import MIRACLTrust
+import Foundation
 
 final class FlutterLogger: Logger {
     final let mLogger: MLogger

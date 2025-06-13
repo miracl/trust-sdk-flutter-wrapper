@@ -2,6 +2,7 @@
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
 # Run `pod lib lint flutter_miracl_sdk.podspec` to validate before publishing.
 #
+
 Pod::Spec.new do |s|
   s.name             = 'flutter_miracl_sdk'
   s.version          = '0.3.1'
@@ -13,7 +14,7 @@ MIRCAL Trust Flutter plugin.
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'MIRACL' => 'support@miracl.com' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
+  s.source_files = 'flutter_miracl_sdk/Sources/flutter_miracl_sdk/**/*.swift'
   s.dependency 'Flutter'
   s.platform = :ios, '13.0'
 
