@@ -41,8 +41,8 @@ import 'package:flutter_miracl_sdk/flutter_miracl_sdk.dart';
 
 ### Exception handling
 
-Most plugin methods can throw instances of `MIRACLException` subclasses.
-Each subclass contains a `code` enum that indicates the origin of
+Most plugin methods can throw exceptions spcific for the operation.
+Each exception includes a `code` enum that indicates the origin of
 the exception (e.g., unsuccessful authentication).
 
 Although exception handling is not mandatory in Dart, it is
