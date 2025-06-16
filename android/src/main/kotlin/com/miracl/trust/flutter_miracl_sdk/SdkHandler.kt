@@ -793,7 +793,6 @@ class SdkHandler {
     private fun mapExceptionToFlutter(error: Exception, details: Map<String, Any?>? = null): FlutterError {
         return FlutterError(
             code = error::class.simpleName ?: "" ,
-            message = error.stackTraceToString(),
             details = details,
         )
     }

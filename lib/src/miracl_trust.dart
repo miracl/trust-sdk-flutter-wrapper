@@ -31,7 +31,7 @@ class MIRACLTrust {
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
       if(exceptionCode is ConfigurationExceptionCode) {
-        throw ConfigurationException._create(exceptionCode, e.message);
+        throw ConfigurationException._create(exceptionCode);
       } else {
         rethrow;
       }
@@ -44,7 +44,7 @@ class MIRACLTrust {
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
       if(exceptionCode is ConfigurationExceptionCode) {
-        throw ConfigurationException._create(exceptionCode, e.message);
+        throw ConfigurationException._create(exceptionCode);
       } else {
         rethrow;
       }
@@ -61,7 +61,6 @@ class MIRACLTrust {
       if(exceptionCode is EmailVerificationExceptionCode) {
         throw EmailVerificationException._create(
           exceptionCode,
-          e.message,
           e.details["backoff"],
           e.details["error"]
         );
@@ -88,7 +87,6 @@ class MIRACLTrust {
 
         throw ActivationTokenException._create(
           exceptionCode,
-          e.message,
           errorResponse,
           e.details["error"]
         );
@@ -116,7 +114,6 @@ class MIRACLTrust {
 
         throw ActivationTokenException._create(
           exceptionCode,
-          e.message,
           errorResponse,
           e.details["error"]
         );
@@ -137,7 +134,6 @@ class MIRACLTrust {
       if (exceptionCode is RegistrationExceptionCode) {
         throw RegistrationException._create(
           exceptionCode,
-          e.message,
           e.details["error"]
         );
       } else {
@@ -156,7 +152,6 @@ class MIRACLTrust {
       if (exceptionCode is AuthenticationExceptionCode) {
         throw AuthenticationException._create(
           exceptionCode,
-          e.message,
           e.details["error"]
         );
       } else {
@@ -178,7 +173,6 @@ class MIRACLTrust {
       if (exceptionCode is AuthenticationSessionDetailsExceptionCode) {
         throw AuthenticationSessionDetailsException._create(
           exceptionCode,
-          e.message,
           e.details["error"]
         );
       } else {
@@ -197,7 +191,6 @@ class MIRACLTrust {
       if (exceptionCode is AuthenticationExceptionCode) {
         throw AuthenticationException._create(
           exceptionCode,
-          e.message,
           e.details["error"]
         );
       } else {
@@ -216,7 +209,6 @@ class MIRACLTrust {
       if (exceptionCode is AuthenticationExceptionCode) {
         throw AuthenticationException._create(
           exceptionCode,
-          e.message,
           e.details["error"]
         );
       } else {
@@ -233,7 +225,6 @@ class MIRACLTrust {
       if (exceptionCode is AuthenticationExceptionCode) {
         throw AuthenticationException._create(
           exceptionCode,
-          e.message,
           e.details["error"]
         );
       } else {
@@ -254,7 +245,6 @@ class MIRACLTrust {
       if (exceptionCode is QuickCodeExceptionCode) {
         throw QuickCodeException._create(
           exceptionCode,
-          e.message,
           e.details["error"]
         );
       } else {
@@ -273,7 +263,6 @@ class MIRACLTrust {
       if (exceptionCode is AuthenticationSessionDetailsExceptionCode) {
         throw AuthenticationSessionDetailsException._create(
           exceptionCode,
-          e.message,
           e.details["error"]
         );
       } else {
@@ -292,7 +281,6 @@ class MIRACLTrust {
       if (exceptionCode is AuthenticationSessionDetailsExceptionCode) {
         throw AuthenticationSessionDetailsException._create(
           exceptionCode,
-          e.message,
           e.details["error"]
         );
       } else {
@@ -312,7 +300,6 @@ class MIRACLTrust {
       if (exceptionCode is SigningSessionDetailsExceptionCode) {
         throw SigningSessionDetailsException._create(
           exceptionCode,
-          e.message,
           e.details["error"]
         );
       } else {
@@ -332,7 +319,6 @@ class MIRACLTrust {
       if (exceptionCode is SigningSessionDetailsExceptionCode) {
         throw SigningSessionDetailsException._create(
           exceptionCode,
-          e.message,
           e.details["error"]
         );
       } else {
@@ -353,7 +339,6 @@ class MIRACLTrust {
       if (exceptionCode is SigningExceptionCode) {
         throw SigningException._create(
           exceptionCode,
-          e.message,
           e.details["error"]
         );
       } else {

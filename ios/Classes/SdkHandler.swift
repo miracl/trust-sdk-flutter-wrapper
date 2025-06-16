@@ -682,7 +682,7 @@ public class SdkHandler: NSObject, MiraclSdk {
   private func createPigeonError(error: any Error, details:[String: Any]? = nil) -> PigeonError {
     PigeonError(
       code: error.errorDebugDescription,
-      message: String(describing: type(of: error)),
+      message: nil,
       details: details
     )
   }
