@@ -10,12 +10,11 @@ enum EmailVerificationMethod {
   code,
   link;
 
-  static EmailVerificationMethod getEmailVerificationMethod(
-    String name
-  ) {
-    return EmailVerificationMethod.values._firstWhereOrNull(
-      (e) => e.name == name
-    ) ?? EmailVerificationMethod.link;
+  static EmailVerificationMethod getEmailVerificationMethod(String name) {
+    return EmailVerificationMethod.values.firstWhere(
+      (e) => e.name == name,
+      orElse: () => EmailVerificationMethod.link,
+    );
   }
 }
 
@@ -75,12 +74,11 @@ enum VerificationMethod {
    fullCustom, 
    standardEmail;
 
-  static VerificationMethod getVerificationMethod(
-    MVerificationMethod mVerificationMethod
-  ) {
-    return VerificationMethod.values._firstWhereOrNull(
-      (e) => e.name == mVerificationMethod.name
-    ) ?? VerificationMethod.standardEmail;
+  static VerificationMethod getVerificationMethod(String name) {
+    return VerificationMethod.values.firstWhere(
+      (e) => e.name == name,
+      orElse: () => VerificationMethod.standardEmail,
+    );
   }
 }
 
@@ -89,12 +87,11 @@ enum IdentityType {
   email, 
   alphanumeric;
 
-  static IdentityType getIdentityType(
-    String name
-  ) {
-    return IdentityType.values._firstWhereOrNull(
-      (e) => e.name == name
-    ) ?? IdentityType.alphanumeric;
+  static IdentityType getIdentityType(String name) {
+    return IdentityType.values.firstWhere(
+      (e) => e.name == name,
+      orElse: () => IdentityType.alphanumeric,
+    );
   }
 }
 
@@ -174,12 +171,11 @@ enum SigningSessionStatus {
   active, 
   signed;
 
-  static SigningSessionStatus getSigningSessionStatus(
-    String name
-  ) {
-    return SigningSessionStatus.values._firstWhereOrNull(
-      (e) => e.name == name
-    ) ?? SigningSessionStatus.active;
+  static SigningSessionStatus getSigningSessionStatus(String name) {
+    return SigningSessionStatus.values.firstWhere(
+      (e) => e.name == name,
+      orElse: () => SigningSessionStatus.active,
+    );
   }
 }
 

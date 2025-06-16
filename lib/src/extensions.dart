@@ -18,7 +18,7 @@ extension on MAuthenticationSessionDetails {
         projectLogoURL: projectLogoURL, 
         projectId: projectId, 
         pinLength: pinLength,
-        verificationMethod: VerificationMethod.getVerificationMethod(verificationMethod), 
+        verificationMethod: VerificationMethod.getVerificationMethod(verificationMethod.name), 
         verificationURL: verificationURL,
         verificationCustomText: verificationCustomText, 
         identityTypeLabel: identityTypeLabel, 
@@ -106,7 +106,8 @@ extension on MSigningSessionDetails {
         projectLogoURL: projectLogoURL,
         projectId: projectId, 
         pinLength: pinLength, 
-        verificationMethod: VerificationMethod.getVerificationMethod(verificationMethod), verificationURL: verificationURL,
+        verificationMethod: VerificationMethod.getVerificationMethod(verificationMethod.name),
+        verificationURL: verificationURL,
         verificationCustomText: verificationCustomText,
         identityTypeLabel: identityTypeLabel, 
         quickCodeEnabled: quickCodeEnabled, 
@@ -138,14 +139,5 @@ extension on MSigningResult {
     );
 
     return signingResult;
-  }
-}
-
-extension IterableExtension<T> on Iterable<T> { 
-  T? _firstWhereOrNull(bool Function(T element) test) {
-    for (var element in this) {
-      if (test(element)) return element;
-    }
-    return null;
   }
 }
