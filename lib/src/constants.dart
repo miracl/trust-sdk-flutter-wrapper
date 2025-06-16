@@ -1,1 +1,1 @@
-const sdkApplicationInfo = "flutter_miracl_sdk/0.2.0+1";
+const sdkApplicationInfo = "flutter_miracl_sdk/0.3.0";

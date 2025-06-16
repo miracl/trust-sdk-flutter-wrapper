@@ -21,3 +21,19 @@
 ## 0.2.0+3
 
 * **Improved Error Handling:** Resolved issues with error name parsing when code is obfuscated or minified by implementing a type-safe exception translation layer between native code and Flutter.
+
+## 0.3.0
+
+This release prepares the API for a future stable version by simplifying and cleaning up several parts of the code.
+
+### Added
+- `pinLength` property to the `User` class.
+
+### Changed
+- `authenticateWith` methods now return `void` instead of `bool`. They now just throw an exception if something goes wrong.
+- Renamed the `invalidUniversalLink` error code to `invalidLink` for a more general name that is correct for both iOS and Android.
+- Made all `User` class properties `final` to make them read-only after creation.
+
+### Removed
+- The base `MIRACLException` class to simplify exception handling.
+- All string messages from exceptions. They were not consistent across platforms, and error codes should be used instead.
