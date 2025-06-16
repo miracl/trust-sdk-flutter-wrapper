@@ -41,3 +41,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ## 0.3.1
 
 * Add logging functionality.
+
+## 0.3.2
+
+* Support for Swift Package Manager.
