@@ -37,3 +37,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ### Removed
 - The base `MIRACLException` class to simplify exception handling.
 - All string messages from exceptions. They were not consistent across platforms, and error codes should be used instead.
+
+## 0.3.1
+
+* Add logging functionality.
