@@ -122,7 +122,9 @@ enum class MSigningSessionStatus(val raw: Int) {
   }
 }
 
+/** An enumeration that describes issues with the SDK configuration. */
 enum class ConfigurationExceptionCode(val raw: Int) {
+  /** Empty project ID. */
   EMPTY_PROJECT_ID(0);
 
   companion object {
@@ -132,10 +134,15 @@ enum class ConfigurationExceptionCode(val raw: Int) {
   }
 }
 
+/** An enumeration that describes email verification issues. */
 enum class EmailVerificationExceptionCode(val raw: Int) {
+  /** Empty user ID. */
   EMPTY_USER_ID(0),
+  /** The session identifier in SessionDetails is empty or blank. */
   INVALID_SESSION_DETAILS(1),
+  /** Too many verification requests. Wait for the [EmailVerificationException.backoff] period. */
   REQUEST_BACKOFF(2),
+  /** Verification failed. */
   VERIFICAITON_FAIL(3);
 
   companion object {
@@ -145,10 +152,15 @@ enum class EmailVerificationExceptionCode(val raw: Int) {
   }
 }
 
+/** An enumeration that describes email verification issues. */
 enum class ActivationTokenExceptionCode(val raw: Int) {
+  /** Empty user ID. */
   EMPTY_USER_ID(0),
+  /** Empty verification code. */
   EMPTY_VERIFICATION_CODE(1),
+  /** Invalid or expired verification code. There may be [ActivationTokenErrorResponse] in the error. */
   UNSUCCESSFUL_VERIFICATION(2),
+  /** The request for fetching the activation token failed. */
   GET_ACTIVATION_TOKEN_FAIL(3);
 
   companion object {
@@ -158,14 +170,23 @@ enum class ActivationTokenExceptionCode(val raw: Int) {
   }
 }
 
+/** An enumeration that describes registration issues. */
 enum class RegistrationExceptionCode(val raw: Int) {
+  /** Empty user ID. */
   EMPTY_USER_ID(0),
+  /** Empty activation token. */
   EMPTY_ACTIVATION_TOKEN(1),
+  /** Invalid activation token. */
   INVALID_ACTIVATION_TOKEN(2),
+  /** Registration failed. */
   REGISTRATION_FAIL(3),
+  /** Curve returned by the platform is unsupported by this version of the SDK. */
   UNSUPPORTED_ELLIPTIC_CURVE(4),
+  /** Pin not entered. */
   PIN_CANCELLED(5),
+  /** Pin code includes invalid symbols or pin length does not match. */
   INVALID_PIN(6),
+  /** The registration was started for a different project. */
   PROJECT_MISMATCH(7);
 
   companion object {
@@ -175,17 +196,39 @@ enum class RegistrationExceptionCode(val raw: Int) {
   }
 }
 
+/** An enumeration that describes authentication issues. */
 enum class AuthenticationExceptionCode(val raw: Int) {
+  /** User object passed for authentication is not valid. */
   INVALID_USER_DATA(0),
+  /** Could not find the session identifier in the QR URL. */
   INVALID_QRCODE(1),
+  /**
+   * Could not find a valid `projectID`, `qrURL`, or `userID` in the
+   * push notification payload.
+   */
   INVALID_PUSH_NOTIFICATION_PAYLOAD(2),
+  /**
+   * There isn't a registered user for the provided user ID and project
+   * in the push notification payload.
+   */
   USER_NOT_FOUND(3),
+  /** Could not find the session identifier in the link. */
   INVALID_LINK(4),
+  /** Authentication failed. */
   AUTHENTICATION_FAIL(5),
+  /**
+   * The user is revoked because of too many unsuccessful authentication attempts
+   * or has not been used in a substantial amount of time. The device needs to
+   * be re-registered.
+   */
   REVOKED(6),
+  /** Invalid or expired authentication session. */
   INVALID_AUTHENTICATION_SESSION(7),
+  /** The authentication was not successful. */
   UNSUCCESSFUL_AUTHENTICATION(8),
+  /** Pin not entered. */
   PIN_CANCELLED(9),
+  /** Pin code includes invalid symbols or pin length does not match. */
   INVALID_PIN(10);
 
   companion object {
@@ -195,12 +238,23 @@ enum class AuthenticationExceptionCode(val raw: Int) {
   }
 }
 
+/** An enumeration that describes `QuickCode` generation issues. */
 enum class QuickCodeExceptionCode(val raw: Int) {
+  /**
+   * The user is revoked because of too many unsuccessful authentication attempts
+   * or has not been used in a substantial amount of time. The device needs to
+   * be re-registered.
+   */
   REVOKED(0),
+  /** The authentication was not successful. */
   UNSUCCESSFUL_AUTHENTICATION(1),
+  /** Pin not entered. */
   PIN_CANCELLED(2),
+  /** Pin code includes invalid symbols or pin length does not match. */
   INVALID_PIN(3),
+  /** Generating `QuickCode` from this registration is not allowed. */
   LIMITED_QUICK_CODE_GENERATION(4),
+  /** `QuickCode` generation failed. */
   GENERATION_FAIL(5);
 
   companion object {
@@ -210,12 +264,19 @@ enum class QuickCodeExceptionCode(val raw: Int) {
   }
 }
 
+/** An enumeration that describes authentication session management issues. */
 enum class AuthenticationSessionDetailsExceptionCode(val raw: Int) {
+  /** Could not find the session identifier in the link. */
   INVALID_LINK(0),
+  /** Could not find the session identifier in the QR code. */
   INVALID_QRCODE(1),
+  /** Could not find the session identifier in the push notification payload. */
   INVALID_NOTIFICATION_PAYLOAD(2),
+  /** The session identifier in `AuthenticationSessionDetails` is empty or blank. */
   INVALID_AUTHENTICATION_SESSION_DETAILS(3),
+  /** Fetching the authentication session details failed. */
   GET_AUTHENTICATION_SESSION_DETAILS_FAIL(4),
+  /** Abort of the authentication session has failed. */
   ABORT_SESSION_FAIL(5);
 
   companion object {
@@ -225,13 +286,21 @@ enum class AuthenticationSessionDetailsExceptionCode(val raw: Int) {
   }
 }
 
+/** An enumeration that describes signing session management issues. */
 enum class SigningSessionDetailsExceptionCode(val raw: Int) {
+  /** Could not find the session identifier in the link. */
   INVALID_LINK(0),
+  /** Could not find the session identifier in the QR code. */
   INVALID_QRCODE(1),
+  /** The session identifier in `SigningSessionDetails` is empty or blank. */
   INVALID_SIGNING_SESSION_DETAILS(2),
+  /** Fetching the signing session details failed. */
   GET_SIGNING_SESSION_DETAILS_FAIL(3),
+  /** Invalid or expired signing session. */
   INVALID_SIGNING_SESSION(4),
+  /** Signing session completion failed. */
   COMPLETE_SIGNING_SESSION_FAIL(5),
+  /** Abort of the signing session has failed. */
   ABORT_SIGNING_SESSION_FAIL(6);
 
   companion object {
@@ -241,16 +310,31 @@ enum class SigningSessionDetailsExceptionCode(val raw: Int) {
   }
 }
 
+/** An enumeration that describes signing issues. */
 enum class SigningExceptionCode(val raw: Int) {
+  /** Empty message hash. */
   EMPTY_MESSAGE_HASH(0),
+  /** The public key of the signing identity is empty. */
   EMPTY_PUBLIC_KEY(1),
+  /** The user object passed for signing is not valid. */
   INVALID_USER_DATA(2),
+  /** Pin not entered. */
   PIN_CANCELLED(3),
+  /** Pin code includes invalid symbols or pin length does not match. */
   INVALID_PIN(4),
+  /** Signing failed. */
   SIGNING_FAIL(5),
+  /**
+   * The user is revoked because of too many unsuccessful authentication attempts
+   * or has not been used in a substantial amount of time. The device needs to
+   * be re-registered.
+   */
   REVOKED(6),
+  /** The authentication was not successful. */
   UNSUCCESSFUL_AUTHENTICATION(7),
+  /** The signing session is invalid or has expired. */
   INVALID_SIGNING_SESSION(8),
+  /** The session identifier in `SigningSessionDetails` is empty or blank. */
   INVALID_SIGNING_SESSION_DETAILS(9);
 
   companion object {
