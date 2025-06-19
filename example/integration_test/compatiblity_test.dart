@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:flutter_miracl_sdk/flutter_miracl_sdk.dart';
+import 'package:flutter_miracl_sdk/src/constants.dart';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'test_helpers.dart';
@@ -22,7 +23,7 @@ void main() {
       // Test getting instace before initialization.
       expect(
         () => MIRACLTrust(),
-        throwsA(isA<AssertionError>().having((e) => e.message, "", equals("MIRACLTrust Flutter plugin is not initialized!")))
+        throwsA(isA<AssertionError>().having((e) => e.message, "", equals(pluginNotInitializedErrorMessage)))
       );
       
       // Initialize the plugin.
