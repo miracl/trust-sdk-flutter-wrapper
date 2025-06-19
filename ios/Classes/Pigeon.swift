@@ -148,87 +148,161 @@ enum MSigningSessionStatus: Int {
   case signed = 1
 }
 
+/// An enumeration that describes issues with the SDK configuration.
 enum ConfigurationExceptionCode: Int {
+  /// Empty project ID.
   case emptyProjectId = 0
 }
 
+/// An enumeration that describes email verification issues.
 enum EmailVerificationExceptionCode: Int {
+  /// Empty user ID.
   case emptyUserId = 0
+  /// The session identifier in SessionDetails is empty or blank.
   case invalidSessionDetails = 1
+  /// Too many verification requests. Wait for the [EmailVerificationException.backoff] period.
   case requestBackoff = 2
+  /// Verification failed.
   case verificaitonFail = 3
 }
 
+/// An enumeration that describes email verification issues.
 enum ActivationTokenExceptionCode: Int {
+  /// Empty user ID.
   case emptyUserId = 0
+  /// Empty verification code.
   case emptyVerificationCode = 1
+  /// Invalid or expired verification code. There may be [ActivationTokenErrorResponse] in the error.
   case unsuccessfulVerification = 2
+  /// The request for fetching the activation token failed.
   case getActivationTokenFail = 3
 }
 
+/// An enumeration that describes registration issues.
 enum RegistrationExceptionCode: Int {
+  /// Empty user ID.
   case emptyUserId = 0
+  /// Empty activation token.
   case emptyActivationToken = 1
+  /// Invalid activation token.
   case invalidActivationToken = 2
+  /// Registration failed.
   case registrationFail = 3
+  /// Curve returned by the platform is unsupported by this version of the SDK.
   case unsupportedEllipticCurve = 4
+  /// Pin not entered.
   case pinCancelled = 5
+  /// Pin code includes invalid symbols or pin length does not match.
   case invalidPin = 6
+  /// The registration was started for a different project.
   case projectMismatch = 7
 }
 
+/// An enumeration that describes authentication issues.
 enum AuthenticationExceptionCode: Int {
+  /// User object passed for authentication is not valid.
   case invalidUserData = 0
+  /// Could not find the session identifier in the QR URL.
   case invalidQRCode = 1
+  /// Could not find a valid `projectID`, `qrURL`, or `userID` in the
+  /// push notification payload.
   case invalidPushNotificationPayload = 2
+  /// There isn't a registered user for the provided user ID and project
+  /// in the push notification payload.
   case userNotFound = 3
+  /// Could not find the session identifier in the link.
   case invalidLink = 4
+  /// Authentication failed.
   case authenticationFail = 5
+  /// The user is revoked because of too many unsuccessful authentication attempts
+  /// or has not been used in a substantial amount of time. The device needs to
+  /// be re-registered.
   case revoked = 6
+  /// Invalid or expired authentication session.
   case invalidAuthenticationSession = 7
+  /// The authentication was not successful.
   case unsuccessfulAuthentication = 8
+  /// Pin not entered.
   case pinCancelled = 9
+  /// Pin code includes invalid symbols or pin length does not match.
   case invalidPin = 10
 }
 
+/// An enumeration that describes `QuickCode` generation issues.
 enum QuickCodeExceptionCode: Int {
+  /// The user is revoked because of too many unsuccessful authentication attempts
+  /// or has not been used in a substantial amount of time. The device needs to
+  /// be re-registered.
   case revoked = 0
+  /// The authentication was not successful.
   case unsuccessfulAuthentication = 1
+  /// Pin not entered.
   case pinCancelled = 2
+  /// Pin code includes invalid symbols or pin length does not match.
   case invalidPin = 3
+  /// Generating `QuickCode` from this registration is not allowed.
   case limitedQuickCodeGeneration = 4
+  /// `QuickCode` generation failed.
   case generationFail = 5
 }
 
+/// An enumeration that describes authentication session management issues.
 enum AuthenticationSessionDetailsExceptionCode: Int {
+  /// Could not find the session identifier in the link.
   case invalidLink = 0
+  /// Could not find the session identifier in the QR code.
   case invalidQRCode = 1
+  /// Could not find the session identifier in the push notification payload.
   case invalidNotificationPayload = 2
+  /// The session identifier in `AuthenticationSessionDetails` is empty or blank.
   case invalidAuthenticationSessionDetails = 3
+  /// Fetching the authentication session details failed.
   case getAuthenticationSessionDetailsFail = 4
+  /// Abort of the authentication session has failed.
   case abortSessionFail = 5
 }
 
+/// An enumeration that describes signing session management issues.
 enum SigningSessionDetailsExceptionCode: Int {
+  /// Could not find the session identifier in the link.
   case invalidLink = 0
+  /// Could not find the session identifier in the QR code.
   case invalidQRCode = 1
+  /// The session identifier in `SigningSessionDetails` is empty or blank.
   case invalidSigningSessionDetails = 2
+  /// Fetching the signing session details failed.
   case getSigningSessionDetailsFail = 3
+  /// Invalid or expired signing session.
   case invalidSigningSession = 4
+  /// Signing session completion failed.
   case completeSigningSessionFail = 5
+  /// Abort of the signing session has failed.
   case abortSigningSessionFail = 6
 }
 
+/// An enumeration that describes signing issues.
 enum SigningExceptionCode: Int {
+  /// Empty message hash.
   case emptyMessageHash = 0
+  /// The public key of the signing identity is empty.
   case emptyPublicKey = 1
+  /// The user object passed for signing is not valid.
   case invalidUserData = 2
+  /// Pin not entered.
   case pinCancelled = 3
+  /// Pin code includes invalid symbols or pin length does not match.
   case invalidPin = 4
+  /// Signing failed.
   case signingFail = 5
+  /// The user is revoked because of too many unsuccessful authentication attempts
+  /// or has not been used in a substantial amount of time. The device needs to
+  /// be re-registered.
   case revoked = 6
+  /// The authentication was not successful.
   case unsuccessfulAuthentication = 7
+  /// The signing session is invalid or has expired.
   case invalidSigningSession = 8
+  /// The session identifier in `SigningSessionDetails` is empty or blank.
   case invalidSigningSessionDetails = 9
 }
 
