@@ -7,176 +7,176 @@ extension Error {
 }
 
 extension ConfigurationError {
-    var flutterExceptionCodeRepresentation: ConfigurationExceptionCode {
+    var flutterExceptionCodeRepresentation: MConfigurationExceptionCode {
         switch self {
         case .configurationEmptyProjectId:
-            return ConfigurationExceptionCode.emptyProjectId
+            return MConfigurationExceptionCode.emptyProjectId
         }
     }
 }
 
 extension VerificationError {
-    var flutterExceptionCodeRepresentation: EmailVerificationExceptionCode {
+    var flutterExceptionCodeRepresentation: MEmailVerificationExceptionCode {
         switch self {
         case .emptyUserId:
-            return EmailVerificationExceptionCode.emptyUserId
+            return MEmailVerificationExceptionCode.emptyUserId
         case .invalidSessionDetails:
-            return EmailVerificationExceptionCode.invalidSessionDetails
+            return MEmailVerificationExceptionCode.invalidSessionDetails
         case .requestBackoff:
-            return EmailVerificationExceptionCode.requestBackoff
+            return MEmailVerificationExceptionCode.requestBackoff
         case .verificaitonFail:
-            return EmailVerificationExceptionCode.verificaitonFail
+            return MEmailVerificationExceptionCode.verificaitonFail
         }
     }
 }
 
 extension ActivationTokenError {
-    var flutterExceptionCodeRepresentation: ActivationTokenExceptionCode {
+    var flutterExceptionCodeRepresentation: MActivationTokenExceptionCode {
         switch self {
         case .emptyUserId:
-            return ActivationTokenExceptionCode.emptyUserId
+            return MActivationTokenExceptionCode.emptyUserId
         case .emptyVerificationCode:
-            return ActivationTokenExceptionCode.emptyVerificationCode
+            return MActivationTokenExceptionCode.emptyVerificationCode
         case .getActivationTokenFail:
-            return ActivationTokenExceptionCode.getActivationTokenFail
+            return MActivationTokenExceptionCode.getActivationTokenFail
         case .unsuccessfulVerification:
-            return ActivationTokenExceptionCode.unsuccessfulVerification
+            return MActivationTokenExceptionCode.unsuccessfulVerification
         }
     }
 }
 
 extension RegistrationError {
-    var flutterExceptionCodeRepresentation: RegistrationExceptionCode {
+    var flutterExceptionCodeRepresentation: MRegistrationExceptionCode {
         switch self {
         case .emptyActivationToken:
-            return RegistrationExceptionCode.emptyActivationToken
+            return MRegistrationExceptionCode.emptyActivationToken
         case .emptyUserId:
-            return RegistrationExceptionCode.emptyUserId
+            return MRegistrationExceptionCode.emptyUserId
         case .invalidActivationToken:
-            return RegistrationExceptionCode.invalidActivationToken
+            return MRegistrationExceptionCode.invalidActivationToken
         case .invalidPin:
-            return RegistrationExceptionCode.invalidPin
+            return MRegistrationExceptionCode.invalidPin
         case .pinCancelled:
-            return RegistrationExceptionCode.pinCancelled
+            return MRegistrationExceptionCode.pinCancelled
         case .projectMismatch:
-            return RegistrationExceptionCode.projectMismatch
+            return MRegistrationExceptionCode.projectMismatch
         case .registrationFail:
-            return RegistrationExceptionCode.registrationFail
+            return MRegistrationExceptionCode.registrationFail
         case .unsupportedEllipticCurve:
-            return RegistrationExceptionCode.unsupportedEllipticCurve
+            return MRegistrationExceptionCode.unsupportedEllipticCurve
         }
     }
 }
 
 extension AuthenticationError {
-    var flutterExceptionCodeRepresentation: AuthenticationExceptionCode {
+    var flutterExceptionCodeRepresentation: MAuthenticationExceptionCode {
         switch self {
         case .invalidUserData:
-            return AuthenticationExceptionCode.invalidUserData
+            return MAuthenticationExceptionCode.invalidUserData
         case .invalidQRCode:
-            return AuthenticationExceptionCode.invalidQRCode
+            return MAuthenticationExceptionCode.invalidQRCode
         case .invalidPushNotificationPayload:
-            return AuthenticationExceptionCode.invalidPushNotificationPayload
+            return MAuthenticationExceptionCode.invalidPushNotificationPayload
         case .userNotFound:
-            return AuthenticationExceptionCode.userNotFound
+            return MAuthenticationExceptionCode.userNotFound
         case .invalidUniversalLink:
-            return AuthenticationExceptionCode.invalidLink
+            return MAuthenticationExceptionCode.invalidLink
         case .authenticationFail:
-            return AuthenticationExceptionCode.authenticationFail
+            return MAuthenticationExceptionCode.authenticationFail
         case .revoked:
-            return AuthenticationExceptionCode.revoked
+            return MAuthenticationExceptionCode.revoked
         case .invalidAuthenticationSession:
-            return AuthenticationExceptionCode.invalidAuthenticationSession
+            return MAuthenticationExceptionCode.invalidAuthenticationSession
         case .unsuccessfulAuthentication:
-            return AuthenticationExceptionCode.unsuccessfulAuthentication
+            return MAuthenticationExceptionCode.unsuccessfulAuthentication
         case .pinCancelled:
-            return AuthenticationExceptionCode.pinCancelled
+            return MAuthenticationExceptionCode.pinCancelled
         case .invalidPin:
-            return AuthenticationExceptionCode.invalidPin
+            return MAuthenticationExceptionCode.invalidPin
         }
     }
 }
 
 extension QuickCodeError {
-    var flutterExceptionCodeRepresentation: QuickCodeExceptionCode {
+    var flutterExceptionCodeRepresentation: MQuickCodeExceptionCode {
         switch self {
         case .generationFail:
-            return QuickCodeExceptionCode.generationFail
+            return MQuickCodeExceptionCode.generationFail
         case .invalidPin:
-            return QuickCodeExceptionCode.invalidPin
+            return MQuickCodeExceptionCode.invalidPin
         case .limitedQuickCodeGeneration:
-            return QuickCodeExceptionCode.limitedQuickCodeGeneration
+            return MQuickCodeExceptionCode.limitedQuickCodeGeneration
         case .pinCancelled:
-            return QuickCodeExceptionCode.pinCancelled
+            return MQuickCodeExceptionCode.pinCancelled
         case .revoked:
-            return QuickCodeExceptionCode.revoked
+            return MQuickCodeExceptionCode.revoked
         case .unsuccessfulAuthentication:
-            return QuickCodeExceptionCode.unsuccessfulAuthentication
+            return MQuickCodeExceptionCode.unsuccessfulAuthentication
         }
     }
 }
 
 extension AuthenticationSessionError {
-    var flutterExceptionCodeRepresentation: AuthenticationSessionDetailsExceptionCode {
+    var flutterExceptionCodeRepresentation: MAuthenticationSessionDetailsExceptionCode {
         switch self {
         case .abortSessionFail:
-            return AuthenticationSessionDetailsExceptionCode.abortSessionFail
+            return MAuthenticationSessionDetailsExceptionCode.abortSessionFail
         case .getAuthenticationSessionDetailsFail:
-            return AuthenticationSessionDetailsExceptionCode.getAuthenticationSessionDetailsFail
+            return MAuthenticationSessionDetailsExceptionCode.getAuthenticationSessionDetailsFail
         case .invalidAuthenticationSessionDetails:
-            return AuthenticationSessionDetailsExceptionCode.invalidAuthenticationSessionDetails
+            return MAuthenticationSessionDetailsExceptionCode.invalidAuthenticationSessionDetails
         case .invalidPushNotificationPayload:
-            return AuthenticationSessionDetailsExceptionCode.invalidNotificationPayload
+            return MAuthenticationSessionDetailsExceptionCode.invalidNotificationPayload
         case .invalidQRCode:
-            return AuthenticationSessionDetailsExceptionCode.invalidQRCode
+            return MAuthenticationSessionDetailsExceptionCode.invalidQRCode
         case .invalidUniversalLinkURL:
-            return AuthenticationSessionDetailsExceptionCode.invalidLink
+            return MAuthenticationSessionDetailsExceptionCode.invalidLink
         }
     }
 }
 
 extension SigningSessionError {
-    var flutterExceptionCodeRepresentation: SigningSessionDetailsExceptionCode {
+    var flutterExceptionCodeRepresentation: MSigningSessionDetailsExceptionCode {
         switch self {
         case .abortSigningSessionFail:
-            return SigningSessionDetailsExceptionCode.abortSigningSessionFail
+            return MSigningSessionDetailsExceptionCode.abortSigningSessionFail
         case .getSigningSessionDetailsFail:
-            return SigningSessionDetailsExceptionCode.getSigningSessionDetailsFail
+            return MSigningSessionDetailsExceptionCode.getSigningSessionDetailsFail
         case .invalidQRCode:
-            return SigningSessionDetailsExceptionCode.invalidQRCode
+            return MSigningSessionDetailsExceptionCode.invalidQRCode
         case .invalidSigningSession:
-            return SigningSessionDetailsExceptionCode.invalidSigningSession
+            return MSigningSessionDetailsExceptionCode.invalidSigningSession
         case .invalidSigningSessionDetails:
-            return SigningSessionDetailsExceptionCode.invalidSigningSessionDetails
+            return MSigningSessionDetailsExceptionCode.invalidSigningSessionDetails
         case .invalidUniversalLinkURL:
-            return SigningSessionDetailsExceptionCode.invalidLink
+            return MSigningSessionDetailsExceptionCode.invalidLink
         }
     }
 }
 
 extension SigningError {
-    var flutterExceptionCodeRepresentation: SigningExceptionCode {
+    var flutterExceptionCodeRepresentation: MSigningExceptionCode {
         switch self {
         case .emptyMessageHash:
-            return SigningExceptionCode.emptyMessageHash
+            return MSigningExceptionCode.emptyMessageHash
         case .emptyPublicKey:
-            return SigningExceptionCode.emptyPublicKey
+            return MSigningExceptionCode.emptyPublicKey
         case .invalidPin:
-            return SigningExceptionCode.invalidPin
+            return MSigningExceptionCode.invalidPin
         case .invalidSigningSession:
-            return SigningExceptionCode.invalidSigningSession
+            return MSigningExceptionCode.invalidSigningSession
         case .invalidSigningSessionDetails:
-            return SigningExceptionCode.invalidSigningSessionDetails
+            return MSigningExceptionCode.invalidSigningSessionDetails
         case .invalidUserData:
-            return SigningExceptionCode.invalidUserData
+            return MSigningExceptionCode.invalidUserData
         case .pinCancelled:
-            return SigningExceptionCode.pinCancelled
+            return MSigningExceptionCode.pinCancelled
         case .revoked:
-            return SigningExceptionCode.revoked
+            return MSigningExceptionCode.revoked
         case .signingFail:
-            return SigningExceptionCode.signingFail
+            return MSigningExceptionCode.signingFail
         case .unsuccessfulAuthentication:
-            return SigningExceptionCode.unsuccessfulAuthentication
+            return MSigningExceptionCode.unsuccessfulAuthentication
         }
     }
 }

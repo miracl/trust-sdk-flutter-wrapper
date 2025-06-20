@@ -2,18 +2,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_miracl_sdk/src/constants.dart';
 import 'package:flutter_miracl_sdk/src/pigeon.dart';
 
-export 'package:flutter_miracl_sdk/src/pigeon.dart'
-    show
-        ActivationTokenExceptionCode,
-        AuthenticationExceptionCode,
-        AuthenticationSessionDetailsExceptionCode,
-        ConfigurationExceptionCode,
-        EmailVerificationExceptionCode,
-        QuickCodeExceptionCode,
-        RegistrationExceptionCode,
-        SigningExceptionCode,
-        SigningSessionDetailsExceptionCode;
-
 part 'models.dart';
 part 'exceptions.dart';
 part 'extensions.dart';
@@ -30,8 +18,8 @@ class MIRACLTrust {
       return await _sdk.initSdk(mConfiguration);
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if(exceptionCode is ConfigurationExceptionCode) {
-        throw ConfigurationException._create(exceptionCode);
+      if(exceptionCode is MConfigurationExceptionCode) {
+        throw ConfigurationException._create(exceptionCode.toConfigurationExceptionCode());
       } else {
         rethrow;
       }
@@ -43,8 +31,8 @@ class MIRACLTrust {
       return await _sdk.setProjectId(projectId);
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if(exceptionCode is ConfigurationExceptionCode) {
-        throw ConfigurationException._create(exceptionCode);
+      if(exceptionCode is MConfigurationExceptionCode) {
+        throw ConfigurationException._create(exceptionCode.toConfigurationExceptionCode());
       } else {
         rethrow;
       }
@@ -58,9 +46,9 @@ class MIRACLTrust {
       return emailVerificationResponse;
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if(exceptionCode is EmailVerificationExceptionCode) {
+      if(exceptionCode is MEmailVerificationExceptionCode) {
         throw EmailVerificationException._create(
-          exceptionCode,
+          exceptionCode.toEmailVerificationExceptionCode(),
           e.details["backoff"],
           e.details["error"]
         );
@@ -77,7 +65,7 @@ class MIRACLTrust {
       return activationTokenResponse;
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is ActivationTokenExceptionCode) {
+      if (exceptionCode is MActivationTokenExceptionCode) {
         final mActivationTokenErrorResponse = e.details["activationTokenErrorResponse"];
 
         ActivationTokenErrorResponse? errorResponse;
@@ -86,7 +74,7 @@ class MIRACLTrust {
         }
 
         throw ActivationTokenException._create(
-          exceptionCode,
+          exceptionCode.toActivationTokenExceptionCode(),
           errorResponse,
           e.details["error"]
         );
@@ -104,7 +92,7 @@ class MIRACLTrust {
       return activationTokenResponse;
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is ActivationTokenExceptionCode) {
+      if (exceptionCode is MActivationTokenExceptionCode) {
         final mActivationTokenErrorResponse = e.details["activationTokenErrorResponse"];
 
         ActivationTokenErrorResponse? errorResponse;
@@ -113,7 +101,7 @@ class MIRACLTrust {
         }
 
         throw ActivationTokenException._create(
-          exceptionCode,
+          exceptionCode.toActivationTokenExceptionCode(),
           errorResponse,
           e.details["error"]
         );
@@ -131,9 +119,9 @@ class MIRACLTrust {
       return user;
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is RegistrationExceptionCode) {
+      if (exceptionCode is MRegistrationExceptionCode) {
         throw RegistrationException._create(
-          exceptionCode,
+          exceptionCode.toRegistrationExceptionCode(),
           e.details["error"]
         );
       } else {
@@ -149,9 +137,9 @@ class MIRACLTrust {
       return await _sdk.authenticate(mUser, pin);
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is AuthenticationExceptionCode) {
+      if (exceptionCode is MAuthenticationExceptionCode) {
         throw AuthenticationException._create(
-          exceptionCode,
+          exceptionCode.toAuthenticationExceptionCode(),
           e.details["error"]
         );
       } else {
@@ -170,9 +158,9 @@ class MIRACLTrust {
       return authenticationSessionDetails;
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is AuthenticationSessionDetailsExceptionCode) {
+      if (exceptionCode is MAuthenticationSessionDetailsExceptionCode) {
         throw AuthenticationSessionDetailsException._create(
-          exceptionCode,
+          exceptionCode.toAuthenticationSessionDetailsExceptionCode(),
           e.details["error"]
         );
       } else {
@@ -188,9 +176,9 @@ class MIRACLTrust {
       await _sdk.authenticateWithLink(mUser, link.toString(), pin);
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is AuthenticationExceptionCode) {
+      if (exceptionCode is MAuthenticationExceptionCode) {
         throw AuthenticationException._create(
-          exceptionCode,
+          exceptionCode.toAuthenticationExceptionCode(),
           e.details["error"]
         );
       } else {
@@ -206,9 +194,9 @@ class MIRACLTrust {
       await _sdk.authenticateWithQrCode(mUser, qrCode, pin);
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is AuthenticationExceptionCode) {
+      if (exceptionCode is MAuthenticationExceptionCode) {
         throw AuthenticationException._create(
-          exceptionCode,
+          exceptionCode.toAuthenticationExceptionCode(),
           e.details["error"]
         );
       } else {
@@ -222,9 +210,9 @@ class MIRACLTrust {
       await _sdk.authenticateWithNotificationPayload(payload, pin);
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is AuthenticationExceptionCode) {
+      if (exceptionCode is MAuthenticationExceptionCode) {
         throw AuthenticationException._create(
-          exceptionCode,
+          exceptionCode.toAuthenticationExceptionCode(),
           e.details["error"]
         );
       } else {
@@ -242,9 +230,9 @@ class MIRACLTrust {
       return quickCode;
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is QuickCodeExceptionCode) {
+      if (exceptionCode is MQuickCodeExceptionCode) {
         throw QuickCodeException._create(
-          exceptionCode,
+          exceptionCode.toQuickCodeExceptionCode(),
           e.details["error"]
         );
       } else {
@@ -260,9 +248,9 @@ class MIRACLTrust {
       return authenticationSessionDetails;
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is AuthenticationSessionDetailsExceptionCode) {
+      if (exceptionCode is MAuthenticationSessionDetailsExceptionCode) {
         throw AuthenticationSessionDetailsException._create(
-          exceptionCode,
+          exceptionCode.toAuthenticationSessionDetailsExceptionCode(),
           e.details["error"]
         );
       } else {
@@ -278,9 +266,9 @@ class MIRACLTrust {
       return authenticationSessionDetails;
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is AuthenticationSessionDetailsExceptionCode) {
+      if (exceptionCode is MAuthenticationSessionDetailsExceptionCode) {
         throw AuthenticationSessionDetailsException._create(
-          exceptionCode,
+          exceptionCode.toAuthenticationSessionDetailsExceptionCode(),
           e.details["error"]
         );
       } else {
@@ -297,9 +285,9 @@ class MIRACLTrust {
       return signingSessionDetails;
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is SigningSessionDetailsExceptionCode) {
+      if (exceptionCode is MSigningSessionDetailsExceptionCode) {
         throw SigningSessionDetailsException._create(
-          exceptionCode,
+          exceptionCode.toSigningSessionDetailsExceptionCode(),
           e.details["error"]
         );
       } else {
@@ -316,9 +304,9 @@ class MIRACLTrust {
       return signingSessionDetails;
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is SigningSessionDetailsExceptionCode) {
+      if (exceptionCode is MSigningSessionDetailsExceptionCode) {
         throw SigningSessionDetailsException._create(
-          exceptionCode,
+          exceptionCode.toSigningSessionDetailsExceptionCode(),
           e.details["error"]
         );
       } else {
@@ -336,9 +324,9 @@ class MIRACLTrust {
       return signingResult;
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is SigningExceptionCode) {
+      if (exceptionCode is MSigningExceptionCode) {
         throw SigningException._create(
-          exceptionCode,
+          exceptionCode.toSigningExceptionCode(),
           e.details["error"]
         );
       } else {
