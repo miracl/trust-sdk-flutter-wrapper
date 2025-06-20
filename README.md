@@ -39,6 +39,37 @@ Add this import to your `dart` file:
 import 'package:flutter_miracl_sdk/flutter_miracl_sdk.dart';
 ```
 
+### Plugin Configuration
+
+To configure the plugin:
+
+1. Create an application in the MIRACL Trust platform. For information about how
+   to do it, see the
+   [Getting Started](https://miracl.com/resources/docs/guides/get-started/)
+   guide.
+2. Call the `initialize` method with a configuration created by the
+   `Configuration` class:
+
+   ```dart
+   final configuration = Configuration(
+      projectId: "YOUR_PROJECT_ID"
+   );
+
+   await MIRACLTrust.initialize(configuration);
+   ```
+
+   Call the `initialize` method as early as possible in the application
+   lifecycle, and avoid creating instance before that; otherwise,
+   an assertion will be triggered.
+
+### Obtain instance of the plugin
+
+To obtain an instance of the plugin, call the constructor:
+
+```dart
+MIRACLTrust miraclTrust = MIRACLTrust();
+```
+
 ### Exception handling
 
 Most plugin methods can throw exceptions spcific for the operation.
@@ -48,26 +79,6 @@ the exception (e.g., unsuccessful authentication).
 Although exception handling is not mandatory in Dart, it is
 highly recommended that MIRACL Trust methods be wrapped
 in `try/catch` statements.
-
-### SDK Configuration
-
-Configure the plugin as shown below:
-
-```dart
-final configuration = Configuration(
-    projectId: "YOUR_PROJECT_ID"
-);
-MIRACLTrust sdk = MIRACLTrust();
-try { 
-  await sdk.initSdk(configuration);
-} catch on ConfigurationException (e) {
-  // Handle the exception here.
-}
-```
-
-Call the `initSdk` method as early as possible in the application
-lifecycle, and avoid using the other methods before that; otherwise,
-an assertion will be triggered.
 
 ### User ID Verification
 
@@ -90,7 +101,7 @@ offers two options for that:
 
   ```dart
   try {
-    final emailVerificationResponse = await sdk.sendVerificationEmail(userId);
+    final emailVerificationResponse = await miraclTrust.sendVerificationEmail(userId);
   } on EmailVerificationException catch(e) {
     // Handle the exception here.
   }
@@ -137,7 +148,7 @@ different ways, depending on the type of verification.
 
       ```dart
       try {
-        final activationTokenResponse = await sdk.getActivationTokenByURI(verificationURL);
+        final activationTokenResponse = await miraclTrust.getActivationTokenByURI(verificationURL);
       } on ActivationTokenException catch(e) {
         // Handle the exception here.
       }
@@ -153,7 +164,7 @@ different ways, depending on the type of verification.
       ```dart
       try {
         final activationTokenResponse = 
-           await sdk.getActivationTokenByUserIdAndCode(userId, code);
+           await miraclTrust.getActivationTokenByUserIdAndCode(userId, code);
       } on ActivationTokenException catch(e) {
         // Handle the exception here.
       }
@@ -165,7 +176,7 @@ different ways, depending on the type of verification.
 
    ```dart
     try {
-      final user = await sdk.register(
+      final user = await miraclTrust.register(
           userId, 
           activationTokenResponse.activationToken, 
           pin
@@ -193,7 +204,7 @@ token for а registered user.
 
 ```dart
 try {
-  final token = await sdk.authenticate(user, pin);
+  final token = await miraclTrust.authenticate(user, pin);
   // Send token to your server for verification.
 } on AuthenticationException catch(e) {
   // Handle the exception here.
@@ -216,7 +227,7 @@ There are three options for authenticating a user on another application:
 
   ```dart
   try {
-    sdk.authenticateWithLink(user, link, pin)
+    miraclTrust.authenticateWithLink(user, link, pin)
   } on AuthenticationException catch(e) {
     // Handle the exception here.
   }
@@ -230,7 +241,7 @@ There are three options for authenticating a user on another application:
 
   ```dart
   try {
-    await sdk.authenticateWithQrCode(user, qrCode, pin)
+    await miraclTrust.authenticateWithQrCode(user, qrCode, pin)
   } on AuthenticationException catch(e) {
     // Handle the exception here.
   }
@@ -242,7 +253,7 @@ There are three options for authenticating a user on another application:
 
   ```dart
   try {
-    sdk.authenticateWithNotificationPayload(payload, pin)
+    miraclTrust.authenticateWithNotificationPayload(payload, pin)
   } on AuthenticationException catch(e) {
     // Handle the exception here.
   }
@@ -262,7 +273,7 @@ To sign a document, use the `sign` method as follows:
 
 ```dart
 try {
-  final signingResult = await sdk.sign(user, message, pin);
+  final signingResult = await miraclTrust.sign(user, message, pin);
 } on SigningException catch(e) {
   // Handle the exception here.
 }
@@ -284,7 +295,7 @@ an already registered `User` object:
 
 ```dart
 try {
-  final quickCode = await sdk.generateQuickCode(user, pin); 
+  final quickCode = await miraclTrust.generateQuickCode(user, pin); 
 } on QuickCodeException catch(e) {
   // Handle the exception here.
 }
