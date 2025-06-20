@@ -175,25 +175,25 @@ class MEmailVerificationResponse {
   MEmailVerificationResponse(this.backoff, this.emailVerificationMethod);
 }
 
-enum ConfigurationExceptionCode {
+enum MConfigurationExceptionCode {
   emptyProjectId;
 }
 
-enum EmailVerificationExceptionCode {
+enum MEmailVerificationExceptionCode {
   emptyUserId,
   invalidSessionDetails,
   requestBackoff,
   verificaitonFail;
 }
 
-enum ActivationTokenExceptionCode {
+enum MActivationTokenExceptionCode {
   emptyUserId,
   emptyVerificationCode,
   unsuccessfulVerification,
   getActivationTokenFail;
 }
 
-enum RegistrationExceptionCode {
+enum MRegistrationExceptionCode {
   emptyUserId,
   emptyActivationToken,
   invalidActivationToken,
@@ -204,7 +204,7 @@ enum RegistrationExceptionCode {
   projectMismatch;
 }
 
-enum AuthenticationExceptionCode {
+enum MAuthenticationExceptionCode {
   invalidUserData,
   invalidQRCode,
   invalidPushNotificationPayload,
@@ -218,7 +218,7 @@ enum AuthenticationExceptionCode {
   invalidPin;
 }
 
-enum QuickCodeExceptionCode {
+enum MQuickCodeExceptionCode {
   revoked,
   unsuccessfulAuthentication,
   pinCancelled,
@@ -227,7 +227,7 @@ enum QuickCodeExceptionCode {
   generationFail;
 }
 
-enum AuthenticationSessionDetailsExceptionCode {
+enum MAuthenticationSessionDetailsExceptionCode {
   invalidLink,
   invalidQRCode,
   invalidNotificationPayload,
@@ -236,7 +236,7 @@ enum AuthenticationSessionDetailsExceptionCode {
   abortSessionFail;
 }
 
-enum SigningSessionDetailsExceptionCode {
+enum MSigningSessionDetailsExceptionCode {
   invalidLink,
   invalidQRCode,
   invalidSigningSessionDetails,
@@ -246,7 +246,7 @@ enum SigningSessionDetailsExceptionCode {
   abortSigningSessionFail;
 }
 
-enum SigningExceptionCode {
+enum MSigningExceptionCode {
   emptyMessageHash,
   emptyPublicKey,
   invalidUserData,
