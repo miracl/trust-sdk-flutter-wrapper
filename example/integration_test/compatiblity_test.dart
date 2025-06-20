@@ -19,17 +19,27 @@ void main() {
       final pin = createRandomPin();
       final wrongPin = createRandomPin();
 
-      MIRACLTrust sdk = MIRACLTrust();
+      // Test getting instace before initialization.
+      expect(
+        () => MIRACLTrust(),
+        throwsA(isA<AssertionError>().having((e) => e.message, "", equals("MIRACLTrust Flutter plugin not initialized!")))
+      );
       
+      // Initialize the plugin.
       final configuration = Configuration(
         projectId: dvProjectId
       );
-      
-      await sdk.initSDK(configuration);
+
+      await MIRACLTrust.initialize(configuration);
       await expectLater(
-        sdk.initSDK(Configuration(projectId: "")),
+        MIRACLTrust.initialize(Configuration(projectId: "")),
         throwsA(isA<ConfigurationException>().having( (e) => e.code, "", equals(ConfigurationExceptionCode.emptyProjectId)))
       );
+
+      final sdk = MIRACLTrust();
+
+      // Test calling the constructor second time returns the same instance.
+      expect(MIRACLTrust(), equals(sdk));
 
       // Send verification email.
       await sdk.sendVerificationEmail(userId);

@@ -25,12 +25,21 @@ part 'exceptions.dart';
 part 'extensions.dart';
 
 class MIRACLTrust {
+  static MIRACLTrust? _instance;
+
   final MiraclSdk _sdk = MiraclSdk();
 
-  Future<void> initSDK(Configuration configuration) async {
+  MIRACLTrust._createInstance();
+
+  factory MIRACLTrust() {
+    assert(_instance != null, "MIRACLTrust Flutter plugin is not initialized!");
+    return _instance!;
+  }
+
+  static Future<void> initialize(Configuration configuration) async {
     try {
       Logger logger;
-      
+
       if (configuration.logger != null) {
         logger = configuration.logger!;
       } else {
@@ -41,9 +50,11 @@ class MIRACLTrust {
         projectId: configuration.projectId, 
         applicationInfo: sdkApplicationInfo
       );
-      
-      await _sdk.initSdk(mConfiguration);
+
+      final miraclTrust = MIRACLTrust._createInstance();
+      await miraclTrust._sdk.initSdk(mConfiguration);
       MLogger.setUp(logger);
+      _instance = miraclTrust;
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
       if(exceptionCode is ConfigurationExceptionCode) {
