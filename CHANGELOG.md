@@ -45,3 +45,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ## 0.3.2
 
 * Support for Swift Package Manager.
+
+## 0.3.3
+
+* Add option to configure the MIRACL Trust Platform URL.
