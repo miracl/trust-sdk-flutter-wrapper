@@ -3,10 +3,12 @@ import 'package:pigeon/pigeon.dart';
 class MConfiguration {
   final String projectId;
   final String applicationInfo;
+  final String? platformUrl;
 
   MConfiguration(
     this.projectId, 
-    this.applicationInfo
+    this.applicationInfo,
+    this.platformUrl
   );
 }
 

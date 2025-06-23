@@ -17,13 +17,18 @@ public class SdkHandler: NSObject, MiraclSdk {
           mLogger: mLogger
         )
 
-        let conf = try Configuration
+        let configurationBuilder = try Configuration
           .Builder(projectId: configuration.projectId)
           .applicationInfo(applicationInfo: configuration.applicationInfo)
           .logger(logger: flutterLogger)
-          .build()
+
+        if let platformURL = configuration.platformUrl {
+          configurationBuilder.platformURL(url: URL(string: platformURL)!)
+        }
+
+        let configuration = try configurationBuilder.build()
         
-        completion(Result.success(try MIRACLTrust.configure(with: conf)))
+        completion(Result.success(try MIRACLTrust.configure(with: configuration)))
     } catch {
         var details = [String: Any]()
         if let configurationError = error as? ConfigurationError {

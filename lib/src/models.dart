@@ -4,11 +4,13 @@ class Configuration {
     final String projectId;
     final LoggingLevel loggingLevel;
     final Logger? logger;
+    final String? platformUrl;
 
     Configuration({
       required this.projectId, 
       this.loggingLevel = LoggingLevel.none,
-      this.logger
+      this.logger,
+      this.platformUrl
     });
 }
 

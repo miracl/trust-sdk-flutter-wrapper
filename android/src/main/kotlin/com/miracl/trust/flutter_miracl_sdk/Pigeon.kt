@@ -266,20 +266,23 @@ enum class SigningExceptionCode(val raw: Int) {
 /** Generated class from Pigeon that represents data sent in messages. */
 data class MConfiguration (
   val projectId: String,
-  val applicationInfo: String
+  val applicationInfo: String,
+  val platformUrl: String? = null
 )
  {
   companion object {
     fun fromList(pigeonVar_list: List<Any?>): MConfiguration {
       val projectId = pigeonVar_list[0] as String
       val applicationInfo = pigeonVar_list[1] as String
-      return MConfiguration(projectId, applicationInfo)
+      val platformUrl = pigeonVar_list[2] as String?
+      return MConfiguration(projectId, applicationInfo, platformUrl)
     }
   }
   fun toList(): List<Any?> {
     return listOf(
       projectId,
       applicationInfo,
+      platformUrl,
     )
   }
   override fun equals(other: Any?): Boolean {

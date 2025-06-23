@@ -39,7 +39,8 @@ class MIRACLTrust {
 
       final mConfiguration = MConfiguration(
         projectId: configuration.projectId, 
-        applicationInfo: sdkApplicationInfo
+        applicationInfo: sdkApplicationInfo,
+        platformUrl: configuration.platformUrl
       );
       
       await _sdk.initSdk(mConfiguration);
