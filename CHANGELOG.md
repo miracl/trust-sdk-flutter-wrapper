@@ -49,3 +49,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ## 0.3.3
 
 * Add option to configure the MIRACL Trust Platform URL.
+
+## 0.4.0
+
+* Make initialization static and keep one instance of MIRACLTrust.

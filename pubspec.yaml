@@ -1,6 +1,6 @@
 name: flutter_miracl_sdk
 description: MIRACL Trust Flutter plugin
-version: 0.3.3
+version: 0.4.0
 homepage: https://github.com/miracl/trust-sdk-flutter-wrapper
 
 environment:
