@@ -9,7 +9,7 @@ Future<String> getVerificationURL(
   String userId,
   String clientId,
   String clientSecret,
-  String platformURL
+  String platformUrl
 ) async {
     List<int> bytes = utf8.encode('$clientId:$clientSecret');
     String base64String = base64Encode(bytes);
@@ -18,7 +18,7 @@ Future<String> getVerificationURL(
       'Authorization': 'Basic $base64String'
     };
     
-    var request = http.Request('POST', Uri.parse('$platformURL/verification'));
+    var request = http.Request('POST', Uri.parse('$platformUrl/verification'));
     final Map<String, dynamic> body = {
       'projectId': projectId,
       'userId': userId,
@@ -39,9 +39,9 @@ Future<bool> verifyJWT(
   String token,
   String projectId,
   String userId,
-  String platformURL
+  String platformUrl
 ) async {
-  final String endpoint = "$platformURL/.well-known/jwks";
+  final String endpoint = "$platformUrl/.well-known/jwks";
   var request = http.Request('GET', Uri.parse(endpoint));
   http.StreamedResponse response = await request.send();
 
@@ -69,9 +69,9 @@ Future<bool> verifyJWT(
 Future<String> startAuthenticationSession(
   String projectId, 
   String userId, 
-  String platformURL
+  String platformUrl
 ) async {
-    var request = http.Request('POST', Uri.parse('$platformURL/rps/v2/session'));
+    var request = http.Request('POST', Uri.parse('$platformUrl/rps/v2/session'));
     final Map<String, dynamic> body = {
       'projectId': projectId,
       'userId': userId,
@@ -97,9 +97,9 @@ Future<String> startSigningSession(
   String userId,
   String hash,
   String description,
-  String platformURL
+  String platformUrl
 ) async {
-    var request = http.Request('POST', Uri.parse('$platformURL/dvs/session'));
+    var request = http.Request('POST', Uri.parse('$platformUrl/dvs/session'));
     final Map<String, dynamic> body = {
       'projectId': projectId,
       'userId': userId,
@@ -119,7 +119,7 @@ Future<bool> verifySignature(
   SigningResult signingResult,
   String clientId,
   String clientSecret,
-  String platformURL
+  String platformUrl
 ) async {
     List<int> bytes = utf8.encode('$clientId:$clientSecret');
     String base64String = base64Encode(bytes);
@@ -128,7 +128,7 @@ Future<bool> verifySignature(
       'Authorization': 'Basic $base64String'
     };
 
-    var request = http.Request('POST', Uri.parse('$platformURL/dvs/verify'));
+    var request = http.Request('POST', Uri.parse('$platformUrl/dvs/verify'));
     final Map<String, dynamic> body = {
       'signature': {
          'u': signingResult.signature.u,

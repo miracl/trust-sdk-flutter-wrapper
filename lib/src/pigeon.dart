@@ -147,16 +147,20 @@ class MConfiguration {
   MConfiguration({
     required this.projectId,
     required this.applicationInfo,
+    this.platformUrl,
   });
 
   String projectId;
 
   String applicationInfo;
 
+  String? platformUrl;
+
   List<Object?> _toList() {
     return <Object?>[
       projectId,
       applicationInfo,
+      platformUrl,
     ];
   }
 
@@ -168,6 +172,7 @@ class MConfiguration {
     return MConfiguration(
       projectId: result[0]! as String,
       applicationInfo: result[1]! as String,
+      platformUrl: result[2] as String?,
     );
   }
 

@@ -240,22 +240,26 @@ enum SigningExceptionCode: Int {
 struct MConfiguration: Hashable {
   var projectId: String
   var applicationInfo: String
+  var platformUrl: String? = nil
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
   static func fromList(_ pigeonVar_list: [Any?]) -> MConfiguration? {
     let projectId = pigeonVar_list[0] as! String
     let applicationInfo = pigeonVar_list[1] as! String
+    let platformUrl: String? = nilOrValue(pigeonVar_list[2])
 
     return MConfiguration(
       projectId: projectId,
-      applicationInfo: applicationInfo
+      applicationInfo: applicationInfo,
+      platformUrl: platformUrl
     )
   }
   func toList() -> [Any?] {
     return [
       projectId,
       applicationInfo,
+      platformUrl,
     ]
   }
   static func == (lhs: MConfiguration, rhs: MConfiguration) -> Bool {

@@ -31,11 +31,16 @@ class SdkHandler {
         callback: (Result<Unit>) -> Unit
     ) {
         try {      
-            val configuration = Configuration
+            val configurationBuilder = Configuration
                 .Builder(config.projectId)
                 .applicationInfo(config.applicationInfo)
                 .logger(FlutterLogger(mLogger))
-                .build()
+
+            if (config.platformUrl != null) {
+                configurationBuilder.platformUrl(config.platformUrl)
+            }
+            
+            val configuration = configurationBuilder.build()
     
             MIRACLTrust.configure(context, configuration)
             callback(Result.success(Unit))

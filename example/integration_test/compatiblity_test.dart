@@ -8,7 +8,7 @@ import 'test_helpers.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  const platformURL = String.fromEnvironment("TEST_BASE_URL");
+  const platformUrl = String.fromEnvironment("TEST_BASE_URL");
   const clientId = String.fromEnvironment("TEST_CUV_CLIENT_ID");
   const clientSecret = String.fromEnvironment("TEST_CUV_CLIENT_SECRET");
   const userId = String.fromEnvironment("TEST_USER_ID");
@@ -22,7 +22,8 @@ void main() {
       MIRACLTrust sdk = MIRACLTrust();
       
       final configuration = Configuration(
-        projectId: dvProjectId
+        projectId: dvProjectId,
+        platformUrl: platformUrl
       );
       
       await sdk.initSDK(configuration);
@@ -49,7 +50,7 @@ void main() {
         throwsA(isA<ConfigurationException>().having( (e) => e.code, "", equals(ConfigurationExceptionCode.emptyProjectId)))
       );
 
-      String verificationURL = await getVerificationURL(cuvProjectId, userId, clientId, clientSecret, platformURL);
+      String verificationURL = await getVerificationURL(cuvProjectId, userId, clientId, clientSecret, platformUrl);
       Uri verificationURI = Uri.parse(verificationURL);
 
       ActivationTokenResponse activationTokenResponse = await sdk.getActivationTokenByURI(verificationURI);
@@ -86,7 +87,7 @@ void main() {
 
       // In-app authentication.
       final jwt = await sdk.authenticate(user, pin);
-      final jwtVerificationResult = await verifyJWT(jwt, cuvProjectId, userId, platformURL);
+      final jwtVerificationResult = await verifyJWT(jwt, cuvProjectId, userId, platformUrl);
       expect(jwtVerificationResult, equals(true));
 
       await expectLater(
@@ -129,7 +130,7 @@ void main() {
       user = await sdk.register(userId, activationTokenResponse.activationToken, pin);
 
       // Get authentication session.
-      final qrURLAsString = await startAuthenticationSession(cuvProjectId, userId, platformURL);
+      final qrURLAsString = await startAuthenticationSession(cuvProjectId, userId, platformUrl);
       final qrURL = Uri.parse(qrURLAsString);
 
       AuthenticationSessionDetails authenticationSessionDetails = await sdk.getAuthenticationSessionDetailsFromQRCode(qrURLAsString);
@@ -195,13 +196,13 @@ void main() {
       );
 
       //Re-register revoked identity.
-      verificationURL = await getVerificationURL(cuvProjectId, userId, clientId, clientSecret,platformURL);
+      verificationURL = await getVerificationURL(cuvProjectId, userId, clientId, clientSecret, platformUrl);
       verificationURI = Uri.parse(verificationURL);
       activationTokenResponse = await sdk.getActivationTokenByURI(verificationURI);
       user = await sdk.register(userId, activationTokenResponse.activationToken, pin);
 
       // Start a signing session.
-      final signingQRCode = await startSigningSession(cuvProjectId, userId, "Hello World", "Hello Desc", platformURL);
+      final signingQRCode = await startSigningSession(cuvProjectId, userId, "Hello World", "Hello Desc", platformUrl);
 
       SigningSessionDetails signingSessionDetails = await sdk.getSigningSessionDetailsFromQRCode(signingQRCode);
       expect(signingSessionDetails.projectId, equals(cuvProjectId));
@@ -228,7 +229,7 @@ void main() {
       List<int> codeUnits = utf8.encode(myString);
       Uint8List message = Uint8List.fromList(codeUnits);
       final signingResult = await sdk.sign(user, message, pin);
-      final signatureVerificationResult = await verifySignature(signingResult, clientId, clientSecret, platformURL);
+      final signatureVerificationResult = await verifySignature(signingResult, clientId, clientSecret, platformUrl);
       expect(signatureVerificationResult, equals(true));
 
       await expectLater(
