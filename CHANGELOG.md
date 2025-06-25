@@ -53,3 +53,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ## 0.4.0
 
 * Make initialization static and keep one instance of MIRACLTrust.
+
+## 0.5.0
+
+* Make Configuration properties private.
