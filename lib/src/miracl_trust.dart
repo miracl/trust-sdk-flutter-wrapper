@@ -40,16 +40,16 @@ class MIRACLTrust {
     try {
       Logger logger;
 
-      if (configuration.logger != null) {
-        logger = configuration.logger!;
+      if (configuration._logger != null) {
+        logger = configuration._logger!;
       } else {
-        logger = DefaultLogger(configuration.loggingLevel);
+        logger = DefaultLogger(configuration._loggingLevel);
       }
 
       final mConfiguration = MConfiguration(
-        projectId: configuration.projectId, 
+        projectId: configuration._projectId, 
         applicationInfo: sdkApplicationInfo,
-        platformUrl: configuration.platformUrl
+        platformUrl: configuration._platformUrl
       );
 
       final miraclTrust = MIRACLTrust._createInstance();
