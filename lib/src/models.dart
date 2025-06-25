@@ -1,17 +1,20 @@
 part of 'miracl_trust.dart';
 
 class Configuration {
-    final String projectId;
-    final LoggingLevel loggingLevel;
-    final Logger? logger;
-    final String? platformUrl;
+  final String _projectId;
+  final LoggingLevel _loggingLevel;
+  final Logger? _logger;
+  final String? _platformUrl;
 
-    Configuration({
-      required this.projectId, 
-      this.loggingLevel = LoggingLevel.none,
-      this.logger,
-      this.platformUrl
-    });
+  Configuration({
+    required String projectId,
+    LoggingLevel loggingLevel = LoggingLevel.none,
+    Logger? logger,
+    String? platformUrl,
+  })  : _projectId = projectId,
+        _loggingLevel = loggingLevel,
+        _logger = logger,
+        _platformUrl = platformUrl;
 }
 
 enum EmailVerificationMethod {
