@@ -152,25 +152,25 @@ enum MSigningSessionStatus: Int {
   case signed = 1
 }
 
-enum ConfigurationExceptionCode: Int {
+enum MConfigurationExceptionCode: Int {
   case emptyProjectId = 0
 }
 
-enum EmailVerificationExceptionCode: Int {
+enum MEmailVerificationExceptionCode: Int {
   case emptyUserId = 0
   case invalidSessionDetails = 1
   case requestBackoff = 2
   case verificaitonFail = 3
 }
 
-enum ActivationTokenExceptionCode: Int {
+enum MActivationTokenExceptionCode: Int {
   case emptyUserId = 0
   case emptyVerificationCode = 1
   case unsuccessfulVerification = 2
   case getActivationTokenFail = 3
 }
 
-enum RegistrationExceptionCode: Int {
+enum MRegistrationExceptionCode: Int {
   case emptyUserId = 0
   case emptyActivationToken = 1
   case invalidActivationToken = 2
@@ -181,7 +181,7 @@ enum RegistrationExceptionCode: Int {
   case projectMismatch = 7
 }
 
-enum AuthenticationExceptionCode: Int {
+enum MAuthenticationExceptionCode: Int {
   case invalidUserData = 0
   case invalidQRCode = 1
   case invalidPushNotificationPayload = 2
@@ -195,7 +195,7 @@ enum AuthenticationExceptionCode: Int {
   case invalidPin = 10
 }
 
-enum QuickCodeExceptionCode: Int {
+enum MQuickCodeExceptionCode: Int {
   case revoked = 0
   case unsuccessfulAuthentication = 1
   case pinCancelled = 2
@@ -204,7 +204,7 @@ enum QuickCodeExceptionCode: Int {
   case generationFail = 5
 }
 
-enum AuthenticationSessionDetailsExceptionCode: Int {
+enum MAuthenticationSessionDetailsExceptionCode: Int {
   case invalidLink = 0
   case invalidQRCode = 1
   case invalidNotificationPayload = 2
@@ -213,7 +213,7 @@ enum AuthenticationSessionDetailsExceptionCode: Int {
   case abortSessionFail = 5
 }
 
-enum SigningSessionDetailsExceptionCode: Int {
+enum MSigningSessionDetailsExceptionCode: Int {
   case invalidLink = 0
   case invalidQRCode = 1
   case invalidSigningSessionDetails = 2
@@ -223,7 +223,7 @@ enum SigningSessionDetailsExceptionCode: Int {
   case abortSigningSessionFail = 6
 }
 
-enum SigningExceptionCode: Int {
+enum MSigningExceptionCode: Int {
   case emptyMessageHash = 0
   case emptyPublicKey = 1
   case invalidUserData = 2
@@ -708,55 +708,55 @@ private class PigeonPigeonCodecReader: FlutterStandardReader {
     case 133:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return ConfigurationExceptionCode(rawValue: enumResultAsInt)
+        return MConfigurationExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 134:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return EmailVerificationExceptionCode(rawValue: enumResultAsInt)
+        return MEmailVerificationExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 135:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return ActivationTokenExceptionCode(rawValue: enumResultAsInt)
+        return MActivationTokenExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 136:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return RegistrationExceptionCode(rawValue: enumResultAsInt)
+        return MRegistrationExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 137:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return AuthenticationExceptionCode(rawValue: enumResultAsInt)
+        return MAuthenticationExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 138:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return QuickCodeExceptionCode(rawValue: enumResultAsInt)
+        return MQuickCodeExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 139:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return AuthenticationSessionDetailsExceptionCode(rawValue: enumResultAsInt)
+        return MAuthenticationSessionDetailsExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 140:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return SigningSessionDetailsExceptionCode(rawValue: enumResultAsInt)
+        return MSigningSessionDetailsExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 141:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return SigningExceptionCode(rawValue: enumResultAsInt)
+        return MSigningExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 142:
@@ -799,31 +799,31 @@ private class PigeonPigeonCodecWriter: FlutterStandardWriter {
     } else if let value = value as? MSigningSessionStatus {
       super.writeByte(132)
       super.writeValue(value.rawValue)
-    } else if let value = value as? ConfigurationExceptionCode {
+    } else if let value = value as? MConfigurationExceptionCode {
       super.writeByte(133)
       super.writeValue(value.rawValue)
-    } else if let value = value as? EmailVerificationExceptionCode {
+    } else if let value = value as? MEmailVerificationExceptionCode {
       super.writeByte(134)
       super.writeValue(value.rawValue)
-    } else if let value = value as? ActivationTokenExceptionCode {
+    } else if let value = value as? MActivationTokenExceptionCode {
       super.writeByte(135)
       super.writeValue(value.rawValue)
-    } else if let value = value as? RegistrationExceptionCode {
+    } else if let value = value as? MRegistrationExceptionCode {
       super.writeByte(136)
       super.writeValue(value.rawValue)
-    } else if let value = value as? AuthenticationExceptionCode {
+    } else if let value = value as? MAuthenticationExceptionCode {
       super.writeByte(137)
       super.writeValue(value.rawValue)
-    } else if let value = value as? QuickCodeExceptionCode {
+    } else if let value = value as? MQuickCodeExceptionCode {
       super.writeByte(138)
       super.writeValue(value.rawValue)
-    } else if let value = value as? AuthenticationSessionDetailsExceptionCode {
+    } else if let value = value as? MAuthenticationSessionDetailsExceptionCode {
       super.writeByte(139)
       super.writeValue(value.rawValue)
-    } else if let value = value as? SigningSessionDetailsExceptionCode {
+    } else if let value = value as? MSigningSessionDetailsExceptionCode {
       super.writeByte(140)
       super.writeValue(value.rawValue)
-    } else if let value = value as? SigningExceptionCode {
+    } else if let value = value as? MSigningExceptionCode {
       super.writeByte(141)
       super.writeValue(value.rawValue)
     } else if let value = value as? MConfiguration {

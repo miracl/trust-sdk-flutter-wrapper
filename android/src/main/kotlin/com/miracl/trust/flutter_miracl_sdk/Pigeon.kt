@@ -125,43 +125,43 @@ enum class MSigningSessionStatus(val raw: Int) {
   }
 }
 
-enum class ConfigurationExceptionCode(val raw: Int) {
+enum class MConfigurationExceptionCode(val raw: Int) {
   EMPTY_PROJECT_ID(0);
 
   companion object {
-    fun ofRaw(raw: Int): ConfigurationExceptionCode? {
+    fun ofRaw(raw: Int): MConfigurationExceptionCode? {
       return values().firstOrNull { it.raw == raw }
     }
   }
 }
 
-enum class EmailVerificationExceptionCode(val raw: Int) {
+enum class MEmailVerificationExceptionCode(val raw: Int) {
   EMPTY_USER_ID(0),
   INVALID_SESSION_DETAILS(1),
   REQUEST_BACKOFF(2),
   VERIFICAITON_FAIL(3);
 
   companion object {
-    fun ofRaw(raw: Int): EmailVerificationExceptionCode? {
+    fun ofRaw(raw: Int): MEmailVerificationExceptionCode? {
       return values().firstOrNull { it.raw == raw }
     }
   }
 }
 
-enum class ActivationTokenExceptionCode(val raw: Int) {
+enum class MActivationTokenExceptionCode(val raw: Int) {
   EMPTY_USER_ID(0),
   EMPTY_VERIFICATION_CODE(1),
   UNSUCCESSFUL_VERIFICATION(2),
   GET_ACTIVATION_TOKEN_FAIL(3);
 
   companion object {
-    fun ofRaw(raw: Int): ActivationTokenExceptionCode? {
+    fun ofRaw(raw: Int): MActivationTokenExceptionCode? {
       return values().firstOrNull { it.raw == raw }
     }
   }
 }
 
-enum class RegistrationExceptionCode(val raw: Int) {
+enum class MRegistrationExceptionCode(val raw: Int) {
   EMPTY_USER_ID(0),
   EMPTY_ACTIVATION_TOKEN(1),
   INVALID_ACTIVATION_TOKEN(2),
@@ -172,13 +172,13 @@ enum class RegistrationExceptionCode(val raw: Int) {
   PROJECT_MISMATCH(7);
 
   companion object {
-    fun ofRaw(raw: Int): RegistrationExceptionCode? {
+    fun ofRaw(raw: Int): MRegistrationExceptionCode? {
       return values().firstOrNull { it.raw == raw }
     }
   }
 }
 
-enum class AuthenticationExceptionCode(val raw: Int) {
+enum class MAuthenticationExceptionCode(val raw: Int) {
   INVALID_USER_DATA(0),
   INVALID_QRCODE(1),
   INVALID_PUSH_NOTIFICATION_PAYLOAD(2),
@@ -192,13 +192,13 @@ enum class AuthenticationExceptionCode(val raw: Int) {
   INVALID_PIN(10);
 
   companion object {
-    fun ofRaw(raw: Int): AuthenticationExceptionCode? {
+    fun ofRaw(raw: Int): MAuthenticationExceptionCode? {
       return values().firstOrNull { it.raw == raw }
     }
   }
 }
 
-enum class QuickCodeExceptionCode(val raw: Int) {
+enum class MQuickCodeExceptionCode(val raw: Int) {
   REVOKED(0),
   UNSUCCESSFUL_AUTHENTICATION(1),
   PIN_CANCELLED(2),
@@ -207,13 +207,13 @@ enum class QuickCodeExceptionCode(val raw: Int) {
   GENERATION_FAIL(5);
 
   companion object {
-    fun ofRaw(raw: Int): QuickCodeExceptionCode? {
+    fun ofRaw(raw: Int): MQuickCodeExceptionCode? {
       return values().firstOrNull { it.raw == raw }
     }
   }
 }
 
-enum class AuthenticationSessionDetailsExceptionCode(val raw: Int) {
+enum class MAuthenticationSessionDetailsExceptionCode(val raw: Int) {
   INVALID_LINK(0),
   INVALID_QRCODE(1),
   INVALID_NOTIFICATION_PAYLOAD(2),
@@ -222,13 +222,13 @@ enum class AuthenticationSessionDetailsExceptionCode(val raw: Int) {
   ABORT_SESSION_FAIL(5);
 
   companion object {
-    fun ofRaw(raw: Int): AuthenticationSessionDetailsExceptionCode? {
+    fun ofRaw(raw: Int): MAuthenticationSessionDetailsExceptionCode? {
       return values().firstOrNull { it.raw == raw }
     }
   }
 }
 
-enum class SigningSessionDetailsExceptionCode(val raw: Int) {
+enum class MSigningSessionDetailsExceptionCode(val raw: Int) {
   INVALID_LINK(0),
   INVALID_QRCODE(1),
   INVALID_SIGNING_SESSION_DETAILS(2),
@@ -238,13 +238,13 @@ enum class SigningSessionDetailsExceptionCode(val raw: Int) {
   ABORT_SIGNING_SESSION_FAIL(6);
 
   companion object {
-    fun ofRaw(raw: Int): SigningSessionDetailsExceptionCode? {
+    fun ofRaw(raw: Int): MSigningSessionDetailsExceptionCode? {
       return values().firstOrNull { it.raw == raw }
     }
   }
 }
 
-enum class SigningExceptionCode(val raw: Int) {
+enum class MSigningExceptionCode(val raw: Int) {
   EMPTY_MESSAGE_HASH(0),
   EMPTY_PUBLIC_KEY(1),
   INVALID_USER_DATA(2),
@@ -257,7 +257,7 @@ enum class SigningExceptionCode(val raw: Int) {
   INVALID_SIGNING_SESSION_DETAILS(9);
 
   companion object {
-    fun ofRaw(raw: Int): SigningExceptionCode? {
+    fun ofRaw(raw: Int): MSigningExceptionCode? {
       return values().firstOrNull { it.raw == raw }
     }
   }
@@ -711,47 +711,47 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
       }
       133.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          ConfigurationExceptionCode.ofRaw(it.toInt())
+          MConfigurationExceptionCode.ofRaw(it.toInt())
         }
       }
       134.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          EmailVerificationExceptionCode.ofRaw(it.toInt())
+          MEmailVerificationExceptionCode.ofRaw(it.toInt())
         }
       }
       135.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          ActivationTokenExceptionCode.ofRaw(it.toInt())
+          MActivationTokenExceptionCode.ofRaw(it.toInt())
         }
       }
       136.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          RegistrationExceptionCode.ofRaw(it.toInt())
+          MRegistrationExceptionCode.ofRaw(it.toInt())
         }
       }
       137.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          AuthenticationExceptionCode.ofRaw(it.toInt())
+          MAuthenticationExceptionCode.ofRaw(it.toInt())
         }
       }
       138.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          QuickCodeExceptionCode.ofRaw(it.toInt())
+          MQuickCodeExceptionCode.ofRaw(it.toInt())
         }
       }
       139.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          AuthenticationSessionDetailsExceptionCode.ofRaw(it.toInt())
+          MAuthenticationSessionDetailsExceptionCode.ofRaw(it.toInt())
         }
       }
       140.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          SigningSessionDetailsExceptionCode.ofRaw(it.toInt())
+          MSigningSessionDetailsExceptionCode.ofRaw(it.toInt())
         }
       }
       141.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          SigningExceptionCode.ofRaw(it.toInt())
+          MSigningExceptionCode.ofRaw(it.toInt())
         }
       }
       142.toByte() -> {
@@ -825,39 +825,39 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
         stream.write(132)
         writeValue(stream, value.raw)
       }
-      is ConfigurationExceptionCode -> {
+      is MConfigurationExceptionCode -> {
         stream.write(133)
         writeValue(stream, value.raw)
       }
-      is EmailVerificationExceptionCode -> {
+      is MEmailVerificationExceptionCode -> {
         stream.write(134)
         writeValue(stream, value.raw)
       }
-      is ActivationTokenExceptionCode -> {
+      is MActivationTokenExceptionCode -> {
         stream.write(135)
         writeValue(stream, value.raw)
       }
-      is RegistrationExceptionCode -> {
+      is MRegistrationExceptionCode -> {
         stream.write(136)
         writeValue(stream, value.raw)
       }
-      is AuthenticationExceptionCode -> {
+      is MAuthenticationExceptionCode -> {
         stream.write(137)
         writeValue(stream, value.raw)
       }
-      is QuickCodeExceptionCode -> {
+      is MQuickCodeExceptionCode -> {
         stream.write(138)
         writeValue(stream, value.raw)
       }
-      is AuthenticationSessionDetailsExceptionCode -> {
+      is MAuthenticationSessionDetailsExceptionCode -> {
         stream.write(139)
         writeValue(stream, value.raw)
       }
-      is SigningSessionDetailsExceptionCode -> {
+      is MSigningSessionDetailsExceptionCode -> {
         stream.write(140)
         writeValue(stream, value.raw)
       }
-      is SigningExceptionCode -> {
+      is MSigningExceptionCode -> {
         stream.write(141)
         writeValue(stream, value.raw)
       }
