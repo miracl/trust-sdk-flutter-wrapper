@@ -16,6 +16,13 @@ jobs:
           channel: stable
       - run: flutter --version
 
+      - name: Get dependencies
+        run: |
+          flutter pub get
+          cd ./integration_test_app
+          flutter pub get
+          cd ..
+
       - name: Analyze
         run: flutter analyze
       
@@ -55,7 +62,7 @@ jobs:
           TEST_DV_PROJECT_ID: ${{ vars.TEST_DV_PROJECT_ID }}
           TEST_USER_ID: ${{ vars.TEST_USER_ID }}
         with:
-          working-directory: ./example
+          working-directory: ./integration_test_app
           api-level: 35
           arch: "x86_64"
           script: |
@@ -77,7 +84,7 @@ jobs:
         run: flutter pub get
 
       - name: Run integration tests
-        working-directory: ./example
+        working-directory: ./integration_test_app
         env: 
           TEST_BASE_URL: ${{ vars.TEST_BASE_URL }}
           TEST_CUV_CLIENT_SECRET: ${{ secrets.TEST_CUV_CLIENT_SECRET }}
