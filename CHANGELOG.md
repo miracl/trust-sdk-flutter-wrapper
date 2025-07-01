@@ -57,3 +57,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ## 0.5.0
 
 * Make Configuration properties private.
+
+## 0.5.1
+
+* Add API documentation.
