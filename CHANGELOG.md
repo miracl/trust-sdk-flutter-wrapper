@@ -61,3 +61,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ## 0.5.1
 
 * Add API documentation.
+
+## 0.5.1+1
+
+* Add sample application.
