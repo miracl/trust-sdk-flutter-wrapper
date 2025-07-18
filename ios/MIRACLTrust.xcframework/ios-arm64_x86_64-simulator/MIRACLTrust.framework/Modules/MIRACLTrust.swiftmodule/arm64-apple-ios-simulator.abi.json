@@ -16267,20 +16267,6 @@
         "moduleName": "MIRACLTrust"
       },
       {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "MIRACLTrust"
-      },
-      {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "MIRACLTrust"
-      },
-      {
         "kind": "TypeDecl",
         "name": "SigningError",
         "printedName": "SigningError",
@@ -17783,6 +17769,20 @@
       "value": "\"Start quick code verification\""
     },
     {
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 3194,
+      "length": 33,
+      "value": "\"Invalid client secret share URL\""
+    },
+    {
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 3283,
+      "length": 48,
+      "value": "\"Getting Client secret shares operation started\""
+    },
+    {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/QuickCode\/QuickCodeGenerator.swift",
       "kind": "StringLiteral",
       "offset": 54,
@@ -17842,27 +17842,6 @@
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/CodeStatusRequestBody.swift",
       "kind": "StringLiteral",
       "offset": 74,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1RequestBody.swift",
-      "kind": "StringLiteral",
-      "offset": 77,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1RequestBody.swift",
-      "kind": "StringLiteral",
-      "offset": 101,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1RequestBody.swift",
-      "kind": "StringLiteral",
-      "offset": 131,
       "length": 2,
       "value": "\"\""
     },
@@ -18005,27 +17984,6 @@
       "offset": 995,
       "length": 9,
       "value": "12"
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/RegistrationRequestBody.swift",
-      "kind": "StringLiteral",
-      "offset": 66,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/RegistrationRequestBody.swift",
-      "kind": "StringLiteral",
-      "offset": 98,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/RegistrationRequestBody.swift",
-      "kind": "StringLiteral",
-      "offset": 132,
-      "length": 2,
-      "value": "\"\""
     },
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1RequestBody.swift",
@@ -18222,76 +18180,6 @@
       "offset": 527,
       "length": 1,
       "value": "6"
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/SignatureResponse.swift",
-      "kind": "StringLiteral",
-      "offset": 295,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/SignatureResponse.swift",
-      "kind": "StringLiteral",
-      "offset": 473,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/SignatureResponse.swift",
-      "kind": "StringLiteral",
-      "offset": 548,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Registration\/SignatureResponse.swift",
-      "kind": "StringLiteral",
-      "offset": 649,
-      "length": 8,
-      "value": "\"cs2url\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
-      "kind": "StringLiteral",
-      "offset": 406,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
-      "kind": "StringLiteral",
-      "offset": 592,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
-      "kind": "StringLiteral",
-      "offset": 667,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
-      "kind": "StringLiteral",
-      "offset": 725,
-      "length": 2,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
-      "kind": "StringLiteral",
-      "offset": 810,
-      "length": 22,
-      "value": "\"dvsClientSecretShare\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/SigningClientSecret1Response.swift",
-      "kind": "StringLiteral",
-      "offset": 855,
-      "length": 8,
-      "value": "\"cs2url\""
     },
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/AuthenticateResponse.swift",
