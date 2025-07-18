@@ -11,7 +11,7 @@ let package = Package(
         .library(name: "flutter-miracl-sdk", targets: ["flutter_miracl_sdk"])
     ],
     dependencies: [
-        .package(url: "https://github.com/miracl/trust-sdk-ios", exact: "1.1.0")
+        .package(url: "https://github.com/miracl/trust-sdk-ios", exact: "1.2.0")
     ],
     targets: [
         .target(
