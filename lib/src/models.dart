@@ -5,27 +5,27 @@ class Configuration {
   final String _projectId;
   final LoggingLevel _loggingLevel;
   final Logger? _logger;
-  final String? _platformUrl;
+  final String? _projectUrl;
 
   /// Creates a [Configuration] instance.
   ///
   /// Parameters:
   /// - [projectId]: (Required) Links the SDK with the project on the MIRACL Trust platform.
+  /// - [projectUrl]: Sets a custom MIRACL Trust platform URL.
   /// - [loggingLevel]: Provides a specific [LoggingLevel] for the MIRACL Trust Flutter
   ///   plugin's default logger.  Defaults to [LoggingLevel.none]. **Note:** This has no
   ///   effect if a custom [logger] is provided.
   /// - [logger]: Provides a custom [Logger] implementation for the MIRACL Trust Flutter
   ///   plugin. If this is set, the [loggingLevel] parameter is ignored.
-  /// - [platformUrl]: Sets a custom MIRACL Trust platform URL.
   Configuration({
     required String projectId,
+    String? projectUrl,
     LoggingLevel loggingLevel = LoggingLevel.none,
     Logger? logger,
-    String? platformUrl,
   })  : _projectId = projectId,
         _loggingLevel = loggingLevel,
         _logger = logger,
-        _platformUrl = platformUrl;
+        _projectUrl = projectUrl;
 }
 
 /// Possible email verification methods.

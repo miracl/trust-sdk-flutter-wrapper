@@ -9,12 +9,13 @@ import 'test_helpers.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  const platformUrl = String.fromEnvironment("TEST_BASE_URL");
   const clientId = String.fromEnvironment("TEST_CUV_CLIENT_ID");
   const clientSecret = String.fromEnvironment("TEST_CUV_CLIENT_SECRET");
   const userId = String.fromEnvironment("TEST_USER_ID");
   const dvProjectId = String.fromEnvironment("TEST_DV_PROJECT_ID");
   const cuvProjectId = String.fromEnvironment("TEST_CUV_PROJECT_ID");
+  const cuvProjectUrl = String.fromEnvironment("TEST_CUV_PROJECT_URL");
+  const dvProjectUrl = String.fromEnvironment("TEST_DV_PROJECT_URL");
 
   testWidgets('test compatiblity', (WidgetTester tester) async {
       final pin = createRandomPin();
@@ -29,13 +30,18 @@ void main() {
       // Initialize the plugin.
       final configuration = Configuration(
         projectId: dvProjectId,
-        platformUrl: platformUrl
+        projectUrl: dvProjectUrl
       );
 
       await MIRACLTrust.initialize(configuration);
       await expectLater(
-        MIRACLTrust.initialize(Configuration(projectId: "")),
+        MIRACLTrust.initialize(Configuration(projectId: "", projectUrl: cuvProjectUrl)),
         throwsA(isA<ConfigurationException>().having( (e) => e.code, "", equals(ConfigurationExceptionCode.emptyProjectId)))
+      );
+
+      await expectLater(
+        MIRACLTrust.initialize(Configuration(projectId: cuvProjectId, projectUrl: "")),
+        throwsA(isA<ConfigurationException>().having( (e) => e.code, "", equals(ConfigurationExceptionCode.invalidProjectUrl)))
       );
 
       final miraclTrust = MIRACLTrust();
@@ -54,14 +60,28 @@ void main() {
         )
       ); 
 
-      // Get activation token.
-      await miraclTrust.setProjectId(cuvProjectId);
+      await miraclTrust.updateProjectSettings(cuvProjectId, cuvProjectUrl);
+      await expectLater(
+        miraclTrust.updateProjectSettings("", cuvProjectUrl),
+        throwsA(isA<ConfigurationException>().having( (e) => e.code, "", equals(ConfigurationExceptionCode.emptyProjectId)))
+      );
+
+      await expectLater(
+        miraclTrust.updateProjectSettings(cuvProjectId, ""),
+        throwsA(isA<ConfigurationException>().having( (e) => e.code, "", equals(ConfigurationExceptionCode.invalidProjectUrl)))
+      );
+
+      await miraclTrust.setProjectId(dvProjectId);
+
       await expectLater(
         miraclTrust.setProjectId(""),
         throwsA(isA<ConfigurationException>().having( (e) => e.code, "", equals(ConfigurationExceptionCode.emptyProjectId)))
       );
 
-      String verificationURL = await getVerificationURL(cuvProjectId, userId, clientId, clientSecret, platformUrl);
+      await miraclTrust.setProjectId(cuvProjectId);
+
+      // Get activation token.
+      String verificationURL = await getVerificationURL(cuvProjectId, userId, clientId, clientSecret, cuvProjectUrl);
       Uri verificationURI = Uri.parse(verificationURL);
 
       ActivationTokenResponse activationTokenResponse = await miraclTrust.getActivationTokenByURI(verificationURI);
@@ -98,7 +118,7 @@ void main() {
 
       // In-app authentication.
       final jwt = await miraclTrust.authenticate(user, pin);
-      final jwtVerificationResult = await verifyJWT(jwt, cuvProjectId, userId, platformUrl);
+      final jwtVerificationResult = await verifyJWT(jwt, cuvProjectId, userId, cuvProjectUrl);
       expect(jwtVerificationResult, equals(true));
 
       await expectLater(
@@ -141,7 +161,7 @@ void main() {
       user = await miraclTrust.register(userId, activationTokenResponse.activationToken, pin);
 
       // Get authentication session.
-      final qrURLAsString = await startAuthenticationSession(cuvProjectId, userId, platformUrl);
+      final qrURLAsString = await startAuthenticationSession(cuvProjectId, userId, cuvProjectUrl);
       final qrURL = Uri.parse(qrURLAsString);
 
       AuthenticationSessionDetails authenticationSessionDetails = await miraclTrust.getAuthenticationSessionDetailsFromQRCode(qrURLAsString);
@@ -207,13 +227,13 @@ void main() {
       );
 
       //Re-register revoked identity.
-      verificationURL = await getVerificationURL(cuvProjectId, userId, clientId, clientSecret, platformUrl);
+      verificationURL = await getVerificationURL(cuvProjectId, userId, clientId, clientSecret, cuvProjectUrl);
       verificationURI = Uri.parse(verificationURL);
       activationTokenResponse = await miraclTrust.getActivationTokenByURI(verificationURI);
       user = await miraclTrust.register(userId, activationTokenResponse.activationToken, pin);
 
       // Start a signing session.
-      final signingQRCode = await startSigningSession(cuvProjectId, userId, "Hello World", "Hello Desc", platformUrl);
+      final signingQRCode = await startSigningSession(cuvProjectId, userId, "Hello World", "Hello Desc", cuvProjectUrl);
 
       SigningSessionDetails signingSessionDetails = await miraclTrust.getSigningSessionDetailsFromQRCode(signingQRCode);
       expect(signingSessionDetails.projectId, equals(cuvProjectId));
@@ -240,7 +260,7 @@ void main() {
       List<int> codeUnits = utf8.encode(myString);
       Uint8List message = Uint8List.fromList(codeUnits);
       final signingResult = await miraclTrust.sign(user, message, pin);
-      final signatureVerificationResult = await verifySignature(signingResult, clientId, clientSecret, platformUrl);
+      final signatureVerificationResult = await verifySignature(signingResult, clientId, clientSecret, cuvProjectUrl);
       expect(signatureVerificationResult, equals(true));
 
       await expectLater(

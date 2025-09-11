@@ -43,22 +43,29 @@ import 'package:flutter_miracl_sdk/flutter_miracl_sdk.dart';
 
 To configure the plugin:
 
-1. Create an application in the MIRACL Trust platform. For information about how
+1. Create an account in the MIRACL Trust platform. For information about how
    to do it, see the
    [Getting Started](https://miracl.com/resources/docs/guides/get-started/)
    guide.
-2. Call the `initialize` method with a configuration created by the
-   `Configuration` class:
+2. Call the
+   [initialize](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/initialize.html)
+   method with a configuration created by the
+   [Configuration](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/Configuration-class.html)
+   class using
+   [your project properties](https://miracl.com/resources/docs/get-started/create-project/#project-properties):
 
    ```dart
    final configuration = Configuration(
-      projectId: "YOUR_PROJECT_ID"
+      projectId: "Project Id",
+      projectUrl: "Project Domain"
    );
 
    await MIRACLTrust.initialize(configuration);
    ```
 
-   Call the `initialize` method as early as possible in the application
+   Call the
+   [initialize](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/initialize.html)
+   method as early as possible in the application
    lifecycle, and avoid creating instance before that; otherwise,
    an assertion will be triggered.
 

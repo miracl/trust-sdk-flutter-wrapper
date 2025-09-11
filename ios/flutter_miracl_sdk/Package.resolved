@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/miracl/trust-sdk-ios",
       "state" : {
-        "revision" : "f50bd77e34d43ef1e5b22c87b94013793a54ef67",
-        "version" : "1.2.0"
+        "revision" : "9c688287ca816edacea33ad3ec4fbd46e162feed",
+        "version" : "1.6.2"
       }
     }
   ],

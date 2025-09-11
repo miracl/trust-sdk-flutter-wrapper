@@ -13,6 +13,7 @@ import com.miracl.trust.signing.SigningException
 internal val ConfigurationException.flutterExceptionCodeRepresentation: MConfigurationExceptionCode
     get() = when (this) {
         ConfigurationException.EmptyProjectId -> MConfigurationExceptionCode.EMPTY_PROJECT_ID
+        ConfigurationException.InvalidProjectUrl -> MConfigurationExceptionCode.INVALID_PROJECT_URL
     }
 
 internal val VerificationException.flutterExceptionCodeRepresentation: MEmailVerificationExceptionCode
@@ -56,6 +57,7 @@ internal val AuthenticationException.flutterExceptionCodeRepresentation: MAuthen
         AuthenticationException.Revoked -> MAuthenticationExceptionCode.REVOKED
         AuthenticationException.UnsuccessfulAuthentication -> MAuthenticationExceptionCode.UNSUCCESSFUL_AUTHENTICATION
         AuthenticationException.UserNotFound -> MAuthenticationExceptionCode.USER_NOT_FOUND
+        AuthenticationException.InvalidCrossDeviceSession -> MAuthenticationExceptionCode.INVALID_CROSS_DEVICE_SESSION
     }
 
 internal val QuickCodeException.flutterExceptionCodeRepresentation: MQuickCodeExceptionCode

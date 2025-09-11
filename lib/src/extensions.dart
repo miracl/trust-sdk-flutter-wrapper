@@ -145,6 +145,7 @@ extension on MSigningResult {
 extension on MConfigurationExceptionCode {
   ConfigurationExceptionCode toConfigurationExceptionCode() => switch (this) {
     MConfigurationExceptionCode.emptyProjectId => ConfigurationExceptionCode.emptyProjectId,
+    MConfigurationExceptionCode.invalidProjectUrl => ConfigurationExceptionCode.invalidProjectUrl
   };
 }
 
@@ -193,6 +194,7 @@ extension on MAuthenticationExceptionCode {
     MAuthenticationExceptionCode.unsuccessfulAuthentication => AuthenticationExceptionCode.unsuccessfulAuthentication,
     MAuthenticationExceptionCode.pinCancelled => AuthenticationExceptionCode.pinCancelled,
     MAuthenticationExceptionCode.invalidPin => AuthenticationExceptionCode.invalidPin,
+    MAuthenticationExceptionCode.invalidCrossDeviceSession => AuthenticationExceptionCode.invalidCrossDeviceSession
   };
 }
 

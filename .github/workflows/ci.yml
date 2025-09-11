@@ -55,12 +55,13 @@ jobs:
       - name: Run integration tests
         uses: reactivecircus/android-emulator-runner@v2
         env: 
-          TEST_BASE_URL: ${{ vars.TEST_BASE_URL }}
           TEST_CUV_CLIENT_SECRET: ${{ secrets.TEST_CUV_CLIENT_SECRET }}
           TEST_CUV_CLIENT_ID: ${{ vars.TEST_CUV_CLIENT_ID }}
           TEST_CUV_PROJECT_ID: ${{ vars.TEST_CUV_PROJECT_ID }}
           TEST_DV_PROJECT_ID: ${{ vars.TEST_DV_PROJECT_ID }}
           TEST_USER_ID: ${{ vars.TEST_USER_ID }}
+          TEST_CUV_PROJECT_URL: ${{ vars.TEST_CUV_PROJECT_URL }}
+          TEST_DV_PROJECT_URL: ${{ vars.TEST_DV_PROJECT_URL }}
         with:
           working-directory: ./integration_test_app
           api-level: 35
@@ -86,12 +87,13 @@ jobs:
       - name: Run integration tests
         working-directory: ./integration_test_app
         env: 
-          TEST_BASE_URL: ${{ vars.TEST_BASE_URL }}
           TEST_CUV_CLIENT_SECRET: ${{ secrets.TEST_CUV_CLIENT_SECRET }}
           TEST_CUV_CLIENT_ID: ${{ vars.TEST_CUV_CLIENT_ID }}
           TEST_CUV_PROJECT_ID: ${{ vars.TEST_CUV_PROJECT_ID }}
           TEST_DV_PROJECT_ID: ${{ vars.TEST_DV_PROJECT_ID }}
           TEST_USER_ID: ${{ vars.TEST_USER_ID }}
+          TEST_CUV_PROJECT_URL: ${{ vars.TEST_CUV_PROJECT_URL }}
+          TEST_DV_PROJECT_URL: ${{ vars.TEST_DV_PROJECT_URL }}
         run: |
           xcrun simctl erase "iPhone 16"
           xcrun simctl bootstatus "iPhone 16" -b

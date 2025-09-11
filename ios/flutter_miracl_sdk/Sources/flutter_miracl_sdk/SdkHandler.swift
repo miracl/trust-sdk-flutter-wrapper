@@ -17,14 +17,23 @@ public class SdkHandler: NSObject, MiraclSdk {
           mLogger: mLogger
         )
 
-        let configurationBuilder = try Configuration
-          .Builder(projectId: configuration.projectId)
+        var configurationBuilder: Configuration.Builder
+        if let projectURL = configuration.projectUrl {
+          configurationBuilder = try Configuration
+              .Builder(
+                  projectId: configuration.projectId,
+                  projectURL: projectURL
+              )
+        } else {
+          configurationBuilder = try Configuration
+              .Builder(
+                  projectId: configuration.projectId
+              )
+        }
+
+        configurationBuilder
           .applicationInfo(applicationInfo: configuration.applicationInfo)
           .logger(logger: flutterLogger)
-
-        if let platformURL = configuration.platformUrl {
-          configurationBuilder.platformURL(url: URL(string: platformURL)!)
-        }
 
         let configuration = try configurationBuilder.build()
         
@@ -42,22 +51,44 @@ public class SdkHandler: NSObject, MiraclSdk {
     projectId: String, 
     completion: @escaping (Result<Void, Error>) -> Void
   ) {
-    do {
-        completion(
-          Result.success(
-              try MIRACLTrust.getInstance()
-                  .setProjectId(projectId: projectId)
+      do {
+          completion(
+            Result.success(
+                try MIRACLTrust.getInstance().setProjectId(projectId: projectId)
+            )
           )
-        )
-    } catch {
-        var details = [String: Any]()
-        if let configurationError = error as? ConfigurationError {
-          details["exceptionCode"] = configurationError.flutterExceptionCodeRepresentation
-        }
-        completion(Result.failure(createPigeonError(error: error, details: details)))
-    }
+      } catch {
+          var details = [String: Any]()
+          if let configurationError = error as? ConfigurationError {
+            details["exceptionCode"] = configurationError.flutterExceptionCodeRepresentation
+          }
+          completion(Result.failure(createPigeonError(error: error, details: details)))
+      }
   }
 
+  func updateProjectSettings(
+    projectId: String,
+    projectUrl: String,
+    completion: @escaping (Result<Void, Error>) -> Void
+  ) {
+      do {
+          completion(
+            Result.success(
+                try MIRACLTrust.getInstance().updateProjectSettings(
+                    projectId: projectId,
+                    projectURL: projectUrl
+                )
+            )
+          )
+      } catch {
+          var details = [String: Any]()
+          if let configurationError = error as? ConfigurationError {
+            details["exceptionCode"] = configurationError.flutterExceptionCodeRepresentation
+          }
+          completion(Result.failure(createPigeonError(error: error, details: details)))
+      }
+  }
+    
   func sendVerificationEmail(
       userId: String, 
      completion: @escaping (Result<MEmailVerificationResponse, Error>) -> Void

@@ -45,10 +45,18 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
     }
 
     override fun setProjectId(
-        projectId: String, 
+        projectId: String,
         callback: (kotlin.Result<Unit>) -> Unit
     ) {
         sdkHandler.setProjectId(projectId, callback)
+    }
+    
+    override fun updateProjectSettings(
+        projectId: String, 
+        projectUrl: String,
+        callback: (kotlin.Result<Unit>) -> Unit
+    ) {
+        sdkHandler.updateProjectSettings(projectId, projectUrl, callback)
     }
 
     override fun sendVerificationEmail(

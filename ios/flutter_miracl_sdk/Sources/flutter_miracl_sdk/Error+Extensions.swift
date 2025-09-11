@@ -9,8 +9,10 @@ extension Error {
 extension ConfigurationError {
     var flutterExceptionCodeRepresentation: MConfigurationExceptionCode {
         switch self {
-        case .configurationEmptyProjectId:
+        case .emptyProjectId:
             return MConfigurationExceptionCode.emptyProjectId
+        case .invalidProjectURL:
+            return MConfigurationExceptionCode.invalidProjectUrl
         }
     }
 }
@@ -93,6 +95,8 @@ extension AuthenticationError {
             return MAuthenticationExceptionCode.pinCancelled
         case .invalidPin:
             return MAuthenticationExceptionCode.invalidPin
+        case .invalidCrossDeviceSession:
+            return MAuthenticationExceptionCode.invalidCrossDeviceSession
         }
     }
 }

@@ -154,6 +154,7 @@ enum MSigningSessionStatus: Int {
 
 enum MConfigurationExceptionCode: Int {
   case emptyProjectId = 0
+  case invalidProjectUrl = 1
 }
 
 enum MEmailVerificationExceptionCode: Int {
@@ -193,6 +194,7 @@ enum MAuthenticationExceptionCode: Int {
   case unsuccessfulAuthentication = 8
   case pinCancelled = 9
   case invalidPin = 10
+  case invalidCrossDeviceSession = 11
 }
 
 enum MQuickCodeExceptionCode: Int {
@@ -239,27 +241,27 @@ enum MSigningExceptionCode: Int {
 /// Generated class from Pigeon that represents data sent in messages.
 struct MConfiguration: Hashable {
   var projectId: String
+  var projectUrl: String? = nil
   var applicationInfo: String
-  var platformUrl: String? = nil
 
 
   // swift-format-ignore: AlwaysUseLowerCamelCase
   static func fromList(_ pigeonVar_list: [Any?]) -> MConfiguration? {
     let projectId = pigeonVar_list[0] as! String
-    let applicationInfo = pigeonVar_list[1] as! String
-    let platformUrl: String? = nilOrValue(pigeonVar_list[2])
+    let projectUrl: String? = nilOrValue(pigeonVar_list[1])
+    let applicationInfo = pigeonVar_list[2] as! String
 
     return MConfiguration(
       projectId: projectId,
-      applicationInfo: applicationInfo,
-      platformUrl: platformUrl
+      projectUrl: projectUrl,
+      applicationInfo: applicationInfo
     )
   }
   func toList() -> [Any?] {
     return [
       projectId,
+      projectUrl,
       applicationInfo,
-      platformUrl,
     ]
   }
   static func == (lhs: MConfiguration, rhs: MConfiguration) -> Bool {
@@ -880,6 +882,7 @@ class PigeonPigeonCodec: FlutterStandardMessageCodec, @unchecked Sendable {
 /// Generated protocol from Pigeon that represents a handler of messages from Flutter.
 protocol MiraclSdk {
   func initSdk(configuration: MConfiguration, completion: @escaping (Result<Void, Error>) -> Void)
+  func updateProjectSettings(projectId: String, projectUrl: String, completion: @escaping (Result<Void, Error>) -> Void)
   func setProjectId(projectId: String, completion: @escaping (Result<Void, Error>) -> Void)
   func sendVerificationEmail(userId: String, completion: @escaping (Result<MEmailVerificationResponse, Error>) -> Void)
   func getActivationTokenByURI(uri: String, completion: @escaping (Result<MActivationTokenResponse, Error>) -> Void)
@@ -923,6 +926,24 @@ class MiraclSdkSetup {
       }
     } else {
       initSdkChannel.setMessageHandler(nil)
+    }
+    let updateProjectSettingsChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.updateProjectSettings\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      updateProjectSettingsChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let projectIdArg = args[0] as! String
+        let projectUrlArg = args[1] as! String
+        api.updateProjectSettings(projectId: projectIdArg, projectUrl: projectUrlArg) { result in
+          switch result {
+          case .success:
+            reply(wrapResult(nil))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      updateProjectSettingsChannel.setMessageHandler(nil)
     }
     let setProjectIdChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.setProjectId\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {

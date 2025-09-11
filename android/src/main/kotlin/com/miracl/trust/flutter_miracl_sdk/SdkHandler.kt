@@ -30,15 +30,16 @@ class SdkHandler {
         context: Context, 
         callback: (Result<Unit>) -> Unit
     ) {
-        try {      
-            val configurationBuilder = Configuration
-                .Builder(config.projectId)
+        try {
+            val configurationBuilder = if (config.projectUrl!= null) {
+                Configuration.Builder(config.projectId, config.projectUrl)
+            } else {
+                Configuration.Builder(config.projectId)
+            }
+
+            configurationBuilder
                 .applicationInfo(config.applicationInfo)
                 .logger(FlutterLogger(mLogger))
-
-            if (config.platformUrl != null) {
-                configurationBuilder.platformUrl(config.platformUrl)
-            }
             
             val configuration = configurationBuilder.build()
     
@@ -56,9 +57,32 @@ class SdkHandler {
         }      
     }
 
-    fun setProjectId(projectId: String, callback: (Result<Unit>) -> Unit) {
+    fun setProjectId(
+        projectId: String,
+        callback: (Result<Unit>) -> Unit
+    ) {
         try {
             MIRACLTrust.getInstance().setProjectId(projectId)
+            callback(Result.success(Unit))
+        } catch (exception: ConfigurationException) {
+            val details = mutableMapOf<String, Any?>()
+            details["exceptionCode"] = exception.flutterExceptionCodeRepresentation
+
+            callback(
+                Result.failure(
+                    mapExceptionToFlutter(exception, details)
+                )
+            )
+        }        
+    }
+
+    fun updateProjectSettings(
+        projectId: String, 
+        projectUrl: String, 
+        callback: (Result<Unit>) -> Unit
+    ) {
+        try {
+            MIRACLTrust.getInstance().updateProjectSettings(projectId, projectUrl)
             callback(Result.success(Unit))
         } catch (exception: ConfigurationException) {
             val details = mutableMapOf<String, Any?>()
