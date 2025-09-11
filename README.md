@@ -24,9 +24,7 @@ Add flutter_miracl_sdk to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_miracl_sdk: 
-    git:
-      url: https://github.com/miracl/trust-sdk-flutter-wrapper
+    flutter_miracl_sdk: ^0.5.2
 ```
 
 ## Usage
@@ -103,7 +101,8 @@ offers two options for that:
     (default)
   - [Email Code](https://miracl.com/resources/docs/guides/built-in-user-verification/email-code/)
 
-  Start the verification by calling the `sendVerificationEmail`
+  Start the verification by calling the
+  [sendVerificationEmail](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/sendVerificationEmail.html)
   method:
 
   ```dart
@@ -115,7 +114,7 @@ offers two options for that:
   ```
 
   Then, a verification email is sent, and a
-  `EmailVerificationResponse`
+  [EmailVerificationResponse](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/EmailVerificationResponse-class.html)
   with backoff and email verification method is returned.
 
   If the verification method you have chosen for your project is:
@@ -151,7 +150,9 @@ different ways, depending on the type of verification.
      or [Email Link](https://miracl.com/resources/docs/guides/built-in-user-verification/email-link/):
 
       After the application recieves the Verification URL, it must confirm the
-      verification by passing it to the `getActivationTokenByURI` method:
+      verification by passing it to the
+      [getActivationTokenByURI](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/getActivationTokenByURI.html)
+      method:
 
       ```dart
       try {
@@ -165,7 +166,7 @@ different ways, depending on the type of verification.
 
       When the end user enters the verification code, the application must
       confirm the verification by passing it to the
-      `getActivationTokenByUserIdAndCode`
+      [getActivationTokenByUserIdAndCode](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/getActivationTokenByUserIdAndCode.html)
       method:
 
       ```dart
@@ -178,7 +179,8 @@ different ways, depending on the type of verification.
       ```
 
 2. Pass the User ID (email or any string you use for identification), activation
-   token (received from verification) and the user-entered PIN code to the `register`
+   token (received from verification) and the user-entered PIN code to the
+   [register](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/register.html)
    method:
 
    ```dart
@@ -193,7 +195,9 @@ different ways, depending on the type of verification.
     }
    ```
 
-   If you call the `register` method with the same User ID more
+   If you call the
+   [register](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/register.html)
+   method with the same User ID more
    than once, the User ID will be overridden. Therefore, you can
    use it to reset your authentication PIN code.
 
@@ -206,7 +210,9 @@ The MIRACL Trust SDK offers two options:
 
 #### Authenticate users on the mobile application
 
-The `authenticate` method generates a [JWT](https://jwt.io) authentication
+The
+[authenticate](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/authenticate.html)
+method generates a [JWT](https://jwt.io) authentication
 token for а registered user.
 
 ```dart
@@ -230,7 +236,9 @@ There are three options for authenticating a user on another application:
 
 - Authenticate with deep link:
 
-  Use the `authenticateWithLink` method:
+  Use the
+  [authenticateWithLink](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/authenticateWithLink.html)
+  method:
 
   ```dart
   try {
@@ -244,7 +252,9 @@ There are three options for authenticating a user on another application:
 
 - Authenticate with a QR code
 
-  Use the `authenticateWithQrCode` method:
+  Use the
+  [authenticateWithQRCode](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/authenticateWithQRCode.html)
+  method:
 
   ```dart
   try {
@@ -256,7 +266,8 @@ There are three options for authenticating a user on another application:
 
 - Authenticate with push notifications payload:
 
-  Use the `authenticateWithNotificationPayload`:
+  Use the
+  [authenticateWithNotificationPayload](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/authenticateWithNotificationPayload.html):
 
   ```dart
   try {
@@ -276,7 +287,9 @@ cryptographic signing of documents. For more information, see
 [Designated Verifier Signature](https://miracl.com/resources/docs/concepts/dvs/).
 In the context of this plugin, we refer to it as 'Signing'.
 
-To sign a document, use the `sign` method as follows:
+To sign a document, use the
+[sign](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/sign.html)
+method as follows:
 
 ```dart
 try {
@@ -297,8 +310,12 @@ entry in the response body indicates that the signing is successful.
 [QuickCode](https://miracl.com/resources/docs/guides/built-in-user-verification/quickcode/)
 is a way to register another device without going through the verification process.
 
-To generate a QuickCode, call the `generateQuickCode` method with
-an already registered `User` object:
+To generate a QuickCode, call the
+[generateQuickCode](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/generateQuickCode.html)
+method with
+an already registered
+[User](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/User-class.html)
+object:
 
 ```dart
 try {
@@ -315,7 +332,7 @@ try {
    Activation Token is the value that links the verification flow with the
    registration flow. The value is returned by the verification flow and needs
    to be passed to the
-   [register](https://miracl.com/resources/docs/apis-and-libraries/ios/classes/MIRACLTrust/#registerforactivationtokenpushnotificationstokendidrequestpinhandlercompletionhandler)
+   [register](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/register.html)
    method so the platform can verify it. Here are the options for that:
 
    - [Custom User Verification](https://miracl.com/resources/docs/guides/custom-user-verification/)
