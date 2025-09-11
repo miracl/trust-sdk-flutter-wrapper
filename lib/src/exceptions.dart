@@ -133,7 +133,10 @@ enum AuthenticationExceptionCode {
   pinCancelled,
 
   /// The PIN code includes invalid symbols or the PIN length does not match.
-  invalidPin;
+  invalidPin, 
+  
+  /// Invalid or expired cross-device session.
+  invalidCrossDeviceSession;
 }
 
 /// An exception thrown when there is an issue with the authentication.
@@ -297,7 +300,10 @@ class SigningException implements Exception {
 /// An enumeration that describes issues with the SDK configuration.
 enum ConfigurationExceptionCode {
   /// An empty project ID.
-  emptyProjectId;
+  emptyProjectId,
+
+  // An invalid project URL.
+  invalidProjectUrl;
 }
 
 /// An exception thrown when there is an issue with the SDK configuration.

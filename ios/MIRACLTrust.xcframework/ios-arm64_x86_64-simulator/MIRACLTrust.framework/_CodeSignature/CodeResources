@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/MIRACLTrust-Swift.h</key>
 		<data>
-		IkuUT1xHY6HGjGjHSUUHQhTL4/8=
+		W5b4gnABbgqvTGn8TIWVJsFwADk=
 		</data>
 		<key>Headers/MIRACLTrust_iOS.h</key>
 		<data>
@@ -14,47 +14,47 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		Q/ypsWangK8BofS/Ecg1XZf+nWY=
+		v3PRu9qsk5Sw7wwIn+jGH9KPqjQ=
 		</data>
 		<key>Modules/MIRACLTrust.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		LYRUU0V3bWcb3O7DLXpNzAPGPVs=
+		lxgENfgTX2FH5uLIhxP8APYdHi4=
 		</data>
 		<key>Modules/MIRACLTrust.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		rLNQH+sKmTP8rc6F9yNi9T0vhxg=
+		49C8RUGRm+CSgCgQtRV0DGxsYSw=
 		</data>
 		<key>Modules/MIRACLTrust.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		wMJe2uPPlGZcHz391/zAuCVRdFM=
+		aG7yYl4nNSXR4R1AJ2f5eBYGF24=
 		</data>
 		<key>Modules/MIRACLTrust.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		rLNQH+sKmTP8rc6F9yNi9T0vhxg=
+		49C8RUGRm+CSgCgQtRV0DGxsYSw=
 		</data>
 		<key>Modules/MIRACLTrust.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		IhTJ6z53lIYKDFe6KQhY+cmCvmU=
+		WyWqsGwUxffqoZJcJdmv/7TbDfE=
 		</data>
 		<key>Modules/MIRACLTrust.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		LYRUU0V3bWcb3O7DLXpNzAPGPVs=
+		lxgENfgTX2FH5uLIhxP8APYdHi4=
 		</data>
 		<key>Modules/MIRACLTrust.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		WtrkpXsQiIX3rQXyegbAZGVMte0=
+		9GUYg+40L6QfZHRLkbfV9psCq8I=
 		</data>
 		<key>Modules/MIRACLTrust.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		pOWZxJOb70XQhBuQfCxAhnj7rZw=
+		KfcF59WWrYoLVeN8GUU8GBBsHXQ=
 		</data>
 		<key>Modules/MIRACLTrust.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		WtrkpXsQiIX3rQXyegbAZGVMte0=
+		9GUYg+40L6QfZHRLkbfV9psCq8I=
 		</data>
 		<key>Modules/MIRACLTrust.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		HjGtXCz3Yrk7BVv91YFoaQlLwcA=
+		tk1B89K6bIJ+S2dQywdV53+T+6U=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -131,7 +131,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			eA8qg4b3obKUvIu2Eht/wCLrRvbE+ZP7Y1Gw3BEUDt8=
+			+e+fZSqiveOn4JJi6sTaYfm6wVjnbc0y56Y/K451m80=
 			</data>
 		</dict>
 		<key>Headers/MIRACLTrust_iOS.h</key>
@@ -145,70 +145,70 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			VmOf++hcYGTNuLy1UOSwNwFoXm6TWYxJAnF/Hd10JIE=
+			RLrdmmzfgdkFYGp3TDenzNeeaJZXSUI0T/d67YXyS+Q=
 			</data>
 		</dict>
 		<key>Modules/MIRACLTrust.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KHyTdKipK2JTGsJY8/ij+CLPz707sGUxiXYONqZdKpA=
+			ZgNAPgTF2va3Eb6/DZjJ11wASCNSbbd98M3vThjMu4g=
 			</data>
 		</dict>
 		<key>Modules/MIRACLTrust.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/qwc1S0lSKnIMRMysacUDu7WuAzTI4yr0+k5XVMLJmo=
+			L+WsDsW/2AFK6/bNjBEkVW2MKgQloQgAP5HDWBdEc20=
 			</data>
 		</dict>
 		<key>Modules/MIRACLTrust.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KHyTdKipK2JTGsJY8/ij+CLPz707sGUxiXYONqZdKpA=
+			ZgNAPgTF2va3Eb6/DZjJ11wASCNSbbd98M3vThjMu4g=
 			</data>
 		</dict>
 		<key>Modules/MIRACLTrust.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VGo0bK2s7nnTz2yccvKQ3IYz8n7vCdaTak0xf3QWl0k=
+			v1Vty4tvsGMIv6a+cSrj+emBRuNj3kvo//z7FpGYiGA=
 			</data>
 		</dict>
 		<key>Modules/MIRACLTrust.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VmOf++hcYGTNuLy1UOSwNwFoXm6TWYxJAnF/Hd10JIE=
+			RLrdmmzfgdkFYGp3TDenzNeeaJZXSUI0T/d67YXyS+Q=
 			</data>
 		</dict>
 		<key>Modules/MIRACLTrust.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			fi3Tkl2GYGN6j0zjrHkniZ4zmdw31KRADlwpeNo4RZw=
+			fgDVh9HyNpHP7JaAbn8pSLHQE+6CpnGeIKoJmVkTIhI=
 			</data>
 		</dict>
 		<key>Modules/MIRACLTrust.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			QGYIHOJYuptY3X/zuKu1mvCL240bPLW4Fcl4Pqr+QQE=
+			OHBm+04+57GKboYZ1YkBZtrLrs3NgEavWYTdoh/Ul6c=
 			</data>
 		</dict>
 		<key>Modules/MIRACLTrust.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			fi3Tkl2GYGN6j0zjrHkniZ4zmdw31KRADlwpeNo4RZw=
+			fgDVh9HyNpHP7JaAbn8pSLHQE+6CpnGeIKoJmVkTIhI=
 			</data>
 		</dict>
 		<key>Modules/MIRACLTrust.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			w1kD3IxncBYamLVfQjyRykX1my2/1B6HTctMUzhRxwQ=
+			VvteDh/wyro+O1ISvVLV6G4iiP+cT7bo1oe51ZlrYrs=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

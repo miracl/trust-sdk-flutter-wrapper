@@ -69,3 +69,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ## 0.5.2
 
 * Update to the new registration API.
+
+## 0.6.0
+
+* Change platformURL to projectUrl.

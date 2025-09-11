@@ -644,6 +644,13 @@
           },
           {
             "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
             "name": "LocalizedError",
             "printedName": "LocalizedError",
             "usr": "s:10Foundation14LocalizedErrorP",
@@ -662,6 +669,1031 @@
         "kind": "Import",
         "name": "MIRACLTrust.Crypto",
         "printedName": "MIRACLTrust.Crypto",
+        "declKind": "Import",
+        "moduleName": "MIRACLTrust"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MIRACLTrust"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MIRACLTrust"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CrossDeviceSession",
+        "printedName": "CrossDeviceSession",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "userId",
+            "printedName": "userId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)userId",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC6userIdSSvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)userId",
+                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC6userIdSSvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "projectName",
+            "printedName": "projectName",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)projectName",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC11projectNameSSvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)projectName",
+                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC11projectNameSSvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "projectLogoURL",
+            "printedName": "projectLogoURL",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)projectLogoURL",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC14projectLogoURLSSvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)projectLogoURL",
+                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC14projectLogoURLSSvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "projectId",
+            "printedName": "projectId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)projectId",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC9projectIdSSvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)projectId",
+                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC9projectIdSSvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "pinLength",
+            "printedName": "pinLength",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)pinLength",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC9pinLengthSivp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)pinLength",
+                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC9pinLengthSivg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "verificationMethod",
+            "printedName": "verificationMethod",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "VerificationMethod",
+                "printedName": "MIRACLTrust.VerificationMethod",
+                "usr": "c:@M@MIRACLTrust@E@VerificationMethod"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)verificationMethod",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC18verificationMethodAA012VerificationF0Ovp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "VerificationMethod",
+                    "printedName": "MIRACLTrust.VerificationMethod",
+                    "usr": "c:@M@MIRACLTrust@E@VerificationMethod"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)verificationMethod",
+                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC18verificationMethodAA012VerificationF0Ovg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "verificationURL",
+            "printedName": "verificationURL",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)verificationURL",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC15verificationURLSSvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)verificationURL",
+                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC15verificationURLSSvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "verificationCustomText",
+            "printedName": "verificationCustomText",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)verificationCustomText",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC22verificationCustomTextSSvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)verificationCustomText",
+                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC22verificationCustomTextSSvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "identityTypeLabel",
+            "printedName": "identityTypeLabel",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)identityTypeLabel",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC17identityTypeLabelSSvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)identityTypeLabel",
+                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC17identityTypeLabelSSvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "quickCodeEnabled",
+            "printedName": "quickCodeEnabled",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)quickCodeEnabled",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC16quickCodeEnabledSbvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)quickCodeEnabled",
+                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC16quickCodeEnabledSbvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "limitQuickCodeRegistration",
+            "printedName": "limitQuickCodeRegistration",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)limitQuickCodeRegistration",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC26limitQuickCodeRegistrationSbvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)limitQuickCodeRegistration",
+                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC26limitQuickCodeRegistrationSbvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "identityType",
+            "printedName": "identityType",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "IdentityType",
+                "printedName": "MIRACLTrust.IdentityType",
+                "usr": "c:@M@MIRACLTrust@E@IdentityType"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)identityType",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC12identityTypeAA08IdentityF0Ovp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IdentityType",
+                    "printedName": "MIRACLTrust.IdentityType",
+                    "usr": "c:@M@MIRACLTrust@E@IdentityType"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)identityType",
+                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC12identityTypeAA08IdentityF0Ovg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sessionId",
+            "printedName": "sessionId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)sessionId",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC9sessionIdSSvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)sessionId",
+                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC9sessionIdSSvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "sessionDescription",
+            "printedName": "sessionDescription",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)sessionDescription",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC18sessionDescriptionSSvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)sessionDescription",
+                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC18sessionDescriptionSSvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "signingHash",
+            "printedName": "signingHash",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)signingHash",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC11signingHashSSvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)signingHash",
+                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC11signingHashSSvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(userId:projectName:projectLogoURL:projectId:pinLength:verificationMethod:verificationURL:verificationCustomText:identityTypeLabel:quickCodeEnabled:limitQuickCodeRegistration:identityType:sessionId:sessionDescription:signingHash:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CrossDeviceSession",
+                "printedName": "MIRACLTrust.CrossDeviceSession",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "VerificationMethod",
+                "printedName": "MIRACLTrust.VerificationMethod",
+                "usr": "c:@M@MIRACLTrust@E@VerificationMethod"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "IdentityType",
+                "printedName": "MIRACLTrust.IdentityType",
+                "usr": "c:@M@MIRACLTrust@E@IdentityType"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)initWithUserId:projectName:projectLogoURL:projectId:pinLength:verificationMethod:verificationURL:verificationCustomText:identityTypeLabel:quickCodeEnabled:limitQuickCodeRegistration:identityType:sessionId:sessionDescription:signingHash:",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC6userId11projectName0G7LogoURL0gF09pinLength18verificationMethod0mJ00M10CustomText17identityTypeLabel16quickCodeEnabled010limitQuickU12Registration0qR007sessionF00Z11Description11signingHashACSS_S3SSiAA012VerificationN0OS3SS2bAA08IdentityR0OS3Stcfc",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CrossDeviceSession",
+                "printedName": "MIRACLTrust.CrossDeviceSession",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)init",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionCACycfc",
+            "moduleName": "MIRACLTrust",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession",
+        "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC",
+        "moduleName": "MIRACLTrust",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "ObjC",
+          "ObjCMembers",
+          "RawDocComment"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
         "declKind": "Import",
         "moduleName": "MIRACLTrust"
       },
@@ -937,6 +1969,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -1754,6 +2793,13 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -1813,14 +2859,14 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "User",
-                "printedName": "MIRACLTrust.User",
-                "usr": "c:@M@MIRACLTrust@objc(cs)User"
+                "name": "UserDTO",
+                "printedName": "MIRACLTrust.UserDTO",
+                "usr": "c:@M@MIRACLTrust@objc(cs)UserDTO"
               }
             ],
             "declKind": "Func",
-            "usr": "s:11MIRACLTrust11UserStorageP3add4useryAA0B0C_tKF",
-            "mangledName": "$s11MIRACLTrust11UserStorageP3add4useryAA0B0C_tKF",
+            "usr": "s:11MIRACLTrust11UserStorageP3add4useryAA0B3DTOC_tKF",
+            "mangledName": "$s11MIRACLTrust11UserStorageP3add4useryAA0B3DTOC_tKF",
             "moduleName": "MIRACLTrust",
             "genericSig": "<τ_0_0 where τ_0_0 : MIRACLTrust.UserStorage>",
             "sugared_genericSig": "<Self where Self : MIRACLTrust.UserStorage>",
@@ -1844,14 +2890,14 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "User",
-                "printedName": "MIRACLTrust.User",
-                "usr": "c:@M@MIRACLTrust@objc(cs)User"
+                "name": "UserDTO",
+                "printedName": "MIRACLTrust.UserDTO",
+                "usr": "c:@M@MIRACLTrust@objc(cs)UserDTO"
               }
             ],
             "declKind": "Func",
-            "usr": "s:11MIRACLTrust11UserStorageP6delete4useryAA0B0C_tKF",
-            "mangledName": "$s11MIRACLTrust11UserStorageP6delete4useryAA0B0C_tKF",
+            "usr": "s:11MIRACLTrust11UserStorageP6delete4useryAA0B3DTOC_tKF",
+            "mangledName": "$s11MIRACLTrust11UserStorageP6delete4useryAA0B3DTOC_tKF",
             "moduleName": "MIRACLTrust",
             "genericSig": "<τ_0_0 where τ_0_0 : MIRACLTrust.UserStorage>",
             "sugared_genericSig": "<Self where Self : MIRACLTrust.UserStorage>",
@@ -1875,14 +2921,14 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "User",
-                "printedName": "MIRACLTrust.User",
-                "usr": "c:@M@MIRACLTrust@objc(cs)User"
+                "name": "UserDTO",
+                "printedName": "MIRACLTrust.UserDTO",
+                "usr": "c:@M@MIRACLTrust@objc(cs)UserDTO"
               }
             ],
             "declKind": "Func",
-            "usr": "s:11MIRACLTrust11UserStorageP6update4useryAA0B0C_tKF",
-            "mangledName": "$s11MIRACLTrust11UserStorageP6update4useryAA0B0C_tKF",
+            "usr": "s:11MIRACLTrust11UserStorageP6update4useryAA0B3DTOC_tKF",
+            "mangledName": "$s11MIRACLTrust11UserStorageP6update4useryAA0B3DTOC_tKF",
             "moduleName": "MIRACLTrust",
             "genericSig": "<τ_0_0 where τ_0_0 : MIRACLTrust.UserStorage>",
             "sugared_genericSig": "<Self where Self : MIRACLTrust.UserStorage>",
@@ -1902,21 +2948,21 @@
               {
                 "kind": "TypeNominal",
                 "name": "Array",
-                "printedName": "[MIRACLTrust.User]",
+                "printedName": "[MIRACLTrust.UserDTO]",
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "User",
-                    "printedName": "MIRACLTrust.User",
-                    "usr": "c:@M@MIRACLTrust@objc(cs)User"
+                    "name": "UserDTO",
+                    "printedName": "MIRACLTrust.UserDTO",
+                    "usr": "c:@M@MIRACLTrust@objc(cs)UserDTO"
                   }
                 ],
                 "usr": "s:Sa"
               }
             ],
             "declKind": "Func",
-            "usr": "s:11MIRACLTrust11UserStorageP3allSayAA0B0CGyF",
-            "mangledName": "$s11MIRACLTrust11UserStorageP3allSayAA0B0CGyF",
+            "usr": "s:11MIRACLTrust11UserStorageP3allSayAA0B3DTOCGyF",
+            "mangledName": "$s11MIRACLTrust11UserStorageP3allSayAA0B3DTOCGyF",
             "moduleName": "MIRACLTrust",
             "genericSig": "<τ_0_0 where τ_0_0 : MIRACLTrust.UserStorage>",
             "sugared_genericSig": "<Self where Self : MIRACLTrust.UserStorage>",
@@ -1935,13 +2981,13 @@
               {
                 "kind": "TypeNominal",
                 "name": "Optional",
-                "printedName": "MIRACLTrust.User?",
+                "printedName": "MIRACLTrust.UserDTO?",
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "User",
-                    "printedName": "MIRACLTrust.User",
-                    "usr": "c:@M@MIRACLTrust@objc(cs)User"
+                    "name": "UserDTO",
+                    "printedName": "MIRACLTrust.UserDTO",
+                    "usr": "c:@M@MIRACLTrust@objc(cs)UserDTO"
                   }
                 ],
                 "usr": "s:Sq"
@@ -1960,8 +3006,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:11MIRACLTrust11UserStorageP03getB02by9projectIdAA0B0CSgSS_SStF",
-            "mangledName": "$s11MIRACLTrust11UserStorageP03getB02by9projectIdAA0B0CSgSS_SStF",
+            "usr": "s:11MIRACLTrust11UserStorageP03getB02by9projectIdAA0B3DTOCSgSS_SStF",
+            "mangledName": "$s11MIRACLTrust11UserStorageP03getB02by9projectIdAA0B3DTOCSgSS_SStF",
             "moduleName": "MIRACLTrust",
             "genericSig": "<τ_0_0 where τ_0_0 : MIRACLTrust.UserStorage>",
             "sugared_genericSig": "<Self where Self : MIRACLTrust.UserStorage>",
@@ -2004,6 +3050,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -2530,6 +3583,578 @@
           },
           {
             "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "LocalizedError",
+            "printedName": "LocalizedError",
+            "usr": "s:10Foundation14LocalizedErrorP",
+            "mangledName": "$s10Foundation14LocalizedErrorP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomNSError",
+            "printedName": "CustomNSError",
+            "usr": "s:10Foundation13CustomNSErrorP",
+            "mangledName": "$s10Foundation13CustomNSErrorP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MIRACLTrust"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CrossDeviceSessionError",
+        "printedName": "CrossDeviceSessionError",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "invalidUniversalLinkURL",
+            "printedName": "invalidUniversalLinkURL",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(MIRACLTrust.CrossDeviceSessionError.Type) -> MIRACLTrust.CrossDeviceSessionError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CrossDeviceSessionError",
+                    "printedName": "MIRACLTrust.CrossDeviceSessionError",
+                    "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "MIRACLTrust.CrossDeviceSessionError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CrossDeviceSessionError",
+                        "printedName": "MIRACLTrust.CrossDeviceSessionError",
+                        "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO23invalidUniversalLinkURLyA2CmF",
+            "mangledName": "$s11MIRACLTrust23CrossDeviceSessionErrorO23invalidUniversalLinkURLyA2CmF",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "invalidQRCode",
+            "printedName": "invalidQRCode",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(MIRACLTrust.CrossDeviceSessionError.Type) -> MIRACLTrust.CrossDeviceSessionError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CrossDeviceSessionError",
+                    "printedName": "MIRACLTrust.CrossDeviceSessionError",
+                    "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "MIRACLTrust.CrossDeviceSessionError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CrossDeviceSessionError",
+                        "printedName": "MIRACLTrust.CrossDeviceSessionError",
+                        "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO13invalidQRCodeyA2CmF",
+            "mangledName": "$s11MIRACLTrust23CrossDeviceSessionErrorO13invalidQRCodeyA2CmF",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "invalidPushNotificationPayload",
+            "printedName": "invalidPushNotificationPayload",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(MIRACLTrust.CrossDeviceSessionError.Type) -> MIRACLTrust.CrossDeviceSessionError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CrossDeviceSessionError",
+                    "printedName": "MIRACLTrust.CrossDeviceSessionError",
+                    "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "MIRACLTrust.CrossDeviceSessionError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CrossDeviceSessionError",
+                        "printedName": "MIRACLTrust.CrossDeviceSessionError",
+                        "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO30invalidPushNotificationPayloadyA2CmF",
+            "mangledName": "$s11MIRACLTrust23CrossDeviceSessionErrorO30invalidPushNotificationPayloadyA2CmF",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "invalidCrossDeviceSession",
+            "printedName": "invalidCrossDeviceSession",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(MIRACLTrust.CrossDeviceSessionError.Type) -> MIRACLTrust.CrossDeviceSessionError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CrossDeviceSessionError",
+                    "printedName": "MIRACLTrust.CrossDeviceSessionError",
+                    "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "MIRACLTrust.CrossDeviceSessionError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CrossDeviceSessionError",
+                        "printedName": "MIRACLTrust.CrossDeviceSessionError",
+                        "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO07invalidbcD0yA2CmF",
+            "mangledName": "$s11MIRACLTrust23CrossDeviceSessionErrorO07invalidbcD0yA2CmF",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "getCrossDeviceSessionFail",
+            "printedName": "getCrossDeviceSessionFail",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(MIRACLTrust.CrossDeviceSessionError.Type) -> ((any Swift.Error)?) -> MIRACLTrust.CrossDeviceSessionError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "((any Swift.Error)?) -> MIRACLTrust.CrossDeviceSessionError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CrossDeviceSessionError",
+                        "printedName": "MIRACLTrust.CrossDeviceSessionError",
+                        "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "(any Swift.Error)?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "any Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "MIRACLTrust.CrossDeviceSessionError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CrossDeviceSessionError",
+                        "printedName": "MIRACLTrust.CrossDeviceSessionError",
+                        "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO03getbcD4FailyACs0E0_pSgcACmF",
+            "mangledName": "$s11MIRACLTrust23CrossDeviceSessionErrorO03getbcD4FailyACs0E0_pSgcACmF",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "abortCrossDeviceSessionFail",
+            "printedName": "abortCrossDeviceSessionFail",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(MIRACLTrust.CrossDeviceSessionError.Type) -> ((any Swift.Error)?) -> MIRACLTrust.CrossDeviceSessionError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "((any Swift.Error)?) -> MIRACLTrust.CrossDeviceSessionError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CrossDeviceSessionError",
+                        "printedName": "MIRACLTrust.CrossDeviceSessionError",
+                        "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "(any Swift.Error)?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "any Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "MIRACLTrust.CrossDeviceSessionError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CrossDeviceSessionError",
+                        "printedName": "MIRACLTrust.CrossDeviceSessionError",
+                        "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO05abortbcD4FailyACs0E0_pSgcACmF",
+            "mangledName": "$s11MIRACLTrust23CrossDeviceSessionErrorO05abortbcD4FailyACs0E0_pSgcACmF",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CrossDeviceSessionError",
+                "printedName": "MIRACLTrust.CrossDeviceSessionError",
+                "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CrossDeviceSessionError",
+                "printedName": "MIRACLTrust.CrossDeviceSessionError",
+                "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s11MIRACLTrust23CrossDeviceSessionErrorO2eeoiySbAC_ACtFZ",
+            "moduleName": "MIRACLTrust",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "errorDescription",
+            "printedName": "errorDescription",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO16errorDescriptionSSSgvp",
+            "mangledName": "$s11MIRACLTrust23CrossDeviceSessionErrorO16errorDescriptionSSSgvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO16errorDescriptionSSSgvg",
+                "mangledName": "$s11MIRACLTrust23CrossDeviceSessionErrorO16errorDescriptionSSSgvg",
+                "moduleName": "MIRACLTrust",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "errorCode",
+            "printedName": "errorCode",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO9errorCodeSivp",
+            "mangledName": "$s11MIRACLTrust23CrossDeviceSessionErrorO9errorCodeSivp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO9errorCodeSivg",
+                "mangledName": "$s11MIRACLTrust23CrossDeviceSessionErrorO9errorCodeSivg",
+                "moduleName": "MIRACLTrust",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "errorUserInfo",
+            "printedName": "errorUserInfo",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Any]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO13errorUserInfoSDySSypGvp",
+            "mangledName": "$s11MIRACLTrust23CrossDeviceSessionErrorO13errorUserInfoSDySSypGvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : Any]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ProtocolComposition",
+                        "printedName": "Any"
+                      }
+                    ],
+                    "usr": "s:SD"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO13errorUserInfoSDySSypGvg",
+                "mangledName": "$s11MIRACLTrust23CrossDeviceSessionErrorO13errorUserInfoSDySSypGvg",
+                "moduleName": "MIRACLTrust",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:11MIRACLTrust23CrossDeviceSessionErrorO",
+        "mangledName": "$s11MIRACLTrust23CrossDeviceSessionErrorO",
+        "moduleName": "MIRACLTrust",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Error",
+            "printedName": "Error",
+            "usr": "s:s5ErrorP",
+            "mangledName": "$ss5ErrorP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -2579,14 +4204,14 @@
         "children": [
           {
             "kind": "TypeNominal",
-            "name": "URL",
-            "printedName": "Foundation.URL",
-            "usr": "s:10Foundation3URLV"
+            "name": "String",
+            "printedName": "Swift.String",
+            "usr": "s:SS"
           }
         ],
         "declKind": "Var",
-        "usr": "s:11MIRACLTrust14MIRACL_API_URL10Foundation0D0Vvp",
-        "mangledName": "$s11MIRACLTrust14MIRACL_API_URL10Foundation0D0Vvp",
+        "usr": "s:11MIRACLTrust14MIRACL_API_URLSSvp",
+        "mangledName": "$s11MIRACLTrust14MIRACL_API_URLSSvp",
         "moduleName": "MIRACLTrust",
         "declAttributes": [
           "HasInitialValue",
@@ -2603,14 +4228,14 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "URL",
-                "printedName": "Foundation.URL",
-                "usr": "s:10Foundation3URLV"
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
               }
             ],
             "declKind": "Accessor",
-            "usr": "s:11MIRACLTrust14MIRACL_API_URL10Foundation0D0Vvg",
-            "mangledName": "$s11MIRACLTrust14MIRACL_API_URL10Foundation0D0Vvg",
+            "usr": "s:11MIRACLTrust14MIRACL_API_URLSSvg",
+            "mangledName": "$s11MIRACLTrust14MIRACL_API_URLSSvg",
             "moduleName": "MIRACLTrust",
             "implicit": true,
             "accessorKind": "get"
@@ -2911,6 +4536,13 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -3257,6 +4889,13 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -3605,6 +5244,13 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -3665,6 +5311,13 @@
         "moduleName": "MIRACLTrust"
       },
       {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MIRACLTrust"
+      },
+      {
         "kind": "TypeDecl",
         "name": "Configuration",
         "printedName": "Configuration",
@@ -3677,7 +5330,7 @@
               {
                 "kind": "Constructor",
                 "name": "init",
-                "printedName": "init(projectId:deviceName:)",
+                "printedName": "init(projectId:projectURL:deviceName:)",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -3689,6 +5342,13 @@
                     "kind": "TypeNominal",
                     "name": "String",
                     "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "hasDefaultArg": true,
                     "usr": "s:SS"
                   },
                   {
@@ -3708,16 +5368,60 @@
                   }
                 ],
                 "declKind": "Constructor",
-                "usr": "s:11MIRACLTrust13ConfigurationC7BuilderC9projectId10deviceNameAESS_SSSgtcfc",
-                "mangledName": "$s11MIRACLTrust13ConfigurationC7BuilderC9projectId10deviceNameAESS_SSSgtcfc",
+                "usr": "s:11MIRACLTrust13ConfigurationC7BuilderC9projectId0D3URL10deviceNameAESS_S2SSgtcfc",
+                "mangledName": "$s11MIRACLTrust13ConfigurationC7BuilderC9projectId0D3URL10deviceNameAESS_S2SSgtcfc",
                 "moduleName": "MIRACLTrust",
-                "objc_name": "initWithProjectId:deviceName:",
+                "objc_name": "initWithProjectId:projectURL:deviceName:",
                 "declAttributes": [
                   "AccessControl",
                   "ObjC",
                   "RawDocComment"
                 ],
                 "init_kind": "Designated"
+              },
+              {
+                "kind": "Function",
+                "name": "configureDefaultUserStorage",
+                "printedName": "configureDefaultUserStorage(_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Builder",
+                    "printedName": "MIRACLTrust.Configuration.Builder",
+                    "usr": "s:11MIRACLTrust13ConfigurationC7BuilderC"
+                  },
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(inout MIRACLTrust.DefaultUserStorageOptions) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DefaultUserStorageOptions",
+                        "printedName": "MIRACLTrust.DefaultUserStorageOptions",
+                        "usr": "s:11MIRACLTrust25DefaultUserStorageOptionsC"
+                      }
+                    ],
+                    "typeAttributes": [
+                      "noescape"
+                    ]
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:11MIRACLTrust13ConfigurationC7BuilderC27configureDefaultUserStorageyAEyAA0efG7OptionsCzXEF",
+                "mangledName": "$s11MIRACLTrust13ConfigurationC7BuilderC27configureDefaultUserStorageyAEyAA0efG7OptionsCzXEF",
+                "moduleName": "MIRACLTrust",
+                "declAttributes": [
+                  "AccessControl",
+                  "DiscardableResult",
+                  "RawDocComment"
+                ],
+                "funcSelfKind": "NonMutating"
               },
               {
                 "kind": "Function",
@@ -3833,37 +5537,6 @@
                 "mangledName": "$s11MIRACLTrust13ConfigurationC7BuilderC12loggingLevel5levelAeA07LoggingE0O_tF",
                 "moduleName": "MIRACLTrust",
                 "objc_name": "loggingLevelWith:",
-                "declAttributes": [
-                  "AccessControl",
-                  "DiscardableResult",
-                  "ObjC",
-                  "RawDocComment"
-                ],
-                "funcSelfKind": "NonMutating"
-              },
-              {
-                "kind": "Function",
-                "name": "platformURL",
-                "printedName": "platformURL(url:)",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Builder",
-                    "printedName": "MIRACLTrust.Configuration.Builder",
-                    "usr": "s:11MIRACLTrust13ConfigurationC7BuilderC"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "URL",
-                    "printedName": "Foundation.URL",
-                    "usr": "s:10Foundation3URLV"
-                  }
-                ],
-                "declKind": "Func",
-                "usr": "s:11MIRACLTrust13ConfigurationC7BuilderC11platformURL3urlAE10Foundation0E0V_tF",
-                "mangledName": "$s11MIRACLTrust13ConfigurationC7BuilderC11platformURL3urlAE10Foundation0E0V_tF",
-                "moduleName": "MIRACLTrust",
-                "objc_name": "platformURLWith:",
                 "declAttributes": [
                   "AccessControl",
                   "DiscardableResult",
@@ -4461,6 +6134,56 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "timestamp",
+            "printedName": "timestamp",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int64",
+                "printedName": "Swift.Int64",
+                "usr": "s:s5Int64V"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@MIRACLTrust@objc(cs)Signature(py)timestamp",
+            "mangledName": "$s11MIRACLTrust9SignatureC9timestamps5Int64Vvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "ObjC"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int64",
+                    "printedName": "Swift.Int64",
+                    "usr": "s:s5Int64V"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@MIRACLTrust@objc(cs)Signature(im)timestamp",
+                "mangledName": "$s11MIRACLTrust9SignatureC9timestamps5Int64Vvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final",
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init()",
@@ -4640,6 +6363,13 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -4893,6 +6623,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -5279,6 +7016,13 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -5324,8 +7068,8 @@
         "children": [
           {
             "kind": "Var",
-            "name": "configurationEmptyProjectId",
-            "printedName": "configurationEmptyProjectId",
+            "name": "emptyProjectId",
+            "printedName": "emptyProjectId",
             "children": [
               {
                 "kind": "TypeFunc",
@@ -5355,8 +7099,48 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:11MIRACLTrust18ConfigurationErrorO27configurationEmptyProjectIdyA2CmF",
-            "mangledName": "$s11MIRACLTrust18ConfigurationErrorO27configurationEmptyProjectIdyA2CmF",
+            "usr": "s:11MIRACLTrust18ConfigurationErrorO14emptyProjectIdyA2CmF",
+            "mangledName": "$s11MIRACLTrust18ConfigurationErrorO14emptyProjectIdyA2CmF",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "invalidProjectURL",
+            "printedName": "invalidProjectURL",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(MIRACLTrust.ConfigurationError.Type) -> MIRACLTrust.ConfigurationError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ConfigurationError",
+                    "printedName": "MIRACLTrust.ConfigurationError",
+                    "usr": "s:11MIRACLTrust18ConfigurationErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "MIRACLTrust.ConfigurationError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ConfigurationError",
+                        "printedName": "MIRACLTrust.ConfigurationError",
+                        "usr": "s:11MIRACLTrust18ConfigurationErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11MIRACLTrust18ConfigurationErrorO17invalidProjectURLyA2CmF",
+            "mangledName": "$s11MIRACLTrust18ConfigurationErrorO17invalidProjectURLyA2CmF",
             "moduleName": "MIRACLTrust",
             "declAttributes": [
               "RawDocComment"
@@ -5570,12 +7354,26 @@
           },
           {
             "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
             "name": "LocalizedError",
             "printedName": "LocalizedError",
             "usr": "s:10Foundation14LocalizedErrorP",
             "mangledName": "$s10Foundation14LocalizedErrorP"
           }
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MIRACLTrust"
       },
       {
         "kind": "TypeDecl",
@@ -5711,6 +7509,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -6178,6 +7983,13 @@
           },
           {
             "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -6198,6 +8010,979 @@
             "mangledName": "$s10Foundation13CustomNSErrorP"
           }
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MIRACLTrust"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "UserDTO",
+        "printedName": "UserDTO",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "userId",
+            "printedName": "userId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11MIRACLTrust7UserDTOC6userIdSSvp",
+            "mangledName": "$s11MIRACLTrust7UserDTOC6userIdSSvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust7UserDTOC6userIdSSvg",
+                "mangledName": "$s11MIRACLTrust7UserDTOC6userIdSSvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "projectId",
+            "printedName": "projectId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11MIRACLTrust7UserDTOC9projectIdSSvp",
+            "mangledName": "$s11MIRACLTrust7UserDTOC9projectIdSSvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust7UserDTOC9projectIdSSvg",
+                "mangledName": "$s11MIRACLTrust7UserDTOC9projectIdSSvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "revoked",
+            "printedName": "revoked",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11MIRACLTrust7UserDTOC7revokedSbvp",
+            "mangledName": "$s11MIRACLTrust7UserDTOC7revokedSbvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust7UserDTOC7revokedSbvg",
+                "mangledName": "$s11MIRACLTrust7UserDTOC7revokedSbvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "pinLength",
+            "printedName": "pinLength",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11MIRACLTrust7UserDTOC9pinLengthSivp",
+            "mangledName": "$s11MIRACLTrust7UserDTOC9pinLengthSivp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust7UserDTOC9pinLengthSivg",
+                "mangledName": "$s11MIRACLTrust7UserDTOC9pinLengthSivg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "mpinId",
+            "printedName": "mpinId",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Data",
+                "printedName": "Foundation.Data",
+                "usr": "s:10Foundation4DataV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11MIRACLTrust7UserDTOC6mpinId10Foundation4DataVvp",
+            "mangledName": "$s11MIRACLTrust7UserDTOC6mpinId10Foundation4DataVvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust7UserDTOC6mpinId10Foundation4DataVvg",
+                "mangledName": "$s11MIRACLTrust7UserDTOC6mpinId10Foundation4DataVvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "token",
+            "printedName": "token",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Data",
+                "printedName": "Foundation.Data",
+                "usr": "s:10Foundation4DataV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11MIRACLTrust7UserDTOC5token10Foundation4DataVvp",
+            "mangledName": "$s11MIRACLTrust7UserDTOC5token10Foundation4DataVvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust7UserDTOC5token10Foundation4DataVvg",
+                "mangledName": "$s11MIRACLTrust7UserDTOC5token10Foundation4DataVvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "dtas",
+            "printedName": "dtas",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11MIRACLTrust7UserDTOC4dtasSSvp",
+            "mangledName": "$s11MIRACLTrust7UserDTOC4dtasSSvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust7UserDTOC4dtasSSvg",
+                "mangledName": "$s11MIRACLTrust7UserDTOC4dtasSSvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "publicKey",
+            "printedName": "publicKey",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.Data?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11MIRACLTrust7UserDTOC9publicKey10Foundation4DataVSgvp",
+            "mangledName": "$s11MIRACLTrust7UserDTOC9publicKey10Foundation4DataVSgvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "Final",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Foundation.Data?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Data",
+                        "printedName": "Foundation.Data",
+                        "usr": "s:10Foundation4DataV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust7UserDTOC9publicKey10Foundation4DataVSgvg",
+                "mangledName": "$s11MIRACLTrust7UserDTOC9publicKey10Foundation4DataVSgvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(userId:projectId:revoked:pinLength:mpinId:token:dtas:publicKey:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UserDTO",
+                "printedName": "MIRACLTrust.UserDTO",
+                "usr": "c:@M@MIRACLTrust@objc(cs)UserDTO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Data",
+                "printedName": "Foundation.Data",
+                "usr": "s:10Foundation4DataV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Data",
+                "printedName": "Foundation.Data",
+                "usr": "s:10Foundation4DataV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.Data?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Data",
+                    "printedName": "Foundation.Data",
+                    "usr": "s:10Foundation4DataV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11MIRACLTrust7UserDTOC6userId07projectE07revoked9pinLength04mpinE05token4dtas9publicKeyACSS_SSSbSi10Foundation4DataVANSSANSgtcfc",
+            "mangledName": "$s11MIRACLTrust7UserDTOC6userId07projectE07revoked9pinLength04mpinE05token4dtas9publicKeyACSS_SSSbSi10Foundation4DataVANSSANSgtcfc",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UserDTO",
+                "printedName": "MIRACLTrust.UserDTO",
+                "usr": "c:@M@MIRACLTrust@objc(cs)UserDTO"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@MIRACLTrust@objc(cs)UserDTO(im)init",
+            "mangledName": "$s11MIRACLTrust7UserDTOCACycfc",
+            "moduleName": "MIRACLTrust",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@MIRACLTrust@objc(cs)UserDTO",
+        "mangledName": "$s11MIRACLTrust7UserDTOC",
+        "moduleName": "MIRACLTrust",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "RawDocComment",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MIRACLTrust"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "DefaultUserStorageOptions",
+        "printedName": "DefaultUserStorageOptions",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "storageName",
+            "printedName": "storageName",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11MIRACLTrust25DefaultUserStorageOptionsC11storageNameSSvp",
+            "mangledName": "$s11MIRACLTrust25DefaultUserStorageOptionsC11storageNameSSvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust25DefaultUserStorageOptionsC11storageNameSSvg",
+                "mangledName": "$s11MIRACLTrust25DefaultUserStorageOptionsC11storageNameSSvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust25DefaultUserStorageOptionsC11storageNameSSvs",
+                "mangledName": "$s11MIRACLTrust25DefaultUserStorageOptionsC11storageNameSSvs",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust25DefaultUserStorageOptionsC11storageNameSSvM",
+                "mangledName": "$s11MIRACLTrust25DefaultUserStorageOptionsC11storageNameSSvM",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "directoryURL",
+            "printedName": "directoryURL",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.URL?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URL",
+                    "printedName": "Foundation.URL",
+                    "usr": "s:10Foundation3URLV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11MIRACLTrust25DefaultUserStorageOptionsC12directoryURL10Foundation0G0VSgvp",
+            "mangledName": "$s11MIRACLTrust25DefaultUserStorageOptionsC12directoryURL10Foundation0G0VSgvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Foundation.URL?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URL",
+                        "printedName": "Foundation.URL",
+                        "usr": "s:10Foundation3URLV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust25DefaultUserStorageOptionsC12directoryURL10Foundation0G0VSgvg",
+                "mangledName": "$s11MIRACLTrust25DefaultUserStorageOptionsC12directoryURL10Foundation0G0VSgvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Foundation.URL?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URL",
+                        "printedName": "Foundation.URL",
+                        "usr": "s:10Foundation3URLV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust25DefaultUserStorageOptionsC12directoryURL10Foundation0G0VSgvs",
+                "mangledName": "$s11MIRACLTrust25DefaultUserStorageOptionsC12directoryURL10Foundation0G0VSgvs",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust25DefaultUserStorageOptionsC12directoryURL10Foundation0G0VSgvM",
+                "mangledName": "$s11MIRACLTrust25DefaultUserStorageOptionsC12directoryURL10Foundation0G0VSgvM",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "keychainAccessGroup",
+            "printedName": "keychainAccessGroup",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11MIRACLTrust25DefaultUserStorageOptionsC19keychainAccessGroupSSSgvp",
+            "mangledName": "$s11MIRACLTrust25DefaultUserStorageOptionsC19keychainAccessGroupSSSgvp",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust25DefaultUserStorageOptionsC19keychainAccessGroupSSSgvg",
+                "mangledName": "$s11MIRACLTrust25DefaultUserStorageOptionsC19keychainAccessGroupSSSgvg",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust25DefaultUserStorageOptionsC19keychainAccessGroupSSSgvs",
+                "mangledName": "$s11MIRACLTrust25DefaultUserStorageOptionsC19keychainAccessGroupSSSgvs",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11MIRACLTrust25DefaultUserStorageOptionsC19keychainAccessGroupSSSgvM",
+                "mangledName": "$s11MIRACLTrust25DefaultUserStorageOptionsC19keychainAccessGroupSSSgvM",
+                "moduleName": "MIRACLTrust",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:11MIRACLTrust25DefaultUserStorageOptionsC",
+        "mangledName": "$s11MIRACLTrust25DefaultUserStorageOptionsC",
+        "moduleName": "MIRACLTrust",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MIRACLTrust"
       },
       {
         "kind": "Import",
@@ -6433,6 +9218,13 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -6952,6 +9744,46 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "invalidCrossDeviceSession",
+            "printedName": "invalidCrossDeviceSession",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(MIRACLTrust.AuthenticationError.Type) -> MIRACLTrust.AuthenticationError",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AuthenticationError",
+                    "printedName": "MIRACLTrust.AuthenticationError",
+                    "usr": "s:11MIRACLTrust19AuthenticationErrorO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "MIRACLTrust.AuthenticationError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AuthenticationError",
+                        "printedName": "MIRACLTrust.AuthenticationError",
+                        "usr": "s:11MIRACLTrust19AuthenticationErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11MIRACLTrust19AuthenticationErrorO25invalidCrossDeviceSessionyA2CmF",
+            "mangledName": "$s11MIRACLTrust19AuthenticationErrorO25invalidCrossDeviceSessionyA2CmF",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "RawDocComment"
+            ]
+          },
+          {
             "kind": "Function",
             "name": "==",
             "printedName": "==(_:_:)",
@@ -7191,6 +10023,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           },
           {
             "kind": "Conformance",
@@ -7496,6 +10335,13 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -7754,6 +10600,13 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -8009,6 +10862,42 @@
           },
           {
             "kind": "Function",
+            "name": "updateProjectSettings",
+            "printedName": "updateProjectSettings(projectId:projectURL:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MIRACLTrust@objc(cs)MIRACLTrust(im)updateProjectSettingsWithProjectId:projectURL:error:",
+            "mangledName": "$s11MIRACLTrustAAC21updateProjectSettings9projectId0E3URLySS_SStKF",
+            "moduleName": "MIRACLTrust",
+            "objc_name": "updateProjectSettingsWithProjectId:projectURL:error:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "sendVerificationEmail",
             "printedName": "sendVerificationEmail(userId:authenticationSessionDetails:completionHandler:)",
             "children": [
@@ -8091,6 +10980,97 @@
             "mangledName": "$s11MIRACLTrustAAC21sendVerificationEmail6userId28authenticationSessionDetails17completionHandlerySS_AA014AuthenticationhI0CSgyAA0C8ResponseCSg_s5Error_pSgtYbScMYcctF",
             "moduleName": "MIRACLTrust",
             "objc_name": "sendVerificationEmailWithUserId:authenticationSessionDetails:completionHandler:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_sendVerificationEmail",
+            "printedName": "_sendVerificationEmail(userId:crossDeviceSession:completionHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "MIRACLTrust.CrossDeviceSession?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CrossDeviceSession",
+                    "printedName": "MIRACLTrust.CrossDeviceSession",
+                    "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(MIRACLTrust.VerificationResponse?, (any Swift.Error)?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(MIRACLTrust.VerificationResponse?, (any Swift.Error)?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "MIRACLTrust.VerificationResponse?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "VerificationResponse",
+                            "printedName": "MIRACLTrust.VerificationResponse",
+                            "usr": "c:@M@MIRACLTrust@objc(cs)VerificationResponse"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "(any Swift.Error)?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "any Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MIRACLTrust@objc(cs)MIRACLTrust(im)_sendVerificationEmailWithUserId:crossDeviceSession:completionHandler:",
+            "mangledName": "$s11MIRACLTrustAAC22_sendVerificationEmail6userId18crossDeviceSession17completionHandlerySS_AA05CrosshI0CSgyAA0C8ResponseCSg_s5Error_pSgtYbScMYcctF",
+            "moduleName": "MIRACLTrust",
+            "objc_name": "_sendVerificationEmailWithUserId:crossDeviceSession:completionHandler:",
             "declAttributes": [
               "AccessControl",
               "ObjC",
@@ -8964,6 +11944,426 @@
           },
           {
             "kind": "Function",
+            "name": "_authenticate",
+            "printedName": "_authenticate(user:crossDeviceSession:didRequestPinHandler:completionHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "User",
+                "printedName": "MIRACLTrust.User",
+                "usr": "c:@M@MIRACLTrust@objc(cs)User"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CrossDeviceSession",
+                "printedName": "MIRACLTrust.CrossDeviceSession",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(@escaping (Swift.String?) -> ()) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.String?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.Bool, (any Swift.Error)?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(Swift.Bool, (any Swift.Error)?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "(any Swift.Error)?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "any Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MIRACLTrust@objc(cs)MIRACLTrust(im)_authenticateWithUser:crossDeviceSession:didRequestPinHandler:completionHandler:",
+            "mangledName": "$s11MIRACLTrustAAC13_authenticate4user18crossDeviceSession20didRequestPinHandler010completionJ0yAA4UserC_AA05CrosseF0CyySSSgcYbScMYccySb_s5Error_pSgtYbScMYcctF",
+            "moduleName": "MIRACLTrust",
+            "objc_name": "_authenticateWithUser:crossDeviceSession:didRequestPinHandler:completionHandler:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_getCrossDeviceSessionFromQRCode",
+            "printedName": "_getCrossDeviceSessionFromQRCode(qrCode:completionHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(MIRACLTrust.CrossDeviceSession?, (any Swift.Error)?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(MIRACLTrust.CrossDeviceSession?, (any Swift.Error)?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "MIRACLTrust.CrossDeviceSession?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CrossDeviceSession",
+                            "printedName": "MIRACLTrust.CrossDeviceSession",
+                            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "(any Swift.Error)?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "any Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MIRACLTrust@objc(cs)MIRACLTrust(im)_getCrossDeviceSessionFromQRCodeWithQrCode:completionHandler:",
+            "mangledName": "$s11MIRACLTrustAAC32_getCrossDeviceSessionFromQRCode6qrCode17completionHandlerySS_yAA0cdE0CSg_s5Error_pSgtYbScMYcctF",
+            "moduleName": "MIRACLTrust",
+            "objc_name": "_getCrossDeviceSessionFromQRCodeWithQrCode:completionHandler:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_getCrossDeviceSessionFromUniversalLinkURL",
+            "printedName": "_getCrossDeviceSessionFromUniversalLinkURL(universalLinkURL:completionHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URL",
+                "printedName": "Foundation.URL",
+                "usr": "s:10Foundation3URLV"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(MIRACLTrust.CrossDeviceSession?, (any Swift.Error)?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(MIRACLTrust.CrossDeviceSession?, (any Swift.Error)?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "MIRACLTrust.CrossDeviceSession?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CrossDeviceSession",
+                            "printedName": "MIRACLTrust.CrossDeviceSession",
+                            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "(any Swift.Error)?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "any Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MIRACLTrust@objc(cs)MIRACLTrust(im)_getCrossDeviceSessionFromUniversalLinkURLWithUniversalLinkURL:completionHandler:",
+            "mangledName": "$s11MIRACLTrustAAC42_getCrossDeviceSessionFromUniversalLinkURL09universalhI017completionHandlery10Foundation0I0V_yAA0cdE0CSg_s5Error_pSgtYbScMYcctF",
+            "moduleName": "MIRACLTrust",
+            "objc_name": "_getCrossDeviceSessionFromUniversalLinkURLWithUniversalLinkURL:completionHandler:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_getCrossDeviceSessionFromPushNotificationPayload",
+            "printedName": "_getCrossDeviceSessionFromPushNotificationPayload(pushNotificationPayload:completionHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.AnyHashable : Any]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AnyHashable",
+                    "printedName": "Swift.AnyHashable",
+                    "usr": "s:s11AnyHashableV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:SD"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(MIRACLTrust.CrossDeviceSession?, (any Swift.Error)?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(MIRACLTrust.CrossDeviceSession?, (any Swift.Error)?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "MIRACLTrust.CrossDeviceSession?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CrossDeviceSession",
+                            "printedName": "MIRACLTrust.CrossDeviceSession",
+                            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "(any Swift.Error)?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "any Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MIRACLTrust@objc(cs)MIRACLTrust(im)_getCrossDeviceSessionFromPushNotificationPayloadWithPushNotificationPayload:completionHandler:",
+            "mangledName": "$s11MIRACLTrustAAC49_getCrossDeviceSessionFromPushNotificationPayload04pushhI017completionHandlerySDys11AnyHashableVypG_yAA0cdE0CSg_s5Error_pSgtYbScMYcctF",
+            "moduleName": "MIRACLTrust",
+            "objc_name": "_getCrossDeviceSessionFromPushNotificationPayloadWithPushNotificationPayload:completionHandler:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_abortCrossDeviceSession",
+            "printedName": "_abortCrossDeviceSession(_:completionHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CrossDeviceSession",
+                "printedName": "MIRACLTrust.CrossDeviceSession",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.Bool, (any Swift.Error)?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(Swift.Bool, (any Swift.Error)?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "(any Swift.Error)?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "any Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MIRACLTrust@objc(cs)MIRACLTrust(im)_abortCrossDeviceSession:completionHandler:",
+            "mangledName": "$s11MIRACLTrustAAC24_abortCrossDeviceSession_17completionHandleryAA0cdE0C_ySb_s5Error_pSgtctF",
+            "moduleName": "MIRACLTrust",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "getAuthenticationSessionDetailsFromQRCode",
             "printedName": "getAuthenticationSessionDetailsFromQRCode(qrCode:completionHandler:)",
             "children": [
@@ -9733,6 +13133,118 @@
             "declAttributes": [
               "AccessControl",
               "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "_sign",
+            "printedName": "_sign(crossDeviceSession:user:didRequestSigningPinHandler:completionHandler:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CrossDeviceSession",
+                "printedName": "MIRACLTrust.CrossDeviceSession",
+                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "User",
+                "printedName": "MIRACLTrust.User",
+                "usr": "c:@M@MIRACLTrust@objc(cs)User"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(@escaping (Swift.String?) -> ()) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String?) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "Swift.String?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.Bool, (any Swift.Error)?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Tuple",
+                    "printedName": "(Swift.Bool, (any Swift.Error)?)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "(any Swift.Error)?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Error",
+                            "printedName": "any Swift.Error",
+                            "usr": "s:s5ErrorP"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@MIRACLTrust@objc(cs)MIRACLTrust(im)_signWithCrossDeviceSession:user:didRequestSigningPinHandler:completionHandler:",
+            "mangledName": "$s11MIRACLTrustAAC5_sign18crossDeviceSession4user27didRequestSigningPinHandler010completionK0yAA05CrossdE0C_AA4UserCyySSSgcYbScMYccySb_s5Error_pSgtYbScMYcctF",
+            "moduleName": "MIRACLTrust",
+            "objc_name": "_signWithCrossDeviceSession:user:didRequestSigningPinHandler:completionHandler:",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -10508,6 +14020,13 @@
           },
           {
             "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
             "name": "LocalizedError",
             "printedName": "LocalizedError",
             "usr": "s:10Foundation14LocalizedErrorP",
@@ -10722,6 +14241,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -11266,6 +14792,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           },
           {
             "kind": "Conformance",
@@ -12513,6 +16046,13 @@
           },
           {
             "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -13139,6 +16679,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           },
           {
             "kind": "Conformance",
@@ -14195,6 +17742,13 @@
             "printedName": "CustomDebugStringConvertible",
             "usr": "s:s28CustomDebugStringConvertibleP",
             "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -14654,6 +18208,13 @@
           },
           {
             "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -15072,6 +18633,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -15714,6 +19282,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -15975,6 +19550,13 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
       },
@@ -16235,8 +19817,22 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
           }
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MIRACLTrust"
       },
       {
         "kind": "Import",
@@ -16935,6 +20531,13 @@
           },
           {
             "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -17043,6 +20646,20 @@
           },
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -17096,6 +20713,34 @@
     "json_format_version": 8
   },
   "ConstValues": [
+    {
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Cross Device Session\/CrossDeviceSessionResponse.swift",
+      "kind": "StringLiteral",
+      "offset": 833,
+      "length": 24,
+      "value": "\"enableRegistrationCode\""
+    },
+    {
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Cross Device Session\/CrossDeviceSessionResponse.swift",
+      "kind": "StringLiteral",
+      "offset": 900,
+      "length": 22,
+      "value": "\"limitRegCodeVerified\""
+    },
+    {
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Cross Device Session\/CrossDeviceSessionResponse.swift",
+      "kind": "StringLiteral",
+      "offset": 950,
+      "length": 6,
+      "value": "\"hash\""
+    },
+    {
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Cross Device Session\/CrossDeviceSessionResponse.swift",
+      "kind": "StringLiteral",
+      "offset": 991,
+      "length": 13,
+      "value": "\"description\""
+    },
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Crypto\/Crypto.swift",
       "kind": "IntegerLiteral",
@@ -17169,7 +20814,7 @@
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 1372,
+      "offset": 1459,
       "length": 21,
       "value": "\"https:\/\/api.mpin.io\""
     },
@@ -17190,28 +20835,28 @@
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteEncryptionHelper.swift",
       "kind": "StringLiteral",
-      "offset": 89,
+      "offset": 134,
       "length": 28,
       "value": "\"com.miracl.keys.userstable\""
     },
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteUserStorage.swift",
       "kind": "StringLiteral",
-      "offset": 322,
+      "offset": 420,
       "length": 8,
       "value": "\"miracl\""
     },
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteUserStorage.swift",
       "kind": "IntegerLiteral",
-      "offset": 503,
+      "offset": 741,
       "length": 1,
       "value": "3"
     },
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteUserStorage.swift",
       "kind": "IntegerLiteral",
-      "offset": 546,
+      "offset": 784,
       "length": 2,
       "value": "-1"
     },
@@ -17239,21 +20884,21 @@
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/Signature.swift",
       "kind": "StringLiteral",
-      "offset": 355,
+      "offset": 387,
       "length": 3,
       "value": "\"u\""
     },
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/Signature.swift",
       "kind": "StringLiteral",
-      "offset": 376,
+      "offset": 408,
       "length": 3,
       "value": "\"v\""
     },
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing\/Signature.swift",
       "kind": "StringLiteral",
-      "offset": 450,
+      "offset": 482,
       "length": 6,
       "value": "\"hash\""
     },
@@ -17344,7 +20989,7 @@
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Authenticator.swift",
       "kind": "Array",
-      "offset": 1187,
+      "offset": 1201,
       "length": 8,
       "value": "[\"oidc\"]"
     },
@@ -17783,6 +21428,13 @@
       "value": "\"Getting Client secret shares operation started\""
     },
     {
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/DefaultUserStorageOptions.swift",
+      "kind": "StringLiteral",
+      "offset": 346,
+      "length": 8,
+      "value": "\"miracl\""
+    },
+    {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/QuickCode\/QuickCodeGenerator.swift",
       "kind": "StringLiteral",
       "offset": 54,
@@ -17890,14 +21542,14 @@
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/MIRACLTrust.swift",
       "kind": "BooleanLiteral",
-      "offset": 563,
+      "offset": 603,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/MIRACLTrust.swift",
       "kind": "StringLiteral",
-      "offset": 715,
+      "offset": 755,
       "length": 29,
       "value": "\"com.miracl.trust.init.queue\""
     },
@@ -18142,7 +21794,7 @@
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Session Management\/SessionDetails.swift",
       "kind": "IntegerLiteral",
-      "offset": 2477,
+      "offset": 2479,
       "length": 12,
       "value": "1"
     },

@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1 effective-5.10 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name MIRACLTrust
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import CommonCrypto
 import MIRACLTrust.Crypto
 import Foundation
@@ -24,9 +24,11 @@ public enum CryptoError : Swift.Error, Swift.Equatable {
   public static func == (a: CryptoError, b: CryptoError) -> Swift.Bool
 }
 extension CryptoError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension CryptoError : Foundation.CustomNSError {
   public var errorCode: Swift.Int {
@@ -36,11 +38,32 @@ extension CryptoError : Foundation.CustomNSError {
     get
   }
 }
+@objcMembers @objc final public class CrossDeviceSession : ObjectiveC.NSObject, Swift.Sendable {
+  @objc final public let userId: Swift.String
+  @objc final public let projectName: Swift.String
+  @objc final public let projectLogoURL: Swift.String
+  @objc final public let projectId: Swift.String
+  @objc final public let pinLength: Swift.Int
+  @objc final public let verificationMethod: VerificationMethod
+  @objc final public let verificationURL: Swift.String
+  @objc final public let verificationCustomText: Swift.String
+  @objc final public let identityTypeLabel: Swift.String
+  @objc final public let quickCodeEnabled: Swift.Bool
+  @objc final public let limitQuickCodeRegistration: Swift.Bool
+  @objc final public let identityType: IdentityType
+  @objc final public let sessionId: Swift.String
+  @objc final public let sessionDescription: Swift.String
+  @objc final public let signingHash: Swift.String
+  @objc public init(userId: Swift.String, projectName: Swift.String, projectLogoURL: Swift.String, projectId: Swift.String, pinLength: Swift.Int, verificationMethod: VerificationMethod, verificationURL: Swift.String, verificationCustomText: Swift.String, identityTypeLabel: Swift.String, quickCodeEnabled: Swift.Bool, limitQuickCodeRegistration: Swift.Bool, identityType: IdentityType, sessionId: Swift.String, sessionDescription: Swift.String, signingHash: Swift.String)
+  @objc deinit
+}
 @objc public enum EmailVerificationMethod : Swift.Int, Swift.Sendable {
   case link
   case code
   public static func emailVerificationMethodFromString(_ string: Swift.String) -> EmailVerificationMethod
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -64,11 +87,13 @@ extension CryptoError : Foundation.CustomNSError {
 }
 public protocol UserStorage : Swift.Sendable {
   func loadStorage() throws
-  func add(user: User) throws
-  func delete(user: User) throws
-  func update(user: User) throws
-  func all() -> [User]
-  func getUser(by userId: Swift.String, projectId: Swift.String) -> User?
+  func add(user: UserDTO) throws
+  func delete(user: UserDTO) throws
+  func update(user: UserDTO) throws
+  func all() -> [UserDTO]
+  #if compiler(>=5.3) && $NonescapableTypes
+  func getUser(by userId: Swift.String, projectId: Swift.String) -> UserDTO?
+  #endif
 }
 public enum QuickCodeError : Swift.Error {
   case revoked
@@ -82,11 +107,39 @@ extension QuickCodeError : Swift.Equatable {
   public static func == (lhs: QuickCodeError, rhs: QuickCodeError) -> Swift.Bool
 }
 extension QuickCodeError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension QuickCodeError : Foundation.CustomNSError {
+  public var errorCode: Swift.Int {
+    get
+  }
+  public var errorUserInfo: [Swift.String : Any] {
+    get
+  }
+}
+public enum CrossDeviceSessionError : Swift.Error {
+  case invalidUniversalLinkURL
+  case invalidQRCode
+  case invalidPushNotificationPayload
+  case invalidCrossDeviceSession
+  case getCrossDeviceSessionFail((any Swift.Error)?)
+  case abortCrossDeviceSessionFail((any Swift.Error)?)
+}
+extension CrossDeviceSessionError : Swift.Equatable {
+  public static func == (lhs: CrossDeviceSessionError, rhs: CrossDeviceSessionError) -> Swift.Bool
+}
+extension CrossDeviceSessionError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var errorDescription: Swift.String? {
+    get
+  }
+  #endif
+}
+extension CrossDeviceSessionError : Foundation.CustomNSError {
   public var errorCode: Swift.Int {
     get
   }
@@ -99,6 +152,7 @@ public typealias PinRequestHandler = @_Concurrency.MainActor @Sendable (@escapin
 public typealias RegistrationCompletionHandler = @_Concurrency.MainActor @Sendable (User?, (any Swift.Error)?) -> Swift.Void
 public typealias AuthenticationCompletionHandler = @_Concurrency.MainActor @Sendable (Swift.Bool, (any Swift.Error)?) -> Swift.Void
 public typealias SigningCompletionHandler = @_Concurrency.MainActor @Sendable (SigningResult?, (any Swift.Error)?) -> Swift.Void
+public typealias CrossDeviceSigningCompletionHandler = @_Concurrency.MainActor @Sendable (Swift.Bool, (any Swift.Error)?) -> Swift.Void
 public typealias VerificationCompletionHandler = @_Concurrency.MainActor @Sendable (VerificationResponse?, (any Swift.Error)?) -> Swift.Void
 public typealias ActivationTokenCompletionHandler = @_Concurrency.MainActor @Sendable (ActivationTokenResponse?, (any Swift.Error)?) -> Swift.Void
 public typealias QuickCodeCompletionHandler = @_Concurrency.MainActor @Sendable (QuickCode?, (any Swift.Error)?) -> Swift.Void
@@ -107,7 +161,9 @@ public typealias AuthenticationSessionDetailsCompletionHandler = @_Concurrency.M
 public typealias AuthenticationSessionAborterCompletionHandler = @_Concurrency.MainActor @Sendable (Swift.Bool, (any Swift.Error)?) -> Swift.Void
 public typealias SigningSessionDetailsCompletionHandler = @_Concurrency.MainActor @Sendable (SigningSessionDetails?, (any Swift.Error)?) -> Swift.Void
 public typealias SigningSessionAborterCompletionHandler = @_Concurrency.MainActor @Sendable (Swift.Bool, (any Swift.Error)?) -> Swift.Void
-public let MIRACL_API_URL: Foundation.URL
+public let MIRACL_API_URL: Swift.String
+public typealias CrossDeviceSessionCompletionHandler = @_Concurrency.MainActor @Sendable (CrossDeviceSession?, (any Swift.Error)?) -> Swift.Void
+public typealias CrossDeviceSessionAborterCompletionHandler = @_Concurrency.MainActor @Sendable (Swift.Bool, (any Swift.Error)?) -> Swift.Void
 @_hasMissingDesignatedInitializers @objcMembers @objc final public class ActivationTokenErrorResponse : ObjectiveC.NSObject, Swift.Sendable {
   @objc final public let projectId: Swift.String
   @objc final public let userId: Swift.String
@@ -129,7 +185,11 @@ public let MIRACL_API_URL: Foundation.URL
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class Configuration : ObjectiveC.NSObject {
   @objc(ConfigurationBuilder) public class Builder : ObjectiveC.NSObject {
-    @objc public init(projectId: Swift.String, deviceName: Swift.String? = nil)
+    #if compiler(>=5.3) && $NonescapableTypes
+    @objc public init(projectId: Swift.String, projectURL: Swift.String = MIRACL_API_URL, deviceName: Swift.String? = nil)
+    #endif
+    @discardableResult
+    public func configureDefaultUserStorage(_ closure: (inout DefaultUserStorageOptions) -> Swift.Void) -> Configuration.Builder
     @discardableResult
     public func userStorage(userStorage: any UserStorage) -> Configuration.Builder
     @discardableResult
@@ -138,8 +198,6 @@ public let MIRACL_API_URL: Foundation.URL
     @objc(loggerWith:) public func logger(logger: any Logger) -> Configuration.Builder
     @discardableResult
     @objc(loggingLevelWith:) public func loggingLevel(level: LoggingLevel) -> Configuration.Builder
-    @discardableResult
-    @objc(platformURLWith:) public func platformURL(url: Foundation.URL) -> Configuration.Builder
     @discardableResult
     @objc(applicationInfoWith:) public func applicationInfo(applicationInfo: Swift.String) -> Configuration.Builder
     @discardableResult
@@ -156,8 +214,9 @@ public let MIRACL_API_URL: Foundation.URL
   @objc final public let publicKey: Swift.String
   @objc final public let dtas: Swift.String
   @objc final public let signatureHash: Swift.String
+  @objc final public let timestamp: Swift.Int64
   @objc @available(swift, obsoleted: 1.0)
-  final public func dictionary() -> [Swift.String : Swift.String]
+  final public func dictionary() -> [Swift.String : Any]
   @objc deinit
   final public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
@@ -165,7 +224,9 @@ public let MIRACL_API_URL: Foundation.URL
 @objc public enum SigningSessionStatus : Swift.Int, Swift.Codable, Swift.Sendable {
   case active
   case signed
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -182,7 +243,8 @@ public let MIRACL_API_URL: Foundation.URL
   @objc deinit
 }
 public enum ConfigurationError : Swift.Error, Swift.Equatable {
-  case configurationEmptyProjectId
+  case emptyProjectId
+  case invalidProjectURL
   public static func == (a: ConfigurationError, b: ConfigurationError) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -190,9 +252,11 @@ public enum ConfigurationError : Swift.Error, Swift.Equatable {
   }
 }
 extension ConfigurationError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 public enum APIRequestError : Swift.Error, Swift.Equatable {
   case fail(Swift.String)
@@ -208,9 +272,11 @@ extension ActivationTokenError : Swift.Equatable {
   public static func == (lhs: ActivationTokenError, rhs: ActivationTokenError) -> Swift.Bool
 }
 extension ActivationTokenError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension ActivationTokenError : Foundation.CustomNSError {
   public var errorCode: Swift.Int {
@@ -219,6 +285,26 @@ extension ActivationTokenError : Foundation.CustomNSError {
   public var errorUserInfo: [Swift.String : Any] {
     get
   }
+}
+@objc final public class UserDTO : ObjectiveC.NSObject, Swift.Sendable {
+  final public let userId: Swift.String
+  final public let projectId: Swift.String
+  final public let revoked: Swift.Bool
+  final public let pinLength: Swift.Int
+  final public let mpinId: Foundation.Data
+  final public let token: Foundation.Data
+  final public let dtas: Swift.String
+  final public let publicKey: Foundation.Data?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(userId: Swift.String, projectId: Swift.String, revoked: Swift.Bool, pinLength: Swift.Int, mpinId: Foundation.Data, token: Foundation.Data, dtas: Swift.String, publicKey: Foundation.Data?)
+  #endif
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DefaultUserStorageOptions {
+  public var storageName: Swift.String
+  public var directoryURL: Foundation.URL?
+  public var keychainAccessGroup: Swift.String?
+  @objc deinit
 }
 extension UIKit.UIDevice {
   @_Concurrency.MainActor @preconcurrency public var modelName: Swift.String {
@@ -242,14 +328,17 @@ public enum AuthenticationError : Swift.Error {
   case unsuccessfulAuthentication
   case pinCancelled
   case invalidPin
+  case invalidCrossDeviceSession
 }
 extension AuthenticationError : Swift.Equatable {
   public static func == (lhs: AuthenticationError, rhs: AuthenticationError) -> Swift.Bool
 }
 extension AuthenticationError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension AuthenticationError : Foundation.CustomNSError {
   public var errorCode: Swift.Int {
@@ -278,15 +367,30 @@ extension AuthenticationError : Foundation.CustomNSError {
   @objc public class func getInstance() -> MIRACLTrust
   @objc public class func configure(with configuration: Configuration) throws
   @objc public func setProjectId(projectId: Swift.String) throws
+  @objc public func updateProjectSettings(projectId: Swift.String, projectURL: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public func sendVerificationEmail(userId: Swift.String, authenticationSessionDetails: AuthenticationSessionDetails? = nil, completionHandler: @escaping VerificationCompletionHandler)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public func _sendVerificationEmail(userId: Swift.String, crossDeviceSession: CrossDeviceSession? = nil, completionHandler: @escaping VerificationCompletionHandler)
+  #endif
   @objc public func getActivationToken(verificationURL: Foundation.URL, completionHandler: @escaping ActivationTokenCompletionHandler)
   @objc public func getActivationToken(userId: Swift.String, code: Swift.String, completionHandler: @escaping ActivationTokenCompletionHandler)
   @objc public func generateQuickCode(user: User, didRequestPinHandler: @escaping PinRequestHandler, completionHandler: @escaping QuickCodeCompletionHandler)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public func register(for userId: Swift.String, activationToken: Swift.String, pushNotificationsToken: Swift.String? = nil, didRequestPinHandler: @escaping PinRequestHandler, completionHandler: @escaping RegistrationCompletionHandler)
+  #endif
   @objc(authenticateWithUser:didRequestPinHandler:completionHandler:) public func authenticate(user: User, didRequestPinHandler: @escaping PinRequestHandler, completionHandler: @escaping JWTCompletionHandler)
   @objc(authenticateWithUser:qrCode:didRequestPinHandler:completionHandler:) public func authenticateWithQRCode(user: User, qrCode: Swift.String, didRequestPinHandler: @escaping PinRequestHandler, completionHandler: @escaping AuthenticationCompletionHandler)
   @objc(authenticateWithPushNotificationPayload:didRequestPinHandler:completionHandler:) public func authenticateWithPushNotificationPayload(payload: [Swift.AnyHashable : Any], didRequestPinHandler: @escaping PinRequestHandler, completionHandler: @escaping AuthenticationCompletionHandler)
   @objc(authenticateWithUser:universalLinkURL:didRequestPinHandler:completionHandler:) public func authenticateWithUniversalLinkURL(user: User, universalLinkURL: Foundation.URL, didRequestPinHandler: @escaping PinRequestHandler, completionHandler: @escaping AuthenticationCompletionHandler)
+  @objc public func _authenticate(user: User, crossDeviceSession: CrossDeviceSession, didRequestPinHandler: @escaping PinRequestHandler, completionHandler: @escaping AuthenticationCompletionHandler)
+  @objc public func _getCrossDeviceSessionFromQRCode(qrCode: Swift.String, completionHandler: @escaping CrossDeviceSessionCompletionHandler)
+  @objc public func _getCrossDeviceSessionFromUniversalLinkURL(universalLinkURL: Foundation.URL, completionHandler: @escaping CrossDeviceSessionCompletionHandler)
+  @objc public func _getCrossDeviceSessionFromPushNotificationPayload(pushNotificationPayload: [Swift.AnyHashable : Any], completionHandler: @escaping CrossDeviceSessionCompletionHandler)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public func _abortCrossDeviceSession(_ crossDeviceSession: CrossDeviceSession, completionHandler: @escaping (Swift.Bool, (any Swift.Error)?) -> Swift.Void)
+  #endif
   @objc(getAuthenticationSessionDetailsFromQRCode:completionHandler:) public func getAuthenticationSessionDetailsFromQRCode(qrCode: Swift.String, completionHandler: @escaping AuthenticationSessionDetailsCompletionHandler)
   @objc(getAuthenticationSessionDetailsFromUniversalLinkURL:completionHandler:) public func getAuthenticationSessionDetailsFromUniversalLinkURL(universalLinkURL: Foundation.URL, completionHandler: @escaping AuthenticationSessionDetailsCompletionHandler)
   @objc(getAuthenticationSessionDetailsFromPushNotificationPayload:completionHandler:) public func getAuthenticationSessionDetailsFromPushNotificationPayload(pushNotificationPayload: [Swift.AnyHashable : Any], completionHandler: @escaping AuthenticationSessionDetailsCompletionHandler)
@@ -296,7 +400,10 @@ extension AuthenticationError : Foundation.CustomNSError {
   @objc(abortSigningSession:completionHandler:) public func abortSigningSession(signingSessionDetails: SigningSessionDetails, completionHandler: @escaping SigningSessionAborterCompletionHandler)
   @objc public func sign(message: Foundation.Data, user: User, didRequestSigningPinHandler: @escaping PinRequestHandler, completionHandler: @escaping SigningCompletionHandler)
   @objc public func _sign(message: Foundation.Data, user: User, signingSessionDetails: SigningSessionDetails, didRequestSigningPinHandler: @escaping PinRequestHandler, completionHandler: @escaping SigningCompletionHandler)
+  @objc public func _sign(crossDeviceSession: CrossDeviceSession, user: User, didRequestSigningPinHandler: @escaping PinRequestHandler, completionHandler: @escaping CrossDeviceSigningCompletionHandler)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public func getUser(by userId: Swift.String) -> User?
+  #endif
   @objc public func delete(user: User) throws
   @objc deinit
 }
@@ -311,9 +418,11 @@ public enum RegistrationError : Swift.Error {
   case projectMismatch
 }
 extension RegistrationError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension RegistrationError : Swift.Equatable {
   public static func == (lhs: RegistrationError, rhs: RegistrationError) -> Swift.Bool
@@ -344,9 +453,11 @@ extension AuthenticationSessionError : Swift.Equatable {
   public static func == (lhs: AuthenticationSessionError, rhs: AuthenticationSessionError) -> Swift.Bool
 }
 extension AuthenticationSessionError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension AuthenticationSessionError : Foundation.CustomNSError {
   public var errorCode: Swift.Int {
@@ -370,7 +481,9 @@ extension AuthenticationSessionError : Foundation.CustomNSError {
   case sessionManagement
   case jwtGeneration
   case quickCode
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -388,9 +501,11 @@ extension SigningSessionError : Swift.Equatable {
   public static func == (lhs: SigningSessionError, rhs: SigningSessionError) -> Swift.Bool
 }
 extension SigningSessionError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension SigningSessionError : Foundation.CustomNSError {
   public var errorCode: Swift.Int {
@@ -410,9 +525,11 @@ extension APIError : Swift.Equatable {
   public static func == (lhs: APIError, rhs: APIError) -> Swift.Bool
 }
 extension APIError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension APIError : Foundation.CustomNSError {
   public var errorCode: Swift.Int {
@@ -452,9 +569,11 @@ extension VerificationError : Swift.Equatable {
   public static func == (lhs: VerificationError, rhs: VerificationError) -> Swift.Bool
 }
 extension VerificationError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension VerificationError : Foundation.CustomNSError {
   public var errorCode: Swift.Int {
@@ -471,7 +590,9 @@ extension VerificationError : Foundation.CustomNSError {
   case warning = 3
   case error = 4
   public static func < (lhs: LoggingLevel, rhs: LoggingLevel) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -495,7 +616,9 @@ extension VerificationError : Foundation.CustomNSError {
   case fullCustom
   case standardEmail
   public static func verificationMethodFromString(_ string: Swift.String) -> VerificationMethod
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -505,7 +628,9 @@ extension VerificationError : Foundation.CustomNSError {
   case email
   case alphanumeric
   public static func identityTypeFromString(_ string: Swift.String) -> IdentityType
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -527,9 +652,11 @@ extension SigningError : Swift.Equatable {
   public static func == (lhs: SigningError, rhs: SigningError) -> Swift.Bool
 }
 extension SigningError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension SigningError : Foundation.CustomNSError {
   public var errorCode: Swift.Int {

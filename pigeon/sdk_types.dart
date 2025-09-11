@@ -2,13 +2,13 @@ import 'package:pigeon/pigeon.dart';
 
 class MConfiguration {
   final String projectId;
+  final String? projectUrl;
   final String applicationInfo;
-  final String? platformUrl;
 
   MConfiguration(
-    this.projectId, 
+    this.projectId,
+    this.projectUrl,
     this.applicationInfo,
-    this.platformUrl
   );
 }
 
@@ -176,7 +176,8 @@ class MEmailVerificationResponse {
 }
 
 enum MConfigurationExceptionCode {
-  emptyProjectId;
+  emptyProjectId,
+  invalidProjectUrl;
 }
 
 enum MEmailVerificationExceptionCode {
@@ -215,7 +216,8 @@ enum MAuthenticationExceptionCode {
   invalidAuthenticationSession,
   unsuccessfulAuthentication,
   pinCancelled,
-  invalidPin;
+  invalidPin, 
+  invalidCrossDeviceSession;
 }
 
 enum MQuickCodeExceptionCode {
@@ -263,6 +265,9 @@ enum MSigningExceptionCode {
 abstract class MiraclSdk {
   @async
   void initSdk(MConfiguration configuration);
+
+  @async
+  void updateProjectSettings(String projectId, String projectUrl);
 
   @async
   void setProjectId(String projectId);

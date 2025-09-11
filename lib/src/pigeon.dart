@@ -61,6 +61,7 @@ enum MSigningSessionStatus {
 
 enum MConfigurationExceptionCode {
   emptyProjectId,
+  invalidProjectUrl,
 }
 
 enum MEmailVerificationExceptionCode {
@@ -100,6 +101,7 @@ enum MAuthenticationExceptionCode {
   unsuccessfulAuthentication,
   pinCancelled,
   invalidPin,
+  invalidCrossDeviceSession,
 }
 
 enum MQuickCodeExceptionCode {
@@ -146,21 +148,21 @@ enum MSigningExceptionCode {
 class MConfiguration {
   MConfiguration({
     required this.projectId,
+    this.projectUrl,
     required this.applicationInfo,
-    this.platformUrl,
   });
 
   String projectId;
 
-  String applicationInfo;
+  String? projectUrl;
 
-  String? platformUrl;
+  String applicationInfo;
 
   List<Object?> _toList() {
     return <Object?>[
       projectId,
+      projectUrl,
       applicationInfo,
-      platformUrl,
     ];
   }
 
@@ -171,8 +173,8 @@ class MConfiguration {
     result as List<Object?>;
     return MConfiguration(
       projectId: result[0]! as String,
-      applicationInfo: result[1]! as String,
-      platformUrl: result[2] as String?,
+      projectUrl: result[1] as String?,
+      applicationInfo: result[2]! as String,
     );
   }
 
@@ -964,6 +966,29 @@ class MiraclSdk {
       binaryMessenger: pigeonVar_binaryMessenger,
     );
     final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[configuration]);
+    final List<Object?>? pigeonVar_replyList =
+        await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> updateProjectSettings(String projectId, String projectUrl) async {
+    final String pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.updateProjectSettings$pigeonVar_messageChannelSuffix';
+    final BasicMessageChannel<Object?> pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[projectId, projectUrl]);
     final List<Object?>? pigeonVar_replyList =
         await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {

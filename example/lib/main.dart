@@ -8,7 +8,7 @@ void main() async {
 
   final configuration = Configuration(
     projectId: "<YOUR_PROJECT_ID>",
-    platformUrl: "<YOUR_DOMAIN>"
+    projectUrl: "<YOUR_DOMAIN>"
   );
   await MIRACLTrust.initialize(configuration);
 

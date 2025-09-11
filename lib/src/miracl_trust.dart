@@ -77,7 +77,7 @@ class MIRACLTrust {
       final mConfiguration = MConfiguration(
         projectId: configuration._projectId, 
         applicationInfo: sdkApplicationInfo,
-        platformUrl: configuration._platformUrl
+        projectUrl: configuration._projectUrl
       );
 
       final miraclTrust = MIRACLTrust._createInstance();
@@ -104,6 +104,25 @@ class MIRACLTrust {
   Future<void> setProjectId(String projectId) async {
     try {
       return await _sdk.setProjectId(projectId);
+    } on PlatformException catch(e) {
+      final exceptionCode = e._getExceptionCode();
+      if(exceptionCode is MConfigurationExceptionCode) {
+        throw ConfigurationException._create(exceptionCode.toConfigurationExceptionCode());
+      } else {
+        rethrow;
+      }
+    }
+  }
+
+  /// Configures new project settings when the MIRACL Trust Flutter Plugin have to work with a different project.
+  ///
+  /// - [projectId]: The unique identifier for your MIRACL Trust project.
+  /// - [projectUrl]: MIRACL Trust Project URL that is used for communication with the MIRACL Trust API.
+  /// 
+  /// Throws a [ConfigurationException] if the project ID is empty or the project URL is invalid
+  Future<void> updateProjectSettings(String projectId, String projectUrl) async {
+    try {
+      return await _sdk.updateProjectSettings(projectId, projectUrl);
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
       if(exceptionCode is MConfigurationExceptionCode) {

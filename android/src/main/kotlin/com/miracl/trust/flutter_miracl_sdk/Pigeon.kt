@@ -126,7 +126,8 @@ enum class MSigningSessionStatus(val raw: Int) {
 }
 
 enum class MConfigurationExceptionCode(val raw: Int) {
-  EMPTY_PROJECT_ID(0);
+  EMPTY_PROJECT_ID(0),
+  INVALID_PROJECT_URL(1);
 
   companion object {
     fun ofRaw(raw: Int): MConfigurationExceptionCode? {
@@ -189,7 +190,8 @@ enum class MAuthenticationExceptionCode(val raw: Int) {
   INVALID_AUTHENTICATION_SESSION(7),
   UNSUCCESSFUL_AUTHENTICATION(8),
   PIN_CANCELLED(9),
-  INVALID_PIN(10);
+  INVALID_PIN(10),
+  INVALID_CROSS_DEVICE_SESSION(11);
 
   companion object {
     fun ofRaw(raw: Int): MAuthenticationExceptionCode? {
@@ -266,23 +268,23 @@ enum class MSigningExceptionCode(val raw: Int) {
 /** Generated class from Pigeon that represents data sent in messages. */
 data class MConfiguration (
   val projectId: String,
-  val applicationInfo: String,
-  val platformUrl: String? = null
+  val projectUrl: String? = null,
+  val applicationInfo: String
 )
  {
   companion object {
     fun fromList(pigeonVar_list: List<Any?>): MConfiguration {
       val projectId = pigeonVar_list[0] as String
-      val applicationInfo = pigeonVar_list[1] as String
-      val platformUrl = pigeonVar_list[2] as String?
-      return MConfiguration(projectId, applicationInfo, platformUrl)
+      val projectUrl = pigeonVar_list[1] as String?
+      val applicationInfo = pigeonVar_list[2] as String
+      return MConfiguration(projectId, projectUrl, applicationInfo)
     }
   }
   fun toList(): List<Any?> {
     return listOf(
       projectId,
+      projectUrl,
       applicationInfo,
-      platformUrl,
     )
   }
   override fun equals(other: Any?): Boolean {
@@ -910,6 +912,7 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
 /** Generated interface from Pigeon that represents a handler of messages from Flutter. */
 interface MiraclSdk {
   fun initSdk(configuration: MConfiguration, callback: (Result<Unit>) -> Unit)
+  fun updateProjectSettings(projectId: String, projectUrl: String, callback: (Result<Unit>) -> Unit)
   fun setProjectId(projectId: String, callback: (Result<Unit>) -> Unit)
   fun sendVerificationEmail(userId: String, callback: (Result<MEmailVerificationResponse>) -> Unit)
   fun getActivationTokenByURI(uri: String, callback: (Result<MActivationTokenResponse>) -> Unit)
@@ -946,6 +949,26 @@ interface MiraclSdk {
             val args = message as List<Any?>
             val configurationArg = args[0] as MConfiguration
             api.initSdk(configurationArg) { result: Result<Unit> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(PigeonPigeonUtils.wrapError(error))
+              } else {
+                reply.reply(PigeonPigeonUtils.wrapResult(null))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.updateProjectSettings$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val projectIdArg = args[0] as String
+            val projectUrlArg = args[1] as String
+            api.updateProjectSettings(projectIdArg, projectUrlArg) { result: Result<Unit> ->
               val error = result.exceptionOrNull()
               if (error != null) {
                 reply.reply(PigeonPigeonUtils.wrapError(error))
