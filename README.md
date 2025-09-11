@@ -24,7 +24,7 @@ Add flutter_miracl_sdk to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-    flutter_miracl_sdk: ^0.5.2
+    flutter_miracl_sdk: ^0.6.0
 ```
 
 ## Usage
