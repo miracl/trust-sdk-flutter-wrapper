@@ -126,20 +126,22 @@ offers two options for that:
     - If the end user is registering for the first time or resetting their PIN,
       an email with a verification code will be sent, and the email
       verification method in the response will be
-      `EmailVerificationMethod.code`.
+      [EmailVerificationMethod.code](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/EmailVerificationMethod.html#code).
       Then, ask the user to enter the code in the application.
 
     - If the end user has already registered another device with the same
       User ID, a Verification URL will be sent, and the verification method in
       the response will be
-      `EmailVerificationMethod.link`.
+      [EmailVerificationMethod.link](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/EmailVerificationMethod.html#link).
       In this case, proceed as described for the **Email Link** verification
       method below.
 
   - **Email Link:** Your application must open when the end user follows
     the Verification URL in the email. To ensure proper deep linking behaviour
     on mobile applications, check this [guide](https://docs.flutter.dev/ui/navigation/deep-linking)
-    package.
+    package. To associate your application with the email Verification URL, use
+    the **Android association** field in **Mobile Applications** under
+    **Configuration** in the [MIRACL Trust Portal](https://trust.miracl.cloud).
 
 ### Registration
 
@@ -212,7 +214,7 @@ The MIRACL Trust SDK offers two options:
 
 The
 [authenticate](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/authenticate.html)
-method generates a [JWT](https://jwt.io) authentication
+method generates a [JWT](https://datatracker.ietf.org/doc/html/rfc7519) authentication
 token for а registered user.
 
 ```dart
@@ -310,8 +312,8 @@ entry in the response body indicates that the signing is successful.
 [QuickCode](https://miracl.com/resources/docs/guides/built-in-user-verification/quickcode/)
 is a way to register another device without going through the verification process.
 
-To generate a QuickCode, call the
-[generateQuickCode](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/generateQuickCode.html)
+To generate a [QuickCode](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/QuickCode-class.html),
+call the [generateQuickCode](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/generateQuickCode.html)
 method with
 an already registered
 [User](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/User-class.html)
