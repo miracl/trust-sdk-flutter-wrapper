@@ -367,7 +367,6 @@ class SdkHandler {
                             it.value.verificationCustomText,
                             it.value.identityTypeLabel,
                             it.value.quickCodeEnabled,
-                            it.value.limitQuickCodeRegistration,
                             MIdentityType.ofRaw(it.value.identityType.ordinal) ?: MIdentityType.EMAIL,
                             it.value.accessId
                         )
@@ -412,7 +411,6 @@ class SdkHandler {
                             it.value.verificationCustomText,
                             it.value.identityTypeLabel,
                             it.value.quickCodeEnabled,
-                            it.value.limitQuickCodeRegistration,
                             MIdentityType.ofRaw(it.value.identityType.ordinal) ?: MIdentityType.EMAIL,
                             it.value.accessId
                         )
@@ -457,7 +455,6 @@ class SdkHandler {
                             it.value.verificationCustomText,
                             it.value.identityTypeLabel,
                             it.value.quickCodeEnabled,
-                            it.value.limitQuickCodeRegistration,
                             MIdentityType.ofRaw(it.value.identityType.ordinal) ?: MIdentityType.EMAIL,
                             it.value.accessId
                         )
@@ -616,7 +613,6 @@ class SdkHandler {
                             it.value.verificationCustomText,
                             it.value.identityTypeLabel,
                             it.value.quickCodeEnabled,
-                            it.value.limitQuickCodeRegistration,
                             MIdentityType.ofRaw(it.value.identityType.ordinal) ?: MIdentityType.EMAIL,
                             it.value.sessionId,
                             it.value.signingHash,
@@ -665,7 +661,6 @@ class SdkHandler {
                             it.value.verificationCustomText,
                             it.value.identityTypeLabel,
                             it.value.quickCodeEnabled,
-                            it.value.limitQuickCodeRegistration,
                             MIdentityType.ofRaw(it.value.identityType.ordinal) ?: MIdentityType.EMAIL,
                             it.value.sessionId,
                             it.value.signingHash,

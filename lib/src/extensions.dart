@@ -23,7 +23,6 @@ extension on MAuthenticationSessionDetails {
         verificationCustomText: verificationCustomText, 
         identityTypeLabel: identityTypeLabel, 
         quickCodeEnabled: quickCodeEnabled,
-        limitQuickCodeRegistration: limitQuickCodeRegistration, 
         identityType: IdentityType.getIdentityType(identityType.name),
         accessId: accessId
     );
@@ -110,8 +109,7 @@ extension on MSigningSessionDetails {
         verificationURL: verificationURL,
         verificationCustomText: verificationCustomText,
         identityTypeLabel: identityTypeLabel, 
-        quickCodeEnabled: quickCodeEnabled, 
-        limitQuickCodeRegistration: limitQuickCodeRegistration, 
+        quickCodeEnabled: quickCodeEnabled,
         identityType: IdentityType.getIdentityType(identityType.name), 
         sessionId: sessionId, 
         signingHash: signingHash, 
@@ -204,7 +202,6 @@ extension on MQuickCodeExceptionCode {
     MQuickCodeExceptionCode.unsuccessfulAuthentication => QuickCodeExceptionCode.unsuccessfulAuthentication,
     MQuickCodeExceptionCode.pinCancelled => QuickCodeExceptionCode.pinCancelled,
     MQuickCodeExceptionCode.invalidPin => QuickCodeExceptionCode.invalidPin,
-    MQuickCodeExceptionCode.limitedQuickCodeGeneration => QuickCodeExceptionCode.limitedQuickCodeGeneration,
     MQuickCodeExceptionCode.generationFail => QuickCodeExceptionCode.generationFail,
   };
 }

@@ -64,7 +64,6 @@ internal val QuickCodeException.flutterExceptionCodeRepresentation: MQuickCodeEx
     get() = when (this) {
         is QuickCodeException.GenerationFail -> MQuickCodeExceptionCode.GENERATION_FAIL
         QuickCodeException.InvalidPin -> MQuickCodeExceptionCode.INVALID_PIN
-        QuickCodeException.LimitedQuickCodeGeneration -> MQuickCodeExceptionCode.LIMITED_QUICK_CODE_GENERATION
         QuickCodeException.PinCancelled -> MQuickCodeExceptionCode.PIN_CANCELLED
         QuickCodeException.Revoked -> MQuickCodeExceptionCode.REVOKED
         QuickCodeException.UnsuccessfulAuthentication -> MQuickCodeExceptionCode.UNSUCCESSFUL_AUTHENTICATION
