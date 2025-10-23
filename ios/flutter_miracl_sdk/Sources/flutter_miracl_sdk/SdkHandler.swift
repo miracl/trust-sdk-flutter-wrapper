@@ -471,7 +471,6 @@ public class SdkHandler: NSObject, MiraclSdk {
                    verificationCustomText: authSession.verificationCustomText,
                    identityTypeLabel: authSession.identityTypeLabel,
                    quickCodeEnabled: authSession.quickCodeEnabled,
-                   limitQuickCodeRegistration: authSession.limitQuickCodeRegistration,
                    identityType: MIdentityType(rawValue:authSession.identityType.rawValue) ?? .email,
                    accessId: authSession.accessId
                )
@@ -512,7 +511,6 @@ public class SdkHandler: NSObject, MiraclSdk {
                   verificationCustomText: authSession.verificationCustomText,
                   identityTypeLabel: authSession.identityTypeLabel,
                   quickCodeEnabled: authSession.quickCodeEnabled,
-                  limitQuickCodeRegistration: authSession.limitQuickCodeRegistration,
                   identityType: MIdentityType(rawValue: authSession.identityType.rawValue) ?? .email,
                   accessId: authSession.accessId
               )
@@ -553,7 +551,6 @@ public class SdkHandler: NSObject, MiraclSdk {
                   verificationCustomText: authSession.verificationCustomText,
                   identityTypeLabel: authSession.identityTypeLabel,
                   quickCodeEnabled: authSession.quickCodeEnabled,
-                  limitQuickCodeRegistration: authSession.limitQuickCodeRegistration,
                   identityType: MIdentityType(rawValue: authSession.identityType.rawValue) ?? .email,
                   accessId: authSession.accessId
               )
@@ -631,7 +628,6 @@ public class SdkHandler: NSObject, MiraclSdk {
                   verificationCustomText: signingSessionDetails.verificationCustomText,
                   identityTypeLabel: signingSessionDetails.identityTypeLabel,
                   quickCodeEnabled: signingSessionDetails.quickCodeEnabled,
-                  limitQuickCodeRegistration: signingSessionDetails.limitQuickCodeRegistration,
                   identityType: MIdentityType(rawValue: signingSessionDetails.identityType.rawValue) ?? .email,
                   sessionId: signingSessionDetails.sessionId,
                   signingHash: signingSessionDetails.signingHash,
@@ -678,7 +674,6 @@ public class SdkHandler: NSObject, MiraclSdk {
                 verificationCustomText: signingSessionDetails.verificationCustomText,
                 identityTypeLabel: signingSessionDetails.identityTypeLabel,
                 quickCodeEnabled: signingSessionDetails.quickCodeEnabled,
-                limitQuickCodeRegistration: signingSessionDetails.limitQuickCodeRegistration,
                 identityType: MIdentityType(rawValue: signingSessionDetails.identityType.rawValue) ?? .email,
                 sessionId: signingSessionDetails.sessionId,
                 signingHash: signingSessionDetails.signingHash,

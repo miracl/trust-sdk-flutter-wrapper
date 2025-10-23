@@ -57,7 +57,6 @@ class MAuthenticationSessionDetails {
   final String verificationCustomText;
   final String identityTypeLabel;
   final bool quickCodeEnabled;
-  final bool limitQuickCodeRegistration;
   final MIdentityType identityType;
   final String accessId;
 
@@ -72,7 +71,6 @@ class MAuthenticationSessionDetails {
     this.verificationCustomText,
     this.identityTypeLabel,
     this.quickCodeEnabled,
-    this.limitQuickCodeRegistration,
     this.identityType,
     this.accessId
   );
@@ -89,7 +87,6 @@ class MSigningSessionDetails {
   final String verificationCustomText;
   final String identityTypeLabel;
   final bool quickCodeEnabled;
-  final bool limitQuickCodeRegistration;
   final MIdentityType identityType;
   final String sessionId;
   final String signingHash;
@@ -108,7 +105,6 @@ class MSigningSessionDetails {
     this.verificationCustomText,
     this.identityTypeLabel,
     this.quickCodeEnabled,
-    this.limitQuickCodeRegistration,
     this.identityType,
     this.sessionId,
     this.signingHash,
@@ -225,7 +221,6 @@ enum MQuickCodeExceptionCode {
   unsuccessfulAuthentication,
   pinCancelled,
   invalidPin,
-  limitedQuickCodeGeneration,
   generationFail;
 }
 

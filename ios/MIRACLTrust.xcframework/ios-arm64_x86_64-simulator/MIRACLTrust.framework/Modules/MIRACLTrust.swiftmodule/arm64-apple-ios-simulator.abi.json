@@ -1203,57 +1203,6 @@
           },
           {
             "kind": "Var",
-            "name": "limitQuickCodeRegistration",
-            "printedName": "limitQuickCodeRegistration",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(py)limitQuickCodeRegistration",
-            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC26limitQuickCodeRegistrationSbvp",
-            "moduleName": "MIRACLTrust",
-            "declAttributes": [
-              "Final",
-              "HasStorage",
-              "AccessControl",
-              "RawDocComment",
-              "ObjC"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)limitQuickCodeRegistration",
-                "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC26limitQuickCodeRegistrationSbvg",
-                "moduleName": "MIRACLTrust",
-                "implicit": true,
-                "declAttributes": [
-                  "Final",
-                  "ObjC"
-                ],
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
             "name": "identityType",
             "printedName": "identityType",
             "children": [
@@ -1459,7 +1408,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(userId:projectName:projectLogoURL:projectId:pinLength:verificationMethod:verificationURL:verificationCustomText:identityTypeLabel:quickCodeEnabled:limitQuickCodeRegistration:identityType:sessionId:sessionDescription:signingHash:)",
+            "printedName": "init(userId:projectName:projectLogoURL:projectId:pinLength:verificationMethod:verificationURL:verificationCustomText:identityTypeLabel:quickCodeEnabled:identityType:sessionId:sessionDescription:signingHash:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -1529,12 +1478,6 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              },
-              {
-                "kind": "TypeNominal",
                 "name": "IdentityType",
                 "printedName": "MIRACLTrust.IdentityType",
                 "usr": "c:@M@MIRACLTrust@E@IdentityType"
@@ -1559,8 +1502,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)initWithUserId:projectName:projectLogoURL:projectId:pinLength:verificationMethod:verificationURL:verificationCustomText:identityTypeLabel:quickCodeEnabled:limitQuickCodeRegistration:identityType:sessionId:sessionDescription:signingHash:",
-            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC6userId11projectName0G7LogoURL0gF09pinLength18verificationMethod0mJ00M10CustomText17identityTypeLabel16quickCodeEnabled010limitQuickU12Registration0qR007sessionF00Z11Description11signingHashACSS_S3SSiAA012VerificationN0OS3SS2bAA08IdentityR0OS3Stcfc",
+            "usr": "c:@M@MIRACLTrust@objc(cs)CrossDeviceSession(im)initWithUserId:projectName:projectLogoURL:projectId:pinLength:verificationMethod:verificationURL:verificationCustomText:identityTypeLabel:quickCodeEnabled:identityType:sessionId:sessionDescription:signingHash:",
+            "mangledName": "$s11MIRACLTrust18CrossDeviceSessionC6userId11projectName0G7LogoURL0gF09pinLength18verificationMethod0mJ00M10CustomText17identityTypeLabel16quickCodeEnabled0qR007sessionF00W11Description11signingHashACSS_S3SSiAA012VerificationN0OS3SSbAA08IdentityR0OS3Stcfc",
             "moduleName": "MIRACLTrust",
             "declAttributes": [
               "AccessControl",
@@ -2520,58 +2463,6 @@
           },
           {
             "kind": "Var",
-            "name": "limitQuickCodeRegistration",
-            "printedName": "limitQuickCodeRegistration",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "c:@M@MIRACLTrust@objc(cs)AuthenticationSessionDetails(py)limitQuickCodeRegistration",
-            "mangledName": "$s11MIRACLTrust28AuthenticationSessionDetailsC26limitQuickCodeRegistrationSbvp",
-            "moduleName": "MIRACLTrust",
-            "objc_name": "limitQuickCodeRegistration",
-            "declAttributes": [
-              "Final",
-              "ObjC",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "c:@M@MIRACLTrust@objc(cs)AuthenticationSessionDetails(im)limitQuickCodeRegistration",
-                "mangledName": "$s11MIRACLTrust28AuthenticationSessionDetailsC26limitQuickCodeRegistrationSbvg",
-                "moduleName": "MIRACLTrust",
-                "implicit": true,
-                "objc_name": "limitQuickCodeRegistration",
-                "declAttributes": [
-                  "Final",
-                  "ObjC"
-                ],
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
             "name": "identityType",
             "printedName": "identityType",
             "children": [
@@ -3234,46 +3125,6 @@
             "declKind": "EnumElement",
             "usr": "s:11MIRACLTrust14QuickCodeErrorO10invalidPinyA2CmF",
             "mangledName": "$s11MIRACLTrust14QuickCodeErrorO10invalidPinyA2CmF",
-            "moduleName": "MIRACLTrust",
-            "declAttributes": [
-              "RawDocComment"
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "limitedQuickCodeGeneration",
-            "printedName": "limitedQuickCodeGeneration",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(MIRACLTrust.QuickCodeError.Type) -> MIRACLTrust.QuickCodeError",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "QuickCodeError",
-                    "printedName": "MIRACLTrust.QuickCodeError",
-                    "usr": "s:11MIRACLTrust14QuickCodeErrorO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "MIRACLTrust.QuickCodeError.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "QuickCodeError",
-                        "printedName": "MIRACLTrust.QuickCodeError",
-                        "usr": "s:11MIRACLTrust14QuickCodeErrorO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:11MIRACLTrust14QuickCodeErrorO07limitedbC10GenerationyA2CmF",
-            "mangledName": "$s11MIRACLTrust14QuickCodeErrorO07limitedbC10GenerationyA2CmF",
             "moduleName": "MIRACLTrust",
             "declAttributes": [
               "RawDocComment"
@@ -12353,7 +12204,7 @@
             ],
             "declKind": "Func",
             "usr": "c:@M@MIRACLTrust@objc(cs)MIRACLTrust(im)_abortCrossDeviceSession:completionHandler:",
-            "mangledName": "$s11MIRACLTrustAAC24_abortCrossDeviceSession_17completionHandleryAA0cdE0C_ySb_s5Error_pSgtctF",
+            "mangledName": "$s11MIRACLTrustAAC24_abortCrossDeviceSession_17completionHandleryAA0cdE0C_ySb_s5Error_pSgtYbctF",
             "moduleName": "MIRACLTrust",
             "declAttributes": [
               "AccessControl",
@@ -15518,6 +15369,13 @@
         "moduleName": "MIRACLTrust"
       },
       {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "MIRACLTrust"
+      },
+      {
         "kind": "TypeDecl",
         "name": "SigningSessionError",
         "printedName": "SigningSessionError",
@@ -17255,58 +17113,6 @@
                 "moduleName": "MIRACLTrust",
                 "implicit": true,
                 "objc_name": "quickCodeEnabled",
-                "declAttributes": [
-                  "Final",
-                  "ObjC"
-                ],
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "limitQuickCodeRegistration",
-            "printedName": "limitQuickCodeRegistration",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "c:@M@MIRACLTrust@objc(cs)SigningSessionDetails(py)limitQuickCodeRegistration",
-            "mangledName": "$s11MIRACLTrust21SigningSessionDetailsC26limitQuickCodeRegistrationSbvp",
-            "moduleName": "MIRACLTrust",
-            "objc_name": "limitQuickCodeRegistration",
-            "declAttributes": [
-              "Final",
-              "ObjC",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "isLet": true,
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "c:@M@MIRACLTrust@objc(cs)SigningSessionDetails(im)limitQuickCodeRegistration",
-                "mangledName": "$s11MIRACLTrust21SigningSessionDetailsC26limitQuickCodeRegistrationSbvg",
-                "moduleName": "MIRACLTrust",
-                "implicit": true,
-                "objc_name": "limitQuickCodeRegistration",
                 "declAttributes": [
                   "Final",
                   "ObjC"
@@ -19154,55 +18960,6 @@
           },
           {
             "kind": "Var",
-            "name": "limitQuickCodeRegistration",
-            "printedName": "limitQuickCodeRegistration",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "c:@M@MIRACLTrust@objc(pl)SessionDetails(py)limitQuickCodeRegistration",
-            "mangledName": "$s11MIRACLTrust14SessionDetailsP26limitQuickCodeRegistrationSbvp",
-            "moduleName": "MIRACLTrust",
-            "protocolReq": true,
-            "declAttributes": [
-              "RawDocComment",
-              "ObjC"
-            ],
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Bool",
-                    "printedName": "Swift.Bool",
-                    "usr": "s:Sb"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "c:@M@MIRACLTrust@objc(pl)SessionDetails(im)limitQuickCodeRegistration",
-                "mangledName": "$s11MIRACLTrust14SessionDetailsP26limitQuickCodeRegistrationSbvg",
-                "moduleName": "MIRACLTrust",
-                "genericSig": "<τ_0_0 where τ_0_0 : MIRACLTrust.SessionDetails>",
-                "sugared_genericSig": "<Self where Self : MIRACLTrust.SessionDetails>",
-                "protocolReq": true,
-                "declAttributes": [
-                  "ObjC"
-                ],
-                "reqNewWitnessTableEntry": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
             "name": "identityType",
             "printedName": "identityType",
             "children": [
@@ -20716,28 +20473,21 @@
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Cross Device Session\/CrossDeviceSessionResponse.swift",
       "kind": "StringLiteral",
-      "offset": 833,
+      "offset": 792,
       "length": 24,
       "value": "\"enableRegistrationCode\""
     },
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Cross Device Session\/CrossDeviceSessionResponse.swift",
       "kind": "StringLiteral",
-      "offset": 900,
-      "length": 22,
-      "value": "\"limitRegCodeVerified\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Cross Device Session\/CrossDeviceSessionResponse.swift",
-      "kind": "StringLiteral",
-      "offset": 950,
+      "offset": 844,
       "length": 6,
       "value": "\"hash\""
     },
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Cross Device Session\/CrossDeviceSessionResponse.swift",
       "kind": "StringLiteral",
-      "offset": 991,
+      "offset": 885,
       "length": 13,
       "value": "\"description\""
     },
@@ -21072,24 +20822,10 @@
     },
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
-      "kind": "BooleanLiteral",
-      "offset": 401,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
       "kind": "StringLiteral",
-      "offset": 757,
+      "offset": 714,
       "length": 24,
       "value": "\"enableRegistrationCode\""
-    },
-    {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication Session Management\/AuthenticationSessionDetailsResponse.swift",
-      "kind": "StringLiteral",
-      "offset": 824,
-      "length": 22,
-      "value": "\"limitRegCodeVerified\""
     },
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Logging\/LoggingConstants.swift",
@@ -21435,13 +21171,6 @@
       "value": "\"miracl\""
     },
     {
-      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/QuickCode\/QuickCodeGenerator.swift",
-      "kind": "StringLiteral",
-      "offset": 54,
-      "length": 30,
-      "value": "\"LIMITED_QUICKCODE_GENERATION\""
-    },
-    {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/User Storage\/SQLiteMigration\/SQLiteMigration2to3.swift",
       "kind": "IntegerLiteral",
       "offset": 226,
@@ -21638,6 +21367,13 @@
       "value": "12"
     },
     {
+      "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Helpers\/PinController.swift",
+      "kind": "StringLiteral",
+      "offset": 168,
+      "length": 25,
+      "value": "\"com.miracl.pinSyncQueue\""
+    },
+    {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Authentication\/Pass1RequestBody.swift",
       "kind": "StringLiteral",
       "offset": 57,
@@ -21682,14 +21418,14 @@
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing Session Management\/SigningSessionDetailsResponse.swift",
       "kind": "StringLiteral",
-      "offset": 621,
+      "offset": 586,
       "length": 6,
       "value": "\"hash\""
     },
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Signing Session Management\/SigningSessionDetailsResponse.swift",
       "kind": "StringLiteral",
-      "offset": 662,
+      "offset": 627,
       "length": 13,
       "value": "\"description\""
     },
@@ -21787,14 +21523,14 @@
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Session Management\/SessionDetails.swift",
       "kind": "IntegerLiteral",
-      "offset": 1643,
+      "offset": 1475,
       "length": 13,
       "value": "1"
     },
     {
       "filePath": "\/Users\/radoslavpenev\/Development\/trust-sdk-ios\/MIRACLTrust\/MIRACLTrust-Sources\/Session Management\/SessionDetails.swift",
       "kind": "IntegerLiteral",
-      "offset": 2479,
+      "offset": 2311,
       "length": 12,
       "value": "1"
     },

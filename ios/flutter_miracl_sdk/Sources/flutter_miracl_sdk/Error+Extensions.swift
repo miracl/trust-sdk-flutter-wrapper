@@ -108,8 +108,6 @@ extension QuickCodeError {
             return MQuickCodeExceptionCode.generationFail
         case .invalidPin:
             return MQuickCodeExceptionCode.invalidPin
-        case .limitedQuickCodeGeneration:
-            return MQuickCodeExceptionCode.limitedQuickCodeGeneration
         case .pinCancelled:
             return MQuickCodeExceptionCode.pinCancelled
         case .revoked:
