@@ -202,8 +202,7 @@ enum MQuickCodeExceptionCode: Int {
   case unsuccessfulAuthentication = 1
   case pinCancelled = 2
   case invalidPin = 3
-  case limitedQuickCodeGeneration = 4
-  case generationFail = 5
+  case generationFail = 4
 }
 
 enum MAuthenticationSessionDetailsExceptionCode: Int {
@@ -320,7 +319,6 @@ struct MAuthenticationSessionDetails: Hashable {
   var verificationCustomText: String
   var identityTypeLabel: String
   var quickCodeEnabled: Bool
-  var limitQuickCodeRegistration: Bool
   var identityType: MIdentityType
   var accessId: String
 
@@ -337,9 +335,8 @@ struct MAuthenticationSessionDetails: Hashable {
     let verificationCustomText = pigeonVar_list[7] as! String
     let identityTypeLabel = pigeonVar_list[8] as! String
     let quickCodeEnabled = pigeonVar_list[9] as! Bool
-    let limitQuickCodeRegistration = pigeonVar_list[10] as! Bool
-    let identityType = pigeonVar_list[11] as! MIdentityType
-    let accessId = pigeonVar_list[12] as! String
+    let identityType = pigeonVar_list[10] as! MIdentityType
+    let accessId = pigeonVar_list[11] as! String
 
     return MAuthenticationSessionDetails(
       userId: userId,
@@ -352,7 +349,6 @@ struct MAuthenticationSessionDetails: Hashable {
       verificationCustomText: verificationCustomText,
       identityTypeLabel: identityTypeLabel,
       quickCodeEnabled: quickCodeEnabled,
-      limitQuickCodeRegistration: limitQuickCodeRegistration,
       identityType: identityType,
       accessId: accessId
     )
@@ -369,7 +365,6 @@ struct MAuthenticationSessionDetails: Hashable {
       verificationCustomText,
       identityTypeLabel,
       quickCodeEnabled,
-      limitQuickCodeRegistration,
       identityType,
       accessId,
     ]
@@ -393,7 +388,6 @@ struct MSigningSessionDetails: Hashable {
   var verificationCustomText: String
   var identityTypeLabel: String
   var quickCodeEnabled: Bool
-  var limitQuickCodeRegistration: Bool
   var identityType: MIdentityType
   var sessionId: String
   var signingHash: String
@@ -414,13 +408,12 @@ struct MSigningSessionDetails: Hashable {
     let verificationCustomText = pigeonVar_list[7] as! String
     let identityTypeLabel = pigeonVar_list[8] as! String
     let quickCodeEnabled = pigeonVar_list[9] as! Bool
-    let limitQuickCodeRegistration = pigeonVar_list[10] as! Bool
-    let identityType = pigeonVar_list[11] as! MIdentityType
-    let sessionId = pigeonVar_list[12] as! String
-    let signingHash = pigeonVar_list[13] as! String
-    let signingDescription = pigeonVar_list[14] as! String
-    let status = pigeonVar_list[15] as! MSigningSessionStatus
-    let expireTime = pigeonVar_list[16] as! Int64
+    let identityType = pigeonVar_list[10] as! MIdentityType
+    let sessionId = pigeonVar_list[11] as! String
+    let signingHash = pigeonVar_list[12] as! String
+    let signingDescription = pigeonVar_list[13] as! String
+    let status = pigeonVar_list[14] as! MSigningSessionStatus
+    let expireTime = pigeonVar_list[15] as! Int64
 
     return MSigningSessionDetails(
       userId: userId,
@@ -433,7 +426,6 @@ struct MSigningSessionDetails: Hashable {
       verificationCustomText: verificationCustomText,
       identityTypeLabel: identityTypeLabel,
       quickCodeEnabled: quickCodeEnabled,
-      limitQuickCodeRegistration: limitQuickCodeRegistration,
       identityType: identityType,
       sessionId: sessionId,
       signingHash: signingHash,
@@ -454,7 +446,6 @@ struct MSigningSessionDetails: Hashable {
       verificationCustomText,
       identityTypeLabel,
       quickCodeEnabled,
-      limitQuickCodeRegistration,
       identityType,
       sessionId,
       signingHash,

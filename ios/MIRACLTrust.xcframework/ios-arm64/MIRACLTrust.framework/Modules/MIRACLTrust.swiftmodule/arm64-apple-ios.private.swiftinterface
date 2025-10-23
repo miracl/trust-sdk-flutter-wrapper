@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
-// swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name MIRACLTrust
+// swift-module-flags: -target arm64-apple-ios11.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-upcoming-feature StrictConcurrency -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name MIRACLTrust
 // swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import CommonCrypto
 import MIRACLTrust.Crypto
@@ -49,12 +49,11 @@ extension CryptoError : Foundation.CustomNSError {
   @objc final public let verificationCustomText: Swift.String
   @objc final public let identityTypeLabel: Swift.String
   @objc final public let quickCodeEnabled: Swift.Bool
-  @objc final public let limitQuickCodeRegistration: Swift.Bool
   @objc final public let identityType: IdentityType
   @objc final public let sessionId: Swift.String
   @objc final public let sessionDescription: Swift.String
   @objc final public let signingHash: Swift.String
-  @objc public init(userId: Swift.String, projectName: Swift.String, projectLogoURL: Swift.String, projectId: Swift.String, pinLength: Swift.Int, verificationMethod: VerificationMethod, verificationURL: Swift.String, verificationCustomText: Swift.String, identityTypeLabel: Swift.String, quickCodeEnabled: Swift.Bool, limitQuickCodeRegistration: Swift.Bool, identityType: IdentityType, sessionId: Swift.String, sessionDescription: Swift.String, signingHash: Swift.String)
+  @objc public init(userId: Swift.String, projectName: Swift.String, projectLogoURL: Swift.String, projectId: Swift.String, pinLength: Swift.Int, verificationMethod: VerificationMethod, verificationURL: Swift.String, verificationCustomText: Swift.String, identityTypeLabel: Swift.String, quickCodeEnabled: Swift.Bool, identityType: IdentityType, sessionId: Swift.String, sessionDescription: Swift.String, signingHash: Swift.String)
   @objc deinit
 }
 @objc public enum EmailVerificationMethod : Swift.Int, Swift.Sendable {
@@ -80,7 +79,6 @@ extension CryptoError : Foundation.CustomNSError {
   @objc final public let verificationCustomText: Swift.String
   @objc final public let identityTypeLabel: Swift.String
   @objc final public let quickCodeEnabled: Swift.Bool
-  @objc final public let limitQuickCodeRegistration: Swift.Bool
   @objc final public let identityType: IdentityType
   @objc final public let accessId: Swift.String
   @objc deinit
@@ -100,7 +98,6 @@ public enum QuickCodeError : Swift.Error {
   case unsuccessfulAuthentication
   case pinCancelled
   case invalidPin
-  case limitedQuickCodeGeneration
   case generationFail((any Swift.Error)?)
 }
 extension QuickCodeError : Swift.Equatable {
@@ -389,7 +386,7 @@ extension AuthenticationError : Foundation.CustomNSError {
   @objc public func _getCrossDeviceSessionFromUniversalLinkURL(universalLinkURL: Foundation.URL, completionHandler: @escaping CrossDeviceSessionCompletionHandler)
   @objc public func _getCrossDeviceSessionFromPushNotificationPayload(pushNotificationPayload: [Swift.AnyHashable : Any], completionHandler: @escaping CrossDeviceSessionCompletionHandler)
   #if compiler(>=5.3) && $NonescapableTypes
-  @objc public func _abortCrossDeviceSession(_ crossDeviceSession: CrossDeviceSession, completionHandler: @escaping (Swift.Bool, (any Swift.Error)?) -> Swift.Void)
+  @objc public func _abortCrossDeviceSession(_ crossDeviceSession: CrossDeviceSession, completionHandler: @escaping @Sendable (Swift.Bool, (any Swift.Error)?) -> Swift.Void)
   #endif
   @objc(getAuthenticationSessionDetailsFromQRCode:completionHandler:) public func getAuthenticationSessionDetailsFromQRCode(qrCode: Swift.String, completionHandler: @escaping AuthenticationSessionDetailsCompletionHandler)
   @objc(getAuthenticationSessionDetailsFromUniversalLinkURL:completionHandler:) public func getAuthenticationSessionDetailsFromUniversalLinkURL(universalLinkURL: Foundation.URL, completionHandler: @escaping AuthenticationSessionDetailsCompletionHandler)
@@ -550,7 +547,6 @@ extension APIError : Foundation.CustomNSError {
   @objc final public let verificationCustomText: Swift.String
   @objc final public let identityTypeLabel: Swift.String
   @objc final public let quickCodeEnabled: Swift.Bool
-  @objc final public let limitQuickCodeRegistration: Swift.Bool
   @objc final public let identityType: IdentityType
   @objc final public let sessionId: Swift.String
   @objc final public let signingHash: Swift.String
@@ -609,7 +605,6 @@ extension VerificationError : Foundation.CustomNSError {
   @objc var verificationCustomText: Swift.String { get }
   @objc var identityTypeLabel: Swift.String { get }
   @objc var quickCodeEnabled: Swift.Bool { get }
-  @objc var limitQuickCodeRegistration: Swift.Bool { get }
   @objc var identityType: IdentityType { get }
 }
 @objc public enum VerificationMethod : Swift.Int, Swift.Sendable {

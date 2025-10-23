@@ -204,10 +204,6 @@ class AuthenticationSessionDetails {
   /// Indicates whether `QuickCode` is enabled for the project.
   final bool quickCodeEnabled;
 
-  /// Indicates whether registration with `QuickCode` is allowed for identities
-  /// that were also registered using `QuickCode`.
-  final bool limitQuickCodeRegistration;
-
   /// The [IdentityType] which will be used for identity verification.
   final IdentityType identityType;
 
@@ -225,7 +221,6 @@ class AuthenticationSessionDetails {
     required this.verificationCustomText,
     required this.identityTypeLabel,
     required this.quickCodeEnabled,
-    required this.limitQuickCodeRegistration,
     required this.identityType,
     required this.accessId,
   });
@@ -334,10 +329,6 @@ class SigningSessionDetails {
   /// Indicates whether `QuickCode` is enabled for the project.
   final bool quickCodeEnabled;
 
-  /// Indicates whether registration with `QuickCode` is allowed for identities
-  /// that were also registered using `QuickCode`.
-  final bool limitQuickCodeRegistration;
-
   /// The [IdentityType] which will be used for identity verification.
   final IdentityType identityType;
 
@@ -367,7 +358,6 @@ class SigningSessionDetails {
     required this.verificationCustomText,
     required this.identityTypeLabel,
     required this.quickCodeEnabled,
-    required this.limitQuickCodeRegistration,
     required this.identityType,
     required this.sessionId,
     required this.signingHash,
