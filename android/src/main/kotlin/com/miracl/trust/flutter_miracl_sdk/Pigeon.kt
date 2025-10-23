@@ -205,8 +205,7 @@ enum class MQuickCodeExceptionCode(val raw: Int) {
   UNSUCCESSFUL_AUTHENTICATION(1),
   PIN_CANCELLED(2),
   INVALID_PIN(3),
-  LIMITED_QUICK_CODE_GENERATION(4),
-  GENERATION_FAIL(5);
+  GENERATION_FAIL(4);
 
   companion object {
     fun ofRaw(raw: Int): MQuickCodeExceptionCode? {
@@ -348,7 +347,6 @@ data class MAuthenticationSessionDetails (
   val verificationCustomText: String,
   val identityTypeLabel: String,
   val quickCodeEnabled: Boolean,
-  val limitQuickCodeRegistration: Boolean,
   val identityType: MIdentityType,
   val accessId: String
 )
@@ -365,10 +363,9 @@ data class MAuthenticationSessionDetails (
       val verificationCustomText = pigeonVar_list[7] as String
       val identityTypeLabel = pigeonVar_list[8] as String
       val quickCodeEnabled = pigeonVar_list[9] as Boolean
-      val limitQuickCodeRegistration = pigeonVar_list[10] as Boolean
-      val identityType = pigeonVar_list[11] as MIdentityType
-      val accessId = pigeonVar_list[12] as String
-      return MAuthenticationSessionDetails(userId, projectName, projectLogoURL, projectId, pinLength, verificationMethod, verificationURL, verificationCustomText, identityTypeLabel, quickCodeEnabled, limitQuickCodeRegistration, identityType, accessId)
+      val identityType = pigeonVar_list[10] as MIdentityType
+      val accessId = pigeonVar_list[11] as String
+      return MAuthenticationSessionDetails(userId, projectName, projectLogoURL, projectId, pinLength, verificationMethod, verificationURL, verificationCustomText, identityTypeLabel, quickCodeEnabled, identityType, accessId)
     }
   }
   fun toList(): List<Any?> {
@@ -383,7 +380,6 @@ data class MAuthenticationSessionDetails (
       verificationCustomText,
       identityTypeLabel,
       quickCodeEnabled,
-      limitQuickCodeRegistration,
       identityType,
       accessId,
     )
@@ -412,7 +408,6 @@ data class MSigningSessionDetails (
   val verificationCustomText: String,
   val identityTypeLabel: String,
   val quickCodeEnabled: Boolean,
-  val limitQuickCodeRegistration: Boolean,
   val identityType: MIdentityType,
   val sessionId: String,
   val signingHash: String,
@@ -433,14 +428,13 @@ data class MSigningSessionDetails (
       val verificationCustomText = pigeonVar_list[7] as String
       val identityTypeLabel = pigeonVar_list[8] as String
       val quickCodeEnabled = pigeonVar_list[9] as Boolean
-      val limitQuickCodeRegistration = pigeonVar_list[10] as Boolean
-      val identityType = pigeonVar_list[11] as MIdentityType
-      val sessionId = pigeonVar_list[12] as String
-      val signingHash = pigeonVar_list[13] as String
-      val signingDescription = pigeonVar_list[14] as String
-      val status = pigeonVar_list[15] as MSigningSessionStatus
-      val expireTime = pigeonVar_list[16] as Long
-      return MSigningSessionDetails(userId, projectName, projectLogoURL, projectId, pinLength, verificationMethod, verificationURL, verificationCustomText, identityTypeLabel, quickCodeEnabled, limitQuickCodeRegistration, identityType, sessionId, signingHash, signingDescription, status, expireTime)
+      val identityType = pigeonVar_list[10] as MIdentityType
+      val sessionId = pigeonVar_list[11] as String
+      val signingHash = pigeonVar_list[12] as String
+      val signingDescription = pigeonVar_list[13] as String
+      val status = pigeonVar_list[14] as MSigningSessionStatus
+      val expireTime = pigeonVar_list[15] as Long
+      return MSigningSessionDetails(userId, projectName, projectLogoURL, projectId, pinLength, verificationMethod, verificationURL, verificationCustomText, identityTypeLabel, quickCodeEnabled, identityType, sessionId, signingHash, signingDescription, status, expireTime)
     }
   }
   fun toList(): List<Any?> {
@@ -455,7 +449,6 @@ data class MSigningSessionDetails (
       verificationCustomText,
       identityTypeLabel,
       quickCodeEnabled,
-      limitQuickCodeRegistration,
       identityType,
       sessionId,
       signingHash,

@@ -109,7 +109,6 @@ enum MQuickCodeExceptionCode {
   unsuccessfulAuthentication,
   pinCancelled,
   invalidPin,
-  limitedQuickCodeGeneration,
   generationFail,
 }
 
@@ -264,7 +263,6 @@ class MAuthenticationSessionDetails {
     required this.verificationCustomText,
     required this.identityTypeLabel,
     required this.quickCodeEnabled,
-    required this.limitQuickCodeRegistration,
     required this.identityType,
     required this.accessId,
   });
@@ -289,8 +287,6 @@ class MAuthenticationSessionDetails {
 
   bool quickCodeEnabled;
 
-  bool limitQuickCodeRegistration;
-
   MIdentityType identityType;
 
   String accessId;
@@ -307,7 +303,6 @@ class MAuthenticationSessionDetails {
       verificationCustomText,
       identityTypeLabel,
       quickCodeEnabled,
-      limitQuickCodeRegistration,
       identityType,
       accessId,
     ];
@@ -329,9 +324,8 @@ class MAuthenticationSessionDetails {
       verificationCustomText: result[7]! as String,
       identityTypeLabel: result[8]! as String,
       quickCodeEnabled: result[9]! as bool,
-      limitQuickCodeRegistration: result[10]! as bool,
-      identityType: result[11]! as MIdentityType,
-      accessId: result[12]! as String,
+      identityType: result[10]! as MIdentityType,
+      accessId: result[11]! as String,
     );
   }
 
@@ -365,7 +359,6 @@ class MSigningSessionDetails {
     required this.verificationCustomText,
     required this.identityTypeLabel,
     required this.quickCodeEnabled,
-    required this.limitQuickCodeRegistration,
     required this.identityType,
     required this.sessionId,
     required this.signingHash,
@@ -394,8 +387,6 @@ class MSigningSessionDetails {
 
   bool quickCodeEnabled;
 
-  bool limitQuickCodeRegistration;
-
   MIdentityType identityType;
 
   String sessionId;
@@ -420,7 +411,6 @@ class MSigningSessionDetails {
       verificationCustomText,
       identityTypeLabel,
       quickCodeEnabled,
-      limitQuickCodeRegistration,
       identityType,
       sessionId,
       signingHash,
@@ -446,13 +436,12 @@ class MSigningSessionDetails {
       verificationCustomText: result[7]! as String,
       identityTypeLabel: result[8]! as String,
       quickCodeEnabled: result[9]! as bool,
-      limitQuickCodeRegistration: result[10]! as bool,
-      identityType: result[11]! as MIdentityType,
-      sessionId: result[12]! as String,
-      signingHash: result[13]! as String,
-      signingDescription: result[14]! as String,
-      status: result[15]! as MSigningSessionStatus,
-      expireTime: result[16]! as int,
+      identityType: result[10]! as MIdentityType,
+      sessionId: result[11]! as String,
+      signingHash: result[12]! as String,
+      signingDescription: result[13]! as String,
+      status: result[14]! as MSigningSessionStatus,
+      expireTime: result[15]! as int,
     );
   }
 
