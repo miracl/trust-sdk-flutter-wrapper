@@ -355,8 +355,6 @@ SWIFT_PROTOCOL("_TtP11MIRACLTrust14SessionDetails_")
 @property (nonatomic, readonly, copy) NSString * _Nonnull identityTypeLabel;
 /// Whether the QuickCode is enabled for the project or not.
 @property (nonatomic, readonly) BOOL quickCodeEnabled;
-/// Flag indicating whether registration with QuickCode is allowed for identities registered also with QuickCode.
-@property (nonatomic, readonly) BOOL limitQuickCodeRegistration;
 /// Identity type which will be used for identity verification.
 @property (nonatomic, readonly) enum IdentityType identityType;
 @end
@@ -374,7 +372,6 @@ SWIFT_CLASS("_TtC11MIRACLTrust28AuthenticationSessionDetails")
 @property (nonatomic, readonly, copy) NSString * _Nonnull verificationCustomText;
 @property (nonatomic, readonly, copy) NSString * _Nonnull identityTypeLabel;
 @property (nonatomic, readonly) BOOL quickCodeEnabled;
-@property (nonatomic, readonly) BOOL limitQuickCodeRegistration;
 @property (nonatomic, readonly) enum IdentityType identityType;
 /// Identifier of the authentication session.
 @property (nonatomic, readonly, copy) NSString * _Nonnull accessId;
@@ -498,8 +495,6 @@ SWIFT_CLASS("_TtC11MIRACLTrust18CrossDeviceSession")
 @property (nonatomic, readonly, copy) NSString * _Nonnull identityTypeLabel;
 /// Indicates whether <a href="https://miracl.com/resources/docs/guides/built-in-user-verification/quickcode/">QuickCode</a> is enabled for the project or not.
 @property (nonatomic, readonly) BOOL quickCodeEnabled;
-/// Indicates whether registration with QuickCode is allowed for identities registered also with QuickCode.
-@property (nonatomic, readonly) BOOL limitQuickCodeRegistration;
 /// Identity type which will be used for identity verification.
 @property (nonatomic, readonly) enum IdentityType identityType;
 /// Identifier of the session.
@@ -508,7 +503,7 @@ SWIFT_CLASS("_TtC11MIRACLTrust18CrossDeviceSession")
 @property (nonatomic, readonly, copy) NSString * _Nonnull sessionDescription;
 /// Hash of the transaction that needs to be signed if any.
 @property (nonatomic, readonly, copy) NSString * _Nonnull signingHash;
-- (nonnull instancetype)initWithUserId:(NSString * _Nonnull)userId projectName:(NSString * _Nonnull)projectName projectLogoURL:(NSString * _Nonnull)projectLogoURL projectId:(NSString * _Nonnull)projectId pinLength:(NSInteger)pinLength verificationMethod:(enum VerificationMethod)verificationMethod verificationURL:(NSString * _Nonnull)verificationURL verificationCustomText:(NSString * _Nonnull)verificationCustomText identityTypeLabel:(NSString * _Nonnull)identityTypeLabel quickCodeEnabled:(BOOL)quickCodeEnabled limitQuickCodeRegistration:(BOOL)limitQuickCodeRegistration identityType:(enum IdentityType)identityType sessionId:(NSString * _Nonnull)sessionId sessionDescription:(NSString * _Nonnull)sessionDescription signingHash:(NSString * _Nonnull)signingHash OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithUserId:(NSString * _Nonnull)userId projectName:(NSString * _Nonnull)projectName projectLogoURL:(NSString * _Nonnull)projectLogoURL projectId:(NSString * _Nonnull)projectId pinLength:(NSInteger)pinLength verificationMethod:(enum VerificationMethod)verificationMethod verificationURL:(NSString * _Nonnull)verificationURL verificationCustomText:(NSString * _Nonnull)verificationCustomText identityTypeLabel:(NSString * _Nonnull)identityTypeLabel quickCodeEnabled:(BOOL)quickCodeEnabled identityType:(enum IdentityType)identityType sessionId:(NSString * _Nonnull)sessionId sessionDescription:(NSString * _Nonnull)sessionDescription signingHash:(NSString * _Nonnull)signingHash OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -919,7 +914,6 @@ SWIFT_CLASS("_TtC11MIRACLTrust21SigningSessionDetails")
 @property (nonatomic, readonly, copy) NSString * _Nonnull verificationCustomText;
 @property (nonatomic, readonly, copy) NSString * _Nonnull identityTypeLabel;
 @property (nonatomic, readonly) BOOL quickCodeEnabled;
-@property (nonatomic, readonly) BOOL limitQuickCodeRegistration;
 @property (nonatomic, readonly) enum IdentityType identityType;
 /// Identifier of the signing session.
 @property (nonatomic, readonly, copy) NSString * _Nonnull sessionId;
@@ -1353,8 +1347,6 @@ SWIFT_PROTOCOL("_TtP11MIRACLTrust14SessionDetails_")
 @property (nonatomic, readonly, copy) NSString * _Nonnull identityTypeLabel;
 /// Whether the QuickCode is enabled for the project or not.
 @property (nonatomic, readonly) BOOL quickCodeEnabled;
-/// Flag indicating whether registration with QuickCode is allowed for identities registered also with QuickCode.
-@property (nonatomic, readonly) BOOL limitQuickCodeRegistration;
 /// Identity type which will be used for identity verification.
 @property (nonatomic, readonly) enum IdentityType identityType;
 @end
@@ -1372,7 +1364,6 @@ SWIFT_CLASS("_TtC11MIRACLTrust28AuthenticationSessionDetails")
 @property (nonatomic, readonly, copy) NSString * _Nonnull verificationCustomText;
 @property (nonatomic, readonly, copy) NSString * _Nonnull identityTypeLabel;
 @property (nonatomic, readonly) BOOL quickCodeEnabled;
-@property (nonatomic, readonly) BOOL limitQuickCodeRegistration;
 @property (nonatomic, readonly) enum IdentityType identityType;
 /// Identifier of the authentication session.
 @property (nonatomic, readonly, copy) NSString * _Nonnull accessId;
@@ -1496,8 +1487,6 @@ SWIFT_CLASS("_TtC11MIRACLTrust18CrossDeviceSession")
 @property (nonatomic, readonly, copy) NSString * _Nonnull identityTypeLabel;
 /// Indicates whether <a href="https://miracl.com/resources/docs/guides/built-in-user-verification/quickcode/">QuickCode</a> is enabled for the project or not.
 @property (nonatomic, readonly) BOOL quickCodeEnabled;
-/// Indicates whether registration with QuickCode is allowed for identities registered also with QuickCode.
-@property (nonatomic, readonly) BOOL limitQuickCodeRegistration;
 /// Identity type which will be used for identity verification.
 @property (nonatomic, readonly) enum IdentityType identityType;
 /// Identifier of the session.
@@ -1506,7 +1495,7 @@ SWIFT_CLASS("_TtC11MIRACLTrust18CrossDeviceSession")
 @property (nonatomic, readonly, copy) NSString * _Nonnull sessionDescription;
 /// Hash of the transaction that needs to be signed if any.
 @property (nonatomic, readonly, copy) NSString * _Nonnull signingHash;
-- (nonnull instancetype)initWithUserId:(NSString * _Nonnull)userId projectName:(NSString * _Nonnull)projectName projectLogoURL:(NSString * _Nonnull)projectLogoURL projectId:(NSString * _Nonnull)projectId pinLength:(NSInteger)pinLength verificationMethod:(enum VerificationMethod)verificationMethod verificationURL:(NSString * _Nonnull)verificationURL verificationCustomText:(NSString * _Nonnull)verificationCustomText identityTypeLabel:(NSString * _Nonnull)identityTypeLabel quickCodeEnabled:(BOOL)quickCodeEnabled limitQuickCodeRegistration:(BOOL)limitQuickCodeRegistration identityType:(enum IdentityType)identityType sessionId:(NSString * _Nonnull)sessionId sessionDescription:(NSString * _Nonnull)sessionDescription signingHash:(NSString * _Nonnull)signingHash OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithUserId:(NSString * _Nonnull)userId projectName:(NSString * _Nonnull)projectName projectLogoURL:(NSString * _Nonnull)projectLogoURL projectId:(NSString * _Nonnull)projectId pinLength:(NSInteger)pinLength verificationMethod:(enum VerificationMethod)verificationMethod verificationURL:(NSString * _Nonnull)verificationURL verificationCustomText:(NSString * _Nonnull)verificationCustomText identityTypeLabel:(NSString * _Nonnull)identityTypeLabel quickCodeEnabled:(BOOL)quickCodeEnabled identityType:(enum IdentityType)identityType sessionId:(NSString * _Nonnull)sessionId sessionDescription:(NSString * _Nonnull)sessionDescription signingHash:(NSString * _Nonnull)signingHash OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -1917,7 +1906,6 @@ SWIFT_CLASS("_TtC11MIRACLTrust21SigningSessionDetails")
 @property (nonatomic, readonly, copy) NSString * _Nonnull verificationCustomText;
 @property (nonatomic, readonly, copy) NSString * _Nonnull identityTypeLabel;
 @property (nonatomic, readonly) BOOL quickCodeEnabled;
-@property (nonatomic, readonly) BOOL limitQuickCodeRegistration;
 @property (nonatomic, readonly) enum IdentityType identityType;
 /// Identifier of the signing session.
 @property (nonatomic, readonly, copy) NSString * _Nonnull sessionId;

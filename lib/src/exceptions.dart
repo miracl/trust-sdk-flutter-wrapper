@@ -166,9 +166,6 @@ enum QuickCodeExceptionCode {
   /// The PIN code includes invalid symbols or the PIN length does not match.
   invalidPin,
 
-  /// Generating `QuickCode` from this registration is not allowed.
-  limitedQuickCodeGeneration,
-
   /// The `QuickCode` generation failed.
   generationFail;
 }
