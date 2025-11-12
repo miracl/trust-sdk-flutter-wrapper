@@ -73,3 +73,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ## 0.6.0
 
 * Change platformURL to projectUrl.
+
+## 0.7.0
+
+* Remove QuickCode limiting functionality.
