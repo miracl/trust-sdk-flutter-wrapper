@@ -7,15 +7,12 @@ import 'dart:math';
 Future<String> getVerificationURL(
   String projectId,
   String userId,
-  String clientId,
-  String clientSecret,
+  String serviceAccountToken,
   String projectUrl
 ) async {
-    List<int> bytes = utf8.encode('$clientId:$clientSecret');
-    String base64String = base64Encode(bytes);
     var headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Basic $base64String'
+      'Authorization': 'Bearer $serviceAccountToken'
     };
     
     var request = http.Request('POST', Uri.parse('$projectUrl/verification'));
@@ -117,15 +114,12 @@ Future<String> startSigningSession(
 
 Future<bool> verifySignature(
   SigningResult signingResult,
-  String clientId,
-  String clientSecret,
+  String serviceAccountToken,
   String projectUrl
 ) async {
-    List<int> bytes = utf8.encode('$clientId:$clientSecret');
-    String base64String = base64Encode(bytes);
     var headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Authorization': 'Basic $base64String'
+      'Authorization': 'Bearer $serviceAccountToken'
     };
 
     var request = http.Request('POST', Uri.parse('$projectUrl/dvs/verify'));

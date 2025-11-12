@@ -9,8 +9,7 @@ import 'test_helpers.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  const clientId = String.fromEnvironment("TEST_CUV_CLIENT_ID");
-  const clientSecret = String.fromEnvironment("TEST_CUV_CLIENT_SECRET");
+  const serviceAccountToken = String.fromEnvironment("TEST_CUV_SERVICE_ACCOUNT_TOKEN");
   const userId = String.fromEnvironment("TEST_USER_ID");
   const dvProjectId = String.fromEnvironment("TEST_DV_PROJECT_ID");
   const cuvProjectId = String.fromEnvironment("TEST_CUV_PROJECT_ID");
@@ -81,7 +80,7 @@ void main() {
       await miraclTrust.setProjectId(cuvProjectId);
 
       // Get activation token.
-      String verificationURL = await getVerificationURL(cuvProjectId, userId, clientId, clientSecret, cuvProjectUrl);
+      String verificationURL = await getVerificationURL(cuvProjectId, userId, serviceAccountToken, cuvProjectUrl);
       Uri verificationURI = Uri.parse(verificationURL);
 
       ActivationTokenResponse activationTokenResponse = await miraclTrust.getActivationTokenByURI(verificationURI);
@@ -227,7 +226,7 @@ void main() {
       );
 
       //Re-register revoked identity.
-      verificationURL = await getVerificationURL(cuvProjectId, userId, clientId, clientSecret, cuvProjectUrl);
+      verificationURL = await getVerificationURL(cuvProjectId, userId, serviceAccountToken, cuvProjectUrl);
       verificationURI = Uri.parse(verificationURL);
       activationTokenResponse = await miraclTrust.getActivationTokenByURI(verificationURI);
       user = await miraclTrust.register(userId, activationTokenResponse.activationToken, pin);
@@ -260,7 +259,7 @@ void main() {
       List<int> codeUnits = utf8.encode(myString);
       Uint8List message = Uint8List.fromList(codeUnits);
       final signingResult = await miraclTrust.sign(user, message, pin);
-      final signatureVerificationResult = await verifySignature(signingResult, clientId, clientSecret, cuvProjectUrl);
+      final signatureVerificationResult = await verifySignature(signingResult, serviceAccountToken, cuvProjectUrl);
       expect(signatureVerificationResult, equals(true));
 
       await expectLater(
