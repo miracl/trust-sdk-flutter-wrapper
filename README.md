@@ -27,6 +27,13 @@ dependencies:
     flutter_miracl_sdk: ^0.7.0
 ```
 
+If your application uses Cocoapods as an iOS dependency manager,
+add this row to the beggining of your `Podfile`:
+
+```ruby
+source `https://github.com/miracl/cocoapods-specs`
+```
+
 ## Usage
 
 ### Import
