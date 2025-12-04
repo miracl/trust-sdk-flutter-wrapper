@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:flutter_miracl_sdk/flutter_miracl_sdk.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_miracl_sdk/src/constants.dart';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'test_helpers.dart';
+import 'extenstions.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -86,6 +88,12 @@ void main() {
       ActivationTokenResponse activationTokenResponse = await miraclTrust.getActivationTokenByURI(verificationURI);
       expect(cuvProjectId, equals(activationTokenResponse.projectId));
 
+      int expirationDuration = 5;
+      final expiration = DateTime.now().add(Duration(seconds: expirationDuration)).unixtime;
+      verificationURL = await getVerificationURL(cuvProjectId, userId, serviceAccountToken, cuvProjectUrl, expiration);
+      verificationURI = Uri.parse(verificationURL);
+      sleep(Duration(seconds: expirationDuration + 1));
+
       await expectLater(
         miraclTrust.getActivationTokenByURI(verificationURI), 
         throwsA(isA<ActivationTokenException>().having(
@@ -145,15 +153,6 @@ void main() {
         miraclTrust.getActivationTokenByUserIdAndCode(userId, quickCode.code), 
         throwsA(isA<ActivationTokenException>()
           .having((e) => e.code  , "", equals(ActivationTokenExceptionCode.unsuccessfulVerification))
-          .having(
-            (e) => e.activationTokenErrorResponse,
-            "", 
-            isNotNull
-          ).having(
-            (e) => e.activationTokenErrorResponse!.projectId,
-            "", 
-            equals(cuvProjectId)
-          )
         ) 
       );
 

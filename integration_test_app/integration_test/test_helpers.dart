@@ -8,7 +8,8 @@ Future<String> getVerificationURL(
   String projectId,
   String userId,
   String serviceAccountToken,
-  String projectUrl
+  String projectUrl,
+  [int? expiration]
 ) async {
     var headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -16,11 +17,16 @@ Future<String> getVerificationURL(
     };
     
     var request = http.Request('POST', Uri.parse('$projectUrl/verification'));
-    final Map<String, dynamic> body = {
+    Map<String, dynamic> body = {
       'projectId': projectId,
       'userId': userId,
       'delivery': 'no',
     };
+
+    if (expiration != null) {
+      body["expiration"] = expiration;
+    }
+
     final String jsonBody = jsonEncode(body);
     request.body = jsonBody;
     request.headers.addAll(headers);
