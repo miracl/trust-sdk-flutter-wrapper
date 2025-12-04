@@ -81,3 +81,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ## 0.7.1
 
 * Prevent fatal not initialized lateinit variable exeption
+
+## 0.8.0
+
+* Update Cocoapods support.
