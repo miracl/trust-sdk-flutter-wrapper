@@ -77,3 +77,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ## 0.7.0
 
 * Remove QuickCode limiting functionality.
+
+## 0.7.1
+
+* Prevent fatal not initialized lateinit variable exeption
