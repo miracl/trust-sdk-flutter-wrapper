@@ -5,7 +5,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'flutter_miracl_sdk'
-  s.version          = '0.7.0'
+  s.version          = '0.8.0'
   s.summary          = 'MIRCAL Trust Flutter plugin'
   s.description      = <<-DESC
 MIRCAL Trust Flutter plugin.
@@ -22,10 +22,6 @@ MIRCAL Trust Flutter plugin.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
   s.swift_version = '5.0'
   s.public_header_files = 'Classes/**/*.h'
-
-  s.preserve_paths = 'MIRACLTrust.xcframework'
-  s.xcconfig = { 'OTHER_LDFLAGS' => '-framework MIRACLTrust' }
-  s.vendored_frameworks = 'MIRACLTrust.xcframework'
-  s.framework = 'MIRACLTrust'
-
+  
+  s.dependency 'MIRACLTrust', '1.8.0'
 end
