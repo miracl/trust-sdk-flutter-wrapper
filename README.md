@@ -28,11 +28,14 @@ dependencies:
 ```
 
 If your application uses Cocoapods as an iOS dependency manager,
-add this row to the beggining of your `Podfile`:
+add the MIRACL Trust iOS SDK podspec source to your `Podfile`:
 
 ```ruby
-source `https://github.com/miracl/cocoapods-specs`
+source 'https://github.com/miracl/cocoapods-specs'
+source 'https://github.com/CocoaPods/Specs'
 ```
+
+For more information on how to work with Cocoapods sources check the [documentation](https://guides.cocoapods.org/syntax/podfile.html#source).
 
 ## Usage
 
