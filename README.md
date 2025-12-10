@@ -7,6 +7,7 @@ The MIRACL Trust Flutter Plugin provides the following functionalities:
 - [Authentication](#authentication)
 - [Signing](#signing)
 - [QuickCode](#quickcode)
+- [User Management](#user-management)
 
 This plugin implements method-channel communication with
 MIRACL’s iOS and Android SDKs. It leverages the
@@ -331,6 +332,61 @@ try {
   final quickCode = await miraclTrust.generateQuickCode(user, pin); 
 } on QuickCodeException catch(e) {
   // Handle the exception here.
+}
+```
+
+### User Management
+
+The MIRACL Trust Flutter plugin provides several methods for managing users registered
+on a device. These operations allow you to retrieve user information or delete
+previously registered users.
+
+#### Get a registered user
+
+To retrieve a specific registered user by their User ID, use the
+[getUser](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/getUser.html)
+method:
+
+```dart
+try {
+  final user = await miraclTrust.getUser(userId);
+  if (user != null) {
+    // User exists.
+  } else {
+    // No user registered with this User ID.
+  }
+} catch (e) {
+  // Cannot retrieve the user due to an error.
+}
+```
+
+#### Get all registered users
+
+To obtain the list of all users registered on а device, call the
+[getUsers](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/getUsers.html)
+method:
+
+```dart
+try {
+  final users = await miraclTrust.getUsers();
+  // Handle list of registered users.
+} catch (e) {
+  // Cannot retrieve users due to an error.
+}
+```
+
+#### Delete a registered user
+
+To delete a previously registered user from a device, call the
+[delete](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/delete.html)
+method:
+
+```dart
+try {
+  await miraclTrust.delete(user);
+  // User deleted successfully.
+} catch (e) {
+  // Cannot delete the user due to an error.
 }
 ```
 
