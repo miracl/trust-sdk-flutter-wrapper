@@ -12,7 +12,6 @@ import com.miracl.trust.registration.ActivationTokenErrorResponse
 import com.miracl.trust.registration.ActivationTokenException
 import com.miracl.trust.registration.VerificationException
 import com.miracl.trust.signing.SigningException
-import com.miracl.trust.session.SigningSessionException
 import com.miracl.trust.authentication.AuthenticationException
 import com.miracl.trust.registration.QuickCodeException
 import com.miracl.trust.session.AuthenticationSessionException
@@ -590,102 +589,6 @@ class SdkHandler {
                         mapExceptionToFlutter(it.value, details)
                     )
                 )
-            }
-        }
-    }
-
-    fun getSigningSessionDetailsFromQRCode(
-        qrCode: String,
-        callback: (Result<MSigningSessionDetails>) -> Unit
-    ) {
-        MIRACLTrust.getInstance().getSigningSessionDetailsFromQRCode(qrCode) {
-            if (it is MIRACLSuccess) {
-                callback(
-                    Result.success(
-                        MSigningSessionDetails(
-                            it.value.userId,
-                            it.value.projectName,
-                            it.value.projectLogoUrl,
-                            it.value.projectId,
-                            it.value.pinLength.toLong(),
-                            MVerificationMethod.ofRaw(it.value.verificationMethod.ordinal) ?: MVerificationMethod.STANDARD_EMAIL,
-                            it.value.verificationUrl,
-                            it.value.verificationCustomText,
-                            it.value.identityTypeLabel,
-                            it.value.quickCodeEnabled,
-                            MIdentityType.ofRaw(it.value.identityType.ordinal) ?: MIdentityType.EMAIL,
-                            it.value.sessionId,
-                            it.value.signingHash,
-                            it.value.signingDescription,
-                            MSigningSessionStatus.ofRaw(it.value.status.ordinal) ?: MSigningSessionStatus.ACTIVE,
-                            it.value.expireTime
-                        )
-                    )
-                )
-            } else {
-                if (it is MIRACLError) {
-                    val error = it.value
-                    val details = mutableMapOf<String, Any?>()
-
-                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
-                    if (error is SigningSessionException.GetSigningSessionDetailsFail && error.cause != null) {
-                        details["error"] = error.cause.toString()
-                    }
-
-                    callback(
-                        Result.failure(
-                            mapExceptionToFlutter(it.value, details)
-                        )
-                    )
-                }
-            }
-        }
-    }
-
-    fun getSigningSessionDetailsFromLink(
-        link: String,
-        callback: (Result<MSigningSessionDetails>) -> Unit
-    ) {
-        MIRACLTrust.getInstance().getSigningSessionDetailsFromAppLink(Uri.parse(link)) {
-            if (it is MIRACLSuccess) {
-                callback(
-                    Result.success(
-                        MSigningSessionDetails(
-                            it.value.userId,
-                            it.value.projectName,
-                            it.value.projectLogoUrl,
-                            it.value.projectId,
-                            it.value.pinLength.toLong(),
-                            MVerificationMethod.ofRaw(it.value.verificationMethod.ordinal) ?: MVerificationMethod.STANDARD_EMAIL,
-                            it.value.verificationUrl,
-                            it.value.verificationCustomText,
-                            it.value.identityTypeLabel,
-                            it.value.quickCodeEnabled,
-                            MIdentityType.ofRaw(it.value.identityType.ordinal) ?: MIdentityType.EMAIL,
-                            it.value.sessionId,
-                            it.value.signingHash,
-                            it.value.signingDescription,
-                            MSigningSessionStatus.ofRaw(it.value.status.ordinal) ?: MSigningSessionStatus.ACTIVE,
-                            it.value.expireTime
-                        )
-                    )
-                )
-            } else {
-                if (it is MIRACLError) {
-                    val error = it.value
-                    val details = mutableMapOf<String, Any?>()
-
-                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
-                    if (error is SigningSessionException.GetSigningSessionDetailsFail && error.cause != null) {
-                        details["error"] = error.cause.toString()
-                    }
-
-                    callback(
-                        Result.failure(
-                            mapExceptionToFlutter(it.value, details)
-                        )
-                    );
-                }
             }
         }
     }

@@ -95,29 +95,6 @@ String createRandomPin() {
   return smh;
 }
 
-Future<String> startSigningSession(
-  String projectId,
-  String userId,
-  String hash,
-  String description,
-  String projectUrl
-) async {
-    var request = http.Request('POST', Uri.parse('$projectUrl/dvs/session'));
-    final Map<String, dynamic> body = {
-      'projectId': projectId,
-      'userId': userId,
-      'hash' : hash,
-      'description': description
-    };
-    final String jsonBody = jsonEncode(body);
-    request.body = jsonBody;
-
-    http.StreamedResponse response = await request.send();
-    final responseString = jsonDecode(await response.stream.bytesToString());
-
-    return responseString["qrURL"];
-}
-
 Future<bool> verifySignature(
   SigningResult signingResult,
   String serviceAccountToken,

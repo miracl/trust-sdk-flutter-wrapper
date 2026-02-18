@@ -147,11 +147,6 @@ enum MIdentityType: Int {
   case alphanumeric = 1
 }
 
-enum MSigningSessionStatus: Int {
-  case active = 0
-  case signed = 1
-}
-
 enum MConfigurationExceptionCode: Int {
   case emptyProjectId = 0
   case invalidProjectUrl = 1
@@ -212,16 +207,6 @@ enum MAuthenticationSessionDetailsExceptionCode: Int {
   case invalidAuthenticationSessionDetails = 3
   case getAuthenticationSessionDetailsFail = 4
   case abortSessionFail = 5
-}
-
-enum MSigningSessionDetailsExceptionCode: Int {
-  case invalidLink = 0
-  case invalidQRCode = 1
-  case invalidSigningSessionDetails = 2
-  case getSigningSessionDetailsFail = 3
-  case invalidSigningSession = 4
-  case completeSigningSessionFail = 5
-  case abortSigningSessionFail = 6
 }
 
 enum MSigningExceptionCode: Int {
@@ -370,91 +355,6 @@ struct MAuthenticationSessionDetails: Hashable {
     ]
   }
   static func == (lhs: MAuthenticationSessionDetails, rhs: MAuthenticationSessionDetails) -> Bool {
-    return deepEqualsPigeon(lhs.toList(), rhs.toList())  }
-  func hash(into hasher: inout Hasher) {
-    deepHashPigeon(value: toList(), hasher: &hasher)
-  }
-}
-
-/// Generated class from Pigeon that represents data sent in messages.
-struct MSigningSessionDetails: Hashable {
-  var userId: String
-  var projectName: String
-  var projectLogoURL: String
-  var projectId: String
-  var pinLength: Int64
-  var verificationMethod: MVerificationMethod
-  var verificationURL: String
-  var verificationCustomText: String
-  var identityTypeLabel: String
-  var quickCodeEnabled: Bool
-  var identityType: MIdentityType
-  var sessionId: String
-  var signingHash: String
-  var signingDescription: String
-  var status: MSigningSessionStatus
-  var expireTime: Int64
-
-
-  // swift-format-ignore: AlwaysUseLowerCamelCase
-  static func fromList(_ pigeonVar_list: [Any?]) -> MSigningSessionDetails? {
-    let userId = pigeonVar_list[0] as! String
-    let projectName = pigeonVar_list[1] as! String
-    let projectLogoURL = pigeonVar_list[2] as! String
-    let projectId = pigeonVar_list[3] as! String
-    let pinLength = pigeonVar_list[4] as! Int64
-    let verificationMethod = pigeonVar_list[5] as! MVerificationMethod
-    let verificationURL = pigeonVar_list[6] as! String
-    let verificationCustomText = pigeonVar_list[7] as! String
-    let identityTypeLabel = pigeonVar_list[8] as! String
-    let quickCodeEnabled = pigeonVar_list[9] as! Bool
-    let identityType = pigeonVar_list[10] as! MIdentityType
-    let sessionId = pigeonVar_list[11] as! String
-    let signingHash = pigeonVar_list[12] as! String
-    let signingDescription = pigeonVar_list[13] as! String
-    let status = pigeonVar_list[14] as! MSigningSessionStatus
-    let expireTime = pigeonVar_list[15] as! Int64
-
-    return MSigningSessionDetails(
-      userId: userId,
-      projectName: projectName,
-      projectLogoURL: projectLogoURL,
-      projectId: projectId,
-      pinLength: pinLength,
-      verificationMethod: verificationMethod,
-      verificationURL: verificationURL,
-      verificationCustomText: verificationCustomText,
-      identityTypeLabel: identityTypeLabel,
-      quickCodeEnabled: quickCodeEnabled,
-      identityType: identityType,
-      sessionId: sessionId,
-      signingHash: signingHash,
-      signingDescription: signingDescription,
-      status: status,
-      expireTime: expireTime
-    )
-  }
-  func toList() -> [Any?] {
-    return [
-      userId,
-      projectName,
-      projectLogoURL,
-      projectId,
-      pinLength,
-      verificationMethod,
-      verificationURL,
-      verificationCustomText,
-      identityTypeLabel,
-      quickCodeEnabled,
-      identityType,
-      sessionId,
-      signingHash,
-      signingDescription,
-      status,
-      expireTime,
-    ]
-  }
-  static func == (lhs: MSigningSessionDetails, rhs: MSigningSessionDetails) -> Bool {
     return deepEqualsPigeon(lhs.toList(), rhs.toList())  }
   func hash(into hasher: inout Hasher) {
     deepHashPigeon(value: toList(), hasher: &hasher)
@@ -695,82 +595,68 @@ private class PigeonPigeonCodecReader: FlutterStandardReader {
     case 132:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return MSigningSessionStatus(rawValue: enumResultAsInt)
+        return MConfigurationExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 133:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return MConfigurationExceptionCode(rawValue: enumResultAsInt)
+        return MEmailVerificationExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 134:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return MEmailVerificationExceptionCode(rawValue: enumResultAsInt)
+        return MActivationTokenExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 135:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return MActivationTokenExceptionCode(rawValue: enumResultAsInt)
+        return MRegistrationExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 136:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return MRegistrationExceptionCode(rawValue: enumResultAsInt)
+        return MAuthenticationExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 137:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return MAuthenticationExceptionCode(rawValue: enumResultAsInt)
+        return MQuickCodeExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 138:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return MQuickCodeExceptionCode(rawValue: enumResultAsInt)
+        return MAuthenticationSessionDetailsExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 139:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return MAuthenticationSessionDetailsExceptionCode(rawValue: enumResultAsInt)
-      }
-      return nil
-    case 140:
-      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
-      if let enumResultAsInt = enumResultAsInt {
-        return MSigningSessionDetailsExceptionCode(rawValue: enumResultAsInt)
-      }
-      return nil
-    case 141:
-      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
-      if let enumResultAsInt = enumResultAsInt {
         return MSigningExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
-    case 142:
+    case 140:
       return MConfiguration.fromList(self.readValue() as! [Any?])
-    case 143:
+    case 141:
       return MActivationTokenResponse.fromList(self.readValue() as! [Any?])
-    case 144:
+    case 142:
       return MAuthenticationSessionDetails.fromList(self.readValue() as! [Any?])
-    case 145:
-      return MSigningSessionDetails.fromList(self.readValue() as! [Any?])
-    case 146:
+    case 143:
       return MUser.fromList(self.readValue() as! [Any?])
-    case 147:
+    case 144:
       return MQuickCode.fromList(self.readValue() as! [Any?])
-    case 148:
+    case 145:
       return MSignature.fromList(self.readValue() as! [Any?])
-    case 149:
+    case 146:
       return MSigningResult.fromList(self.readValue() as! [Any?])
-    case 150:
+    case 147:
       return MActivationTokenErrorResponse.fromList(self.readValue() as! [Any?])
-    case 151:
+    case 148:
       return MEmailVerificationResponse.fromList(self.readValue() as! [Any?])
     default:
       return super.readValue(ofType: type)
@@ -789,65 +675,56 @@ private class PigeonPigeonCodecWriter: FlutterStandardWriter {
     } else if let value = value as? MIdentityType {
       super.writeByte(131)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MSigningSessionStatus {
+    } else if let value = value as? MConfigurationExceptionCode {
       super.writeByte(132)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MConfigurationExceptionCode {
+    } else if let value = value as? MEmailVerificationExceptionCode {
       super.writeByte(133)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MEmailVerificationExceptionCode {
+    } else if let value = value as? MActivationTokenExceptionCode {
       super.writeByte(134)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MActivationTokenExceptionCode {
+    } else if let value = value as? MRegistrationExceptionCode {
       super.writeByte(135)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MRegistrationExceptionCode {
+    } else if let value = value as? MAuthenticationExceptionCode {
       super.writeByte(136)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MAuthenticationExceptionCode {
+    } else if let value = value as? MQuickCodeExceptionCode {
       super.writeByte(137)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MQuickCodeExceptionCode {
+    } else if let value = value as? MAuthenticationSessionDetailsExceptionCode {
       super.writeByte(138)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MAuthenticationSessionDetailsExceptionCode {
+    } else if let value = value as? MSigningExceptionCode {
       super.writeByte(139)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MSigningSessionDetailsExceptionCode {
-      super.writeByte(140)
-      super.writeValue(value.rawValue)
-    } else if let value = value as? MSigningExceptionCode {
-      super.writeByte(141)
-      super.writeValue(value.rawValue)
     } else if let value = value as? MConfiguration {
-      super.writeByte(142)
+      super.writeByte(140)
       super.writeValue(value.toList())
     } else if let value = value as? MActivationTokenResponse {
-      super.writeByte(143)
+      super.writeByte(141)
       super.writeValue(value.toList())
     } else if let value = value as? MAuthenticationSessionDetails {
-      super.writeByte(144)
-      super.writeValue(value.toList())
-    } else if let value = value as? MSigningSessionDetails {
-      super.writeByte(145)
+      super.writeByte(142)
       super.writeValue(value.toList())
     } else if let value = value as? MUser {
-      super.writeByte(146)
+      super.writeByte(143)
       super.writeValue(value.toList())
     } else if let value = value as? MQuickCode {
-      super.writeByte(147)
+      super.writeByte(144)
       super.writeValue(value.toList())
     } else if let value = value as? MSignature {
-      super.writeByte(148)
+      super.writeByte(145)
       super.writeValue(value.toList())
     } else if let value = value as? MSigningResult {
-      super.writeByte(149)
+      super.writeByte(146)
       super.writeValue(value.toList())
     } else if let value = value as? MActivationTokenErrorResponse {
-      super.writeByte(150)
+      super.writeByte(147)
       super.writeValue(value.toList())
     } else if let value = value as? MEmailVerificationResponse {
-      super.writeByte(151)
+      super.writeByte(148)
       super.writeValue(value.toList())
     } else {
       super.writeValue(value)
@@ -891,8 +768,6 @@ protocol MiraclSdk {
   func getAuthenticationSessionDetailsFromQRCode(qrCode: String, completion: @escaping (Result<MAuthenticationSessionDetails, Error>) -> Void)
   func getAuthenticationSessionDetailsFromLink(link: String, completion: @escaping (Result<MAuthenticationSessionDetails, Error>) -> Void)
   func getAuthenticationSessionDetailsFromPushNofitifactionPayload(payload: [String: String], completion: @escaping (Result<MAuthenticationSessionDetails, Error>) -> Void)
-  func getSigningDetailsFromQRCode(qrCode: String, completion: @escaping (Result<MSigningSessionDetails, Error>) -> Void)
-  func getSigningSessionDetailsFromLink(link: String, completion: @escaping (Result<MSigningSessionDetails, Error>) -> Void)
 }
 
 /// Generated setup class from Pigeon to handle messages through the `binaryMessenger`.
@@ -1235,40 +1110,6 @@ class MiraclSdkSetup {
       }
     } else {
       getAuthenticationSessionDetailsFromPushNofitifactionPayloadChannel.setMessageHandler(nil)
-    }
-    let getSigningDetailsFromQRCodeChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getSigningDetailsFromQRCode\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
-    if let api = api {
-      getSigningDetailsFromQRCodeChannel.setMessageHandler { message, reply in
-        let args = message as! [Any?]
-        let qrCodeArg = args[0] as! String
-        api.getSigningDetailsFromQRCode(qrCode: qrCodeArg) { result in
-          switch result {
-          case .success(let res):
-            reply(wrapResult(res))
-          case .failure(let error):
-            reply(wrapError(error))
-          }
-        }
-      }
-    } else {
-      getSigningDetailsFromQRCodeChannel.setMessageHandler(nil)
-    }
-    let getSigningSessionDetailsFromLinkChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getSigningSessionDetailsFromLink\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
-    if let api = api {
-      getSigningSessionDetailsFromLinkChannel.setMessageHandler { message, reply in
-        let args = message as! [Any?]
-        let linkArg = args[0] as! String
-        api.getSigningSessionDetailsFromLink(link: linkArg) { result in
-          switch result {
-          case .success(let res):
-            reply(wrapResult(res))
-          case .failure(let error):
-            reply(wrapError(error))
-          }
-        }
-      }
-    } else {
-      getSigningSessionDetailsFromLinkChannel.setMessageHandler(nil)
     }
   }
 }
