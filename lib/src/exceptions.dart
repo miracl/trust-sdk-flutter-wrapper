@@ -213,41 +213,6 @@ class AuthenticationSessionDetailsException implements Exception {
   AuthenticationSessionDetailsException._create(this.code, this.underlyingError);
 }
 
-/// An enumeration that describes signing session management issues.
-enum SigningSessionDetailsExceptionCode {
-  /// Could not find the session identifier in the link.
-  invalidLink,
-
-  /// Could not find the session identifier in the QR code.
-  invalidQRCode,
-
-  /// The session identifier in `SigningSessionDetails` is empty or blank.
-  invalidSigningSessionDetails,
-
-  /// Fetching the signing session details failed.
-  getSigningSessionDetailsFail,
-
-  /// An invalid or expired signing session.
-  invalidSigningSession,
-
-  /// Signing session completion failed.
-  completeSigningSessionFail,
-
-  /// The abort of the signing session has failed.
-  abortSigningSessionFail;
-}
-
-/// An exception thrown when there is an issue with the signing session management.
-class SigningSessionDetailsException implements Exception {
-  /// The specific [SigningSessionDetailsExceptionCode] indicating the type of error.
-  final SigningSessionDetailsExceptionCode code;
-
-  /// An optional, human-readable message providing more details about the error.
-  final String? underlyingError;
-
-  SigningSessionDetailsException._create(this.code, this.underlyingError);
-}
-
 /// An enumeration that describes signing issues.
 enum SigningExceptionCode {
   /// Empty message hash.

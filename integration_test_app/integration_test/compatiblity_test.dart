@@ -230,29 +230,6 @@ void main() {
       activationTokenResponse = await miraclTrust.getActivationTokenByURI(verificationURI);
       user = await miraclTrust.register(userId, activationTokenResponse.activationToken, pin);
 
-      // Start a signing session.
-      final signingQRCode = await startSigningSession(cuvProjectId, userId, "Hello World", "Hello Desc", cuvProjectUrl);
-
-      SigningSessionDetails signingSessionDetails = await miraclTrust.getSigningSessionDetailsFromQRCode(signingQRCode);
-      expect(signingSessionDetails.projectId, equals(cuvProjectId));
-
-      signingSessionDetails = await miraclTrust.getSigningSessionDetailsFromLink(Uri.parse(signingQRCode));
-      expect(signingSessionDetails.projectId, equals(cuvProjectId));
-
-      await expectLater(
-        miraclTrust.getSigningSessionDetailsFromQRCode(""),
-        throwsA(isA<SigningSessionDetailsException>().having(
-          (e) => e.code, "", equals(SigningSessionDetailsExceptionCode.invalidQRCode)
-        ))
-      );
-
-      await expectLater(
-        miraclTrust.getSigningSessionDetailsFromLink(Uri.parse("https://google.com")),
-        throwsA(isA<SigningSessionDetailsException>().having(
-          (e) => e.code, "", equals(SigningSessionDetailsExceptionCode.invalidLink)
-        ))
-      );
-
       // Sign messages.
       String myString = "Hello, world! 😊";
       List<int> codeUnits = utf8.encode(myString);

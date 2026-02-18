@@ -97,29 +97,6 @@ extension on MQuickCode {
   }
 }
 
-extension on MSigningSessionDetails {
-  SigningSessionDetails _toSigningSessionDetails() {
-    return SigningSessionDetails._create(
-        userId: userId,
-        projectName: projectName,
-        projectLogoURL: projectLogoURL,
-        projectId: projectId, 
-        pinLength: pinLength, 
-        verificationMethod: VerificationMethod.getVerificationMethod(verificationMethod.name),
-        verificationURL: verificationURL,
-        verificationCustomText: verificationCustomText,
-        identityTypeLabel: identityTypeLabel, 
-        quickCodeEnabled: quickCodeEnabled,
-        identityType: IdentityType.getIdentityType(identityType.name), 
-        sessionId: sessionId, 
-        signingHash: signingHash, 
-        signingDescription: signingDescription, 
-        status: SigningSessionStatus.getSigningSessionStatus(status.name),
-        expireTime: expireTime
-      );
-  }
-}
-
 extension on MSigningResult {
   SigningResult _toSigningResult() {
     final signatureForReturn = Signature._create(
@@ -214,18 +191,6 @@ extension on MAuthenticationSessionDetailsExceptionCode {
     MAuthenticationSessionDetailsExceptionCode.invalidAuthenticationSessionDetails => AuthenticationSessionDetailsExceptionCode.invalidAuthenticationSessionDetails,
     MAuthenticationSessionDetailsExceptionCode.getAuthenticationSessionDetailsFail => AuthenticationSessionDetailsExceptionCode.getAuthenticationSessionDetailsFail,
     MAuthenticationSessionDetailsExceptionCode.abortSessionFail => AuthenticationSessionDetailsExceptionCode.abortSessionFail,
-  };
-}
-
-extension on MSigningSessionDetailsExceptionCode {
-  SigningSessionDetailsExceptionCode toSigningSessionDetailsExceptionCode() => switch (this) {
-    MSigningSessionDetailsExceptionCode.invalidLink => SigningSessionDetailsExceptionCode.invalidLink,
-    MSigningSessionDetailsExceptionCode.invalidQRCode => SigningSessionDetailsExceptionCode.invalidQRCode,
-    MSigningSessionDetailsExceptionCode.invalidSigningSessionDetails => SigningSessionDetailsExceptionCode.invalidSigningSessionDetails,
-    MSigningSessionDetailsExceptionCode.getSigningSessionDetailsFail => SigningSessionDetailsExceptionCode.getSigningSessionDetailsFail,
-    MSigningSessionDetailsExceptionCode.invalidSigningSession => SigningSessionDetailsExceptionCode.invalidSigningSession,
-    MSigningSessionDetailsExceptionCode.completeSigningSessionFail => SigningSessionDetailsExceptionCode.completeSigningSessionFail,
-    MSigningSessionDetailsExceptionCode.abortSigningSessionFail => SigningSessionDetailsExceptionCode.abortSigningSessionFail,
   };
 }
 

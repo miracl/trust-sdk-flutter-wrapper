@@ -114,17 +114,6 @@ enum class MIdentityType(val raw: Int) {
   }
 }
 
-enum class MSigningSessionStatus(val raw: Int) {
-  ACTIVE(0),
-  SIGNED(1);
-
-  companion object {
-    fun ofRaw(raw: Int): MSigningSessionStatus? {
-      return values().firstOrNull { it.raw == raw }
-    }
-  }
-}
-
 enum class MConfigurationExceptionCode(val raw: Int) {
   EMPTY_PROJECT_ID(0),
   INVALID_PROJECT_URL(1);
@@ -224,22 +213,6 @@ enum class MAuthenticationSessionDetailsExceptionCode(val raw: Int) {
 
   companion object {
     fun ofRaw(raw: Int): MAuthenticationSessionDetailsExceptionCode? {
-      return values().firstOrNull { it.raw == raw }
-    }
-  }
-}
-
-enum class MSigningSessionDetailsExceptionCode(val raw: Int) {
-  INVALID_LINK(0),
-  INVALID_QRCODE(1),
-  INVALID_SIGNING_SESSION_DETAILS(2),
-  GET_SIGNING_SESSION_DETAILS_FAIL(3),
-  INVALID_SIGNING_SESSION(4),
-  COMPLETE_SIGNING_SESSION_FAIL(5),
-  ABORT_SIGNING_SESSION_FAIL(6);
-
-  companion object {
-    fun ofRaw(raw: Int): MSigningSessionDetailsExceptionCode? {
       return values().firstOrNull { it.raw == raw }
     }
   }
@@ -386,79 +359,6 @@ data class MAuthenticationSessionDetails (
   }
   override fun equals(other: Any?): Boolean {
     if (other !is MAuthenticationSessionDetails) {
-      return false
-    }
-    if (this === other) {
-      return true
-    }
-    return PigeonPigeonUtils.deepEquals(toList(), other.toList())  }
-
-  override fun hashCode(): Int = toList().hashCode()
-}
-
-/** Generated class from Pigeon that represents data sent in messages. */
-data class MSigningSessionDetails (
-  val userId: String,
-  val projectName: String,
-  val projectLogoURL: String,
-  val projectId: String,
-  val pinLength: Long,
-  val verificationMethod: MVerificationMethod,
-  val verificationURL: String,
-  val verificationCustomText: String,
-  val identityTypeLabel: String,
-  val quickCodeEnabled: Boolean,
-  val identityType: MIdentityType,
-  val sessionId: String,
-  val signingHash: String,
-  val signingDescription: String,
-  val status: MSigningSessionStatus,
-  val expireTime: Long
-)
- {
-  companion object {
-    fun fromList(pigeonVar_list: List<Any?>): MSigningSessionDetails {
-      val userId = pigeonVar_list[0] as String
-      val projectName = pigeonVar_list[1] as String
-      val projectLogoURL = pigeonVar_list[2] as String
-      val projectId = pigeonVar_list[3] as String
-      val pinLength = pigeonVar_list[4] as Long
-      val verificationMethod = pigeonVar_list[5] as MVerificationMethod
-      val verificationURL = pigeonVar_list[6] as String
-      val verificationCustomText = pigeonVar_list[7] as String
-      val identityTypeLabel = pigeonVar_list[8] as String
-      val quickCodeEnabled = pigeonVar_list[9] as Boolean
-      val identityType = pigeonVar_list[10] as MIdentityType
-      val sessionId = pigeonVar_list[11] as String
-      val signingHash = pigeonVar_list[12] as String
-      val signingDescription = pigeonVar_list[13] as String
-      val status = pigeonVar_list[14] as MSigningSessionStatus
-      val expireTime = pigeonVar_list[15] as Long
-      return MSigningSessionDetails(userId, projectName, projectLogoURL, projectId, pinLength, verificationMethod, verificationURL, verificationCustomText, identityTypeLabel, quickCodeEnabled, identityType, sessionId, signingHash, signingDescription, status, expireTime)
-    }
-  }
-  fun toList(): List<Any?> {
-    return listOf(
-      userId,
-      projectName,
-      projectLogoURL,
-      projectId,
-      pinLength,
-      verificationMethod,
-      verificationURL,
-      verificationCustomText,
-      identityTypeLabel,
-      quickCodeEnabled,
-      identityType,
-      sessionId,
-      signingHash,
-      signingDescription,
-      status,
-      expireTime,
-    )
-  }
-  override fun equals(other: Any?): Boolean {
-    if (other !is MSigningSessionDetails) {
       return false
     }
     if (this === other) {
@@ -701,100 +601,85 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
       }
       132.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          MSigningSessionStatus.ofRaw(it.toInt())
+          MConfigurationExceptionCode.ofRaw(it.toInt())
         }
       }
       133.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          MConfigurationExceptionCode.ofRaw(it.toInt())
+          MEmailVerificationExceptionCode.ofRaw(it.toInt())
         }
       }
       134.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          MEmailVerificationExceptionCode.ofRaw(it.toInt())
+          MActivationTokenExceptionCode.ofRaw(it.toInt())
         }
       }
       135.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          MActivationTokenExceptionCode.ofRaw(it.toInt())
+          MRegistrationExceptionCode.ofRaw(it.toInt())
         }
       }
       136.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          MRegistrationExceptionCode.ofRaw(it.toInt())
+          MAuthenticationExceptionCode.ofRaw(it.toInt())
         }
       }
       137.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          MAuthenticationExceptionCode.ofRaw(it.toInt())
+          MQuickCodeExceptionCode.ofRaw(it.toInt())
         }
       }
       138.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          MQuickCodeExceptionCode.ofRaw(it.toInt())
+          MAuthenticationSessionDetailsExceptionCode.ofRaw(it.toInt())
         }
       }
       139.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          MAuthenticationSessionDetailsExceptionCode.ofRaw(it.toInt())
-        }
-      }
-      140.toByte() -> {
-        return (readValue(buffer) as Long?)?.let {
-          MSigningSessionDetailsExceptionCode.ofRaw(it.toInt())
-        }
-      }
-      141.toByte() -> {
-        return (readValue(buffer) as Long?)?.let {
           MSigningExceptionCode.ofRaw(it.toInt())
         }
       }
-      142.toByte() -> {
+      140.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MConfiguration.fromList(it)
         }
       }
-      143.toByte() -> {
+      141.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MActivationTokenResponse.fromList(it)
         }
       }
-      144.toByte() -> {
+      142.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MAuthenticationSessionDetails.fromList(it)
         }
       }
-      145.toByte() -> {
-        return (readValue(buffer) as? List<Any?>)?.let {
-          MSigningSessionDetails.fromList(it)
-        }
-      }
-      146.toByte() -> {
+      143.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MUser.fromList(it)
         }
       }
-      147.toByte() -> {
+      144.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MQuickCode.fromList(it)
         }
       }
-      148.toByte() -> {
+      145.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MSignature.fromList(it)
         }
       }
-      149.toByte() -> {
+      146.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MSigningResult.fromList(it)
         }
       }
-      150.toByte() -> {
+      147.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MActivationTokenErrorResponse.fromList(it)
         }
       }
-      151.toByte() -> {
+      148.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MEmailVerificationResponse.fromList(it)
         }
@@ -816,84 +701,72 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
         stream.write(131)
         writeValue(stream, value.raw)
       }
-      is MSigningSessionStatus -> {
+      is MConfigurationExceptionCode -> {
         stream.write(132)
         writeValue(stream, value.raw)
       }
-      is MConfigurationExceptionCode -> {
+      is MEmailVerificationExceptionCode -> {
         stream.write(133)
         writeValue(stream, value.raw)
       }
-      is MEmailVerificationExceptionCode -> {
+      is MActivationTokenExceptionCode -> {
         stream.write(134)
         writeValue(stream, value.raw)
       }
-      is MActivationTokenExceptionCode -> {
+      is MRegistrationExceptionCode -> {
         stream.write(135)
         writeValue(stream, value.raw)
       }
-      is MRegistrationExceptionCode -> {
+      is MAuthenticationExceptionCode -> {
         stream.write(136)
         writeValue(stream, value.raw)
       }
-      is MAuthenticationExceptionCode -> {
+      is MQuickCodeExceptionCode -> {
         stream.write(137)
         writeValue(stream, value.raw)
       }
-      is MQuickCodeExceptionCode -> {
+      is MAuthenticationSessionDetailsExceptionCode -> {
         stream.write(138)
         writeValue(stream, value.raw)
       }
-      is MAuthenticationSessionDetailsExceptionCode -> {
+      is MSigningExceptionCode -> {
         stream.write(139)
         writeValue(stream, value.raw)
       }
-      is MSigningSessionDetailsExceptionCode -> {
-        stream.write(140)
-        writeValue(stream, value.raw)
-      }
-      is MSigningExceptionCode -> {
-        stream.write(141)
-        writeValue(stream, value.raw)
-      }
       is MConfiguration -> {
-        stream.write(142)
+        stream.write(140)
         writeValue(stream, value.toList())
       }
       is MActivationTokenResponse -> {
-        stream.write(143)
+        stream.write(141)
         writeValue(stream, value.toList())
       }
       is MAuthenticationSessionDetails -> {
-        stream.write(144)
-        writeValue(stream, value.toList())
-      }
-      is MSigningSessionDetails -> {
-        stream.write(145)
+        stream.write(142)
         writeValue(stream, value.toList())
       }
       is MUser -> {
-        stream.write(146)
+        stream.write(143)
         writeValue(stream, value.toList())
       }
       is MQuickCode -> {
-        stream.write(147)
+        stream.write(144)
         writeValue(stream, value.toList())
       }
       is MSignature -> {
-        stream.write(148)
+        stream.write(145)
         writeValue(stream, value.toList())
       }
       is MSigningResult -> {
-        stream.write(149)
+        stream.write(146)
         writeValue(stream, value.toList())
       }
       is MActivationTokenErrorResponse -> {
-        stream.write(150)
+        stream.write(147)
         writeValue(stream, value.toList())
       }
       is MEmailVerificationResponse -> {
-        stream.write(151)
+        stream.write(148)
         writeValue(stream, value.toList())
       }
       else -> super.writeValue(stream, value)
@@ -923,8 +796,6 @@ interface MiraclSdk {
   fun getAuthenticationSessionDetailsFromQRCode(qrCode: String, callback: (Result<MAuthenticationSessionDetails>) -> Unit)
   fun getAuthenticationSessionDetailsFromLink(link: String, callback: (Result<MAuthenticationSessionDetails>) -> Unit)
   fun getAuthenticationSessionDetailsFromPushNofitifactionPayload(payload: Map<String, String>, callback: (Result<MAuthenticationSessionDetails>) -> Unit)
-  fun getSigningDetailsFromQRCode(qrCode: String, callback: (Result<MSigningSessionDetails>) -> Unit)
-  fun getSigningSessionDetailsFromLink(link: String, callback: (Result<MSigningSessionDetails>) -> Unit)
 
   companion object {
     /** The codec used by MiraclSdk. */
@@ -1310,46 +1181,6 @@ interface MiraclSdk {
             val args = message as List<Any?>
             val payloadArg = args[0] as Map<String, String>
             api.getAuthenticationSessionDetailsFromPushNofitifactionPayload(payloadArg) { result: Result<MAuthenticationSessionDetails> ->
-              val error = result.exceptionOrNull()
-              if (error != null) {
-                reply.reply(PigeonPigeonUtils.wrapError(error))
-              } else {
-                val data = result.getOrNull()
-                reply.reply(PigeonPigeonUtils.wrapResult(data))
-              }
-            }
-          }
-        } else {
-          channel.setMessageHandler(null)
-        }
-      }
-      run {
-        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getSigningDetailsFromQRCode$separatedMessageChannelSuffix", codec)
-        if (api != null) {
-          channel.setMessageHandler { message, reply ->
-            val args = message as List<Any?>
-            val qrCodeArg = args[0] as String
-            api.getSigningDetailsFromQRCode(qrCodeArg) { result: Result<MSigningSessionDetails> ->
-              val error = result.exceptionOrNull()
-              if (error != null) {
-                reply.reply(PigeonPigeonUtils.wrapError(error))
-              } else {
-                val data = result.getOrNull()
-                reply.reply(PigeonPigeonUtils.wrapResult(data))
-              }
-            }
-          }
-        } else {
-          channel.setMessageHandler(null)
-        }
-      }
-      run {
-        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getSigningSessionDetailsFromLink$separatedMessageChannelSuffix", codec)
-        if (api != null) {
-          channel.setMessageHandler { message, reply ->
-            val args = message as List<Any?>
-            val linkArg = args[0] as String
-            api.getSigningSessionDetailsFromLink(linkArg) { result: Result<MSigningSessionDetails> ->
               val error = result.exceptionOrNull()
               if (error != null) {
                 reply.reply(PigeonPigeonUtils.wrapError(error))

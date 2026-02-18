@@ -170,22 +170,7 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
         sdkHandler.getAuthenticationSessionDetailsFromPayload(payload, callback)
     }
 
-
-    override fun getSigningDetailsFromQRCode(
-        qrCode: String, callback: (kotlin.Result<MSigningSessionDetails>) -> Unit
-    ) {
-        sdkHandler.getSigningSessionDetailsFromQRCode(qrCode, callback)
-    }
-
-    override fun getSigningSessionDetailsFromLink(
-        link: String, 
-        callback: (kotlin.Result<MSigningSessionDetails>) -> Unit
-    ) {
-        sdkHandler.getSigningSessionDetailsFromLink(link, callback)
-    }
-
     override fun getUser(userId: String, callback: (kotlin.Result<MUser?>) -> Unit) {
         sdkHandler.getUser(userId, callback)
     }
-  
 }

@@ -498,64 +498,6 @@ class MIRACLTrust {
     }
   }
 
-  /// Gets [SigningSessionDetails] from the MIRACL Trust platform using a QR code.
-  ///
-  /// Use this method to get session details for an application that is signing
-  /// against the MIRACL Trust Platform via a QR code.
-  ///
-  /// Parameters:
-  /// - [qrCode]: The raw string content read from the QR code.
-  ///
-  /// Throws [SigningSessionDetailsException] if fetching the session details
-  /// fails (e.g., due to an invalid or expired QR code).
-  Future<SigningSessionDetails> getSigningSessionDetailsFromQRCode(String qrCode) async {
-    try {
-      final mSigningSessionDetails = await _sdk.getSigningDetailsFromQRCode(qrCode);
-      final signingSessionDetails = mSigningSessionDetails._toSigningSessionDetails();
-
-      return signingSessionDetails;
-    } on PlatformException catch(e) {
-      final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is MSigningSessionDetailsExceptionCode) {
-        throw SigningSessionDetailsException._create(
-          exceptionCode.toSigningSessionDetailsExceptionCode(),
-          e.details["error"]
-        );
-      } else {
-        rethrow;
-      }
-    }
-  }
-
-  /// Gets [SigningSessionDetails] from the MIRACL Trust platform using a deep link.
-  ///
-  /// Use this method to get session details for an application that is signing
-  /// against the MIRACL Trust Platform via a deep link.
-  ///
-  /// Parameters:
-  /// - [link]: A URI received via a deep link.
-  ///
-  /// Throws [SigningSessionDetailsException] if fetching the session details
-  /// fails (e.g., due to an invalid or expired deep link).
-  Future<SigningSessionDetails> getSigningSessionDetailsFromLink(Uri link) async {
-    try {
-      final mSigningSessionDetails = await _sdk.getSigningSessionDetailsFromLink(link.toString());
-      final signingSessionDetails = mSigningSessionDetails._toSigningSessionDetails();
-
-      return signingSessionDetails;
-    } on PlatformException catch(e) {
-      final exceptionCode = e._getExceptionCode();
-      if (exceptionCode is MSigningSessionDetailsExceptionCode) {
-        throw SigningSessionDetailsException._create(
-          exceptionCode.toSigningSessionDetailsExceptionCode(),
-          e.details["error"]
-        );
-      } else {
-        rethrow;
-      }
-    }
-  }
-
   /// Creates a cryptographic signature for a given document hash.
   ///
   /// This method requires the user's PIN for authorization and, upon success,

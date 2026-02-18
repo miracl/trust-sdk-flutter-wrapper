@@ -137,25 +137,6 @@ extension AuthenticationSessionError {
     }
 }
 
-extension SigningSessionError {
-    var flutterExceptionCodeRepresentation: MSigningSessionDetailsExceptionCode {
-        switch self {
-        case .abortSigningSessionFail:
-            return MSigningSessionDetailsExceptionCode.abortSigningSessionFail
-        case .getSigningSessionDetailsFail:
-            return MSigningSessionDetailsExceptionCode.getSigningSessionDetailsFail
-        case .invalidQRCode:
-            return MSigningSessionDetailsExceptionCode.invalidQRCode
-        case .invalidSigningSession:
-            return MSigningSessionDetailsExceptionCode.invalidSigningSession
-        case .invalidSigningSessionDetails:
-            return MSigningSessionDetailsExceptionCode.invalidSigningSessionDetails
-        case .invalidUniversalLinkURL:
-            return MSigningSessionDetailsExceptionCode.invalidLink
-        }
-    }
-}
-
 extension SigningError {
     var flutterExceptionCodeRepresentation: MSigningExceptionCode {
         switch self {

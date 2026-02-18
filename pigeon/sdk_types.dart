@@ -41,11 +41,6 @@ enum MIdentityType {
   alphanumeric
 }
 
-enum MSigningSessionStatus {
-  active, 
-  signed
-}
-
 class MAuthenticationSessionDetails {
   final String userId;
   final String projectName;
@@ -73,44 +68,6 @@ class MAuthenticationSessionDetails {
     this.quickCodeEnabled,
     this.identityType,
     this.accessId
-  );
-}
-
-class MSigningSessionDetails {
-  final String userId;
-  final String projectName;
-  final String projectLogoURL;
-  final String projectId; 
-  final int pinLength;
-  final MVerificationMethod verificationMethod;
-  final String verificationURL;
-  final String verificationCustomText;
-  final String identityTypeLabel;
-  final bool quickCodeEnabled;
-  final MIdentityType identityType;
-  final String sessionId;
-  final String signingHash;
-  final String signingDescription;
-  final MSigningSessionStatus status;
-  final int expireTime;
-
-  MSigningSessionDetails(
-    this.userId, 
-    this.projectName,
-    this.projectLogoURL,
-    this.projectId,
-    this.pinLength,
-    this.verificationMethod,
-    this.verificationURL,
-    this.verificationCustomText,
-    this.identityTypeLabel,
-    this.quickCodeEnabled,
-    this.identityType,
-    this.sessionId,
-    this.signingHash,
-    this.signingDescription,
-    this.status,
-    this.expireTime
   );
 }
 
@@ -233,16 +190,6 @@ enum MAuthenticationSessionDetailsExceptionCode {
   abortSessionFail;
 }
 
-enum MSigningSessionDetailsExceptionCode {
-  invalidLink,
-  invalidQRCode,
-  invalidSigningSessionDetails,
-  getSigningSessionDetailsFail,
-  invalidSigningSession,
-  completeSigningSessionFail,
-  abortSigningSessionFail;
-}
-
 enum MSigningExceptionCode {
   emptyMessageHash,
   emptyPublicKey,
@@ -330,16 +277,6 @@ abstract class MiraclSdk {
   @async
   MAuthenticationSessionDetails getAuthenticationSessionDetailsFromPushNofitifactionPayload(
     Map<String, String> payload
-  );
-  
-  @async
-  MSigningSessionDetails getSigningDetailsFromQRCode(
-    String qrCode
-  );
-
-  @async
-  MSigningSessionDetails getSigningSessionDetailsFromLink(
-    String link
   );
 }
 

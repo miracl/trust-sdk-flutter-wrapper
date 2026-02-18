@@ -7,7 +7,6 @@ import com.miracl.trust.registration.VerificationException
 import com.miracl.trust.registration.QuickCodeException
 import com.miracl.trust.registration.RegistrationException
 import com.miracl.trust.session.AuthenticationSessionException
-import com.miracl.trust.session.SigningSessionException
 import com.miracl.trust.signing.SigningException
 
 internal val ConfigurationException.flutterExceptionCodeRepresentation: MConfigurationExceptionCode
@@ -77,17 +76,6 @@ internal val AuthenticationSessionException.flutterExceptionCodeRepresentation: 
         AuthenticationSessionException.InvalidNotificationPayload -> MAuthenticationSessionDetailsExceptionCode.INVALID_NOTIFICATION_PAYLOAD
         AuthenticationSessionException.InvalidQRCode -> MAuthenticationSessionDetailsExceptionCode.INVALID_QRCODE
         AuthenticationSessionException.InvalidSessionDetails -> MAuthenticationSessionDetailsExceptionCode.INVALID_AUTHENTICATION_SESSION_DETAILS
-    }
-
-internal val SigningSessionException.flutterExceptionCodeRepresentation: MSigningSessionDetailsExceptionCode
-    get() = when (this) {
-        is SigningSessionException.AbortSigningSessionFail -> MSigningSessionDetailsExceptionCode.ABORT_SIGNING_SESSION_FAIL
-        is SigningSessionException.CompleteSigningSessionFail -> MSigningSessionDetailsExceptionCode.COMPLETE_SIGNING_SESSION_FAIL
-        is SigningSessionException.GetSigningSessionDetailsFail -> MSigningSessionDetailsExceptionCode.GET_SIGNING_SESSION_DETAILS_FAIL
-        SigningSessionException.InvalidAppLink -> MSigningSessionDetailsExceptionCode.INVALID_LINK
-        SigningSessionException.InvalidQRCode -> MSigningSessionDetailsExceptionCode.INVALID_QRCODE
-        SigningSessionException.InvalidSigningSession -> MSigningSessionDetailsExceptionCode.INVALID_SIGNING_SESSION
-        SigningSessionException.InvalidSigningSessionDetails -> MSigningSessionDetailsExceptionCode.INVALID_SIGNING_SESSION_DETAILS
     }
 
 internal val SigningException.flutterExceptionCodeRepresentation: MSigningExceptionCode
