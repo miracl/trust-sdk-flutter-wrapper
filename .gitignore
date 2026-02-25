@@ -4,3 +4,6 @@ build
 .build/
 .swiftpm/
 doc
+
+# FVM Version Cache
+.fvm/
