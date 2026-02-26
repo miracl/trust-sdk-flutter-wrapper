@@ -85,3 +85,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ## 0.8.0
 
 * Update Cocoapods support.
+
+## 0.9.0
+
+* Remove legacy signing session API and update dependencies.
