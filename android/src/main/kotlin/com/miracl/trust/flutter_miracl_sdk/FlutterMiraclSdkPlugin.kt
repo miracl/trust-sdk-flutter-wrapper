@@ -56,9 +56,14 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
 
     override fun sendVerificationEmail(
         userId: String,
+        crossDeviceSession: MCrossDeviceSession?,
         callback: (kotlin.Result<MEmailVerificationResponse>) -> Unit
     ) {
-        sdkHandler.sendVerificationMail(userId, callback)
+        if (crossDeviceSession != null) {
+            sdkHandler.sendVerificationMail(userId, crossDeviceSession, callback)
+        } else {
+            sdkHandler.sendVerificationMail(userId, callback)
+        }
     }
 
     override fun getActivationTokenByURI(
@@ -140,6 +145,52 @@ class FlutterMiraclSdkPlugin : FlutterPlugin, MiraclSdk {
         callback: (kotlin.Result<Boolean>) -> Unit
     ) {
         sdkHandler.authenticateWithAppLink(user.userId, link, pin, callback)
+    }
+
+    override fun getCrossDeviceSessionFromQRCode(
+        qrCode: String,
+        callback: (kotlin.Result<MCrossDeviceSession>) -> Unit
+    ) {
+        sdkHandler.getCrossDeviceSessionFromQRCode(qrCode, callback)
+    }
+
+    override fun getCrossDeviceSessionFromLink(
+        link: String,
+        callback: (kotlin.Result<MCrossDeviceSession>) -> Unit
+    ) {
+        sdkHandler.getCrossDeviceSessionFromLink(link, callback)
+    }
+
+    override fun getCrossDeviceSessionFromPushNotificationPayload(
+        payload: Map<String, String>,
+        callback: (kotlin.Result<MCrossDeviceSession>) -> Unit
+    ) {
+        sdkHandler.getCrossDeviceSessionFromPayload(payload, callback)
+    }
+
+    override fun authenticateCrossDeviceSession(
+        crossDeviceSession: MCrossDeviceSession,
+        user: MUser,
+        pin: String,
+        callback: (kotlin.Result<Unit>) -> Unit
+    ) {
+        sdkHandler.authenticateCrossDeviceSession(crossDeviceSession, user, pin, callback)
+    }
+
+    override fun signCrossDeviceSession(
+        crossDeviceSession: MCrossDeviceSession,
+        user: MUser,
+        pin: String,
+        callback: (kotlin.Result<Unit>) -> Unit
+    ) {
+        sdkHandler.signCrossDeviceSession(crossDeviceSession, user, pin, callback)
+    }
+
+    override fun abortCrossDeviceSession(
+        crossDeviceSession: MCrossDeviceSession,
+        callback: (kotlin.Result<Unit>) -> Unit
+    ) {
+        sdkHandler.abortCrossDeviceSession(crossDeviceSession, callback)
     }
 
     override fun authenticateWithNotificationPayload(
