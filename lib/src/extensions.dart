@@ -10,6 +10,30 @@ extension on PlatformException {
   }
 }
 
+extension on MCrossDeviceSession {
+  CrossDeviceSession _toCrossDeviceSession() {
+    return CrossDeviceSession._create(
+        sessionId: sessionId,
+        sessionDescription: sessionDescription,
+        userId: userId,
+        projectId: projectId,
+        signingHash: signingHash
+    );
+  }
+}
+
+extension on CrossDeviceSession {
+  MCrossDeviceSession _toMCrossDeviceSession() {
+    return MCrossDeviceSession(
+        sessionId: sessionId,
+        sessionDescription: sessionDescription,
+        userId: userId,
+        projectId: projectId,
+        signingHash: signingHash
+    );
+  }
+}
+
 extension on MAuthenticationSessionDetails {
   AuthenticationSessionDetails _toAuthenticationSessionDetails() {
     return AuthenticationSessionDetails._create(
@@ -180,6 +204,17 @@ extension on MQuickCodeExceptionCode {
     MQuickCodeExceptionCode.pinCancelled => QuickCodeExceptionCode.pinCancelled,
     MQuickCodeExceptionCode.invalidPin => QuickCodeExceptionCode.invalidPin,
     MQuickCodeExceptionCode.generationFail => QuickCodeExceptionCode.generationFail,
+  };
+}
+
+extension on MCrossDeviceSessionExceptionCode {
+  CrossDeviceSessionExceptionCode toCrossDeviceSessionExceptionCode() => switch (this) {
+    MCrossDeviceSessionExceptionCode.invalidLink => CrossDeviceSessionExceptionCode.invalidLink,
+    MCrossDeviceSessionExceptionCode.invalidQRCode => CrossDeviceSessionExceptionCode.invalidQRCode,
+    MCrossDeviceSessionExceptionCode.invalidNotificationPayload => CrossDeviceSessionExceptionCode.invalidNotificationPayload,
+    MCrossDeviceSessionExceptionCode.invalidCrossDeviceSession => CrossDeviceSessionExceptionCode.invalidCrossDeviceSession,
+    MCrossDeviceSessionExceptionCode.getCrossDeviceSessionFail => CrossDeviceSessionExceptionCode.getCrossDeviceSessionFail,
+    MCrossDeviceSessionExceptionCode.abortCrossDeviceSessionFail => CrossDeviceSessionExceptionCode.abortCrossDeviceSessionFail,
   };
 }
 

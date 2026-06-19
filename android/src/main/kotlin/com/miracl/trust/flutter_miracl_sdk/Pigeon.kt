@@ -203,6 +203,21 @@ enum class MQuickCodeExceptionCode(val raw: Int) {
   }
 }
 
+enum class MCrossDeviceSessionExceptionCode(val raw: Int) {
+  INVALID_LINK(0),
+  INVALID_QRCODE(1),
+  INVALID_NOTIFICATION_PAYLOAD(2),
+  INVALID_CROSS_DEVICE_SESSION(3),
+  GET_CROSS_DEVICE_SESSION_FAIL(4),
+  ABORT_CROSS_DEVICE_SESSION_FAIL(5);
+
+  companion object {
+    fun ofRaw(raw: Int): MCrossDeviceSessionExceptionCode? {
+      return values().firstOrNull { it.raw == raw }
+    }
+  }
+}
+
 enum class MAuthenticationSessionDetailsExceptionCode(val raw: Int) {
   INVALID_LINK(0),
   INVALID_QRCODE(1),
@@ -298,6 +313,46 @@ data class MActivationTokenResponse (
   }
   override fun equals(other: Any?): Boolean {
     if (other !is MActivationTokenResponse) {
+      return false
+    }
+    if (this === other) {
+      return true
+    }
+    return PigeonPigeonUtils.deepEquals(toList(), other.toList())  }
+
+  override fun hashCode(): Int = toList().hashCode()
+}
+
+/** Generated class from Pigeon that represents data sent in messages. */
+data class MCrossDeviceSession (
+  val sessionId: String,
+  val sessionDescription: String,
+  val userId: String,
+  val projectId: String,
+  val signingHash: String
+)
+ {
+  companion object {
+    fun fromList(pigeonVar_list: List<Any?>): MCrossDeviceSession {
+      val sessionId = pigeonVar_list[0] as String
+      val sessionDescription = pigeonVar_list[1] as String
+      val userId = pigeonVar_list[2] as String
+      val projectId = pigeonVar_list[3] as String
+      val signingHash = pigeonVar_list[4] as String
+      return MCrossDeviceSession(sessionId, sessionDescription, userId, projectId, signingHash)
+    }
+  }
+  fun toList(): List<Any?> {
+    return listOf(
+      sessionId,
+      sessionDescription,
+      userId,
+      projectId,
+      signingHash,
+    )
+  }
+  override fun equals(other: Any?): Boolean {
+    if (other !is MCrossDeviceSession) {
       return false
     }
     if (this === other) {
@@ -631,55 +686,65 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
       }
       138.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          MAuthenticationSessionDetailsExceptionCode.ofRaw(it.toInt())
+          MCrossDeviceSessionExceptionCode.ofRaw(it.toInt())
         }
       }
       139.toByte() -> {
         return (readValue(buffer) as Long?)?.let {
-          MSigningExceptionCode.ofRaw(it.toInt())
+          MAuthenticationSessionDetailsExceptionCode.ofRaw(it.toInt())
         }
       }
       140.toByte() -> {
-        return (readValue(buffer) as? List<Any?>)?.let {
-          MConfiguration.fromList(it)
+        return (readValue(buffer) as Long?)?.let {
+          MSigningExceptionCode.ofRaw(it.toInt())
         }
       }
       141.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MActivationTokenResponse.fromList(it)
+          MConfiguration.fromList(it)
         }
       }
       142.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MAuthenticationSessionDetails.fromList(it)
+          MActivationTokenResponse.fromList(it)
         }
       }
       143.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MUser.fromList(it)
+          MCrossDeviceSession.fromList(it)
         }
       }
       144.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MQuickCode.fromList(it)
+          MAuthenticationSessionDetails.fromList(it)
         }
       }
       145.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MSignature.fromList(it)
+          MUser.fromList(it)
         }
       }
       146.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MSigningResult.fromList(it)
+          MQuickCode.fromList(it)
         }
       }
       147.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
-          MActivationTokenErrorResponse.fromList(it)
+          MSignature.fromList(it)
         }
       }
       148.toByte() -> {
+        return (readValue(buffer) as? List<Any?>)?.let {
+          MSigningResult.fromList(it)
+        }
+      }
+      149.toByte() -> {
+        return (readValue(buffer) as? List<Any?>)?.let {
+          MActivationTokenErrorResponse.fromList(it)
+        }
+      }
+      150.toByte() -> {
         return (readValue(buffer) as? List<Any?>)?.let {
           MEmailVerificationResponse.fromList(it)
         }
@@ -725,48 +790,56 @@ private open class PigeonPigeonCodec : StandardMessageCodec() {
         stream.write(137)
         writeValue(stream, value.raw.toLong())
       }
-      is MAuthenticationSessionDetailsExceptionCode -> {
+      is MCrossDeviceSessionExceptionCode -> {
         stream.write(138)
         writeValue(stream, value.raw.toLong())
       }
-      is MSigningExceptionCode -> {
+      is MAuthenticationSessionDetailsExceptionCode -> {
         stream.write(139)
         writeValue(stream, value.raw.toLong())
       }
-      is MConfiguration -> {
+      is MSigningExceptionCode -> {
         stream.write(140)
-        writeValue(stream, value.toList())
+        writeValue(stream, value.raw.toLong())
       }
-      is MActivationTokenResponse -> {
+      is MConfiguration -> {
         stream.write(141)
         writeValue(stream, value.toList())
       }
-      is MAuthenticationSessionDetails -> {
+      is MActivationTokenResponse -> {
         stream.write(142)
         writeValue(stream, value.toList())
       }
-      is MUser -> {
+      is MCrossDeviceSession -> {
         stream.write(143)
         writeValue(stream, value.toList())
       }
-      is MQuickCode -> {
+      is MAuthenticationSessionDetails -> {
         stream.write(144)
         writeValue(stream, value.toList())
       }
-      is MSignature -> {
+      is MUser -> {
         stream.write(145)
         writeValue(stream, value.toList())
       }
-      is MSigningResult -> {
+      is MQuickCode -> {
         stream.write(146)
         writeValue(stream, value.toList())
       }
-      is MActivationTokenErrorResponse -> {
+      is MSignature -> {
         stream.write(147)
         writeValue(stream, value.toList())
       }
-      is MEmailVerificationResponse -> {
+      is MSigningResult -> {
         stream.write(148)
+        writeValue(stream, value.toList())
+      }
+      is MActivationTokenErrorResponse -> {
+        stream.write(149)
+        writeValue(stream, value.toList())
+      }
+      is MEmailVerificationResponse -> {
+        stream.write(150)
         writeValue(stream, value.toList())
       }
       else -> super.writeValue(stream, value)
@@ -780,7 +853,7 @@ interface MiraclSdk {
   fun initSdk(configuration: MConfiguration, callback: (Result<Unit>) -> Unit)
   fun updateProjectSettings(projectId: String, projectUrl: String, callback: (Result<Unit>) -> Unit)
   fun setProjectId(projectId: String, callback: (Result<Unit>) -> Unit)
-  fun sendVerificationEmail(userId: String, callback: (Result<MEmailVerificationResponse>) -> Unit)
+  fun sendVerificationEmail(userId: String, crossDeviceSession: MCrossDeviceSession?, callback: (Result<MEmailVerificationResponse>) -> Unit)
   fun getActivationTokenByURI(uri: String, callback: (Result<MActivationTokenResponse>) -> Unit)
   fun getActivationTokenByUserIdAndCode(userId: String, code: String, callback: (Result<MActivationTokenResponse>) -> Unit)
   fun getUsers(callback: (Result<List<MUser>>) -> Unit)
@@ -796,6 +869,12 @@ interface MiraclSdk {
   fun getAuthenticationSessionDetailsFromQRCode(qrCode: String, callback: (Result<MAuthenticationSessionDetails>) -> Unit)
   fun getAuthenticationSessionDetailsFromLink(link: String, callback: (Result<MAuthenticationSessionDetails>) -> Unit)
   fun getAuthenticationSessionDetailsFromPushNofitifactionPayload(payload: Map<String, String>, callback: (Result<MAuthenticationSessionDetails>) -> Unit)
+  fun getCrossDeviceSessionFromQRCode(qrCode: String, callback: (Result<MCrossDeviceSession>) -> Unit)
+  fun getCrossDeviceSessionFromLink(link: String, callback: (Result<MCrossDeviceSession>) -> Unit)
+  fun getCrossDeviceSessionFromPushNotificationPayload(payload: Map<String, String>, callback: (Result<MCrossDeviceSession>) -> Unit)
+  fun authenticateCrossDeviceSession(crossDeviceSession: MCrossDeviceSession, user: MUser, pin: String, callback: (Result<Unit>) -> Unit)
+  fun signCrossDeviceSession(crossDeviceSession: MCrossDeviceSession, user: MUser, pin: String, callback: (Result<Unit>) -> Unit)
+  fun abortCrossDeviceSession(crossDeviceSession: MCrossDeviceSession, callback: (Result<Unit>) -> Unit)
 
   companion object {
     /** The codec used by MiraclSdk. */
@@ -870,7 +949,8 @@ interface MiraclSdk {
           channel.setMessageHandler { message, reply ->
             val args = message as List<Any?>
             val userIdArg = args[0] as String
-            api.sendVerificationEmail(userIdArg) { result: Result<MEmailVerificationResponse> ->
+            val crossDeviceSessionArg = args[1] as MCrossDeviceSession?
+            api.sendVerificationEmail(userIdArg, crossDeviceSessionArg) { result: Result<MEmailVerificationResponse> ->
               val error = result.exceptionOrNull()
               if (error != null) {
                 reply.reply(PigeonPigeonUtils.wrapError(error))
@@ -1187,6 +1267,127 @@ interface MiraclSdk {
               } else {
                 val data = result.getOrNull()
                 reply.reply(PigeonPigeonUtils.wrapResult(data))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getCrossDeviceSessionFromQRCode$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val qrCodeArg = args[0] as String
+            api.getCrossDeviceSessionFromQRCode(qrCodeArg) { result: Result<MCrossDeviceSession> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(PigeonPigeonUtils.wrapError(error))
+              } else {
+                val data = result.getOrNull()
+                reply.reply(PigeonPigeonUtils.wrapResult(data))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getCrossDeviceSessionFromLink$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val linkArg = args[0] as String
+            api.getCrossDeviceSessionFromLink(linkArg) { result: Result<MCrossDeviceSession> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(PigeonPigeonUtils.wrapError(error))
+              } else {
+                val data = result.getOrNull()
+                reply.reply(PigeonPigeonUtils.wrapResult(data))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getCrossDeviceSessionFromPushNotificationPayload$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val payloadArg = args[0] as Map<String, String>
+            api.getCrossDeviceSessionFromPushNotificationPayload(payloadArg) { result: Result<MCrossDeviceSession> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(PigeonPigeonUtils.wrapError(error))
+              } else {
+                val data = result.getOrNull()
+                reply.reply(PigeonPigeonUtils.wrapResult(data))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.authenticateCrossDeviceSession$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val crossDeviceSessionArg = args[0] as MCrossDeviceSession
+            val userArg = args[1] as MUser
+            val pinArg = args[2] as String
+            api.authenticateCrossDeviceSession(crossDeviceSessionArg, userArg, pinArg) { result: Result<Unit> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(PigeonPigeonUtils.wrapError(error))
+              } else {
+                reply.reply(PigeonPigeonUtils.wrapResult(null))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.signCrossDeviceSession$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val crossDeviceSessionArg = args[0] as MCrossDeviceSession
+            val userArg = args[1] as MUser
+            val pinArg = args[2] as String
+            api.signCrossDeviceSession(crossDeviceSessionArg, userArg, pinArg) { result: Result<Unit> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(PigeonPigeonUtils.wrapError(error))
+              } else {
+                reply.reply(PigeonPigeonUtils.wrapResult(null))
+              }
+            }
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.abortCrossDeviceSession$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val crossDeviceSessionArg = args[0] as MCrossDeviceSession
+            api.abortCrossDeviceSession(crossDeviceSessionArg) { result: Result<Unit> ->
+              val error = result.exceptionOrNull()
+              if (error != null) {
+                reply.reply(PigeonPigeonUtils.wrapError(error))
+              } else {
+                reply.reply(PigeonPigeonUtils.wrapResult(null))
               }
             }
           }

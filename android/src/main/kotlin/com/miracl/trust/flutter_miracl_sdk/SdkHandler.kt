@@ -2,6 +2,7 @@ package com.miracl.trust.flutter_miracl_sdk
 
 import android.content.Context
 import android.net.Uri
+import androidx.core.net.toUri
 import com.miracl.trust.MIRACLError
 import com.miracl.trust.MIRACLSuccess
 import com.miracl.trust.MIRACLTrust
@@ -15,6 +16,7 @@ import com.miracl.trust.signing.SigningException
 import com.miracl.trust.authentication.AuthenticationException
 import com.miracl.trust.registration.QuickCodeException
 import com.miracl.trust.session.AuthenticationSessionException
+import com.miracl.trust.session.CrossDeviceSessionException
 import com.miracl.trust.registration.RegistrationException
 import com.miracl.trust.configuration.ConfigurationException
 import com.miracl.trust.flutter_miracl_sdk.FlutterLogger
@@ -123,6 +125,48 @@ class SdkHandler {
                     callback(
                         Result.failure(
                             mapExceptionToFlutter(it.value, details)
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    fun sendVerificationMail(
+        userId: String,
+        crossDeviceSession: MCrossDeviceSession,
+        callback: (Result<MEmailVerificationResponse>) -> Unit
+    ) {
+        val session = crossDeviceSession.toCrossDeviceSession
+        MIRACLTrust.getInstance().sendVerificationEmail(userId, session) { result ->
+            when (result) {
+                is MIRACLSuccess -> {
+                    val response = result.value
+                    val mEmailVerificationResponse = MEmailVerificationResponse(
+                        backoff = response.backoff,
+                        emailVerificationMethod = MEmailVerificationMethod.ofRaw(response.method.ordinal)
+                            ?: MEmailVerificationMethod.LINK,
+                    )
+
+                    callback(Result.success(mEmailVerificationResponse))
+                }
+
+                is MIRACLError -> {
+                    val error = result.value
+                    val details = mutableMapOf<String, Any?>()
+                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
+
+                    if (error is VerificationException.RequestBackoff) {
+                        details["backoff"] = error.backoff
+                    }
+
+                    if (error is VerificationException.VerificationFail && error.cause != null) {
+                        details["error"] = error.cause.toString()
+                    }
+
+                    callback(
+                        Result.failure(
+                            mapExceptionToFlutter(error, details)
                         )
                     )
                 }
@@ -342,6 +386,207 @@ class SdkHandler {
                             )
                         )
                     }
+                }
+            }
+        }
+    }
+
+    fun getCrossDeviceSessionFromQRCode(
+        qrCode: String,
+        callback: (Result<MCrossDeviceSession>) -> Unit
+    ) {
+        MIRACLTrust.getInstance().getCrossDeviceSessionFromQRCode(qrCode) { result ->
+            when (result) {
+                is MIRACLSuccess -> {
+                    callback(Result.success(result.value.toMCrossDeviceSession))
+                }
+
+                is MIRACLError -> {
+                    val error = result.value
+                    val details = mutableMapOf<String, Any?>()
+
+                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
+                    if (error is CrossDeviceSessionException.GetCrossDeviceSessionFail && error.cause != null) {
+                        details["error"] = error.cause.toString()
+                    }
+
+                    callback(
+                        Result.failure(
+                            mapExceptionToFlutter(error, details)
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    fun getCrossDeviceSessionFromLink(
+        link: String,
+        callback: (Result<MCrossDeviceSession>) -> Unit
+    ) {
+        MIRACLTrust.getInstance().getCrossDeviceSessionFromAppLink(link.toUri()) { result ->
+            when (result) {
+                is MIRACLSuccess -> {
+                    callback(Result.success(result.value.toMCrossDeviceSession))
+                }
+
+                is MIRACLError -> {
+                    val error = result.value
+                    val details = mutableMapOf<String, Any?>()
+
+                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
+                    if (error is CrossDeviceSessionException.GetCrossDeviceSessionFail && error.cause != null) {
+                        details["error"] = error.cause.toString()
+                    }
+
+                    callback(
+                        Result.failure(
+                            mapExceptionToFlutter(error, details)
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    fun getCrossDeviceSessionFromPayload(
+        payload: Map<String, String>,
+        callback: (Result<MCrossDeviceSession>) -> Unit
+    ) {
+        MIRACLTrust.getInstance().getCrossDeviceSessionFromNotificationPayload(payload) { result ->
+            when (result) {
+                is MIRACLSuccess -> {
+                    callback(Result.success(result.value.toMCrossDeviceSession))
+                }
+
+                is MIRACLError -> {
+                    val error = result.value
+                    val details = mutableMapOf<String, Any?>()
+
+                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
+                    if (error is CrossDeviceSessionException.GetCrossDeviceSessionFail && error.cause != null) {
+                        details["error"] = error.cause.toString()
+                    }
+
+                    callback(
+                        Result.failure(
+                            mapExceptionToFlutter(error, details)
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    fun authenticateCrossDeviceSession(
+        crossDeviceSession: MCrossDeviceSession,
+        user: MUser,
+        pin: String,
+        callback: (Result<Unit>) -> Unit
+    ) {
+        MIRACLTrust.getInstance().getUser(user.userId) { result ->
+            if (result is MIRACLError) {
+                callback(Result.failure(mapExceptionToFlutter(result.value)))
+                return@getUser
+            }
+
+            val user = (result as MIRACLSuccess).value!!
+            val crossDeviceSession = crossDeviceSession.toCrossDeviceSession
+
+            MIRACLTrust.getInstance().authenticateCrossDeviceSession(
+                crossDeviceSession = crossDeviceSession,
+                user = user,
+                pinProvider = { it.consume(pin) }
+            ) { result ->
+                when (result) {
+                    is MIRACLSuccess -> callback(Result.success(result.value))
+                    is MIRACLError -> {
+                        val error = result.value
+                        val details = mutableMapOf<String, Any?>()
+
+                        details["exceptionCode"] = error.flutterExceptionCodeRepresentation
+                        if (error is AuthenticationException.AuthenticationFail && error.cause != null) {
+                            details["error"] = error.cause.toString()
+                        }
+
+                        callback(
+                            Result.failure(
+                                mapExceptionToFlutter(error, details)
+                            )
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    fun signCrossDeviceSession(
+        crossDeviceSession: MCrossDeviceSession,
+        user: MUser,
+        pin: String,
+        callback: (Result<Unit>) -> Unit
+    ) {
+        MIRACLTrust.getInstance().getUser(user.userId) { result ->
+            if (result is MIRACLError) {
+                callback(Result.failure(mapExceptionToFlutter(result.value)))
+                return@getUser
+            }
+
+            val user = (result as MIRACLSuccess).value!!
+            val crossDeviceSession = crossDeviceSession.toCrossDeviceSession
+
+            MIRACLTrust.getInstance().signCrossDeviceSession(
+                crossDeviceSession = crossDeviceSession,
+                user = user,
+                pinProvider = { it.consume(pin) }
+            ) { result ->
+                when (result) {
+                    is MIRACLSuccess -> callback(Result.success(result.value))
+                    is MIRACLError -> {
+                        val error = result.value
+                        val details = mutableMapOf<String, Any?>()
+
+                        details["exceptionCode"] = error.flutterExceptionCodeRepresentation
+                        if (error is SigningException.SigningFail && error.cause != null) {
+                            details["error"] = error.cause.toString()
+                        }
+
+                        callback(
+                            Result.failure(
+                                mapExceptionToFlutter(error, details)
+                            )
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    fun abortCrossDeviceSession(
+        crossDeviceSession: MCrossDeviceSession,
+        callback: (Result<Unit>) -> Unit
+    ) {
+        val session = crossDeviceSession.toCrossDeviceSession
+        MIRACLTrust.getInstance().abortCrossDeviceSession(session) { result ->
+            when (result) {
+                is MIRACLSuccess -> {
+                    callback(Result.success(Unit))
+                }
+
+                is MIRACLError -> {
+                    val error = result.value
+                    val details = mutableMapOf<String, Any?>()
+
+                    details["exceptionCode"] = error.flutterExceptionCodeRepresentation
+                    if (error is CrossDeviceSessionException.GetCrossDeviceSessionFail && error.cause != null) {
+                        details["error"] = error.cause.toString()
+                    }
+
+                    callback(
+                        Result.failure(
+                            mapExceptionToFlutter(error, details)
+                        )
+                    )
                 }
             }
         }

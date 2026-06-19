@@ -41,6 +41,22 @@ enum MIdentityType {
   alphanumeric
 }
 
+class MCrossDeviceSession {
+  final String sessionId;
+  final String sessionDescription;
+  final String userId;
+  final String projectId;
+  final String signingHash;
+
+  MCrossDeviceSession(
+    this.sessionId,
+    this.sessionDescription,
+    this.userId,
+    this.projectId,
+    this.signingHash
+  );
+}
+
 class MAuthenticationSessionDetails {
   final String userId;
   final String projectName;
@@ -181,6 +197,15 @@ enum MQuickCodeExceptionCode {
   generationFail;
 }
 
+enum MCrossDeviceSessionExceptionCode {
+  invalidLink,
+  invalidQRCode,
+  invalidNotificationPayload,
+  invalidCrossDeviceSession,
+  getCrossDeviceSessionFail,
+  abortCrossDeviceSessionFail;
+}
+
 enum MAuthenticationSessionDetailsExceptionCode {
   invalidLink,
   invalidQRCode,
@@ -215,7 +240,10 @@ abstract class MiraclSdk {
   void setProjectId(String projectId);
 
   @async
-  MEmailVerificationResponse sendVerificationEmail(String userId);
+  MEmailVerificationResponse sendVerificationEmail(
+    String userId,
+    MCrossDeviceSession? crossDeviceSession
+  );
 
   @async
   MActivationTokenResponse getActivationTokenByURI(String uri);
@@ -278,6 +306,34 @@ abstract class MiraclSdk {
   MAuthenticationSessionDetails getAuthenticationSessionDetailsFromPushNofitifactionPayload(
     Map<String, String> payload
   );
+
+  @async
+  MCrossDeviceSession getCrossDeviceSessionFromQRCode(String qrCode);
+
+  @async
+  MCrossDeviceSession getCrossDeviceSessionFromLink(String link);
+
+  @async
+  MCrossDeviceSession getCrossDeviceSessionFromPushNotificationPayload(
+    Map<String, String> payload
+  );
+
+  @async
+  void authenticateCrossDeviceSession(
+    MCrossDeviceSession crossDeviceSession,
+    MUser user,
+    String pin
+  );
+
+  @async
+  void signCrossDeviceSession(
+    MCrossDeviceSession crossDeviceSession,
+    MUser user,
+    String pin
+  );
+
+  @async
+  void abortCrossDeviceSession(MCrossDeviceSession crossDeviceSession);
 }
 
 @FlutterApi()
