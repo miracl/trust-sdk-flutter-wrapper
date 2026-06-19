@@ -200,6 +200,15 @@ enum MQuickCodeExceptionCode: Int {
   case generationFail = 4
 }
 
+enum MCrossDeviceSessionExceptionCode: Int {
+  case invalidLink = 0
+  case invalidQRCode = 1
+  case invalidNotificationPayload = 2
+  case invalidCrossDeviceSession = 3
+  case getCrossDeviceSessionFail = 4
+  case abortCrossDeviceSessionFail = 5
+}
+
 enum MAuthenticationSessionDetailsExceptionCode: Int {
   case invalidLink = 0
   case invalidQRCode = 1
@@ -286,6 +295,47 @@ struct MActivationTokenResponse: Hashable {
     ]
   }
   static func == (lhs: MActivationTokenResponse, rhs: MActivationTokenResponse) -> Bool {
+    return deepEqualsPigeon(lhs.toList(), rhs.toList())  }
+  func hash(into hasher: inout Hasher) {
+    deepHashPigeon(value: toList(), hasher: &hasher)
+  }
+}
+
+/// Generated class from Pigeon that represents data sent in messages.
+struct MCrossDeviceSession: Hashable {
+  var sessionId: String
+  var sessionDescription: String
+  var userId: String
+  var projectId: String
+  var signingHash: String
+
+
+  // swift-format-ignore: AlwaysUseLowerCamelCase
+  static func fromList(_ pigeonVar_list: [Any?]) -> MCrossDeviceSession? {
+    let sessionId = pigeonVar_list[0] as! String
+    let sessionDescription = pigeonVar_list[1] as! String
+    let userId = pigeonVar_list[2] as! String
+    let projectId = pigeonVar_list[3] as! String
+    let signingHash = pigeonVar_list[4] as! String
+
+    return MCrossDeviceSession(
+      sessionId: sessionId,
+      sessionDescription: sessionDescription,
+      userId: userId,
+      projectId: projectId,
+      signingHash: signingHash
+    )
+  }
+  func toList() -> [Any?] {
+    return [
+      sessionId,
+      sessionDescription,
+      userId,
+      projectId,
+      signingHash,
+    ]
+  }
+  static func == (lhs: MCrossDeviceSession, rhs: MCrossDeviceSession) -> Bool {
     return deepEqualsPigeon(lhs.toList(), rhs.toList())  }
   func hash(into hasher: inout Hasher) {
     deepHashPigeon(value: toList(), hasher: &hasher)
@@ -631,32 +681,40 @@ private class PigeonPigeonCodecReader: FlutterStandardReader {
     case 138:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return MAuthenticationSessionDetailsExceptionCode(rawValue: enumResultAsInt)
+        return MCrossDeviceSessionExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 139:
       let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
       if let enumResultAsInt = enumResultAsInt {
-        return MSigningExceptionCode(rawValue: enumResultAsInt)
+        return MAuthenticationSessionDetailsExceptionCode(rawValue: enumResultAsInt)
       }
       return nil
     case 140:
-      return MConfiguration.fromList(self.readValue() as! [Any?])
+      let enumResultAsInt: Int? = nilOrValue(self.readValue() as! Int?)
+      if let enumResultAsInt = enumResultAsInt {
+        return MSigningExceptionCode(rawValue: enumResultAsInt)
+      }
+      return nil
     case 141:
-      return MActivationTokenResponse.fromList(self.readValue() as! [Any?])
+      return MConfiguration.fromList(self.readValue() as! [Any?])
     case 142:
-      return MAuthenticationSessionDetails.fromList(self.readValue() as! [Any?])
+      return MActivationTokenResponse.fromList(self.readValue() as! [Any?])
     case 143:
-      return MUser.fromList(self.readValue() as! [Any?])
+      return MCrossDeviceSession.fromList(self.readValue() as! [Any?])
     case 144:
-      return MQuickCode.fromList(self.readValue() as! [Any?])
+      return MAuthenticationSessionDetails.fromList(self.readValue() as! [Any?])
     case 145:
-      return MSignature.fromList(self.readValue() as! [Any?])
+      return MUser.fromList(self.readValue() as! [Any?])
     case 146:
-      return MSigningResult.fromList(self.readValue() as! [Any?])
+      return MQuickCode.fromList(self.readValue() as! [Any?])
     case 147:
-      return MActivationTokenErrorResponse.fromList(self.readValue() as! [Any?])
+      return MSignature.fromList(self.readValue() as! [Any?])
     case 148:
+      return MSigningResult.fromList(self.readValue() as! [Any?])
+    case 149:
+      return MActivationTokenErrorResponse.fromList(self.readValue() as! [Any?])
+    case 150:
       return MEmailVerificationResponse.fromList(self.readValue() as! [Any?])
     default:
       return super.readValue(ofType: type)
@@ -693,38 +751,44 @@ private class PigeonPigeonCodecWriter: FlutterStandardWriter {
     } else if let value = value as? MQuickCodeExceptionCode {
       super.writeByte(137)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MAuthenticationSessionDetailsExceptionCode {
+    } else if let value = value as? MCrossDeviceSessionExceptionCode {
       super.writeByte(138)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MSigningExceptionCode {
+    } else if let value = value as? MAuthenticationSessionDetailsExceptionCode {
       super.writeByte(139)
       super.writeValue(value.rawValue)
-    } else if let value = value as? MConfiguration {
+    } else if let value = value as? MSigningExceptionCode {
       super.writeByte(140)
-      super.writeValue(value.toList())
-    } else if let value = value as? MActivationTokenResponse {
+      super.writeValue(value.rawValue)
+    } else if let value = value as? MConfiguration {
       super.writeByte(141)
       super.writeValue(value.toList())
-    } else if let value = value as? MAuthenticationSessionDetails {
+    } else if let value = value as? MActivationTokenResponse {
       super.writeByte(142)
       super.writeValue(value.toList())
-    } else if let value = value as? MUser {
+    } else if let value = value as? MCrossDeviceSession {
       super.writeByte(143)
       super.writeValue(value.toList())
-    } else if let value = value as? MQuickCode {
+    } else if let value = value as? MAuthenticationSessionDetails {
       super.writeByte(144)
       super.writeValue(value.toList())
-    } else if let value = value as? MSignature {
+    } else if let value = value as? MUser {
       super.writeByte(145)
       super.writeValue(value.toList())
-    } else if let value = value as? MSigningResult {
+    } else if let value = value as? MQuickCode {
       super.writeByte(146)
       super.writeValue(value.toList())
-    } else if let value = value as? MActivationTokenErrorResponse {
+    } else if let value = value as? MSignature {
       super.writeByte(147)
       super.writeValue(value.toList())
-    } else if let value = value as? MEmailVerificationResponse {
+    } else if let value = value as? MSigningResult {
       super.writeByte(148)
+      super.writeValue(value.toList())
+    } else if let value = value as? MActivationTokenErrorResponse {
+      super.writeByte(149)
+      super.writeValue(value.toList())
+    } else if let value = value as? MEmailVerificationResponse {
+      super.writeByte(150)
       super.writeValue(value.toList())
     } else {
       super.writeValue(value)
@@ -752,7 +816,7 @@ protocol MiraclSdk {
   func initSdk(configuration: MConfiguration, completion: @escaping (Result<Void, Error>) -> Void)
   func updateProjectSettings(projectId: String, projectUrl: String, completion: @escaping (Result<Void, Error>) -> Void)
   func setProjectId(projectId: String, completion: @escaping (Result<Void, Error>) -> Void)
-  func sendVerificationEmail(userId: String, completion: @escaping (Result<MEmailVerificationResponse, Error>) -> Void)
+  func sendVerificationEmail(userId: String, crossDeviceSession: MCrossDeviceSession?, completion: @escaping (Result<MEmailVerificationResponse, Error>) -> Void)
   func getActivationTokenByURI(uri: String, completion: @escaping (Result<MActivationTokenResponse, Error>) -> Void)
   func getActivationTokenByUserIdAndCode(userId: String, code: String, completion: @escaping (Result<MActivationTokenResponse, Error>) -> Void)
   func getUsers(completion: @escaping (Result<[MUser], Error>) -> Void)
@@ -768,6 +832,12 @@ protocol MiraclSdk {
   func getAuthenticationSessionDetailsFromQRCode(qrCode: String, completion: @escaping (Result<MAuthenticationSessionDetails, Error>) -> Void)
   func getAuthenticationSessionDetailsFromLink(link: String, completion: @escaping (Result<MAuthenticationSessionDetails, Error>) -> Void)
   func getAuthenticationSessionDetailsFromPushNofitifactionPayload(payload: [String: String], completion: @escaping (Result<MAuthenticationSessionDetails, Error>) -> Void)
+  func getCrossDeviceSessionFromQRCode(qrCode: String, completion: @escaping (Result<MCrossDeviceSession, Error>) -> Void)
+  func getCrossDeviceSessionFromLink(link: String, completion: @escaping (Result<MCrossDeviceSession, Error>) -> Void)
+  func getCrossDeviceSessionFromPushNotificationPayload(payload: [String: String], completion: @escaping (Result<MCrossDeviceSession, Error>) -> Void)
+  func authenticateCrossDeviceSession(crossDeviceSession: MCrossDeviceSession, user: MUser, pin: String, completion: @escaping (Result<Void, Error>) -> Void)
+  func signCrossDeviceSession(crossDeviceSession: MCrossDeviceSession, user: MUser, pin: String, completion: @escaping (Result<Void, Error>) -> Void)
+  func abortCrossDeviceSession(crossDeviceSession: MCrossDeviceSession, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 /// Generated setup class from Pigeon to handle messages through the `binaryMessenger`.
@@ -833,7 +903,8 @@ class MiraclSdkSetup {
       sendVerificationEmailChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
         let userIdArg = args[0] as! String
-        api.sendVerificationEmail(userId: userIdArg) { result in
+        let crossDeviceSessionArg: MCrossDeviceSession? = nilOrValue(args[1])
+        api.sendVerificationEmail(userId: userIdArg, crossDeviceSession: crossDeviceSessionArg) { result in
           switch result {
           case .success(let res):
             reply(wrapResult(res))
@@ -1110,6 +1181,112 @@ class MiraclSdkSetup {
       }
     } else {
       getAuthenticationSessionDetailsFromPushNofitifactionPayloadChannel.setMessageHandler(nil)
+    }
+    let getCrossDeviceSessionFromQRCodeChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getCrossDeviceSessionFromQRCode\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      getCrossDeviceSessionFromQRCodeChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let qrCodeArg = args[0] as! String
+        api.getCrossDeviceSessionFromQRCode(qrCode: qrCodeArg) { result in
+          switch result {
+          case .success(let res):
+            reply(wrapResult(res))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      getCrossDeviceSessionFromQRCodeChannel.setMessageHandler(nil)
+    }
+    let getCrossDeviceSessionFromLinkChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getCrossDeviceSessionFromLink\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      getCrossDeviceSessionFromLinkChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let linkArg = args[0] as! String
+        api.getCrossDeviceSessionFromLink(link: linkArg) { result in
+          switch result {
+          case .success(let res):
+            reply(wrapResult(res))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      getCrossDeviceSessionFromLinkChannel.setMessageHandler(nil)
+    }
+    let getCrossDeviceSessionFromPushNotificationPayloadChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getCrossDeviceSessionFromPushNotificationPayload\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      getCrossDeviceSessionFromPushNotificationPayloadChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let payloadArg = args[0] as! [String: String]
+        api.getCrossDeviceSessionFromPushNotificationPayload(payload: payloadArg) { result in
+          switch result {
+          case .success(let res):
+            reply(wrapResult(res))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      getCrossDeviceSessionFromPushNotificationPayloadChannel.setMessageHandler(nil)
+    }
+    let authenticateCrossDeviceSessionChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.authenticateCrossDeviceSession\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      authenticateCrossDeviceSessionChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let crossDeviceSessionArg = args[0] as! MCrossDeviceSession
+        let userArg = args[1] as! MUser
+        let pinArg = args[2] as! String
+        api.authenticateCrossDeviceSession(crossDeviceSession: crossDeviceSessionArg, user: userArg, pin: pinArg) { result in
+          switch result {
+          case .success:
+            reply(wrapResult(nil))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      authenticateCrossDeviceSessionChannel.setMessageHandler(nil)
+    }
+    let signCrossDeviceSessionChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.signCrossDeviceSession\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      signCrossDeviceSessionChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let crossDeviceSessionArg = args[0] as! MCrossDeviceSession
+        let userArg = args[1] as! MUser
+        let pinArg = args[2] as! String
+        api.signCrossDeviceSession(crossDeviceSession: crossDeviceSessionArg, user: userArg, pin: pinArg) { result in
+          switch result {
+          case .success:
+            reply(wrapResult(nil))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      signCrossDeviceSessionChannel.setMessageHandler(nil)
+    }
+    let abortCrossDeviceSessionChannel = FlutterBasicMessageChannel(name: "dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.abortCrossDeviceSession\(channelSuffix)", binaryMessenger: binaryMessenger, codec: codec)
+    if let api = api {
+      abortCrossDeviceSessionChannel.setMessageHandler { message, reply in
+        let args = message as! [Any?]
+        let crossDeviceSessionArg = args[0] as! MCrossDeviceSession
+        api.abortCrossDeviceSession(crossDeviceSession: crossDeviceSessionArg) { result in
+          switch result {
+          case .success:
+            reply(wrapResult(nil))
+          case .failure(let error):
+            reply(wrapError(error))
+          }
+        }
+      }
+    } else {
+      abortCrossDeviceSessionChannel.setMessageHandler(nil)
     }
   }
 }

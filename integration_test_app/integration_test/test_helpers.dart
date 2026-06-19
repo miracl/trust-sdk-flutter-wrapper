@@ -69,15 +69,17 @@ Future<bool> verifyJWT(
   return true;
 }
 
-Future<String> startAuthenticationSession(
+Future<String> startSession(
   String projectId, 
   String userId, 
-  String projectUrl
+  String projectUrl,
+  [String? hash]
 ) async {
     var request = http.Request('POST', Uri.parse('$projectUrl/rps/v2/session'));
     final Map<String, dynamic> body = {
       'projectId': projectId,
       'userId': userId,
+      'hash': hash
     };
     final String jsonBody = jsonEncode(body);
     request.body = jsonBody;
@@ -125,4 +127,13 @@ Future<bool> verifySignature(
     http.StreamedResponse response = await request.send();
 
     return response.statusCode == 200;
+}
+
+String generateRandomHash() {
+  final random = Random();
+  final bytes = List.generate(16, (i) => random.nextInt(256));
+
+  return bytes
+      .map((byte) => byte.toRadixString(16).padLeft(2, '0'))
+      .join();
 }

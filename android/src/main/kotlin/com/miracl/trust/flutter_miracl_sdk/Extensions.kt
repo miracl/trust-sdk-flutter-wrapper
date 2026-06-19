@@ -7,7 +7,27 @@ import com.miracl.trust.registration.VerificationException
 import com.miracl.trust.registration.QuickCodeException
 import com.miracl.trust.registration.RegistrationException
 import com.miracl.trust.session.AuthenticationSessionException
+import com.miracl.trust.session.CrossDeviceSession
+import com.miracl.trust.session.CrossDeviceSessionException
 import com.miracl.trust.signing.SigningException
+
+internal val CrossDeviceSession.toMCrossDeviceSession: MCrossDeviceSession
+    get() = MCrossDeviceSession(
+        sessionId = sessionId,
+        sessionDescription = sessionDescription,
+        userId = userId,
+        projectId = projectId,
+        signingHash = signingHash
+    )
+
+internal val MCrossDeviceSession.toCrossDeviceSession: CrossDeviceSession
+    get() = CrossDeviceSession(
+        sessionId = sessionId,
+        sessionDescription = sessionDescription,
+        userId = userId,
+        projectId = projectId,
+        signingHash = signingHash
+    )
 
 internal val ConfigurationException.flutterExceptionCodeRepresentation: MConfigurationExceptionCode
     get() = when (this) {
@@ -66,6 +86,16 @@ internal val QuickCodeException.flutterExceptionCodeRepresentation: MQuickCodeEx
         QuickCodeException.PinCancelled -> MQuickCodeExceptionCode.PIN_CANCELLED
         QuickCodeException.Revoked -> MQuickCodeExceptionCode.REVOKED
         QuickCodeException.UnsuccessfulAuthentication -> MQuickCodeExceptionCode.UNSUCCESSFUL_AUTHENTICATION
+    }
+
+internal val CrossDeviceSessionException.flutterExceptionCodeRepresentation: MCrossDeviceSessionExceptionCode
+    get() = when (this) {
+        is CrossDeviceSessionException.AbortCrossDeviceSessionFail -> MCrossDeviceSessionExceptionCode.ABORT_CROSS_DEVICE_SESSION_FAIL
+        is CrossDeviceSessionException.GetCrossDeviceSessionFail -> MCrossDeviceSessionExceptionCode.GET_CROSS_DEVICE_SESSION_FAIL
+        CrossDeviceSessionException.InvalidAppLink -> MCrossDeviceSessionExceptionCode.INVALID_LINK
+        CrossDeviceSessionException.InvalidNotificationPayload -> MCrossDeviceSessionExceptionCode.INVALID_NOTIFICATION_PAYLOAD
+        CrossDeviceSessionException.InvalidQRCode -> MCrossDeviceSessionExceptionCode.INVALID_QRCODE
+        CrossDeviceSessionException.InvalidCrossDeviceSession -> MCrossDeviceSessionExceptionCode.INVALID_CROSS_DEVICE_SESSION
     }
 
 internal val AuthenticationSessionException.flutterExceptionCodeRepresentation: MAuthenticationSessionDetailsExceptionCode

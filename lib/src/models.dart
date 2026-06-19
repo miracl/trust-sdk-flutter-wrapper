@@ -171,6 +171,33 @@ enum IdentityType {
   }
 }
 
+/// An object representing details for an operation (authentication or signing)
+/// started on another device.
+class CrossDeviceSession {
+  /// The identifier of the session.
+  final String sessionId;
+
+  /// The description of the operation that needs to be done.
+  final String sessionDescription;
+
+  /// The User ID entered by the user when the session is started.
+  final String userId;
+
+  /// The Project ID setting for the application in the MIRACL Trust platform.
+  final String projectId;
+
+  /// The hash of the transaction that needs to be signed, if any.
+  final String signingHash;
+
+  CrossDeviceSession._create({
+    required this.sessionId,
+    required this.sessionDescription,
+    required this.userId,
+    required this.projectId,
+    required this.signingHash,
+  });
+}
+
 /// An object representing details from an incoming authentication session.
 class AuthenticationSessionDetails {
   /// The User ID entered by the user when the session is started.
