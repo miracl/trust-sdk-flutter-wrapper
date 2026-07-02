@@ -7,4 +7,5 @@ flutter test integration_test/compatiblity_test.dart \
     --dart-define=TEST_CUV_PROJECT_URL="$TEST_CUV_PROJECT_URL" \
     --dart-define=TEST_DV_PROJECT_URL="$TEST_DV_PROJECT_URL" \
     --timeout 30m \
-    --reporter expanded
+    --reporter expanded \
+    --verbose
