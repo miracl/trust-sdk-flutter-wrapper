@@ -306,6 +306,7 @@ class MIRACLTrust {
   ///
   /// Throws [AuthenticationSessionDetailsException] if fetching the session details
   /// fails (e.g., due to an invalid notification payload).
+  @Deprecated("Use 'getCrossDeviceSessionFromPushNotificationPayload' instead.")
   Future<AuthenticationSessionDetails> getAuthenticationSessionDetailsFromPushNofitifactionPayload(
     Map<String, String> payload
   ) async {
@@ -339,6 +340,7 @@ class MIRACLTrust {
   ///
   /// Throws [AuthenticationException] if the authentication process fails for
   /// any reason (e.g., incorrect PIN, invalid link, expired session).
+  @Deprecated("Use 'authenticateCrossDeviceSession' instead.")
   Future<void> authenticateWithLink(User user, Uri link, String pin) async {
     try {
       final mUser = user._toMUser();
@@ -369,6 +371,7 @@ class MIRACLTrust {
   ///
   /// Throws [AuthenticationException] if the authentication process fails for
   /// any reason (e.g., incorrect PIN, invalid QR code, expired session).
+  @Deprecated("Use 'authenticateCrossDeviceSession' instead.")
   Future<void> authenticateWithQRCode(User user, String qrCode, String pin) async {
     try {
       final mUser = user._toMUser();
@@ -399,6 +402,7 @@ class MIRACLTrust {
   /// Throws [AuthenticationException] if the authentication process fails for
   /// any reason (e.g., incorrect PIN, invalid push notification payload,
   /// expired session).
+  @Deprecated("Use 'authenticateCrossDeviceSession' instead.")
   Future<void> authenticateWithNotificationPayload(Map<String, String> payload, String pin) async {
     try {
       await _sdk.authenticateWithNotificationPayload(payload, pin);
@@ -617,6 +621,7 @@ class MIRACLTrust {
   ///
   /// Throws [AuthenticationSessionDetailsException] if fetching the session details
   /// fails (e.g., due to an invalid or expired QR code).
+  @Deprecated("Use 'getCrossDeviceSessionFromQRCode' instead.")
   Future<AuthenticationSessionDetails> getAuthenticationSessionDetailsFromQRCode(String qrCode) async {
     try {
       final mAuthenticationSessionDetails = await _sdk.getAuthenticationSessionDetailsFromQRCode(qrCode);
@@ -645,6 +650,7 @@ class MIRACLTrust {
   ///
   /// Throws [AuthenticationSessionDetailsException] if fetching the session details
   /// fails (e.g., due to an invalid or expired deep link).
+  @Deprecated("Use 'getCrossDeviceSessionFromLink' instead.")
   Future<AuthenticationSessionDetails> getAuthenticationSessionDetailsFromLink(Uri link) async {
     try {
       final mAuthenticationSessionDetails = await _sdk.getAuthenticationSessionDetailsFromLink(link.toString());
