@@ -214,6 +214,7 @@ class CrossDeviceSessionException implements Exception {
 }
 
 /// An enumeration that describes authentication session management issues.
+@Deprecated("Switch to the new CrossDeviceSession APIs.")
 enum AuthenticationSessionDetailsExceptionCode {
   /// Could not find the session identifier in the link.
   invalidLink,
@@ -235,6 +236,7 @@ enum AuthenticationSessionDetailsExceptionCode {
 }
 
 /// An exception thrown when there is an issue with the authentication session management.
+@Deprecated("Switch to the new CrossDeviceSession APIs.")
 class AuthenticationSessionDetailsException implements Exception {
   /// The specific [AuthenticationSessionDetailsExceptionCode] indicating the type of error.
   final AuthenticationSessionDetailsExceptionCode code;

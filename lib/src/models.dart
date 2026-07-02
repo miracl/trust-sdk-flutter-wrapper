@@ -199,6 +199,7 @@ class CrossDeviceSession {
 }
 
 /// An object representing details from an incoming authentication session.
+@Deprecated("Switch to the new CrossDeviceSession APIs.")
 class AuthenticationSessionDetails {
   /// The User ID entered by the user when the session is started.
   final String userId;
