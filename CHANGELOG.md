@@ -89,3 +89,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ## 0.9.0
 
 * Remove legacy signing session API and update dependencies.
+
+## 0.10.0
+
+* Introduce a new session API and deprecate the old one.
