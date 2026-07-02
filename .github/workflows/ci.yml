@@ -77,7 +77,7 @@ jobs:
             ./run-tests.sh emulator-5554
 
   tests-ios:
-    runs-on: macos-latest
+    runs-on: macos-26
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -102,9 +102,9 @@ jobs:
           TEST_DV_PROJECT_URL: ${{ vars.TEST_DV_PROJECT_URL }}
         run: |
           flutter config --enable-swift-package-manager
-          xcrun simctl erase "iPhone 16"
-          xcrun simctl boot "iPhone 16"
-          xcrun simctl bootstatus "iPhone 16" -b
+          xcrun simctl erase "iPhone 17"
+          xcrun simctl boot "iPhone 17"
+          xcrun simctl bootstatus "iPhone 17" -b
           SIMULATOR_NAME="$(xcrun simctl list devices | grep "(Booted)" | grep -E -o -i "([0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12})")"
           flutter clean
           flutter pub get
