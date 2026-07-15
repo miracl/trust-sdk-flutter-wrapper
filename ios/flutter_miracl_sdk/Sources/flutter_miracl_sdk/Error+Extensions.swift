@@ -118,6 +118,25 @@ extension QuickCodeError {
     }
 }
 
+extension CrossDeviceSessionError {
+    var flutterExceptionCodeRepresentation: MCrossDeviceSessionExceptionCode {
+        switch self {
+        case .abortCrossDeviceSessionFail:
+            return MCrossDeviceSessionExceptionCode.abortCrossDeviceSessionFail
+        case .getCrossDeviceSessionFail:
+            return MCrossDeviceSessionExceptionCode.getCrossDeviceSessionFail
+        case .invalidCrossDeviceSession:
+            return MCrossDeviceSessionExceptionCode.invalidCrossDeviceSession
+        case .invalidPushNotificationPayload:
+            return MCrossDeviceSessionExceptionCode.invalidNotificationPayload
+        case .invalidQRCode:
+            return MCrossDeviceSessionExceptionCode.invalidQRCode
+        case .invalidUniversalLinkURL:
+            return MCrossDeviceSessionExceptionCode.invalidLink
+        }
+    }
+}
+
 extension AuthenticationSessionError {
     var flutterExceptionCodeRepresentation: MAuthenticationSessionDetailsExceptionCode {
         switch self {

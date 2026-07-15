@@ -107,6 +107,15 @@ enum MQuickCodeExceptionCode {
   generationFail,
 }
 
+enum MCrossDeviceSessionExceptionCode {
+  invalidLink,
+  invalidQRCode,
+  invalidNotificationPayload,
+  invalidCrossDeviceSession,
+  getCrossDeviceSessionFail,
+  abortCrossDeviceSessionFail,
+}
+
 enum MAuthenticationSessionDetailsExceptionCode {
   invalidLink,
   invalidQRCode,
@@ -222,6 +231,67 @@ class MActivationTokenResponse {
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) {
     if (other is! MActivationTokenResponse || other.runtimeType != runtimeType) {
+      return false;
+    }
+    if (identical(this, other)) {
+      return true;
+    }
+    return _deepEquals(encode(), other.encode());
+  }
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => Object.hashAll(_toList())
+;
+}
+
+class MCrossDeviceSession {
+  MCrossDeviceSession({
+    required this.sessionId,
+    required this.sessionDescription,
+    required this.userId,
+    required this.projectId,
+    required this.signingHash,
+  });
+
+  String sessionId;
+
+  String sessionDescription;
+
+  String userId;
+
+  String projectId;
+
+  String signingHash;
+
+  List<Object?> _toList() {
+    return <Object?>[
+      sessionId,
+      sessionDescription,
+      userId,
+      projectId,
+      signingHash,
+    ];
+  }
+
+  Object encode() {
+    return _toList();  }
+
+  static MCrossDeviceSession decode(Object result) {
+    result as List<Object?>;
+    return MCrossDeviceSession(
+      sessionId: result[0]! as String,
+      sessionDescription: result[1]! as String,
+      userId: result[2]! as String,
+      projectId: result[3]! as String,
+      signingHash: result[4]! as String,
+    );
+  }
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) {
+    if (other is! MCrossDeviceSession || other.runtimeType != runtimeType) {
       return false;
     }
     if (identical(this, other)) {
@@ -688,38 +758,44 @@ class _PigeonCodec extends StandardMessageCodec {
     }    else if (value is MQuickCodeExceptionCode) {
       buffer.putUint8(137);
       writeValue(buffer, value.index);
-    }    else if (value is MAuthenticationSessionDetailsExceptionCode) {
+    }    else if (value is MCrossDeviceSessionExceptionCode) {
       buffer.putUint8(138);
       writeValue(buffer, value.index);
-    }    else if (value is MSigningExceptionCode) {
+    }    else if (value is MAuthenticationSessionDetailsExceptionCode) {
       buffer.putUint8(139);
       writeValue(buffer, value.index);
-    }    else if (value is MConfiguration) {
+    }    else if (value is MSigningExceptionCode) {
       buffer.putUint8(140);
-      writeValue(buffer, value.encode());
-    }    else if (value is MActivationTokenResponse) {
+      writeValue(buffer, value.index);
+    }    else if (value is MConfiguration) {
       buffer.putUint8(141);
       writeValue(buffer, value.encode());
-    }    else if (value is MAuthenticationSessionDetails) {
+    }    else if (value is MActivationTokenResponse) {
       buffer.putUint8(142);
       writeValue(buffer, value.encode());
-    }    else if (value is MUser) {
+    }    else if (value is MCrossDeviceSession) {
       buffer.putUint8(143);
       writeValue(buffer, value.encode());
-    }    else if (value is MQuickCode) {
+    }    else if (value is MAuthenticationSessionDetails) {
       buffer.putUint8(144);
       writeValue(buffer, value.encode());
-    }    else if (value is MSignature) {
+    }    else if (value is MUser) {
       buffer.putUint8(145);
       writeValue(buffer, value.encode());
-    }    else if (value is MSigningResult) {
+    }    else if (value is MQuickCode) {
       buffer.putUint8(146);
       writeValue(buffer, value.encode());
-    }    else if (value is MActivationTokenErrorResponse) {
+    }    else if (value is MSignature) {
       buffer.putUint8(147);
       writeValue(buffer, value.encode());
-    }    else if (value is MEmailVerificationResponse) {
+    }    else if (value is MSigningResult) {
       buffer.putUint8(148);
+      writeValue(buffer, value.encode());
+    }    else if (value is MActivationTokenErrorResponse) {
+      buffer.putUint8(149);
+      writeValue(buffer, value.encode());
+    }    else if (value is MEmailVerificationResponse) {
+      buffer.putUint8(150);
       writeValue(buffer, value.encode());
     } else {
       super.writeValue(buffer, value);
@@ -758,27 +834,32 @@ class _PigeonCodec extends StandardMessageCodec {
         return value == null ? null : MQuickCodeExceptionCode.values[value];
       case 138: 
         final value = readValue(buffer) as int?;
-        return value == null ? null : MAuthenticationSessionDetailsExceptionCode.values[value];
+        return value == null ? null : MCrossDeviceSessionExceptionCode.values[value];
       case 139: 
         final value = readValue(buffer) as int?;
-        return value == null ? null : MSigningExceptionCode.values[value];
+        return value == null ? null : MAuthenticationSessionDetailsExceptionCode.values[value];
       case 140: 
-        return MConfiguration.decode(readValue(buffer)!);
+        final value = readValue(buffer) as int?;
+        return value == null ? null : MSigningExceptionCode.values[value];
       case 141: 
-        return MActivationTokenResponse.decode(readValue(buffer)!);
+        return MConfiguration.decode(readValue(buffer)!);
       case 142: 
-        return MAuthenticationSessionDetails.decode(readValue(buffer)!);
+        return MActivationTokenResponse.decode(readValue(buffer)!);
       case 143: 
-        return MUser.decode(readValue(buffer)!);
+        return MCrossDeviceSession.decode(readValue(buffer)!);
       case 144: 
-        return MQuickCode.decode(readValue(buffer)!);
+        return MAuthenticationSessionDetails.decode(readValue(buffer)!);
       case 145: 
-        return MSignature.decode(readValue(buffer)!);
+        return MUser.decode(readValue(buffer)!);
       case 146: 
-        return MSigningResult.decode(readValue(buffer)!);
+        return MQuickCode.decode(readValue(buffer)!);
       case 147: 
-        return MActivationTokenErrorResponse.decode(readValue(buffer)!);
+        return MSignature.decode(readValue(buffer)!);
       case 148: 
+        return MSigningResult.decode(readValue(buffer)!);
+      case 149: 
+        return MActivationTokenErrorResponse.decode(readValue(buffer)!);
+      case 150: 
         return MEmailVerificationResponse.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
@@ -865,14 +946,14 @@ class MiraclSdk {
     }
   }
 
-  Future<MEmailVerificationResponse> sendVerificationEmail(String userId) async {
+  Future<MEmailVerificationResponse> sendVerificationEmail(String userId, MCrossDeviceSession? crossDeviceSession) async {
     final pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.sendVerificationEmail$pigeonVar_messageChannelSuffix';
     final pigeonVar_channel = BasicMessageChannel<Object?>(
       pigeonVar_channelName,
       pigeonChannelCodec,
       binaryMessenger: pigeonVar_binaryMessenger,
     );
-    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[userId]);
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[userId, crossDeviceSession]);
     final pigeonVar_replyList = await pigeonVar_sendFuture as List<Object?>?;
     if (pigeonVar_replyList == null) {
       throw _createConnectionError(pigeonVar_channelName);
@@ -1284,6 +1365,153 @@ class MiraclSdk {
       );
     } else {
       return (pigeonVar_replyList[0] as MAuthenticationSessionDetails?)!;
+    }
+  }
+
+  Future<MCrossDeviceSession> getCrossDeviceSessionFromQRCode(String qrCode) async {
+    final pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getCrossDeviceSessionFromQRCode$pigeonVar_messageChannelSuffix';
+    final pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[qrCode]);
+    final pigeonVar_replyList = await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else if (pigeonVar_replyList[0] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (pigeonVar_replyList[0] as MCrossDeviceSession?)!;
+    }
+  }
+
+  Future<MCrossDeviceSession> getCrossDeviceSessionFromLink(String link) async {
+    final pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getCrossDeviceSessionFromLink$pigeonVar_messageChannelSuffix';
+    final pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[link]);
+    final pigeonVar_replyList = await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else if (pigeonVar_replyList[0] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (pigeonVar_replyList[0] as MCrossDeviceSession?)!;
+    }
+  }
+
+  Future<MCrossDeviceSession> getCrossDeviceSessionFromPushNotificationPayload(Map<String, String> payload) async {
+    final pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.getCrossDeviceSessionFromPushNotificationPayload$pigeonVar_messageChannelSuffix';
+    final pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[payload]);
+    final pigeonVar_replyList = await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else if (pigeonVar_replyList[0] == null) {
+      throw PlatformException(
+        code: 'null-error',
+        message: 'Host platform returned null value for non-null return value.',
+      );
+    } else {
+      return (pigeonVar_replyList[0] as MCrossDeviceSession?)!;
+    }
+  }
+
+  Future<void> authenticateCrossDeviceSession(MCrossDeviceSession crossDeviceSession, MUser user, String pin) async {
+    final pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.authenticateCrossDeviceSession$pigeonVar_messageChannelSuffix';
+    final pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[crossDeviceSession, user, pin]);
+    final pigeonVar_replyList = await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> signCrossDeviceSession(MCrossDeviceSession crossDeviceSession, MUser user, String pin) async {
+    final pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.signCrossDeviceSession$pigeonVar_messageChannelSuffix';
+    final pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[crossDeviceSession, user, pin]);
+    final pigeonVar_replyList = await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else {
+      return;
+    }
+  }
+
+  Future<void> abortCrossDeviceSession(MCrossDeviceSession crossDeviceSession) async {
+    final pigeonVar_channelName = 'dev.flutter.pigeon.flutter_miracl_sdk.MiraclSdk.abortCrossDeviceSession$pigeonVar_messageChannelSuffix';
+    final pigeonVar_channel = BasicMessageChannel<Object?>(
+      pigeonVar_channelName,
+      pigeonChannelCodec,
+      binaryMessenger: pigeonVar_binaryMessenger,
+    );
+    final Future<Object?> pigeonVar_sendFuture = pigeonVar_channel.send(<Object?>[crossDeviceSession]);
+    final pigeonVar_replyList = await pigeonVar_sendFuture as List<Object?>?;
+    if (pigeonVar_replyList == null) {
+      throw _createConnectionError(pigeonVar_channelName);
+    } else if (pigeonVar_replyList.length > 1) {
+      throw PlatformException(
+        code: pigeonVar_replyList[0]! as String,
+        message: pigeonVar_replyList[1] as String?,
+        details: pigeonVar_replyList[2],
+      );
+    } else {
+      return;
     }
   }
 }

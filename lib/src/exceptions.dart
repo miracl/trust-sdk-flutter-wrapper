@@ -181,7 +181,40 @@ class QuickCodeException implements Exception {
   QuickCodeException._create(this.code, this.underlyingError);
 }
 
+/// An enumeration that describes cross-device session management issues.
+enum CrossDeviceSessionExceptionCode {
+  /// Could not find the session identifier in the link.
+  invalidLink,
+
+  /// Could not find the session identifier in the QR code.
+  invalidQRCode,
+
+  /// Could not find the session identifier in the push notification payload.
+  invalidNotificationPayload,
+
+  /// The session identifier in the [CrossDeviceSession] is empty or blank.
+  invalidCrossDeviceSession,
+
+  /// Fetching the cross-device session details failed.
+  getCrossDeviceSessionFail,
+
+  /// Cross-device session abort failed.
+  abortCrossDeviceSessionFail;
+}
+
+/// An exception thrown when there is an issue with the cross-device session management.
+class CrossDeviceSessionException implements Exception {
+  /// The specific [CrossDeviceSessionExceptionCode] indicating the type of error.
+  final CrossDeviceSessionExceptionCode code;
+
+  /// An optional, human-readable message providing more details about the error.
+  final String? underlyingError;
+
+  CrossDeviceSessionException._create(this.code, this.underlyingError);
+}
+
 /// An enumeration that describes authentication session management issues.
+@Deprecated("Switch to the new CrossDeviceSession APIs.")
 enum AuthenticationSessionDetailsExceptionCode {
   /// Could not find the session identifier in the link.
   invalidLink,
@@ -203,6 +236,7 @@ enum AuthenticationSessionDetailsExceptionCode {
 }
 
 /// An exception thrown when there is an issue with the authentication session management.
+@Deprecated("Switch to the new CrossDeviceSession APIs.")
 class AuthenticationSessionDetailsException implements Exception {
   /// The specific [AuthenticationSessionDetailsExceptionCode] indicating the type of error.
   final AuthenticationSessionDetailsExceptionCode code;

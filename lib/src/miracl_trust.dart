@@ -135,15 +135,17 @@ class MIRACLTrust {
 
   /// Sends an email for User ID verification.
   ///
-  /// [userId] should be a valid email address, as it's used for identity verification.
+  /// - [userId] should be a valid email address, as it's used for identity verification.
+  /// - [crossDeviceSession] is the session from which the verification is initiated.
   /// 
   /// Throws [EmailVerificationException] if the email sending fails or
   /// if another issue occurs during the email verification process.
-  Future<EmailVerificationResponse> sendVerificationEmail(String userId) async {
+  Future<EmailVerificationResponse> sendVerificationEmail(String userId, {CrossDeviceSession? crossDeviceSession}) async {
     try {
-      final response = await _sdk.sendVerificationEmail(userId);
-      final emailVerificationResponse = response._toEmailVerificationResponse();
-      return emailVerificationResponse;
+      final mCrossDeviceSession = crossDeviceSession?._toMCrossDeviceSession();
+      final response = await _sdk.sendVerificationEmail(userId, mCrossDeviceSession);
+
+      return response._toEmailVerificationResponse();
     } on PlatformException catch(e) {
       final exceptionCode = e._getExceptionCode();
       if(exceptionCode is MEmailVerificationExceptionCode) {
@@ -304,6 +306,7 @@ class MIRACLTrust {
   ///
   /// Throws [AuthenticationSessionDetailsException] if fetching the session details
   /// fails (e.g., due to an invalid notification payload).
+  @Deprecated("Use 'getCrossDeviceSessionFromPushNotificationPayload' instead.")
   Future<AuthenticationSessionDetails> getAuthenticationSessionDetailsFromPushNofitifactionPayload(
     Map<String, String> payload
   ) async {
@@ -337,6 +340,7 @@ class MIRACLTrust {
   ///
   /// Throws [AuthenticationException] if the authentication process fails for
   /// any reason (e.g., incorrect PIN, invalid link, expired session).
+  @Deprecated("Use 'authenticateCrossDeviceSession' instead.")
   Future<void> authenticateWithLink(User user, Uri link, String pin) async {
     try {
       final mUser = user._toMUser();
@@ -367,6 +371,7 @@ class MIRACLTrust {
   ///
   /// Throws [AuthenticationException] if the authentication process fails for
   /// any reason (e.g., incorrect PIN, invalid QR code, expired session).
+  @Deprecated("Use 'authenticateCrossDeviceSession' instead.")
   Future<void> authenticateWithQRCode(User user, String qrCode, String pin) async {
     try {
       final mUser = user._toMUser();
@@ -397,6 +402,7 @@ class MIRACLTrust {
   /// Throws [AuthenticationException] if the authentication process fails for
   /// any reason (e.g., incorrect PIN, invalid push notification payload,
   /// expired session).
+  @Deprecated("Use 'authenticateCrossDeviceSession' instead.")
   Future<void> authenticateWithNotificationPayload(Map<String, String> payload, String pin) async {
     try {
       await _sdk.authenticateWithNotificationPayload(payload, pin);
@@ -442,6 +448,169 @@ class MIRACLTrust {
     }
   }
 
+  /// Gets [CrossDeviceSession] from the MIRACL Trust platform using a QR code.
+  ///
+  /// Use this method to get cross-device session for an application that is authenticating
+  /// against the MIRACL Trust Platform via a QR code.
+  ///
+  /// Parameters:
+  /// - [qrCode]: The raw string content read from the QR code.
+  ///
+  /// Throws [CrossDeviceSessionException] if fetching the cross-device session
+  /// fails (e.g., due to an invalid or expired QR code).
+  Future<CrossDeviceSession> getCrossDeviceSessionFromQRCode(String qrCode) async {
+    try {
+      final mCrossDeviceSession = await _sdk.getCrossDeviceSessionFromQRCode(qrCode);
+      return mCrossDeviceSession._toCrossDeviceSession();
+    } on PlatformException catch (e) {
+      final exceptionCode = e._getExceptionCode();
+      if (exceptionCode is MCrossDeviceSessionExceptionCode) {
+        throw CrossDeviceSessionException._create(
+          exceptionCode.toCrossDeviceSessionExceptionCode(),
+          e.details["error"]
+        );
+      } else {
+        rethrow;
+      }
+    }
+  }
+
+  /// Gets [CrossDeviceSession] from the MIRACL Trust platform using a QR code.
+  ///
+  /// Use this method to get cross-device session for an application that is authenticating
+  /// against the MIRACL Trust Platform via a QR code.
+  ///
+  /// Parameters:
+  /// - [qrCode]: The raw string content read from the QR code.
+  ///
+  /// Throws [CrossDeviceSessionException] if fetching the cross-device session
+  /// fails (e.g., due to an invalid or expired QR code).
+  Future<CrossDeviceSession> getCrossDeviceSessionFromLink(Uri link) async {
+    try {
+      final mCrossDeviceSession = await _sdk.getCrossDeviceSessionFromLink(link.toString());
+      return mCrossDeviceSession._toCrossDeviceSession();
+    } on PlatformException catch (e) {
+      final exceptionCode = e._getExceptionCode();
+      if (exceptionCode is MCrossDeviceSessionExceptionCode) {
+        throw CrossDeviceSessionException._create(
+          exceptionCode.toCrossDeviceSessionExceptionCode(),
+          e.details["error"]
+        );
+      } else {
+        rethrow;
+      }
+    }
+  }
+
+  /// Gets [CrossDeviceSession] from the MIRACL Trust platform using a push notification.
+  ///
+  /// Use this method to get cross-device session for an application that is authenticating
+  /// against the MIRACL Trust Platform via a push notification.
+  ///
+  /// Parameters:
+  /// - [payload]: Key-value data provided by the notification.
+  ///
+  /// Throws [CrossDeviceSessionException] if fetching the cross-device session
+  /// fails (e.g., due to an invalid notification payload).
+  Future<CrossDeviceSession> getCrossDeviceSessionFromPushNotificationPayload(
+    Map<String, String> payload
+  ) async {
+    try {
+      final mCrossDeviceSession = await _sdk.getCrossDeviceSessionFromPushNotificationPayload(payload);
+      return mCrossDeviceSession._toCrossDeviceSession();
+    } on PlatformException catch (e) {
+      final exceptionCode = e._getExceptionCode();
+      if (exceptionCode is MCrossDeviceSessionExceptionCode) {
+        throw CrossDeviceSessionException._create(
+          exceptionCode.toCrossDeviceSessionExceptionCode(),
+          e.details["error"]
+        );
+      } else {
+        rethrow;
+      }
+    }
+  }
+
+  /// Authenticates the [user] on another device or application using [CrossDeviceSession].
+  ///
+  /// Parameters:
+  /// - [crossDeviceSession]: The details for the authentication operation.
+  /// - [user]: The [User] to authenticate.
+  /// - [pin]: The user's PIN.
+  ///
+  /// Throws [AuthenticationException] if the authentication process fails for
+  /// any reason (e.g., incorrect PIN, revoked user).
+  Future<void> authenticateCrossDeviceSession(CrossDeviceSession crossDeviceSession, User user, String pin) async {
+    try {
+      final mUser = user._toMUser();
+      final mCrossDeviceSession = crossDeviceSession._toMCrossDeviceSession();
+
+      return await _sdk.authenticateCrossDeviceSession(mCrossDeviceSession, mUser, pin);
+    } on PlatformException catch(e) {
+      final exceptionCode = e._getExceptionCode();
+      if (exceptionCode is MAuthenticationExceptionCode) {
+        throw AuthenticationException._create(
+          exceptionCode.toAuthenticationExceptionCode(),
+          e.details["error"]
+        );
+      } else {
+        rethrow;
+      }
+    }
+  }
+
+  /// Generates a signature for a hash provided by the [crossDeviceSession] and updates the session.
+  ///
+  /// Parameters:
+  /// - [crossDeviceSession]: The details for the signing operation.
+  /// - [user]: The [User] to sign with.
+  /// - [pin]: The user's PIN.
+  ///
+  /// Throws [SigningException] if the signing process fails for
+  /// any reason (e.g., incorrect PIN, revoked user).
+  Future<void> signCrossDeviceSession(CrossDeviceSession crossDeviceSession, User user, String pin) async {
+    try {
+      final mUser = user._toMUser();
+      final mCrossDeviceSession = crossDeviceSession._toMCrossDeviceSession();
+
+      return await _sdk.signCrossDeviceSession(mCrossDeviceSession, mUser, pin);
+    } on PlatformException catch(e) {
+      final exceptionCode = e._getExceptionCode();
+      if (exceptionCode is MSigningExceptionCode) {
+        throw SigningException._create(
+          exceptionCode.toSigningExceptionCode(),
+          e.details["error"]
+        );
+      } else {
+        rethrow;
+      }
+    }
+  }
+
+  /// Cancels an ongoing [CrossDeviceSession].
+  ///
+  /// Parameters:
+  /// - [crossDeviceSession]: The cross-device session to cancel.
+  ///
+  /// Throws [CrossDeviceSessionException] if aborting the cross-device session
+  /// fails.
+  Future<void> abortCrossDeviceSession(CrossDeviceSession crossDeviceSession) async {
+    try {
+      final mCrossDeviceSession = crossDeviceSession._toMCrossDeviceSession();
+      await _sdk.abortCrossDeviceSession(mCrossDeviceSession);
+    } on PlatformException catch (e) {
+      final exceptionCode = e._getExceptionCode();
+      if (exceptionCode is MCrossDeviceSessionExceptionCode) {
+        throw CrossDeviceSessionException._create(
+          exceptionCode.toCrossDeviceSessionExceptionCode(),
+          e.details["error"]
+        );
+      } else {
+        rethrow;
+      }
+    }
+  }
+
   /// Gets [AuthenticationSessionDetails] from the MIRACL Trust platform using a QR code.
   ///
   /// Use this method to get session details for an application that is authenticating
@@ -452,6 +621,7 @@ class MIRACLTrust {
   ///
   /// Throws [AuthenticationSessionDetailsException] if fetching the session details
   /// fails (e.g., due to an invalid or expired QR code).
+  @Deprecated("Use 'getCrossDeviceSessionFromQRCode' instead.")
   Future<AuthenticationSessionDetails> getAuthenticationSessionDetailsFromQRCode(String qrCode) async {
     try {
       final mAuthenticationSessionDetails = await _sdk.getAuthenticationSessionDetailsFromQRCode(qrCode);
@@ -480,6 +650,7 @@ class MIRACLTrust {
   ///
   /// Throws [AuthenticationSessionDetailsException] if fetching the session details
   /// fails (e.g., due to an invalid or expired deep link).
+  @Deprecated("Use 'getCrossDeviceSessionFromLink' instead.")
   Future<AuthenticationSessionDetails> getAuthenticationSessionDetailsFromLink(Uri link) async {
     try {
       final mAuthenticationSessionDetails = await _sdk.getAuthenticationSessionDetailsFromLink(link.toString());

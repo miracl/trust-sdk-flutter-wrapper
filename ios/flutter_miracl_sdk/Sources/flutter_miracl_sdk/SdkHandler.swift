@@ -89,38 +89,64 @@ public class SdkHandler: NSObject, MiraclSdk {
       }
   }
     
-  func sendVerificationEmail(
-      userId: String, 
-     completion: @escaping (Result<MEmailVerificationResponse, Error>) -> Void
-  ) {
-    MIRACLTrust.getInstance().sendVerificationEmail(userId: userId) { response, error in
+    func sendVerificationEmail(
+        userId: String,
+        crossDeviceSession: MCrossDeviceSession?,
+        completion: @escaping (Result<MEmailVerificationResponse, Error>) -> Void
+    ) {
+        let handler: VerificationCompletionHandler = { response, error in
+            self.handleVerificationEmailResponse(
+                response: response,
+                error: error,
+                completion: completion
+            )
+        }
+        
+        if let session = crossDeviceSession?.toCrossDeviceSession() {
+            MIRACLTrust.getInstance().sendVerificationEmail(
+                userId: userId,
+                crossDeviceSession: session,
+                completionHandler: handler
+            )
+        } else {
+            MIRACLTrust.getInstance().sendVerificationEmail(
+                userId: userId,
+                completionHandler: handler
+            )
+        }
+    }
+    
+    private func handleVerificationEmailResponse(
+        response: VerificationResponse?,
+        error: Error?,
+        completion: @escaping (Result<MEmailVerificationResponse, Error>) -> Void
+    ) {
         if let error {
             var details = [String: Any]()
-
+            
             if let verificationError = error as? VerificationError {
                 details["exceptionCode"] = verificationError.flutterExceptionCodeRepresentation
             }
-
+            
             if case let VerificationError.verificaitonFail(verificationError)
-                            = error, let verificationError { 
-                details["error"] = verificationError.errorDebugDescription       
+                = error, let verificationError {
+                details["error"] = verificationError.errorDebugDescription
             }
-
-            if case let VerificationError.requestBackoff(backoff) = error { 
-                details["backoff"] = backoff      
+            
+            if case let VerificationError.requestBackoff(backoff) = error {
+                details["backoff"] = backoff
             }
-
+            
             let pigeonError = self.createPigeonError(error: error, details: details)
             completion(Result.failure(pigeonError));
         } else if let response {
             let mEmailVerificationResponse = MEmailVerificationResponse(
-              backoff: Int64(response.backoff),
-              emailVerificationMethod: MEmailVerificationMethod(rawValue: response.method.rawValue) ?? .link
+                backoff: Int64(response.backoff),
+                emailVerificationMethod: MEmailVerificationMethod(rawValue: response.method.rawValue) ?? .link
             )
             completion(Result.success(mEmailVerificationResponse))
         }
     }
-  }
 
   func getActivationTokenByURI(
     uri: String, 
@@ -440,6 +466,158 @@ public class SdkHandler: NSObject, MiraclSdk {
         }
      }
   }
+    
+    func getCrossDeviceSessionFromQRCode(
+        qrCode: String,
+        completion: @escaping (Result<MCrossDeviceSession, Error>) -> Void
+    ) {
+        MIRACLTrust.getInstance().getCrossDeviceSessionFromQRCode(qrCode: qrCode) { session, error in
+            if let error {
+                var details = [String: Any]()
+                
+                if let crossDeviceSessionError = error as? CrossDeviceSessionError {
+                    details["exceptionCode"] = crossDeviceSessionError.flutterExceptionCodeRepresentation
+                }
+                
+                if case let CrossDeviceSessionError.getCrossDeviceSessionFail(crossDeviceSessionError) = error, let crossDeviceSessionError {
+                    details["error"] = crossDeviceSessionError.errorDebugDescription
+                }
+                
+                let pigeonError = self.createPigeonError(error: error, details: details)
+                completion(Result.failure(pigeonError));
+            } else if let session {
+                completion(Result.success(session.toMCrossDeviceSession()))
+            }
+        }
+    }
+    
+    func getCrossDeviceSessionFromLink(
+        link: String,
+        completion: @escaping (Result<MCrossDeviceSession, Error>) -> Void
+    ) {
+        MIRACLTrust.getInstance().getCrossDeviceSessionFromUniversalLinkURL(
+            universalLinkURL: URL(string: link)!
+        ) { session, error in
+            if let error {
+                var details = [String: Any]()
+                
+                if let crossDeviceSessionError = error as? CrossDeviceSessionError {
+                    details["exceptionCode"] = crossDeviceSessionError.flutterExceptionCodeRepresentation
+                }
+                
+                if case let CrossDeviceSessionError.getCrossDeviceSessionFail(crossDeviceSessionError) = error, let crossDeviceSessionError {
+                    details["error"] = crossDeviceSessionError.errorDebugDescription
+                }
+                
+                let pigeonError = self.createPigeonError(error: error, details: details)
+                completion(Result.failure(pigeonError));
+            } else if let session {
+                completion(Result.success(session.toMCrossDeviceSession()))
+            }
+        }
+    }
+    
+    func getCrossDeviceSessionFromPushNotificationPayload(
+        payload: [String: String],
+        completion: @escaping (Result<MCrossDeviceSession, Error>) -> Void
+    ) {
+        MIRACLTrust.getInstance().getCrossDeviceSessionFromPushNotificationPayload(
+            pushNotificationPayload: payload
+        ) { session, error in
+            if let error {
+                var details = [String: Any]()
+                
+                if let crossDeviceSessionError = error as? CrossDeviceSessionError {
+                    details["exceptionCode"] = crossDeviceSessionError.flutterExceptionCodeRepresentation
+                }
+                
+                if case let CrossDeviceSessionError.getCrossDeviceSessionFail(crossDeviceSessionError) = error, let crossDeviceSessionError {
+                    details["error"] = crossDeviceSessionError.errorDebugDescription
+                }
+                
+                let pigeonError = self.createPigeonError(error: error, details: details)
+                completion(Result.failure(pigeonError));
+            } else if let session {
+                completion(Result.success(session.toMCrossDeviceSession()))
+            }
+        }
+    }
+    
+    func authenticateCrossDeviceSession(crossDeviceSession: MCrossDeviceSession, user: MUser, pin: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        let sdkUser = MIRACLTrust.getInstance().getUser(by: user.userId)
+        if let sdkUser {
+            let session = crossDeviceSession.toCrossDeviceSession()
+            MIRACLTrust.getInstance().authenticateCrossDeviceSession(crossDeviceSession: session, user: sdkUser) { pinProcessor in
+                pinProcessor(pin)
+            } completionHandler: { isSuccess, error in
+                if let error {
+                    var details = [String: Any]()
+                    
+                    if let authError = error as? AuthenticationError {
+                        details["exceptionCode"] = authError.flutterExceptionCodeRepresentation
+                    }
+                    
+                    if case let AuthenticationError.authenticationFail(authenticationError) = error, let authenticationError {
+                        details["error"] = authenticationError.errorDebugDescription
+                    }
+                    
+                    let pigeonError = self.createPigeonError(error: error, details: details)
+                    completion(Result.failure(pigeonError));
+                } else {
+                    completion(Result.success(()));
+                }
+            }
+        }
+    }
+    
+    func signCrossDeviceSession(crossDeviceSession: MCrossDeviceSession, user: MUser, pin: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        let sdkUser = MIRACLTrust.getInstance().getUser(by: user.userId)
+        if let sdkUser {
+            let session = crossDeviceSession.toCrossDeviceSession()
+            MIRACLTrust.getInstance().signCrossDeviceSession(crossDeviceSession: session, user: sdkUser) { pinProcessor in
+                pinProcessor(pin)
+            } completionHandler: { isSuccess, error in
+                if let error {
+                    var details = [String: Any]()
+                    
+                    if let signingError = error as? SigningError {
+                        details["exceptionCode"] = signingError.flutterExceptionCodeRepresentation
+                    }
+                    
+                    if case let SigningError.signingFail(signingError) = error, let signingError {
+                        details["error"] = signingError.errorDebugDescription
+                    }
+                    
+                    let pigeonError = self.createPigeonError(error: error, details: details)
+                    completion(Result.failure(pigeonError));
+                } else {
+                    completion(Result.success(()));
+                }
+            }
+        }
+    }
+    
+    func abortCrossDeviceSession(crossDeviceSession: MCrossDeviceSession, completion: @escaping (Result<Void, Error>) -> Void) {
+        let session = crossDeviceSession.toCrossDeviceSession()
+        MIRACLTrust.getInstance().abortCrossDeviceSession(crossDeviceSession: session) { _, error in
+            if let error {
+                var details = [String: Any]()
+                
+                if let crossDeviceSessionError = error as? CrossDeviceSessionError {
+                    details["exceptionCode"] = crossDeviceSessionError.flutterExceptionCodeRepresentation
+                }
+                
+                if case let CrossDeviceSessionError.abortCrossDeviceSessionFail(crossDeviceSessionError) = error, let crossDeviceSessionError {
+                    details["error"] = crossDeviceSessionError.errorDebugDescription
+                }
+                
+                let pigeonError = self.createPigeonError(error: error, details: details)
+                completion(Result.failure(pigeonError));
+            } else {
+                completion(Result.success(()))
+            }
+        }
+    }
 
   func getAuthenticationSessionDetailsFromQRCode(
     qrCode: String, 

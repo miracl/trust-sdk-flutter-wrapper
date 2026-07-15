@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
@@ -158,24 +160,24 @@ void main() {
 
       user = await miraclTrust.register(userId, activationTokenResponse.activationToken, pin);
 
-      // Get authentication session.
-      final qrURLAsString = await startAuthenticationSession(cuvProjectId, userId, cuvProjectUrl);
-      final qrURL = Uri.parse(qrURLAsString);
+      // Get cross-device session.
+      String qrURLAsString = await startSession(cuvProjectId, userId, cuvProjectUrl);
+      Uri qrURL = Uri.parse(qrURLAsString);
 
-      AuthenticationSessionDetails authenticationSessionDetails = await miraclTrust.getAuthenticationSessionDetailsFromQRCode(qrURLAsString);
-      expect(cuvProjectId, equals(authenticationSessionDetails.projectId));
+      CrossDeviceSession crossDeviceSession = await miraclTrust.getCrossDeviceSessionFromQRCode(qrURLAsString);
+      expect(cuvProjectId, equals(crossDeviceSession.projectId));
       
       await expectLater(
-        miraclTrust.getAuthenticationSessionDetailsFromQRCode("https://google.com"), 
-        throwsA(isA<AuthenticationSessionDetailsException>().having((e) => e.code  , "", equals(AuthenticationSessionDetailsExceptionCode.invalidQRCode))) 
+        miraclTrust.getCrossDeviceSessionFromQRCode("https://example.com"), 
+        throwsA(isA<CrossDeviceSessionException>().having((e) => e.code  , "", equals(CrossDeviceSessionExceptionCode.invalidQRCode))) 
       );
 
-      authenticationSessionDetails = await miraclTrust.getAuthenticationSessionDetailsFromLink(qrURL);
-      expect(cuvProjectId, equals(authenticationSessionDetails.projectId));
+      crossDeviceSession = await miraclTrust.getCrossDeviceSessionFromLink(qrURL);
+      expect(cuvProjectId, equals(crossDeviceSession.projectId));
       
       await expectLater(
-        miraclTrust.getAuthenticationSessionDetailsFromLink(Uri.parse("https://google.com")), 
-        throwsA(isA<AuthenticationSessionDetailsException>().having((e) => e.code  , "", equals(AuthenticationSessionDetailsExceptionCode.invalidLink))) 
+        miraclTrust.getCrossDeviceSessionFromLink(Uri.parse("https://example.com")), 
+        throwsA(isA<CrossDeviceSessionException>().having((e) => e.code  , "", equals(CrossDeviceSessionExceptionCode.invalidLink))) 
       );
 
       Map<String, String> payload = {
@@ -183,10 +185,74 @@ void main() {
         "qrURL" : qrURL.toString(),
         "projectID": cuvProjectId
       };
+      crossDeviceSession = await miraclTrust.getCrossDeviceSessionFromPushNotificationPayload(payload);
+      expect(cuvProjectId, equals(crossDeviceSession.projectId));
+      
+      payload = {
+        "qrURL" : "https://example.com",
+        "projectID": cuvProjectId
+      };
+      
+      await expectLater(
+        miraclTrust.getCrossDeviceSessionFromPushNotificationPayload(payload), 
+        throwsA(isA<CrossDeviceSessionException>().having((e) => e.code  , "", equals(CrossDeviceSessionExceptionCode.invalidNotificationPayload))) 
+      );
+
+      // Authenticate cross-device session
+      await expectLater(miraclTrust.authenticateCrossDeviceSession(crossDeviceSession, user, pin), completes);
+
+      await expectLater(
+        miraclTrust.authenticateCrossDeviceSession(crossDeviceSession, user, ""),
+        throwsA(
+          isA<AuthenticationException>().having((e) => e.code , "", equals(AuthenticationExceptionCode.invalidPin))
+        )
+      );
+
+      // Sign cross-device session
+      String hash = generateRandomHash();
+      String qrCode = await startSession(cuvProjectId, userId, cuvProjectUrl, hash);
+      CrossDeviceSession signingSession = await miraclTrust.getCrossDeviceSessionFromQRCode(qrCode);
+      await expectLater(miraclTrust.signCrossDeviceSession(signingSession, user, pin), completes);
+
+      await expectLater(
+        miraclTrust.signCrossDeviceSession(signingSession, user, ""),
+        throwsA(
+          isA<SigningException>().having((e) => e.code , "", equals(SigningExceptionCode.invalidPin))
+        )
+      );
+
+      // Abort cross-device session
+      await expectLater(miraclTrust.abortCrossDeviceSession(crossDeviceSession), completes);
+
+      // Get authentication session.
+      qrURLAsString = await startSession(cuvProjectId, userId, cuvProjectUrl);
+      qrURL = Uri.parse(qrURLAsString);
+
+      AuthenticationSessionDetails authenticationSessionDetails = await miraclTrust.getAuthenticationSessionDetailsFromQRCode(qrURLAsString);
+      expect(cuvProjectId, equals(authenticationSessionDetails.projectId));
+      
+      await expectLater(
+        miraclTrust.getAuthenticationSessionDetailsFromQRCode("https://example.com"), 
+        throwsA(isA<AuthenticationSessionDetailsException>().having((e) => e.code  , "", equals(AuthenticationSessionDetailsExceptionCode.invalidQRCode))) 
+      );
+
+      authenticationSessionDetails = await miraclTrust.getAuthenticationSessionDetailsFromLink(qrURL);
+      expect(cuvProjectId, equals(authenticationSessionDetails.projectId));
+      
+      await expectLater(
+        miraclTrust.getAuthenticationSessionDetailsFromLink(Uri.parse("https://example.com")), 
+        throwsA(isA<AuthenticationSessionDetailsException>().having((e) => e.code  , "", equals(AuthenticationSessionDetailsExceptionCode.invalidLink))) 
+      );
+
+      payload = {
+        "userID" : userId,
+        "qrURL" : qrURL.toString(),
+        "projectID": cuvProjectId
+      };
       authenticationSessionDetails = await miraclTrust.getAuthenticationSessionDetailsFromPushNofitifactionPayload(payload);
       
       payload = {
-        "qrURL" : "https://google.com",
+        "qrURL" : "https://example.com",
         "projectID": cuvProjectId
       };
       
