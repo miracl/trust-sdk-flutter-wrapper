@@ -9,10 +9,9 @@ The MIRACL Trust Flutter Plugin provides the following functionalities:
 - [QuickCode](#quickcode)
 - [User Management](#user-management)
 
-This plugin implements method-channel communication with
-MIRACL’s iOS and Android SDKs. It leverages the
-[Pigeon](https://pub.dev/packages/pigeon) framework to
-generate type-safe method-channel communication.
+This plugin implements method-channel communication with MIRACL’s iOS and
+Android SDKs. It leverages the [Pigeon](https://pub.dev/packages/pigeon)
+framework to generate type-safe method-channel communication.
 
 ## System Requirements
 
@@ -25,18 +24,19 @@ Add flutter_miracl_sdk to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-    flutter_miracl_sdk: ^0.9.0
+  flutter_miracl_sdk: ^0.9.0
 ```
 
-If your application uses Cocoapods as an iOS dependency manager,
-add the MIRACL Trust iOS SDK podspec source to your `Podfile`:
+If your application uses Cocoapods as an iOS dependency manager, add the MIRACL
+Trust iOS SDK podspec source to your `Podfile`:
 
 ```ruby
 source 'https://github.com/miracl/cocoapods-specs'
 source 'https://github.com/CocoaPods/Specs'
 ```
 
-For more information on how to work with Cocoapods sources check the [documentation](https://guides.cocoapods.org/syntax/podfile.html#source).
+For more information on how to work with Cocoapods sources check the
+[documentation](https://guides.cocoapods.org/syntax/podfile.html#source).
 
 ## Usage
 
@@ -52,8 +52,8 @@ import 'package:flutter_miracl_sdk/flutter_miracl_sdk.dart';
 
 To configure the plugin:
 
-1. Create an account in the MIRACL Trust platform. For information about how
-   to do it, see the
+1. Create an account in the MIRACL Trust platform. For information about how to
+   do it, see the
    [Getting Started](https://miracl.com/resources/docs/guides/get-started/)
    guide.
 2. Call the
@@ -74,9 +74,8 @@ To configure the plugin:
 
    Call the
    [initialize](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/initialize.html)
-   method as early as possible in the application
-   lifecycle, and avoid creating instance before that; otherwise,
-   an assertion will be triggered.
+   method as early as possible in the application lifecycle, and avoid creating
+   instance before that; otherwise, an assertion will be triggered.
 
 ### Obtain instance of the plugin
 
@@ -88,26 +87,24 @@ MIRACLTrust miraclTrust = MIRACLTrust();
 
 ### Exception handling
 
-Most plugin methods can throw exceptions spcific for the operation.
-Each exception includes a `code` enum that indicates the origin of
-the exception (e.g., unsuccessful authentication).
+Most plugin methods can throw exceptions spcific for the operation. Each
+exception includes a `code` enum that indicates the origin of the exception
+(e.g., unsuccessful authentication).
 
-Although exception handling is not mandatory in Dart, it is
-highly recommended that MIRACL Trust methods be wrapped
-in `try/catch` statements.
+Although exception handling is not mandatory in Dart, it is highly recommended
+that MIRACL Trust methods be wrapped in `try/catch` statements.
 
 ### User ID Verification
 
-To register a new User ID, you need to verify it. MIRACL
-offers two options for that:
+To register a new User ID, you need to verify it. MIRACL offers two options for
+that:
 
 - [Custom User Verification](https://miracl.com/resources/docs/guides/custom-user-verification/)
 - [Built-in User Verification](https://miracl.com/resources/docs/guides/built-in-user-verification/)
 
-  With this type of verification, the end user's email address
-  serves as the User ID. Currently, MIRACL Trust provides two kinds of built-in
-  email verification methods:
-
+  With this type of verification, the end user's email address serves as the
+  User ID. Currently, MIRACL Trust provides two kinds of built-in email
+  verification methods:
   - [Email Link](https://miracl.com/resources/docs/guides/built-in-user-verification/email-link/)
     (default)
   - [Email Code](https://miracl.com/resources/docs/guides/built-in-user-verification/email-code/)
@@ -129,67 +126,66 @@ offers two options for that:
   with backoff and email verification method is returned.
 
   If the verification method you have chosen for your project is:
-
   - **Email Code:**
 
     You must check the email verification method in the response.
-
     - If the end user is registering for the first time or resetting their PIN,
-      an email with a verification code will be sent, and the email
-      verification method in the response will be
+      an email with a verification code will be sent, and the email verification
+      method in the response will be
       [EmailVerificationMethod.code](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/EmailVerificationMethod.html#code).
       Then, ask the user to enter the code in the application.
 
-    - If the end user has already registered another device with the same
-      User ID, a Verification URL will be sent, and the verification method in
-      the response will be
+    - If the end user has already registered another device with the same User
+      ID, a Verification URL will be sent, and the verification method in the
+      response will be
       [EmailVerificationMethod.link](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/EmailVerificationMethod.html#link).
       In this case, proceed as described for the **Email Link** verification
       method below.
 
-  - **Email Link:** Your application must open when the end user follows
-    the Verification URL in the email. To ensure proper deep linking behaviour
-    on mobile applications, check this [guide](https://docs.flutter.dev/ui/navigation/deep-linking)
-    package. To associate your application with the email Verification URL, use
-    the **Android association** field in **Mobile Applications** under
+  - **Email Link:** Your application must open when the end user follows the
+    Verification URL in the email. To ensure proper deep linking behaviour on
+    mobile applications, check this
+    [guide](https://docs.flutter.dev/ui/navigation/deep-linking) package. To
+    associate your application with the email Verification URL, use the
+    **Android association** field in **Mobile Applications** under
     **Configuration** in the [MIRACL Trust Portal](https://trust.miracl.cloud).
 
 ### Registration
 
 1. To register the mobile device, get an activation token. This happens in two
-different ways, depending on the type of verification.
-
+   different ways, depending on the type of verification.
    - [Custom User Verification](https://miracl.com/resources/docs/guides/custom-user-verification/)
-     or [Email Link](https://miracl.com/resources/docs/guides/built-in-user-verification/email-link/):
+     or
+     [Email Link](https://miracl.com/resources/docs/guides/built-in-user-verification/email-link/):
 
-      After the application recieves the Verification URL, it must confirm the
-      verification by passing it to the
-      [getActivationTokenByURI](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/getActivationTokenByURI.html)
-      method:
+     After the application recieves the Verification URL, it must confirm the
+     verification by passing it to the
+     [getActivationTokenByURI](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/getActivationTokenByURI.html)
+     method:
 
-      ```dart
-      try {
-        final activationTokenResponse = await miraclTrust.getActivationTokenByURI(verificationURL);
-      } on ActivationTokenException catch(e) {
-        // Handle the exception here.
-      }
-      ```
+     ```dart
+     try {
+       final activationTokenResponse = await miraclTrust.getActivationTokenByURI(verificationURL);
+     } on ActivationTokenException catch(e) {
+       // Handle the exception here.
+     }
+     ```
 
    - [Email Code](https://miracl.com/resources/docs/guides/built-in-user-verification/email-code/):
 
-      When the end user enters the verification code, the application must
-      confirm the verification by passing it to the
-      [getActivationTokenByUserIdAndCode](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/getActivationTokenByUserIdAndCode.html)
-      method:
+     When the end user enters the verification code, the application must
+     confirm the verification by passing it to the
+     [getActivationTokenByUserIdAndCode](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/getActivationTokenByUserIdAndCode.html)
+     method:
 
-      ```dart
-      try {
-        final activationTokenResponse = 
-           await miraclTrust.getActivationTokenByUserIdAndCode(userId, code);
-      } on ActivationTokenException catch(e) {
-        // Handle the exception here.
-      }
-      ```
+     ```dart
+     try {
+       final activationTokenResponse =
+          await miraclTrust.getActivationTokenByUserIdAndCode(userId, code);
+     } on ActivationTokenException catch(e) {
+       // Handle the exception here.
+     }
+     ```
 
 2. Pass the User ID (email or any string you use for identification), activation
    token (received from verification) and the user-entered PIN code to the
@@ -199,8 +195,8 @@ different ways, depending on the type of verification.
    ```dart
     try {
       final user = await miraclTrust.register(
-          userId, 
-          activationTokenResponse.activationToken, 
+          userId,
+          activationTokenResponse.activationToken,
           pin
       );
     } on RegistrationException catch(e) {
@@ -210,23 +206,15 @@ different ways, depending on the type of verification.
 
    If you call the
    [register](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/register.html)
-   method with the same User ID more
-   than once, the User ID will be overridden. Therefore, you can
-   use it to reset your authentication PIN code.
+   method with the same User ID more than once, the User ID will be overridden.
+   Therefore, you can use it to reset your authentication PIN code.
 
 ### Authentication
 
-The MIRACL Trust SDK offers two options:
-
-- [Authenticate users on the mobile application](#authenticate-users-on-the-mobile-application)
-- [Authenticate users on another application](#authenticate-users-on-another-application)
-
-#### Authenticate users on the mobile application
-
 The
 [authenticate](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/authenticate.html)
-method generates a [JWT](https://datatracker.ietf.org/doc/html/rfc7519) authentication
-token for а registered user.
+method generates a [JWT](https://datatracker.ietf.org/doc/html/rfc7519)
+authentication token for а registered user.
 
 ```dart
 try {
@@ -243,52 +231,13 @@ token signature using the MIRACL Trust
 [JWKS](https://api.mpin.io/.well-known/jwks) endpoint and the `audience` claim,
 which in this case is the application Project ID.
 
-#### Authenticate users on another application
-
-There are three options for authenticating a user on another application:
-
-- Authenticate with deep link:
-
-  Use the
-  [authenticateWithLink](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/authenticateWithLink.html)
-  method:
-
-  ```dart
-  try {
-    miraclTrust.authenticateWithLink(user, link, pin)
-  } on AuthenticationException catch(e) {
-    // Handle the exception here.
-  }
-  ```
-
-  For information about handling deep links, see this [guide](https://docs.flutter.dev/ui/navigation/deep-linking).
-
-- Authenticate with a QR code
-
-  Use the
-  [authenticateWithQRCode](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/authenticateWithQRCode.html)
-  method:
-
-  ```dart
-  try {
-    await miraclTrust.authenticateWithQrCode(user, qrCode, pin)
-  } on AuthenticationException catch(e) {
-    // Handle the exception here.
-  }
-  ```
-
-- Authenticate with push notifications payload:
-
-  Use the
-  [authenticateWithNotificationPayload](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/authenticateWithNotificationPayload.html):
-
-  ```dart
-  try {
-    miraclTrust.authenticateWithNotificationPayload(payload, pin)
-  } on AuthenticationException catch(e) {
-    // Handle the exception here.
-  }
-  ```
+```dart
+try {
+  await miraclTrust.authenticateWithQrCode(user, qrCode, pin)
+} on AuthenticationException catch(e) {
+  // Handle the exception here.
+}
+```
 
 For more information about authenticating users on custom applications, see
 [Cross-Device Authentication](https://miracl.com/resources/docs/guides/how-to/custom-mobile-authentication/).
@@ -312,27 +261,137 @@ try {
 }
 ```
 
-The signature must be verified by sending it to the application server, which then
-makes a call to the
+The signature must be verified by sending it to the application server, which
+then makes a call to the
 [POST /dvs/verify](https://miracl.com/resources/docs/guides/dvs/dvs-web-plugin/#api-reference)
-endpoint. If the MIRACL Trust platform returns a status code 200, the certificate
-entry in the response body indicates that the signing is successful.
+endpoint. If the MIRACL Trust platform returns a status code 200, the
+certificate entry in the response body indicates that the signing is successful.
+
+### Cross-Device Session
+
+The MIRACL Trust Android SDK provides a cross-device session mechanism for
+authenticating users or signing documents on a mobile device from external
+applications. A cross-device session can be fetched via deep links, QR codes, or
+push notifications. Once the cross-device session is successfully fetched, you
+can proceed to authenticate the end user or sign a document using the
+corresponding SDK methods. If the session is no longer needed or the process is
+completed, you can abort it to cancel the current cross-device operation.
+
+#### Fetch the Cross-Device Session
+
+Depending on how the cross-device session is initiated, there are three options
+to fetch it:
+
+- Via deep link
+
+  Use the
+  [getCrossDeviceSessionFromLink](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/getCrossDeviceSessionFromLink.html)
+  method:
+
+  ```dart
+  try {
+    final crossDeviceSession = await miraclTrust.getCrossDeviceSessionFromLink(link);
+    // Use the crossDeviceSession to authenticate or sign.
+  } on CrossDeviceSessionException catch(e) {
+    // Handle the exception here.
+  }
+  ```
+
+- Via QR code:
+
+  Use the
+  [getCrossDeviceSessionFromQRCode](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/getCrossDeviceSessionFromQRCode.html)
+  method:
+
+  ```dart
+  try {
+    final crossDeviceSession = await miraclTrust.getCrossDeviceSessionFromQRCode(qrCode);
+    // Use the crossDeviceSession to authenticate or sign.
+  } on CrossDeviceSessionException catch(e) {
+    // Handle the exception here.
+  }
+  ```
+
+- Via push notification:
+
+  Use the
+  [getCrossDeviceSessionFromPushNotificationPayload](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/getCrossDeviceSessionFromPushNotificationPayload.html)
+  method:
+
+  ```dart
+  try {
+    final crossDeviceSession = await miraclTrust.getCrossDeviceSessionFromPushNotificationPayload(payload);
+    // Use the crossDeviceSession to authenticate or sign.
+  } on CrossDeviceSessionException catch(e) {
+    // Handle the exception here.
+  }
+  ```
+
+#### Authenticate Cross-Device Session
+
+After fetching the cross-device session, authenticate using the
+[authenticateCrossDeviceSession](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/authenticateCrossDeviceSession.html)
+method:
+
+```dart
+try {
+  await miraclTrust.authenticateCrossDeviceSession(crossDeviceSession, user, pin);
+  // The cross-device session is authenticated.
+} on AuthenticationException catch(e) {
+  // Handle the exception here.
+}
+```
+
+For more information about authenticating users on custom applications, see
+[Cross-Device Authentication](https://miracl.com/resources/docs/guides/how-to/custom-mobile-authentication/).
+
+#### Sign Cross-Device Session
+
+After fetching the cross-device session, sign a document using the
+[signCrossDeviceSession](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/signCrossDeviceSession.html)
+method:
+
+```dart
+try {
+  await miraclTrust.signCrossDeviceSession(crossDeviceSession, user, pin);
+  // The cross-device session is signed.
+} on SigningException catch(e) {
+  // Handle the exception here.
+}
+```
+
+#### Abort Cross-Device Session
+
+To cancel the handling of the cross-device session, call the
+[abortCrossDeviceSession](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/abortCrossDeviceSession.html)
+method:
+
+```dart
+try {
+  await miraclTrust.abortCrossDeviceSession(crossDeviceSession);
+  // The cross-device session is aborted.
+} on CrossDeviceSession catch(e) {
+  // Handle the exception here.
+}
+```
 
 ### QuickCode
 
 [QuickCode](https://miracl.com/resources/docs/guides/built-in-user-verification/quickcode/)
-is a way to register another device without going through the verification process.
+is a way to register another device without going through the verification
+process.
 
-To generate a [QuickCode](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/QuickCode-class.html),
-call the [generateQuickCode](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/generateQuickCode.html)
-method with
-an already registered
+To generate a
+[QuickCode](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/QuickCode-class.html),
+call the
+[generateQuickCode](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/generateQuickCode.html)
+method with an already registered
 [User](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/User-class.html)
 object:
 
 ```dart
 try {
-  final quickCode = await miraclTrust.generateQuickCode(user, pin); 
+  final quickCode = await miraclTrust.generateQuickCode(user, pin);
 } on QuickCodeException catch(e) {
   // Handle the exception here.
 }
@@ -340,9 +399,9 @@ try {
 
 ### User Management
 
-The MIRACL Trust Flutter plugin provides several methods for managing users registered
-on a device. These operations allow you to retrieve user information or delete
-previously registered users.
+The MIRACL Trust Flutter plugin provides several methods for managing users
+registered on a device. These operations allow you to retrieve user information
+or delete previously registered users.
 
 #### Get a registered user
 
@@ -402,7 +461,6 @@ try {
    to be passed to the
    [register](https://pub.dev/documentation/flutter_miracl_sdk/latest/flutter_miracl_sdk/MIRACLTrust/register.html)
    method so the platform can verify it. Here are the options for that:
-
    - [Custom User Verification](https://miracl.com/resources/docs/guides/custom-user-verification/)
    - [Built-in User Verification](https://miracl.com/resources/docs/guides/built-in-user-verification/)
 
@@ -412,10 +470,8 @@ try {
    platform that share a single owner.
 
    You can find the Project ID value in the MIRACL Trust Portal:
-
    1. Go to [trust.miracl.cloud](https://trust.miracl.cloud).
    1. Log in or create a new User ID.
    1. Select your project.
    1. In the CONFIGURATION section, go to **General**.
    1. Copy the **Project ID** value.
-  
