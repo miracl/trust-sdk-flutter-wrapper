@@ -93,3 +93,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ## 0.10.0
 
 * Introduce a new session API and deprecate the old one.
+
+## 0.11.0
+
+* Add cross-device session type.
