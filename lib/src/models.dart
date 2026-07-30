@@ -171,6 +171,17 @@ enum IdentityType {
   }
 }
 
+/// Represents the type of [CrossDeviceSession]
+///
+/// Use this enum to determine the appropriate flow when handling the session.
+enum CrossDeviceSessionType {
+  /// Indicates an authentication session.
+  authentication,
+
+  /// Indicates a signing session.
+  signing
+}
+
 /// An object representing details for an operation (authentication or signing)
 /// started on another device.
 class CrossDeviceSession {
@@ -196,6 +207,11 @@ class CrossDeviceSession {
     required this.projectId,
     required this.signingHash,
   });
+
+  /// The type of the session.
+  CrossDeviceSessionType get type => signingHash.isNotEmpty
+      ? CrossDeviceSessionType.signing
+      : CrossDeviceSessionType.authentication;
 }
 
 /// An object representing details from an incoming authentication session.
