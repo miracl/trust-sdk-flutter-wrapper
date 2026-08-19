@@ -97,3 +97,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ## 0.11.0
 
 * Add cross-device session type.
+
+## 0.12.0
+
+* Update registration flow.
