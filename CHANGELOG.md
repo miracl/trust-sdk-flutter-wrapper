@@ -101,3 +101,7 @@ This release prepares the API for a future stable version by simplifying and cle
 ## 0.12.0
 
 * Update registration flow.
+
+## 0.12.0+1
+
+* Update MIRACL iOS SDK version.

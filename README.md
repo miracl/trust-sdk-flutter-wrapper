@@ -25,7 +25,7 @@ Add flutter_miracl_sdk to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-    flutter_miracl_sdk: ^0.12.0
+    flutter_miracl_sdk: ^0.12.0+1
 ```
 
 If your application uses Cocoapods as an iOS dependency manager, add the MIRACL
