@@ -23,5 +23,5 @@ MIRCAL Trust Flutter plugin.
   s.swift_version = '5.0'
   s.public_header_files = 'Classes/**/*.h'
   
-  s.dependency 'MIRACLTrust', '1.19.0'
+  s.dependency 'MIRACLTrust', '1.19.1'
 end
