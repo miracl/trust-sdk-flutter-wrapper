@@ -88,6 +88,10 @@ jobs:
           channel: stable
       - run: flutter --version
 
+      - name: Run Flutter Doctor
+        run: |
+          flutter doctor -v
+
       - name: Get dependencies
         run: flutter pub get
 
@@ -102,10 +106,12 @@ jobs:
           TEST_DV_PROJECT_URL: ${{ vars.TEST_DV_PROJECT_URL }}
         run: |
           flutter config --enable-swift-package-manager
-          xcrun simctl erase "iPhone 17"
-          xcrun simctl boot "iPhone 17"
-          xcrun simctl bootstatus "iPhone 17" -b
-          SIMULATOR_NAME="$(xcrun simctl list devices | grep "(Booted)" | grep -E -o -i "([0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12})")"
+          DEVICE_ID=$(xcrun simctl create "trust-sdk-flutter" "iPhone 17" "iOS26.5")
+          xcrun simctl boot $DEVICE_ID
+          xcrun simctl bootstatus $DEVICE_ID -b
+          echo "Pre-warming simulator logging sub-systems..."
+          xcrun simctl spawn $DEVICE_ID log stream --timeout 5 > /dev/null || true
+          sleep 10
           flutter clean
           flutter pub get
-          ./run-tests.sh $SIMULATOR_NAME
+          ./run-tests.sh $DEVICE_ID
